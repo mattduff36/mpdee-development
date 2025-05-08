@@ -189,6 +189,48 @@
       .portfolio-grid {
         grid-template-columns: 1fr;
       }
+
+      .container {
+        padding: 1rem;
+      }
+
+      header {
+        padding: 2rem 0;
+      }
+
+      .portfolio-card {
+        padding: 0.75rem;
+      }
+
+      .card-image {
+        width: 70px;
+        height: 70px;
+      }
+
+      .card-title {
+        font-size: 1rem;
+      }
+
+      .card-description {
+        font-size: 0.75rem;
+      }
+
+      .contact-section {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 2rem 0;
+      }
+
+      .contact-link {
+        width: 100%;
+        justify-content: center;
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+      }
+
+      .contact-text {
+        font-size: 0.9rem;
+      }
     }
 
     .contact-section {
@@ -214,10 +256,14 @@
       overflow: hidden;
     }
 
-    .contact-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      border-color: rgba(255, 255, 255, 0.3);
+    .contact-link.downloads-link {
+      color: #64748b;
+      border-color: rgba(100, 116, 139, 0.2);
+    }
+
+    .contact-link.downloads-link:hover {
+      color: #94a3b8;
+      border-color: rgba(148, 163, 184, 0.3);
     }
 
     .contact-link::before {
@@ -301,7 +347,7 @@
         <span class="contact-text">sendme@mpdee.info</span>
         <span class="contact-icon"><i class="fas fa-envelope"></i></span>
       </a>
-      <a href="downloads.html" class="contact-link">
+      <a href="downloads.html" class="contact-link downloads-link">
         <span class="contact-text">Downloads</span>
         <span class="contact-icon"><i class="fas fa-download"></i></span>
       </a>
