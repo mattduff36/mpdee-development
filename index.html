@@ -40,6 +40,33 @@
       overflow-x: hidden;
     }
 
+    /* Matrix Animation Container */
+    .matrix-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #121212;
+      z-index: 1000;
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .matrix-rain.fade-out {
+      opacity: 0;
+    }
+
+    /* Main Content */
+    .main-content {
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+
+    .main-content.visible {
+      opacity: 1;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -308,55 +335,154 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="floating-elements">
-        <div class="floating-element" style="width: 100px; height: 100px; top: 10%; left: 10%;"></div>
-        <div class="floating-element" style="width: 150px; height: 150px; top: 30%; right: 15%;"></div>
-        <div class="floating-element" style="width: 80px; height: 80px; bottom: 20%; left: 20%;"></div>
+  <!-- Matrix Animation Container -->
+  <div class="matrix-rain" id="matrixContainer"></div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="container">
+      <header>
+        <div class="floating-elements">
+          <div class="floating-element" style="width: 100px; height: 100px; top: 10%; left: 10%;"></div>
+          <div class="floating-element" style="width: 150px; height: 150px; top: 30%; right: 15%;"></div>
+          <div class="floating-element" style="width: 80px; height: 80px; bottom: 20%; left: 20%;"></div>
+        </div>
+        <div class="header-content">
+          <h1>mpdee</h1>
+          <p class="subtitle">Web Development Portfolio</p>
+        </div>
+      </header>
+
+      <div class="portfolio-grid">
+        <a href="https://www.victoriaroselimited.co.uk/" class="portfolio-card" target="_blank" rel="noopener noreferrer">
+          <img src="images/victoria-rose-salon-logo.jpeg" alt="Victoria Rose Limited" class="card-image">
+          <div class="card-content">
+            <h2 class="card-title">Victoria Rose Limited</h2>
+            <p class="card-description">A professional website for Victoria Rose Limited, showcasing their services and expertise.</p>
+          </div>
+        </a>
+
+        <a href="https://www.paintingsbykay.co.uk/" class="portfolio-card" target="_blank" rel="noopener noreferrer">
+          <img src="images/paintings-by-kay-logo.png" alt="Paintings by Kay" class="card-image">
+          <div class="card-content">
+            <h2 class="card-title">Paintings by Kay</h2>
+            <p class="card-description">An elegant portfolio website showcasing Kay's beautiful artwork and paintings.</p>
+          </div>
+        </a>
+
+        <a href="https://lbp.mpdee.co.uk/" class="portfolio-card" target="_blank" rel="noopener noreferrer">
+          <img src="images/LBP-Logo.png" alt="Lee Barrowcliff Photography" class="card-image">
+          <div class="card-content">
+            <h2 class="card-title">Lee Barrowcliff Photography</h2>
+            <p class="card-description">A stunning photography portfolio showcasing Lee's professional photography work.</p>
+          </div>
+        </a>
       </div>
-      <div class="header-content">
-        <h1>mpdee</h1>
-        <p class="subtitle">Web Development Portfolio</p>
+
+      <div class="contact-section" style="display: flex; justify-content: center; align-items: center;">
+        <a href="mailto:sendme@mpdee.info" class="contact-link" style="margin-right: 1rem;">
+          <span class="contact-text">sendme@mpdee.info</span>
+          <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+        </a>
+        <a href="downloads.html" class="contact-link downloads-link">
+          <span class="contact-text">Downloads</span>
+          <span class="contact-icon"><i class="fas fa-download"></i></span>
+        </a>
       </div>
-    </header>
-
-    <div class="portfolio-grid">
-      <a href="https://www.victoriaroselimited.co.uk/" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-        <img src="images/victoria-rose-salon-logo.jpeg" alt="Victoria Rose Limited" class="card-image">
-        <div class="card-content">
-          <h2 class="card-title">Victoria Rose Limited</h2>
-          <p class="card-description">A professional website for Victoria Rose Limited, showcasing their services and expertise.</p>
-        </div>
-      </a>
-
-      <a href="https://www.paintingsbykay.co.uk/" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-        <img src="images/paintings-by-kay-logo.png" alt="Paintings by Kay" class="card-image">
-        <div class="card-content">
-          <h2 class="card-title">Paintings by Kay</h2>
-          <p class="card-description">An elegant portfolio website showcasing Kay's beautiful artwork and paintings.</p>
-        </div>
-      </a>
-
-      <a href="https://lbp.mpdee.co.uk/" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-        <img src="images/LBP-Logo.png" alt="Lee Barrowcliff Photography" class="card-image">
-        <div class="card-content">
-          <h2 class="card-title">Lee Barrowcliff Photography</h2>
-          <p class="card-description">A stunning photography portfolio showcasing Lee's professional photography work.</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="contact-section" style="display: flex; justify-content: center; align-items: center;">
-      <a href="mailto:sendme@mpdee.info" class="contact-link" style="margin-right: 1rem;">
-        <span class="contact-text">sendme@mpdee.info</span>
-        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-      </a>
-      <a href="downloads.html" class="contact-link downloads-link">
-        <span class="contact-text">Downloads</span>
-        <span class="contact-icon"><i class="fas fa-download"></i></span>
-      </a>
     </div>
   </div>
+
+  <script>
+    // Matrix Animation Code
+    const chars = 'mpdee';
+    
+    function initMatrix() {
+      const canvas = document.createElement('canvas');
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      document.getElementById('matrixContainer').appendChild(canvas);
+      
+      const ctx = canvas.getContext('2d');
+      let drops = [];
+      let isAnimating = true;
+      let startTime = Date.now();
+      let freezeTime = 0;
+      let isFrozen = false;
+      
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const numColumns = Math.floor(canvas.width / 60);
+        const middleIndex = Math.floor(numColumns / 2);
+        
+        drops = Array(numColumns).fill().map((_, index) => {
+          const isMiddleColumn = Math.abs(index - middleIndex) <= 2;
+          return {
+            y: Math.random() * -canvas.height,
+            char: isMiddleColumn ? 'mpdee'[index - (middleIndex - 2)] : chars[Math.floor(Math.random() * chars.length)],
+            isMiddleColumn: isMiddleColumn,
+            hasReachedMiddle: false
+          };
+        });
+      }
+
+      function draw() {
+        if (!isAnimating) return;
+
+        const currentTime = Date.now();
+        const elapsedTime = (currentTime - startTime) / 1000;
+        
+        const allMiddleColumnsReached = drops.every(drop => 
+          !drop.isMiddleColumn || drop.hasReachedMiddle
+        );
+
+        if (allMiddleColumnsReached && !isFrozen) {
+          isFrozen = true;
+          freezeTime = currentTime;
+        }
+
+        if (isFrozen && (currentTime - freezeTime) / 1000 >= 1) {
+          isAnimating = false;
+          // Fade out matrix animation
+          document.getElementById('matrixContainer').classList.add('fade-out');
+          // Show main content
+          document.querySelector('.main-content').classList.add('visible');
+          return;
+        }
+
+        ctx.fillStyle = 'rgba(18, 18, 18, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#f8fafc';
+        ctx.font = '50px monospace';
+        
+        const remainingTime = 2 - elapsedTime;
+        const speed = (canvas.height + 100) / (remainingTime * 60);
+        
+        for (let i = 0; i < drops.length; i++) {
+          const drop = drops[i];
+          ctx.fillText(drop.char, i * 60, drop.y);
+          
+          if (!drop.hasReachedMiddle) {
+            drop.y += speed;
+            
+            if (drop.isMiddleColumn && drop.y >= canvas.height / 2) {
+              drop.y = canvas.height / 2;
+              drop.hasReachedMiddle = true;
+            }
+          }
+        }
+        
+        requestAnimationFrame(draw);
+      }
+
+      resize();
+      window.addEventListener('resize', resize);
+      draw();
+    }
+
+    // Start matrix animation when page loads
+    window.addEventListener('load', initMatrix);
+  </script>
 </body>
 </html>
