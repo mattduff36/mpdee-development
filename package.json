@@ -1,0 +1,11 @@
+{
+  "name": "mpdee-website",
+  "version": "1.0.0",
+  "description": "mpdee website",
+  "scripts": {
+    "generate-favicons": "node generate-favicons.js"
+  },
+  "dependencies": {
+    "sharp": "^0.32.1"
+  }
+} 
