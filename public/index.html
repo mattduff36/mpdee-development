@@ -504,11 +504,11 @@
     .contact-link {
       display: inline-flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.5rem;
       color: var(--text-light);
       text-decoration: none;
-      font-size: 1.2rem;
-      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      padding: 0.75rem 1.5rem;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 2rem;
       background: var(--card-bg);
@@ -517,7 +517,7 @@
       overflow: hidden;
       opacity: 0;
       flex: 1;
-      min-width: 200px;
+      min-width: 150px;
       justify-content: center;
       max-width: fit-content;
     }
@@ -525,6 +525,8 @@
     .contact-link.downloads-link {
       color: #64748b;
       border-color: rgba(100, 116, 139, 0.2);
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
     }
 
     .contact-link.downloads-link:hover {
@@ -569,11 +571,24 @@
 
     footer {
       text-align: center;
-      padding: 2rem 0;
+      padding: 1rem 0;
       color: #94a3b8;
       font-size: 0.9rem;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    footer p {
+      text-align: center;
+    }
+
+    .contact-link.downloads-link {
+      position: absolute;
+      right: 1rem;
     }
   </style>
 </head>
@@ -672,14 +687,18 @@
             <span class="contact-text">sendme@mpdee.info</span>
             <span class="contact-icon"><i class="fas fa-envelope"></i></span>
           </a>
-          <a href="downloads.html" class="contact-link downloads-link">
-            <span class="contact-text">Downloads</span>
-            <span class="contact-icon"><i class="fas fa-download"></i></span>
-          </a>
         </div>
       </div>
     </div>
   </div>
+
+  <footer>
+    <p>© mpdee 2025. All rights reserved.</p>
+    <a href="downloads.html" class="contact-link downloads-link">
+      <span class="contact-text">Downloads</span>
+      <span class="contact-icon"><i class="fas fa-download"></i></span>
+    </a>
+  </footer>
 
   <script>
     // Matrix Animation Code

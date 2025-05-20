@@ -3,4 +3,7 @@ Allow: /
 Disallow: /private/
 Disallow: /admin/
 
+# Allow indexing of downloads page
+Allow: /downloads.html
+
 Sitemap: https://mpdee.co.uk/sitemap.xml 

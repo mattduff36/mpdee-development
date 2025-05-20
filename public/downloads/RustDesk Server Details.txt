@@ -1,0 +1,7 @@
+mpdee RustDesk ID/Relay server details
+======================================
+
+ID server = 	rustdesk.mpdee.co.uk
+Relay server = 	rustdesk.mpdee.co.uk
+API server = 	https://rustdesk.mpdee.co.uk
+Key = 		fW4LgT1M5BJzLlTXmsH3U9pwmmcmFWFM6e+K4PRGNfM=
