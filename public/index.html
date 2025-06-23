@@ -781,7 +781,9 @@
             document.querySelectorAll('.portfolio-card').forEach((card, index) => {
               card.style.animation = `fadeInLeft 0.8s ease-out ${0.6 + (index * 0.2)}s forwards`;
             });
-            document.querySelector('.promo-text').style.animation = 'fadeIn 1s ease-out 1.2s both';
+            document.querySelectorAll('.promo-text').forEach(el => {
+              el.style.animation = 'fadeIn 1s ease-out 1.2s both';
+            });
             document.querySelector('.contact-buttons').style.animation = 'fadeInUp 0.8s ease-out 1.4s forwards';
             document.querySelector('.contact-link:not(.downloads-link)').style.animation = 'fadeInLeft 0.8s ease-out 1.6s forwards';
             document.querySelector('.contact-link.downloads-link').style.animation = 'fadeInRight 0.8s ease-out 1.6s forwards';
@@ -865,7 +867,9 @@
           document.querySelectorAll('.portfolio-card').forEach((card, index) => {
             card.style.animation = `fadeInLeft 0.8s ease-out ${0.6 + (index * 0.2)}s forwards`;
           });
-          document.querySelector('.promo-text').style.animation = 'fadeIn 1s ease-out 1.2s both';
+          document.querySelectorAll('.promo-text').forEach(el => {
+            el.style.animation = 'fadeIn 1s ease-out 1.2s both';
+          });
           document.querySelector('.contact-buttons').style.animation = 'fadeInUp 0.8s ease-out 1.4s forwards';
           document.querySelector('.contact-link:not(.downloads-link)').style.animation = 'fadeInLeft 0.8s ease-out 1.6s forwards';
           document.querySelector('.contact-link.downloads-link').style.animation = 'fadeInRight 0.8s ease-out 1.6s forwards';
