@@ -33,7 +33,7 @@ interface ContactFormProps {
 
 const ContactForm = ({
   title = 'Get in Touch',
-  subtitle = "Ready to start your project? Let&apos;s discuss how we can help bring your vision to life.",
+  subtitle = 'Ready to start your project? Let&apos;s discuss how we can help bring your vision to life.',
   className = '',
 }: ContactFormProps) => {
   const [formData, setFormData] = useState<FormData>({
