@@ -1,0 +1,127 @@
+Product Requirements Document (PRD)
+Project: Cursor Website Redesign
+Author: Matt Duffill
+Date: July 10, 2025
+
+1. Executive Summary
+Business Goal
+Redesign the current holding‐page site into a polished, professional web presence that clearly communicates your web design & development capabilities, showcases current projects, and drives qualified inquiries.
+
+Problem Statement
+The existing site is overly basic—just a landing page with a handful of project links. It doesn’t effectively demonstrate service offerings nor inspire confidence in prospective clients.
+
+2. Objectives & Success Metrics
+Objective	Primary KPI
+Showcase portfolio & service expertise	Average session duration
+Generate qualified inquiries	Number of form submits
+Maintain brand consistency	Stakeholder satisfaction
+Preserve existing animations and styling	Visual QA pass rate
+
+3. Target Audience & Personas
+Persona	Description	Needs & Motivations
+Startup Founder	Early-stage entrepreneurs seeking MVPs or product launches	Inspiration gallery; proof of delivery
+Marketing Manager	Corporate or agency marketers looking to outsource web projects	Case studies; clear service breakdown
+Individual SME	Small business owners needing an online presence	Ease of contact; trust signals
+
+User Journey:
+
+Discover via referral/LinkedIn
+
+Browse homepage → portfolio → services
+
+Fill contact form
+
+4. Scope & Features
+4.1 Homepage & Navigation
+Sections: Hero banner (with animation), “Our Services,” “Featured Projects,” “Get in Touch.”
+
+Navigation: Simple top-nav; mobile hamburger menu. Retain current sticky animation on load.
+
+4.2 Portfolio / Case Studies
+Grid Layout: Thumbnail, project name, short description.
+
+Detail View: Project overview, key technologies, outcomes, “Back to all projects.”
+
+Filtering: Basic tag-based filter (e.g. “E-commerce,” “SaaS”).
+
+4.3 Services Overview
+Service Cards: Each service (e.g., UI/UX Design, Front-end Dev, Full-Stack Dev) with icon, description, “Learn More” modal.
+
+No pricing displayed. CTA button “Discuss Your Project” opens contact form.
+
+4.4 Lead Generation Form
+Fields: Name (required), Email (required), Phone (optional), Project Details (optional textarea).
+
+Validation: Front-end email format check, required-field indicators.
+
+Submission Flow: On success → “Thank you” overlay; email notification to site owner.
+
+5. UX & UI Requirements
+Brand & Styles:
+
+Colours & Typography: Preserve existing palette and typefaces.
+
+Animations: Retain load-in animations on all key modules.
+
+Responsive Design: Fluid layouts for desktop, tablet, mobile—no bespoke mobile-only features.
+
+Accessibility: Meet basic accessibility best practices (alt text, keyboard nav).
+
+6. Technical Architecture
+Hosting & Deployment: Continue using GitHub → Vercel.
+
+Framework: Any modern static-site framework supported by Cursor (e.g., Next.js).
+
+CMS/Content: Hard-coded content or lightweight headless CMS if preferred—no dynamic blog.
+
+Integrations: None (analytics optional future add-on).
+
+7. Performance & SEO
+Performance: Maintain existing page-load animations while keeping bundle size minimal.
+
+SEO:
+
+Meta titles/descriptions per page (“Home | Cursor,” “Portfolio | Cursor”).
+
+Semantic HTML5 structure.
+
+No multilingual or structured data requirements at this time.
+
+8. Success Metrics & Reporting
+Primary:
+
+Form Submissions – track via Vercel analytics or simple email confirmations.
+
+Average Session Duration – target +30% over holding-page baseline.
+
+Secondary: (for future) heatmaps, bounce rate, organic traffic.
+
+9. Timeline & Milestones
+Although there’s no fixed deadline, we recommend the following phases to structure work:
+
+Phase	Deliverables
+Discovery	Finalized requirements; wireframes sign-off
+Design	High-fidelity mockups; style specifications
+Development	Component build; animations integration
+QA	Cross-browser/device testing; bug fixes
+Launch	DNS go-live; smoke test; post-launch review
+
+10. Risks & Assumptions
+Risks:
+
+Scope creep (avoid by freezing requirements before design).
+
+Animation performance on older devices (mitigate via performance testing).
+
+Assumptions:
+
+Current Vercel hosting can handle redesigned assets without change.
+
+No CRM/email-marketing integration required at launch.
+
+Next Steps
+Wireframe Review: Approve basic layouts for homepage, portfolio, services.
+
+Content Prep: Provide final text, images, project details.
+
+Design Kick-off: Begin mockups once content is ready.

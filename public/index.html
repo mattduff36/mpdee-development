@@ -1,881 +1,1033 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Professional website design and development services by mpdee. Specializing in modern, responsive websites with packages starting from £30/month. View our portfolio of Victoria Rose Limited, Paintings by Kay, and Lee Barrowcliff Photography.">
-  <meta name="canonical" content="https://mpdee.co.uk/">
-  <meta name="robots" content="index, follow">
-  <meta name="googlebot" content="index, follow">
-  <meta http-equiv="Cache-Control" content="public, max-age=3600">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="mpdee - Professional Website Design & Development">
-  <meta property="og:description" content="Professional website design and development services. Modern, responsive websites from £30/month. View our portfolio.">
-  <meta property="og:image" content="https://mpdee.co.uk/images/mpdee_logo.png">
-  <meta property="og:url" content="https://mpdee.co.uk">
-  <meta property="og:type" content="website">
-  
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="mpdee - Professional Website Design & Development">
-  <meta name="twitter:description" content="Professional website design and development services. Modern, responsive websites from £30/month. View our portfolio.">
-  <meta name="twitter:image" content="https://mpdee.co.uk/images/mpdee_logo.png">
-  
-  <title>mpdee - Professional Website Design & Development</title>
-  
-  <!-- Resource Hints -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
-  
-  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-  <link rel="manifest" href="favicon/site.webmanifest">
-  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#121212">
-  <meta name="msapplication-TileColor" content="#121212">
-  <meta name="theme-color" content="#121212">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "mpdee",
-    "url": "https://mpdee.co.uk",
-    "logo": "https://mpdee.co.uk/images/mpdee_logo.png",
-    "description": "Professional website design and development services",
-    "email": "sendme@mpdee.info",
-    "sameAs": [
-      "https://www.victoriaroselimited.co.uk/",
-      "https://www.paintingsbykay.co.uk/",
-      "https://www.leebarrowcliffphotography.com/"
-    ]
-  }
-  </script>
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "mpdee",
-    "url": "https://mpdee.co.uk",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://mpdee.co.uk/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-  <style>
-    :root {
-      --primary-color: #2563eb;
-      --secondary-color: #1e40af;
-      --background-dark: #121212;
-      --text-light: #f8fafc;
-      --card-bg: rgba(30, 30, 30, 0.8);
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Professional website design and development services by mpdee. Specializing in modern, responsive websites with packages starting from £30/month. View our portfolio of Victoria Rose Limited, Paintings by Kay, and Lee Barrowcliff Photography."
+    />
+    <meta name="canonical" content="https://mpdee.co.uk/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta http-equiv="Cache-Control" content="public, max-age=3600" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';"
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content="mpdee - Professional Website Design & Development"
+    />
+    <meta
+      property="og:description"
+      content="Professional website design and development services. Modern, responsive websites from £30/month. View our portfolio."
+    />
+    <meta
+      property="og:image"
+      content="https://mpdee.co.uk/images/mpdee_logo.png"
+    />
+    <meta property="og:url" content="https://mpdee.co.uk" />
+    <meta property="og:type" content="website" />
 
-    body {
-      background: var(--background-dark);
-      color: var(--text-light);
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="mpdee - Professional Website Design & Development"
+    />
+    <meta
+      name="twitter:description"
+      content="Professional website design and development services. Modern, responsive websites from £30/month. View our portfolio."
+    />
+    <meta
+      name="twitter:image"
+      content="https://mpdee.co.uk/images/mpdee_logo.png"
+    />
 
-    /* Matrix Animation Container */
-    .matrix-rain {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #121212;
-      z-index: 1000;
-      opacity: 1;
-      transition: opacity 0.5s ease-out;
-    }
+    <title>mpdee - Professional Website Design & Development</title>
 
-    .matrix-rain.fade-out {
-      opacity: 0;
-    }
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      as="style"
+    />
 
-    /* Pixel Dissolve Animation */
-    .pixel-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--background-dark);
-      z-index: 1000;
-      opacity: 1;
-      transition: opacity 0.5s ease-out;
-    }
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="favicon/safari-pinned-tab.svg"
+      color="#121212"
+    />
+    <meta name="msapplication-TileColor" content="#121212" />
+    <meta name="theme-color" content="#121212" />
 
-    .pixel-container.fade-out {
-      opacity: 0;
-    }
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    .pixel {
-      position: absolute;
-      background: var(--text-light);
-      animation: pixelDissolve 2s forwards;
-    }
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
 
-    @keyframes pixelDissolve {
-      0% { transform: scale(1); opacity: 1; }
-      100% { transform: scale(0); opacity: 0; }
-    }
-
-    /* Animation Keyframes */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "mpdee",
+        "url": "https://mpdee.co.uk",
+        "logo": "https://mpdee.co.uk/images/mpdee_logo.png",
+        "description": "Professional website design and development services",
+        "email": "sendme@mpdee.info",
+        "sameAs": [
+          "https://www.victoriaroselimited.co.uk/",
+          "https://www.paintingsbykay.co.uk/",
+          "https://www.leebarrowcliffphotography.com/"
+        ]
       }
-      to {
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "mpdee",
+        "url": "https://mpdee.co.uk",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://mpdee.co.uk/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --secondary-color: #1e40af;
+        --background-dark: #121212;
+        --text-light: #f8fafc;
+        --card-bg: rgba(30, 30, 30, 0.8);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--background-dark);
+        color: var(--text-light);
+        font-family: 'Inter', sans-serif;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* Matrix Animation Container */
+      .matrix-rain {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #121212;
+        z-index: 1000;
         opacity: 1;
-        transform: translateY(0);
+        transition: opacity 0.5s ease-out;
       }
-    }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes fadeInRight {
-      from {
-        opacity: 0;
-        transform: translateX(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes spiralIn {
-      0% {
-        transform: scale(0) rotate(-180deg);
+      .matrix-rain.fade-out {
         opacity: 0;
       }
-      100% {
-        transform: scale(1) rotate(0deg);
+
+      /* Pixel Dissolve Animation */
+      .pixel-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--background-dark);
+        z-index: 1000;
         opacity: 1;
+        transition: opacity 0.5s ease-out;
       }
-    }
 
-    /* Main Content */
-    .main-content {
-      opacity: 0;
-      transition: opacity 1s ease-in;
-    }
-
-    .main-content.visible {
-      opacity: 1;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    header {
-      text-align: center;
-      padding: 4rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .header-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-logo {
-      width: 200px;
-      height: auto;
-      margin-bottom: 0;
-      opacity: 0;
-      transform: scale(0) rotate(-180deg);
-    }
-
-    .hero-logo.animate {
-      animation: spiralIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-
-    h1 {
-      font-size: 4.725rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, #fff, #94a3b8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: fadeInDown 1s ease-out;
-    }
-
-    .subtitle {
-      font-size: 1.25rem;
-      color: #94a3b8;
-      margin-bottom: 2rem;
-      animation: fadeInUp 1s ease-out 0.3s both;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--text-light);
-      margin-bottom: 2rem;
-      text-align: center;
-      animation: fadeIn 1s ease-out;
-    }
-
-    .promo-banner {
-      background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      margin: 2rem auto;
-      text-align: center;
-      max-width: 800px;
-      animation: fadeIn 1s ease-out 0.5s both;
-    }
-
-    .promo-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--text-light);
-      margin-bottom: 0.5rem;
-    }
-
-    .promo-subtitle {
-      font-size: 0.9rem;
-      color: #94a3b8;
-    }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-      padding: 2rem 0;
-    }
-
-    .portfolio-card {
-      background: var(--card-bg);
-      border-radius: 1rem;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      padding: 1rem;
-      opacity: 0;
-    }
-
-    .portfolio-card:nth-child(1) { animation-delay: 0.6s; }
-    .portfolio-card:nth-child(2) { animation-delay: 0.8s; }
-    .portfolio-card:nth-child(3) { animation-delay: 1s; }
-
-    .portfolio-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-image {
-      width: 90px;
-      height: 90px;
-      object-fit: contain;
-      background-color: rgba(0, 0, 0, 0.2);
-      padding: 0.5rem;
-      border-radius: 0.5rem;
-      transition: transform 0.5s ease;
-      flex-shrink: 0;
-    }
-
-    .portfolio-card:hover .card-image {
-      transform: scale(1.05);
-    }
-
-    .card-content {
-      padding: 0 1rem;
-      flex-grow: 1;
-    }
-
-    .card-title {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      color: var(--text-light);
-    }
-
-    .card-description {
-      color: #94a3b8;
-      font-size: 0.8rem;
-      margin-bottom: 0;
-      line-height: 1.4;
-    }
-
-    .floating-elements {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .floating-element {
-      position: absolute;
-      background: rgba(100, 100, 100, 0.1);
-      border-radius: 50%;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(10px, -10px) rotate(5deg); }
-      50% { transform: translate(0, -20px) rotate(0deg); }
-      75% { transform: translate(-10px, -10px) rotate(-5deg); }
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.5rem;
+      .pixel-container.fade-out {
+        opacity: 0;
       }
-      
-      .portfolio-grid {
-        grid-template-columns: 1fr;
+
+      .pixel {
+        position: absolute;
+        background: var(--text-light);
+        animation: pixelDissolve 2s forwards;
+      }
+
+      @keyframes pixelDissolve {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0);
+          opacity: 0;
+        }
+      }
+
+      /* Animation Keyframes */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes spiralIn {
+        0% {
+          transform: scale(0) rotate(-180deg);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1) rotate(0deg);
+          opacity: 1;
+        }
+      }
+
+      /* Main Content */
+      .main-content {
+        opacity: 0;
+        transition: opacity 1s ease-in;
+      }
+
+      .main-content.visible {
+        opacity: 1;
       }
 
       .container {
-        padding: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
       }
 
       header {
+        text-align: center;
+        padding: 4rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-logo {
+        width: 200px;
+        height: auto;
+        margin-bottom: 0;
+        opacity: 0;
+        transform: scale(0) rotate(-180deg);
+      }
+
+      .hero-logo.animate {
+        animation: spiralIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+
+      h1 {
+        font-size: 4.725rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #fff, #94a3b8);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeInDown 1s ease-out;
+      }
+
+      .subtitle {
+        font-size: 1.25rem;
+        color: #94a3b8;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease-out 0.3s both;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--text-light);
+        margin-bottom: 2rem;
+        text-align: center;
+        animation: fadeIn 1s ease-out;
+      }
+
+      .promo-banner {
+        background: var(--card-bg);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin: 2rem auto;
+        text-align: center;
+        max-width: 800px;
+        animation: fadeIn 1s ease-out 0.5s both;
+      }
+
+      .promo-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-light);
+        margin-bottom: 0.5rem;
+      }
+
+      .promo-subtitle {
+        font-size: 0.9rem;
+        color: #94a3b8;
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
         padding: 2rem 0;
       }
 
       .portfolio-card {
-        padding: 0.75rem;
+        background: var(--card-bg);
+        border-radius: 1rem;
+        overflow: hidden;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        position: relative;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        opacity: 0;
+      }
+
+      .portfolio-card:nth-child(1) {
+        animation-delay: 0.6s;
+      }
+      .portfolio-card:nth-child(2) {
+        animation-delay: 0.8s;
+      }
+      .portfolio-card:nth-child(3) {
+        animation-delay: 1s;
+      }
+
+      .portfolio-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.1);
       }
 
       .card-image {
-        width: 70px;
-        height: 70px;
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: transform 0.5s ease;
+        flex-shrink: 0;
+      }
+
+      .portfolio-card:hover .card-image {
+        transform: scale(1.05);
+      }
+
+      .card-content {
+        padding: 0 1rem;
+        flex-grow: 1;
       }
 
       .card-title {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
       }
 
       .card-description {
-        font-size: 0.75rem;
+        color: #94a3b8;
+        font-size: 0.8rem;
+        margin-bottom: 0;
+        line-height: 1.4;
+      }
+
+      .floating-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .floating-element {
+        position: absolute;
+        background: rgba(100, 100, 100, 0.1);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        25% {
+          transform: translate(10px, -10px) rotate(5deg);
+        }
+        50% {
+          transform: translate(0, -20px) rotate(0deg);
+        }
+        75% {
+          transform: translate(-10px, -10px) rotate(-5deg);
+        }
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+
+        header {
+          padding: 2rem 0;
+        }
+
+        .portfolio-card {
+          padding: 0.75rem;
+        }
+
+        .card-image {
+          width: 70px;
+          height: 70px;
+        }
+
+        .card-title {
+          font-size: 1rem;
+        }
+
+        .card-description {
+          font-size: 0.75rem;
+        }
+
+        .contact-section {
+          flex-direction: column;
+          gap: 1.5rem;
+          padding: 2rem 0;
+          align-items: center;
+        }
+
+        .contact-link {
+          width: 100%;
+          max-width: 300px;
+          justify-content: center;
+          font-size: 1rem;
+          padding: 0.75rem 1.5rem;
+          margin: 0;
+        }
+
+        .contact-text {
+          font-size: 0.9rem;
+        }
+
+        .hero-logo {
+          width: 100px;
+        }
+
+        .contact-buttons {
+          flex-direction: column;
+          width: 100%;
+          max-width: 300px;
+          margin: 0 auto;
+          align-items: center;
+        }
+
+        .contact-link {
+          width: 100%;
+          font-size: 1rem;
+          padding: 0.75rem 1.5rem;
+        }
+
+        .contact-link.downloads-link {
+          width: auto;
+          padding: 0.5rem;
+          right: 0.5rem;
+          min-width: unset;
+          max-width: unset;
+          flex: unset;
+        }
+
+        .contact-link.downloads-link .contact-text {
+          display: none;
+        }
+
+        .contact-link.downloads-link .contact-icon {
+          margin: 0;
+          font-size: 1rem;
+        }
       }
 
       .contact-section {
+        text-align: center;
+        padding: 4rem 0;
+        margin-top: 2rem;
+        position: relative;
+        display: flex;
         flex-direction: column;
-        gap: 1.5rem;
-        padding: 2rem 0;
         align-items: center;
+        gap: 1rem;
       }
 
-      .contact-link {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-        font-size: 1rem;
-        padding: 0.75rem 1.5rem;
-        margin: 0;
+      .promo-text {
+        color: #94a3b8;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        opacity: 0;
       }
 
-      .contact-text {
-        font-size: 0.9rem;
-      }
-
-      .hero-logo {
-        width: 100px;
+      .promo-text strong {
+        color: var(--text-light);
       }
 
       .contact-buttons {
-        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        opacity: 0;
+        flex-wrap: wrap;
         width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
         align-items: center;
       }
 
       .contact-link {
-        width: 100%;
-        font-size: 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-light);
+        text-decoration: none;
+        font-size: 1.1rem;
         padding: 0.75rem 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 2rem;
+        background: var(--card-bg);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        flex: 1;
+        min-width: 150px;
+        justify-content: center;
+        max-width: fit-content;
       }
 
       .contact-link.downloads-link {
-        width: auto;
-        padding: 0.5rem;
-        right: 0.5rem;
-        min-width: unset;
-        max-width: unset;
-        flex: unset;
+        color: #64748b;
+        border-color: rgba(100, 116, 139, 0.2);
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
       }
 
-      .contact-link.downloads-link .contact-text {
-        display: none;
+      .contact-link.downloads-link:hover {
+        color: #94a3b8;
+        border-color: rgba(148, 163, 184, 0.3);
       }
 
-      .contact-link.downloads-link .contact-icon {
-        margin: 0;
-        font-size: 1rem;
+      .contact-link::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transition: 0.5s;
       }
-    }
 
-    .contact-section {
-      text-align: center;
-      padding: 4rem 0;
-      margin-top: 2rem;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
+      .contact-link:hover::before {
+        left: 100%;
+      }
 
-    .promo-text {
-      color: #94a3b8;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      opacity: 0;
-    }
+      .contact-text {
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
 
-    .promo-text strong {
-      color: var(--text-light);
-    }
+      .contact-icon {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        transition: transform 0.3s ease;
+      }
 
-    .contact-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      opacity: 0;
-      flex-wrap: wrap;
-      width: 100%;
-      align-items: center;
-    }
+      .contact-link:hover .contact-icon {
+        transform: translateX(3px);
+      }
 
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-light);
-      text-decoration: none;
-      font-size: 1.1rem;
-      padding: 0.75rem 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 2rem;
-      background: var(--card-bg);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      opacity: 0;
-      flex: 1;
-      min-width: 150px;
-      justify-content: center;
-      max-width: fit-content;
-    }
+      footer {
+        text-align: center;
+        padding: 1rem 0;
+        color: #94a3b8;
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
 
-    .contact-link.downloads-link {
-      color: #64748b;
-      border-color: rgba(100, 116, 139, 0.2);
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-    }
+      footer p {
+        text-align: center;
+      }
 
-    .contact-link.downloads-link:hover {
-      color: #94a3b8;
-      border-color: rgba(148, 163, 184, 0.3);
-    }
+      .contact-link.downloads-link {
+        position: absolute;
+        right: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Matrix Animation Container -->
+    <div class="matrix-rain" id="matrixContainer"></div>
+    <div class="pixel-container" id="pixelContainer"></div>
 
-    .contact-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent
-      );
-      transition: 0.5s;
-    }
-
-    .contact-link:hover::before {
-      left: 100%;
-    }
-
-    .contact-text {
-      font-weight: 500;
-      letter-spacing: 0.5px;
-    }
-
-    .contact-icon {
-      font-size: 1.1rem;
-      opacity: 0.8;
-      transition: transform 0.3s ease;
-    }
-
-    .contact-link:hover .contact-icon {
-      transform: translateX(3px);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem 0;
-      color: #94a3b8;
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    footer p {
-      text-align: center;
-    }
-
-    .contact-link.downloads-link {
-      position: absolute;
-      right: 1rem;
-    }
-  </style>
-</head>
-<body>
-  <!-- Matrix Animation Container -->
-  <div class="matrix-rain" id="matrixContainer"></div>
-  <div class="pixel-container" id="pixelContainer"></div>
-
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="container">
-      <header>
-        <div class="floating-elements">
-          <div class="floating-element" style="width: 100px; height: 100px; top: 10%; left: 10%;"></div>
-          <div class="floating-element" style="width: 150px; height: 150px; top: 30%; right: 15%;"></div>
-          <div class="floating-element" style="width: 80px; height: 80px; bottom: 20%; left: 20%;"></div>
-        </div>
-        <div class="header-content">
-          <img src="images/mpdee_logo.png" alt="mpdee logo" class="hero-logo">
-          <h1>mpdee</h1>
-          <p class="subtitle">Professional website design and development</p>
-        </div>
-      </header>
-
-      <h2 class="section-title">Portfolio</h2>
-      <div class="portfolio-grid">
-        <a href="https://www.victoriaroselimited.co.uk/" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-          <img src="images/victoria-rose-salon-logo.jpeg" alt="Victoria Rose Limited - Professional Salon Website Design" class="card-image">
-          <div class="card-content">
-            <h2 class="card-title">Victoria Rose Limited</h2>
-            <p class="card-description">A professional website for Victoria Rose Limited, showcasing their services and expertise.</p>
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="container">
+        <header>
+          <div class="floating-elements">
+            <div
+              class="floating-element"
+              style="width: 100px; height: 100px; top: 10%; left: 10%"
+            ></div>
+            <div
+              class="floating-element"
+              style="width: 150px; height: 150px; top: 30%; right: 15%"
+            ></div>
+            <div
+              class="floating-element"
+              style="width: 80px; height: 80px; bottom: 20%; left: 20%"
+            ></div>
           </div>
-        </a>
-
-        <a href="https://www.paintingsbykay.co.uk/" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-          <img src="images/paintings-by-kay-logo.png" alt="Paintings by Kay - Artist Portfolio Website Design" class="card-image">
-          <div class="card-content">
-            <h2 class="card-title">Paintings by Kay</h2>
-            <p class="card-description">An elegant portfolio website showcasing Kay's beautiful artwork and paintings.</p>
+          <div class="header-content">
+            <img
+              src="images/mpdee_logo.png"
+              alt="mpdee logo"
+              class="hero-logo"
+            />
+            <h1>mpdee</h1>
+            <p class="subtitle">Professional website design and development</p>
           </div>
-        </a>
+        </header>
 
-        <a href="https://www.leebarrowcliffphotography.com/" class="portfolio-card" target="_blank" rel="noopener noreferrer">
-          <img src="images/LBP-Logo.png" alt="Lee Barrowcliff Photography - Professional Photography Portfolio Website" class="card-image">
-          <div class="card-content">
-            <h2 class="card-title">Lee Barrowcliff Photography</h2>
-            <p class="card-description">A stunning photography portfolio showcasing Lee's professional photography work.</p>
-          </div>
-        </a>
-      </div>
-
-      <!-- Portfolio Structured Data -->
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "item": {
-              "@type": "WebPage",
-              "name": "Victoria Rose Limited",
-              "url": "https://www.victoriaroselimited.co.uk/",
-              "description": "A professional website for Victoria Rose Limited, showcasing their services and expertise."
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "item": {
-              "@type": "WebPage",
-              "name": "Paintings by Kay",
-              "url": "https://www.paintingsbykay.co.uk/",
-              "description": "An elegant portfolio website showcasing Kay's beautiful artwork and paintings."
-            }
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "item": {
-              "@type": "WebPage",
-              "name": "Lee Barrowcliff Photography",
-              "url": "https://www.leebarrowcliffphotography.com/",
-              "description": "A stunning photography portfolio showcasing Lee's professional photography work."
-            }
-          }
-        ]
-      }
-      </script>
-
-      <div class="contact-section">
-        <p class="promo-text">Every website is bespoke, crafted to meet your specific requirements and budget.</p>
-        <p class="promo-text">To receive a quote or discuss your requirements, please get in touch.</p>
-        <div class="contact-buttons">
-          <a href="mailto:sendme@mpdee.info" class="contact-link">
-            <span class="contact-text">sendme@mpdee.info</span>
-            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+        <h2 class="section-title">Portfolio</h2>
+        <div class="portfolio-grid">
+          <a
+            href="https://www.victoriaroselimited.co.uk/"
+            class="portfolio-card"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="images/victoria-rose-salon-logo.jpeg"
+              alt="Victoria Rose Limited - Professional Salon Website Design"
+              class="card-image"
+            />
+            <div class="card-content">
+              <h2 class="card-title">Victoria Rose Limited</h2>
+              <p class="card-description">
+                A professional website for Victoria Rose Limited, showcasing
+                their services and expertise.
+              </p>
+            </div>
           </a>
+
+          <a
+            href="https://www.paintingsbykay.co.uk/"
+            class="portfolio-card"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="images/paintings-by-kay-logo.png"
+              alt="Paintings by Kay - Artist Portfolio Website Design"
+              class="card-image"
+            />
+            <div class="card-content">
+              <h2 class="card-title">Paintings by Kay</h2>
+              <p class="card-description">
+                An elegant portfolio website showcasing Kay's beautiful artwork
+                and paintings.
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="https://www.leebarrowcliffphotography.com/"
+            class="portfolio-card"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="images/LBP-Logo.png"
+              alt="Lee Barrowcliff Photography - Professional Photography Portfolio Website"
+              class="card-image"
+            />
+            <div class="card-content">
+              <h2 class="card-title">Lee Barrowcliff Photography</h2>
+              <p class="card-description">
+                A stunning photography portfolio showcasing Lee's professional
+                photography work.
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Portfolio Structured Data -->
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "WebPage",
+                  "name": "Victoria Rose Limited",
+                  "url": "https://www.victoriaroselimited.co.uk/",
+                  "description": "A professional website for Victoria Rose Limited, showcasing their services and expertise."
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "WebPage",
+                  "name": "Paintings by Kay",
+                  "url": "https://www.paintingsbykay.co.uk/",
+                  "description": "An elegant portfolio website showcasing Kay's beautiful artwork and paintings."
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "WebPage",
+                  "name": "Lee Barrowcliff Photography",
+                  "url": "https://www.leebarrowcliffphotography.com/",
+                  "description": "A stunning photography portfolio showcasing Lee's professional photography work."
+                }
+              }
+            ]
+          }
+        </script>
+
+        <div class="contact-section">
+          <p class="promo-text">
+            Every website is bespoke, crafted to meet your specific requirements
+            and budget.
+          </p>
+          <p class="promo-text">
+            To receive a quote or discuss your requirements, please get in
+            touch.
+          </p>
+          <div class="contact-buttons">
+            <a href="mailto:sendme@mpdee.info" class="contact-link">
+              <span class="contact-text">sendme@mpdee.info</span>
+              <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <footer>
-    <p>© mpdee 2025. All rights reserved.</p>
-    <a href="downloads.html" class="contact-link downloads-link">
-      <span class="contact-text">Downloads</span>
-      <span class="contact-icon"><i class="fas fa-download"></i></span>
-    </a>
-  </footer>
+    <footer>
+      <p>© mpdee 2025. All rights reserved.</p>
+      <a href="downloads.html" class="contact-link downloads-link">
+        <span class="contact-text">Downloads</span>
+        <span class="contact-icon"><i class="fas fa-download"></i></span>
+      </a>
+    </footer>
 
-  <script>
-    // Matrix Animation Code
-    const chars = 'mpdee';
-    const matrixContainer = document.getElementById('matrixContainer');
-    const pixelContainer = document.getElementById('pixelContainer');
-    const mainContent = document.querySelector('.main-content');
-    
-    function initMatrix() {
-      const canvas = document.createElement('canvas');
-      canvas.style.width = '100%';
-      canvas.style.height = '100%';
-      matrixContainer.appendChild(canvas);
-      
-      const ctx = canvas.getContext('2d');
-      let drops = [];
-      let isAnimating = true;
-      let startTime = Date.now();
-      let freezeTime = 0;
-      let isFrozen = false;
-      
-      function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const numColumns = Math.floor(canvas.width / 60);
-        const middleIndex = Math.floor(numColumns / 2);
-        
-        drops = Array(numColumns).fill().map((_, index) => {
-          const isMiddleColumn = Math.abs(index - middleIndex) <= 2;
-          return {
-            y: Math.random() * -canvas.height,
-            char: isMiddleColumn ? 'mpdee'[index - (middleIndex - 2)] : chars[Math.floor(Math.random() * chars.length)],
-            isMiddleColumn: isMiddleColumn,
-            hasReachedMiddle: false
-          };
-        });
-      }
+    <script>
+      // Matrix Animation Code
+      const chars = 'mpdee';
+      const matrixContainer = document.getElementById('matrixContainer');
+      const pixelContainer = document.getElementById('pixelContainer');
+      const mainContent = document.querySelector('.main-content');
 
-      function draw() {
-        if (!isAnimating) return;
+      function initMatrix() {
+        const canvas = document.createElement('canvas');
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        matrixContainer.appendChild(canvas);
 
-        const currentTime = Date.now();
-        const elapsedTime = (currentTime - startTime) / 1000;
-        
-        const allMiddleColumnsReached = drops.every(drop => 
-          !drop.isMiddleColumn || drop.hasReachedMiddle
-        );
+        const ctx = canvas.getContext('2d');
+        let drops = [];
+        let isAnimating = true;
+        let startTime = Date.now();
+        let freezeTime = 0;
+        let isFrozen = false;
 
-        if (allMiddleColumnsReached && !isFrozen) {
-          isFrozen = true;
-          freezeTime = currentTime;
+        function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          const numColumns = Math.floor(canvas.width / 60);
+          const middleIndex = Math.floor(numColumns / 2);
+
+          drops = Array(numColumns)
+            .fill()
+            .map((_, index) => {
+              const isMiddleColumn = Math.abs(index - middleIndex) <= 2;
+              return {
+                y: Math.random() * -canvas.height,
+                char: isMiddleColumn
+                  ? 'mpdee'[index - (middleIndex - 2)]
+                  : chars[Math.floor(Math.random() * chars.length)],
+                isMiddleColumn: isMiddleColumn,
+                hasReachedMiddle: false,
+              };
+            });
         }
 
-        if (isFrozen && (currentTime - freezeTime) / 1000 >= 1) {
-          isAnimating = false;
-          matrixContainer.classList.add('fade-out');
+        function draw() {
+          if (!isAnimating) return;
+
+          const currentTime = Date.now();
+          const elapsedTime = (currentTime - startTime) / 1000;
+
+          const allMiddleColumnsReached = drops.every(
+            drop => !drop.isMiddleColumn || drop.hasReachedMiddle
+          );
+
+          if (allMiddleColumnsReached && !isFrozen) {
+            isFrozen = true;
+            freezeTime = currentTime;
+          }
+
+          if (isFrozen && (currentTime - freezeTime) / 1000 >= 1) {
+            isAnimating = false;
+            matrixContainer.classList.add('fade-out');
+            setTimeout(() => {
+              matrixContainer.remove();
+              document.querySelector('.main-content').classList.add('visible');
+              document.querySelector('.hero-logo').classList.add('animate');
+              document
+                .querySelectorAll('.portfolio-card')
+                .forEach((card, index) => {
+                  card.style.animation = `fadeInLeft 0.8s ease-out ${0.6 + index * 0.2}s forwards`;
+                });
+              document.querySelectorAll('.promo-text').forEach(el => {
+                el.style.animation = 'fadeIn 1s ease-out 1.2s both';
+              });
+              document.querySelector('.contact-buttons').style.animation =
+                'fadeInUp 0.8s ease-out 1.4s forwards';
+              document.querySelector(
+                '.contact-link:not(.downloads-link)'
+              ).style.animation = 'fadeInLeft 0.8s ease-out 1.6s forwards';
+              document.querySelector(
+                '.contact-link.downloads-link'
+              ).style.animation = 'fadeInRight 0.8s ease-out 1.6s forwards';
+            }, 500);
+            return;
+          }
+
+          ctx.fillStyle = 'rgba(18, 18, 18, 0.05)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = '#f8fafc';
+          ctx.font = '50px monospace';
+
+          const remainingTime = 2 - elapsedTime;
+          const speed = (canvas.height + 100) / (remainingTime * 60);
+
+          for (let i = 0; i < drops.length; i++) {
+            const drop = drops[i];
+            ctx.fillText(drop.char, i * 60, drop.y);
+
+            if (!drop.hasReachedMiddle) {
+              drop.y += speed;
+
+              if (drop.isMiddleColumn && drop.y >= canvas.height / 2) {
+                drop.y = canvas.height / 2;
+                drop.hasReachedMiddle = true;
+              }
+            }
+          }
+
+          requestAnimationFrame(draw);
+        }
+
+        resize();
+        window.addEventListener('resize', resize);
+        draw();
+      }
+
+      // Pixel Dissolve Animation
+      function createPixelDissolve() {
+        const numPixels = 100;
+        const gridSize = 10;
+
+        for (let i = 0; i < numPixels; i++) {
+          const pixel = document.createElement('div');
+          pixel.className = 'pixel';
+          pixel.style.width = `${100 / gridSize}%`;
+          pixel.style.height = `${100 / gridSize}%`;
+          pixel.style.left = `${(i % gridSize) * (100 / gridSize)}%`;
+          pixel.style.top = `${Math.floor(i / gridSize) * (100 / gridSize)}%`;
+          pixel.style.animationDelay = `${Math.random() * 1.5}s`;
+          pixelContainer.appendChild(pixel);
+        }
+      }
+
+      // Randomly choose animation
+      const useMatrixRain = Math.random() < 0.5;
+
+      if (useMatrixRain) {
+        // Show matrix rain
+        matrixContainer.style.display = 'block';
+        pixelContainer.style.display = 'none';
+
+        // Start matrix animation
+        initMatrix();
+      } else {
+        // Show pixel dissolve
+        matrixContainer.style.display = 'none';
+        pixelContainer.style.display = 'block';
+
+        // Create pixel dissolve animation
+        createPixelDissolve();
+
+        // Fade out pixel dissolve after 3 seconds
+        setTimeout(() => {
+          pixelContainer.classList.add('fade-out');
           setTimeout(() => {
-            matrixContainer.remove();
+            pixelContainer.remove();
             document.querySelector('.main-content').classList.add('visible');
             document.querySelector('.hero-logo').classList.add('animate');
-            document.querySelectorAll('.portfolio-card').forEach((card, index) => {
-              card.style.animation = `fadeInLeft 0.8s ease-out ${0.6 + (index * 0.2)}s forwards`;
-            });
+            document
+              .querySelectorAll('.portfolio-card')
+              .forEach((card, index) => {
+                card.style.animation = `fadeInLeft 0.8s ease-out ${0.6 + index * 0.2}s forwards`;
+              });
             document.querySelectorAll('.promo-text').forEach(el => {
               el.style.animation = 'fadeIn 1s ease-out 1.2s both';
             });
-            document.querySelector('.contact-buttons').style.animation = 'fadeInUp 0.8s ease-out 1.4s forwards';
-            document.querySelector('.contact-link:not(.downloads-link)').style.animation = 'fadeInLeft 0.8s ease-out 1.6s forwards';
-            document.querySelector('.contact-link.downloads-link').style.animation = 'fadeInRight 0.8s ease-out 1.6s forwards';
+            document.querySelector('.contact-buttons').style.animation =
+              'fadeInUp 0.8s ease-out 1.4s forwards';
+            document.querySelector(
+              '.contact-link:not(.downloads-link)'
+            ).style.animation = 'fadeInLeft 0.8s ease-out 1.6s forwards';
+            document.querySelector(
+              '.contact-link.downloads-link'
+            ).style.animation = 'fadeInRight 0.8s ease-out 1.6s forwards';
           }, 500);
-          return;
-        }
-
-        ctx.fillStyle = 'rgba(18, 18, 18, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#f8fafc';
-        ctx.font = '50px monospace';
-        
-        const remainingTime = 2 - elapsedTime;
-        const speed = (canvas.height + 100) / (remainingTime * 60);
-        
-        for (let i = 0; i < drops.length; i++) {
-          const drop = drops[i];
-          ctx.fillText(drop.char, i * 60, drop.y);
-          
-          if (!drop.hasReachedMiddle) {
-            drop.y += speed;
-            
-            if (drop.isMiddleColumn && drop.y >= canvas.height / 2) {
-              drop.y = canvas.height / 2;
-              drop.hasReachedMiddle = true;
-            }
-          }
-        }
-        
-        requestAnimationFrame(draw);
+        }, 3000);
       }
-
-      resize();
-      window.addEventListener('resize', resize);
-      draw();
-    }
-
-    // Pixel Dissolve Animation
-    function createPixelDissolve() {
-      const numPixels = 100;
-      const gridSize = 10;
-
-      for (let i = 0; i < numPixels; i++) {
-        const pixel = document.createElement('div');
-        pixel.className = 'pixel';
-        pixel.style.width = `${100 / gridSize}%`;
-        pixel.style.height = `${100 / gridSize}%`;
-        pixel.style.left = `${(i % gridSize) * (100 / gridSize)}%`;
-        pixel.style.top = `${Math.floor(i / gridSize) * (100 / gridSize)}%`;
-        pixel.style.animationDelay = `${Math.random() * 1.5}s`;
-        pixelContainer.appendChild(pixel);
-      }
-    }
-
-    // Randomly choose animation
-    const useMatrixRain = Math.random() < 0.5;
-
-    if (useMatrixRain) {
-      // Show matrix rain
-      matrixContainer.style.display = 'block';
-      pixelContainer.style.display = 'none';
-      
-      // Start matrix animation
-      initMatrix();
-    } else {
-      // Show pixel dissolve
-      matrixContainer.style.display = 'none';
-      pixelContainer.style.display = 'block';
-      
-      // Create pixel dissolve animation
-      createPixelDissolve();
-
-      // Fade out pixel dissolve after 3 seconds
-      setTimeout(() => {
-        pixelContainer.classList.add('fade-out');
-        setTimeout(() => {
-          pixelContainer.remove();
-          document.querySelector('.main-content').classList.add('visible');
-          document.querySelector('.hero-logo').classList.add('animate');
-          document.querySelectorAll('.portfolio-card').forEach((card, index) => {
-            card.style.animation = `fadeInLeft 0.8s ease-out ${0.6 + (index * 0.2)}s forwards`;
-          });
-          document.querySelectorAll('.promo-text').forEach(el => {
-            el.style.animation = 'fadeIn 1s ease-out 1.2s both';
-          });
-          document.querySelector('.contact-buttons').style.animation = 'fadeInUp 0.8s ease-out 1.4s forwards';
-          document.querySelector('.contact-link:not(.downloads-link)').style.animation = 'fadeInLeft 0.8s ease-out 1.6s forwards';
-          document.querySelector('.contact-link.downloads-link').style.animation = 'fadeInRight 0.8s ease-out 1.6s forwards';
-        }, 500);
-      }, 3000);
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>
