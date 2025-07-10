@@ -1,7 +1,2 @@
-{// tell Cursor to automatically send Enter after writing a command
-"cursor.terminal.autoSendEnter": true,
-
-// keep focus in the chat pane instead of jumping to the terminal
-"cursor.terminal.focusAfterRun": false
-
+{
 }

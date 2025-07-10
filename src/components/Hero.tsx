@@ -16,18 +16,22 @@ const DOTS = [
 
 const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
+  const [dotPositions, setDotPositions] = useState(
+    DOTS.map(() => ({ x: 0, y: 0 }))
+  );
 
   useEffect(() => {
     // Trigger animation after component mounts
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
+
     // Detect mobile
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
+
     return () => {
       clearTimeout(timer);
       window.removeEventListener('resize', checkMobile);
@@ -35,15 +39,56 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   }, []);
 
   useEffect(() => {
-    if (isMobile) return;
-    const handleMouseMove = (e: MouseEvent) => {
-      setMouse({
-        x: e.clientX / window.innerWidth - 0.5,
-        y: e.clientY / window.innerHeight - 0.5,
-      });
+    let animationId: number;
+    let startTime = Date.now();
+
+    if (isMobile) {
+      // Mobile: Circular animation
+      const animateMobile = () => {
+        const time = (Date.now() - startTime) * 0.001; // Convert to seconds
+        const radius = 15; // Size of the circle in pixels
+        const speed = 0.8; // Speed of rotation
+
+        setDotPositions(
+          DOTS.map((dot, i) => {
+            const phase = i * 1.5; // Stagger the animation for each dot
+            return {
+              x: Math.cos(time * speed + phase) * radius,
+              y: Math.sin(time * speed + phase) * radius,
+            };
+          })
+        );
+
+        animationId = requestAnimationFrame(animateMobile);
+      };
+
+      animateMobile();
+    } else {
+      // Desktop: Mouse tracking
+      const handleMouseMove = (e: MouseEvent) => {
+        const mx = e.clientX / window.innerWidth - 0.5;
+        const my = e.clientY / window.innerHeight - 0.5;
+
+        setDotPositions(
+          DOTS.map(dot => ({
+            x: mx * 80 * dot.factor,
+            y: my * 80 * dot.factor,
+          }))
+        );
+      };
+
+      window.addEventListener('mousemove', handleMouseMove);
+
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+      };
+    }
+
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
     };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [isMobile]);
 
   const handleGetStarted = () => {
@@ -61,28 +106,20 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
     <section className="relative bg-background-dark text-text-light py-20 overflow-hidden">
       {/* Background animation elements */}
       <div className="absolute inset-0 opacity-10 pointer-events-none select-none">
-        {DOTS.map((dot, i) =>
-          isMobile ? (
-            <div
-              key={dot.key}
-              className={`absolute ${dot.base} bg-white rounded-full`}
-              style={{
-                animation: 'float 8s ease-in-out infinite',
-                animationDelay: `${i * 2}s`,
-              }}
-            />
-          ) : (
-            <div
-              key={dot.key}
-              className={`absolute ${dot.base} bg-white rounded-full`}
-              style={{
-                transform: `translate(${mouse.x * 80 * dot.factor}px, ${mouse.y * 80 * dot.factor}px)`,
-                transition: 'transform 0.2s cubic-bezier(.4,0,.2,1)`,
-              }}
-            />
-          )
-        )}
+        {DOTS.map((dot, i) => (
+          <div
+            key={dot.key}
+            className={`absolute ${dot.base} bg-white rounded-full`}
+            style={{
+              transform: `translate(${dotPositions[i].x}px, ${dotPositions[i].y}px)`,
+              transition: isMobile
+                ? 'none'
+                : 'transform 0.2s cubic-bezier(.4,0,.2,1)',
+            }}
+          />
+        ))}
       </div>
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           {/* Logo above heading */}
@@ -98,6 +135,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               priority
             />
           </div>
+
           {/* Main heading with slide-up animation */}
           <h1
             className={`text-4xl md:text-6xl font-bold mb-6 transition-all duration-1000 ease-out ${
@@ -108,6 +146,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           >
             Professional Web Design & Development
           </h1>
+
           {/* Subtitle with delayed slide-up animation */}
           <p
             className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto transition-all duration-1000 ease-out delay-300 ${
@@ -119,6 +158,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             We create beautiful, functional websites that drive results for your
             business
           </p>
+
           {/* CTA button with delayed fade-in and scale animation */}
           <div
             className={`transition-all duration-1000 ease-out delay-600 ${
@@ -133,6 +173,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               Get Started
             </button>
           </div>
+
           {/* Scroll indicator with bounce animation */}
           <div
             className={`mt-16 transition-all duration-1000 ease-out delay-1000 ${

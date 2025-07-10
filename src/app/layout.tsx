@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import Layout from '@/components/Layout';
@@ -12,8 +12,12 @@ export const metadata: Metadata = {
     'Professional web design and development services. We create beautiful, functional websites that drive results.',
   keywords: 'web design, web development, UI/UX, frontend, full-stack',
   authors: [{ name: 'MPDEE' }],
-  viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
