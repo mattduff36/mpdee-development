@@ -112,7 +112,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   };
 
   return (
-    <section className="relative bg-background-dark text-text-light py-20 overflow-hidden">
+    <section id="home" className="relative bg-background-dark text-text-light py-20 overflow-hidden">
       {/* Background animation elements */}
       <div className="absolute inset-0 opacity-10 pointer-events-none select-none">
         {DOTS.map((dot, i) => (

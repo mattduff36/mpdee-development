@@ -77,8 +77,18 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
     }
   };
 
-  const toggleMenu = () => {
+  const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleCloseMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Escape' && isMenuOpen) {
+      handleCloseMenu();
+    }
   };
 
   return (
@@ -90,6 +100,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
       }`}
       role="navigation"
       aria-label="Main navigation"
+      onKeyDown={handleKeyDown}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-20">
@@ -104,6 +115,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
               onClick={() => handleNavClick('#', 'home')}
               className="flex items-center text-2xl font-bold text-text-light hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
               aria-label="Go to homepage"
+              tabIndex={0}
             >
               <Image
                 src="/images/mpdee_logo.png"
@@ -137,6 +149,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
                     : 'text-text-light hover:text-primary hover:bg-gray-800'
                 }`}
                 aria-current={activeSection === item.id ? 'page' : undefined}
+                tabIndex={0}
               >
                 {item.name}
               </motion.button>
@@ -154,6 +167,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
               onClick={() => handleNavClick('#contact', 'contact')}
               className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               aria-label="Get in touch"
+              tabIndex={0}
             >
               Get Started
             </button>
@@ -162,11 +176,12 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
-              onClick={toggleMenu}
+              onClick={handleToggleMenu}
               className="text-text-light hover:text-white p-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
+              tabIndex={0}
             >
               <svg
                 className="h-6 w-6"
@@ -195,24 +210,28 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Slide Down Animation */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               id="mobile-menu"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden bg-background-dark border-t border-gray-700 shadow-lg"
+              initial={{ opacity: 0, y: -10, scaleY: 0 }}
+              animate={{ opacity: 1, y: 0, scaleY: 1 }}
+              exit={{ opacity: 0, y: -10, scaleY: 0 }}
+              transition={{ 
+                duration: 0.25,
+                ease: [0.4, 0.0, 0.2, 1]
+              }}
+              style={{ transformOrigin: 'top' }}
+              className="md:hidden bg-background-dark border-t border-gray-700 shadow-lg overflow-hidden"
             >
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navigationItems.map((item, index) => (
                   <motion.button
                     key={item.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2, delay: index * 0.05 }}
                     onClick={() => handleNavClick(item.href, item.id)}
                     className={`w-full text-left px-3 py-2 rounded-md text-base font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                       activeSection === item.id
@@ -222,6 +241,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
                     aria-current={
                       activeSection === item.id ? 'page' : undefined
                     }
+                    tabIndex={0}
                   >
                     {item.name}
                   </motion.button>
@@ -229,11 +249,11 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
 
                 {/* Mobile CTA Button */}
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   transition={{
-                    duration: 0.3,
-                    delay: navigationItems.length * 0.1,
+                    duration: 0.2,
+                    delay: navigationItems.length * 0.05,
                   }}
                   className="pt-4"
                 >
@@ -241,6 +261,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
                     onClick={() => handleNavClick('#contact', 'contact')}
                     className="w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                     aria-label="Get in touch"
+                    tabIndex={0}
                   >
                     Get Started
                   </button>
@@ -260,7 +281,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 bg-black/20 md:hidden -z-10"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={handleCloseMenu}
             aria-hidden="true"
           />
         )}
