@@ -23,7 +23,7 @@ const projects: Project[] = [
     shortDescription:
       'Professional photography portfolio website with gallery showcase and booking system.',
     description:
-      'A stunning photography portfolio website for Lee Barrowcliff Photography featuring beautiful image galleries, client login section, and booking functionality. Designed to showcase the photographer&apos;s work in an elegant and professional manner.',
+      'A stunning photography portfolio website for Lee Barrowcliff Photography featuring beautiful image galleries, client login section, and booking functionality. Designed to showcase the photographer\'s work in an elegant and professional manner.',
     image: '/images/LBP-Logo.png',
     tags: ['Photography', 'Portfolio'],
     technologies: [
