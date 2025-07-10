@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface NavigationProps {
   logo?: string;
@@ -72,8 +73,8 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-sm shadow-lg' 
-          : 'bg-white'
+          ? 'bg-background-dark/95 backdrop-blur-sm shadow-lg' 
+          : 'bg-background-dark'
       }`}
       role="navigation"
       aria-label="Main navigation"
@@ -89,9 +90,17 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
           >
             <button
               onClick={() => handleNavClick('#', 'home')}
-              className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
+              className="flex items-center text-2xl font-bold text-text-light hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
               aria-label="Go to homepage"
             >
+              <Image
+                src="/images/mpdee_logo.png"
+                alt="MPDEE logo"
+                width={32}
+                height={32}
+                className="mr-2 w-8 h-8 object-contain"
+                priority
+              />
               {logo}
             </button>
           </motion.div>
@@ -110,10 +119,10 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                 onClick={() => handleNavClick(item.href, item.id)}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                   activeSection === item.id
-                    ? 'text-blue-600 bg-blue-50'
-                    : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                    ? 'text-primary bg-primary/10'
+                    : 'text-text-light hover:text-primary hover:bg-gray-800'
                 }`}
                 aria-current={activeSection === item.id ? 'page' : undefined}
               >
@@ -131,7 +140,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
           >
             <button
               onClick={() => handleNavClick('#contact', 'contact')}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               aria-label="Get in touch"
             >
               Get Started
@@ -142,7 +151,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-gray-700 hover:text-gray-900 p-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="text-text-light hover:text-white p-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
@@ -183,7 +192,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden bg-white border-t border-gray-200 shadow-lg"
+              className="md:hidden bg-background-dark border-t border-gray-700 shadow-lg"
             >
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navigationItems.map((item, index) => (
@@ -193,10 +202,10 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                     onClick={() => handleNavClick(item.href, item.id)}
-                    className={`w-full text-left px-3 py-2 rounded-md text-base font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                    className={`w-full text-left px-3 py-2 rounded-md text-base font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                       activeSection === item.id
-                        ? 'text-blue-600 bg-blue-50'
-                        : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                        ? 'text-primary bg-primary/10'
+                        : 'text-text-light hover:text-primary hover:bg-gray-800'
                     }`}
                     aria-current={activeSection === item.id ? 'page' : undefined}
                   >
@@ -213,7 +222,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
                 >
                   <button
                     onClick={() => handleNavClick('#contact', 'contact')}
-                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    className="w-full bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                     aria-label="Get in touch"
                   >
                     Get Started

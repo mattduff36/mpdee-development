@@ -8,10 +8,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Add custom colors here based on existing palette
+        primary: {
+          DEFAULT: '#2563eb',
+          dark: '#1e40af',
+        },
+        background: {
+          dark: '#121212',
+          card: 'rgba(30, 30, 30, 0.8)',
+        },
+        text: {
+          light: '#f8fafc',
+          muted: '#94a3b8',
+        },
       },
       fontFamily: {
-        // Add custom fonts here
+        sans: ['Inter', 'sans-serif'],
       },
     },
   },

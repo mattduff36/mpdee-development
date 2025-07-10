@@ -104,7 +104,7 @@ const Contact = () => {
 
     try {
       await sendEmail({
-        to: 'contact@example.com', // This would be the site owner's email
+        to: 'sendme@mpdee.info', // This would be the site owner's email
         subject: `New Project Inquiry from ${formData.name}`,
         text: `
 Name: ${formData.name}
@@ -155,7 +155,7 @@ ${formData.projectDetails || 'No details provided'}
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-background-dark">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -164,8 +164,8 @@ ${formData.projectDetails || 'No details provided'}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold text-text-light mb-4">Get in Touch</h2>
+          <p className="text-xl text-text-muted max-w-3xl mx-auto">
             Ready to start your project? Let's discuss how we can help bring your vision to life.
           </p>
         </motion.div>
@@ -181,49 +181,49 @@ ${formData.projectDetails || 'No details provided'}
               className="space-y-8"
             >
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                <h3 className="text-2xl font-bold text-text-light mb-6">
                   Let's Work Together
                 </h3>
-                <p className="text-gray-600 text-lg leading-relaxed">
+                <p className="text-text-muted text-lg leading-relaxed">
                   We're here to help you create something amazing. Whether you need a simple website 
                   or a complex web application, we'll work with you every step of the way.
                 </p>
               </div>
 
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900">Email</h4>
-                    <p className="text-gray-600">hello@example.com</p>
+                    <h4 className="text-lg font-semibold text-text-light">Email</h4>
+                    <p className="text-text-muted">sendme@mpdee.info</p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900">Response Time</h4>
-                    <p className="text-gray-600">Usually within 24 hours</p>
+                    <h4 className="text-lg font-semibold text-text-light">Response Time</h4>
+                    <p className="text-text-muted">Usually within 24 hours</p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900">Free Consultation</h4>
-                    <p className="text-gray-600">No obligation project discussion</p>
+                    <h4 className="text-lg font-semibold text-text-light">Free Consultation</h4>
+                    <p className="text-text-muted">No obligation project discussion</p>
                   </div>
                 </div>
               </div>
@@ -235,14 +235,14 @@ ${formData.projectDetails || 'No details provided'}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg shadow-lg p-8"
+              className="bg-card rounded-lg shadow-lg p-8 border border-gray-700"
             >
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name Field */}
                 <div>
                   <label 
                     htmlFor="name" 
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm font-medium text-text-light mb-2"
                   >
                     Name <span className="text-red-500">*</span>
                   </label>
@@ -252,8 +252,8 @@ ${formData.projectDetails || 'No details provided'}
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
-                      errors.name ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors bg-gray-800 text-text-light ${
+                      errors.name ? 'border-red-500' : 'border-gray-600'
                     }`}
                     placeholder="Your full name"
                     aria-invalid={!!errors.name}
@@ -270,7 +270,7 @@ ${formData.projectDetails || 'No details provided'}
                 <div>
                   <label 
                     htmlFor="email" 
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm font-medium text-text-light mb-2"
                   >
                     Email <span className="text-red-500">*</span>
                   </label>
@@ -280,8 +280,8 @@ ${formData.projectDetails || 'No details provided'}
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
-                      errors.email ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors bg-gray-800 text-text-light ${
+                      errors.email ? 'border-red-500' : 'border-gray-600'
                     }`}
                     placeholder="your@email.com"
                     aria-invalid={!!errors.email}
@@ -298,7 +298,7 @@ ${formData.projectDetails || 'No details provided'}
                 <div>
                   <label 
                     htmlFor="phone" 
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm font-medium text-text-light mb-2"
                   >
                     Phone <span className="text-gray-400">(optional)</span>
                   </label>
@@ -308,8 +308,8 @@ ${formData.projectDetails || 'No details provided'}
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors ${
-                      errors.phone ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors bg-gray-800 text-text-light ${
+                      errors.phone ? 'border-red-500' : 'border-gray-600'
                     }`}
                     placeholder="Your phone number"
                     aria-invalid={!!errors.phone}
@@ -326,7 +326,7 @@ ${formData.projectDetails || 'No details provided'}
                 <div>
                   <label 
                     htmlFor="projectDetails" 
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm font-medium text-text-light mb-2"
                   >
                     Project Details <span className="text-gray-400">(optional)</span>
                   </label>
@@ -336,8 +336,8 @@ ${formData.projectDetails || 'No details provided'}
                     value={formData.projectDetails}
                     onChange={handleInputChange}
                     rows={4}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors resize-vertical ${
-                      errors.projectDetails ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors resize-vertical bg-gray-800 text-text-light ${
+                      errors.projectDetails ? 'border-red-500' : 'border-gray-600'
                     }`}
                     placeholder="Tell us about your project, goals, timeline, etc."
                     aria-invalid={!!errors.projectDetails}
@@ -348,7 +348,7 @@ ${formData.projectDetails || 'No details provided'}
                       {errors.projectDetails}
                     </p>
                   )}
-                  <p className="mt-1 text-sm text-gray-500">
+                  <p className="mt-1 text-sm text-text-muted">
                     {formData.projectDetails.length}/1000 characters
                   </p>
                 </div>
@@ -357,10 +357,10 @@ ${formData.projectDetails || 'No details provided'}
                 <button
                   type="submit"
                   disabled={formState.isSubmitting}
-                  className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                  className={`w-full py-3 px-6 rounded-lg font-semibold text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                     formState.isSubmitting
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-blue-600 hover:bg-blue-700'
+                      ? 'bg-gray-600 cursor-not-allowed'
+                      : 'bg-primary hover:bg-primary-dark'
                   }`}
                 >
                   {formState.isSubmitting ? (

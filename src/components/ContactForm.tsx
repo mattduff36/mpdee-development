@@ -199,8 +199,8 @@ ${formData.projectDetails || 'No details provided'}
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 ${
-                  errors.name ? 'border-red-500' : 'border-gray-300'
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 bg-gray-800 text-text-light ${
+                  errors.name ? 'border-red-500' : 'border-gray-600'
                 }`}
                 placeholder="Your name"
                 aria-describedby={errors.name ? 'name-error' : undefined}
@@ -223,8 +223,8 @@ ${formData.projectDetails || 'No details provided'}
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 ${
-                  errors.email ? 'border-red-500' : 'border-gray-300'
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 bg-gray-800 text-text-light ${
+                  errors.email ? 'border-red-500' : 'border-gray-600'
                 }`}
                 placeholder="your.email@example.com"
                 aria-describedby={errors.email ? 'email-error' : undefined}
@@ -248,9 +248,9 @@ ${formData.projectDetails || 'No details provided'}
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 ${
-                errors.phone ? 'border-red-500' : 'border-gray-300'
-              }`}
+                              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 bg-gray-800 text-text-light ${
+                  errors.phone ? 'border-red-500' : 'border-gray-600'
+                }`}
               placeholder="(555) 123-4567"
               aria-describedby={errors.phone ? 'phone-error' : undefined}
             />
@@ -271,9 +271,9 @@ ${formData.projectDetails || 'No details provided'}
               value={formData.projectDetails}
               onChange={handleInputChange}
               rows={6}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 resize-vertical ${
-                errors.projectDetails ? 'border-red-500' : 'border-gray-300'
-              }`}
+                              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 resize-vertical bg-gray-800 text-text-light ${
+                  errors.projectDetails ? 'border-red-500' : 'border-gray-600'
+                }`}
               placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
               aria-describedby={errors.projectDetails ? 'projectDetails-error' : undefined}
             />
@@ -288,7 +288,7 @@ ${formData.projectDetails || 'No details provided'}
             <button
               type="submit"
               disabled={formState.isSubmitting}
-              className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold text-lg rounded-lg hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="inline-flex items-center px-8 py-4 bg-primary text-white font-semibold text-lg rounded-lg hover:bg-primary-dark disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               aria-label="Submit project inquiry"
             >
               {formState.isSubmitting ? (
@@ -338,7 +338,7 @@ ${formData.projectDetails || 'No details provided'}
             </p>
             <button
               onClick={handleCloseSuccess}
-              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               Close
             </button>

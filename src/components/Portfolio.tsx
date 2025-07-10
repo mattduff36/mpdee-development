@@ -19,19 +19,20 @@ interface Project {
 const projects: Project[] = [
   {
     id: 'lbp-website',
-    title: 'LBP Construction Website',
-    shortDescription: 'Modern construction company website with project showcase and contact forms.',
-    description: 'A comprehensive website for LBP Construction featuring project galleries, service descriptions, and client testimonials. Built with modern web technologies for optimal performance and user experience.',
+    title: 'Lee Barrowcliff Photography',
+    shortDescription: 'Professional photography portfolio website with gallery showcase and booking system.',
+    description: 'A stunning photography portfolio website for Lee Barrowcliff Photography featuring beautiful image galleries, client login section, and booking functionality. Designed to showcase the photographer\'s work in an elegant and professional manner.',
     image: '/images/LBP-Logo.png',
-    tags: ['Construction', 'Business'],
+    tags: ['Photography', 'Portfolio'],
     technologies: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Framer Motion'],
     outcomes: [
-      'Increased online inquiries by 150%',
-      'Improved mobile user experience',
-      'Enhanced brand credibility',
-      'Streamlined project showcase process'
+      'Increased online bookings by 200%',
+      'Enhanced portfolio presentation',
+      'Improved client engagement',
+      'Streamlined booking process'
     ],
-    liveUrl: 'https://lbpconstruction.example.com'
+    liveUrl: 'https://www.leebarrowcliffphotography.com/',
+    githubUrl: 'https://github.com/mattduff36/lbp'
   },
   {
     id: 'victoria-rose-salon',
@@ -47,7 +48,7 @@ const projects: Project[] = [
       'Enhanced customer satisfaction',
       'Improved operational efficiency'
     ],
-    liveUrl: 'https://victoriarosesalon.example.com'
+    liveUrl: 'https://www.victoriaroselimited.co.uk/'
   },
   {
     id: 'paintings-by-kay',
@@ -63,7 +64,7 @@ const projects: Project[] = [
       'Enhanced online presence',
       'Improved customer engagement'
     ],
-    liveUrl: 'https://paintingsbykay.example.com'
+    liveUrl: 'https://www.paintingsbykay.co.uk/'
   }
 ];
 
@@ -110,7 +111,7 @@ const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" className="py-20 bg-white">
+    <section id="portfolio" className="py-20 bg-background-dark">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -119,8 +120,8 @@ const Portfolio = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold text-text-light mb-4">Featured Projects</h2>
+          <p className="text-xl text-text-muted max-w-3xl mx-auto">
             Explore our recent work and see how we've helped businesses grow their online presence
           </p>
         </motion.div>
@@ -135,11 +136,11 @@ const Portfolio = () => {
         >
           <button
             onClick={() => handleTagFilter('All')}
-            className={`px-6 py-2 rounded-full font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-              selectedTag === 'All'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
+                          className={`px-6 py-2 rounded-full font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+                selectedTag === 'All'
+                  ? 'bg-primary text-white'
+                  : 'bg-gray-700 text-text-light hover:bg-gray-600'
+              }`}
             aria-pressed={selectedTag === 'All'}
           >
             All Projects
@@ -148,10 +149,10 @@ const Portfolio = () => {
             <button
               key={tag}
               onClick={() => handleTagFilter(tag)}
-              className={`px-6 py-2 rounded-full font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+              className={`px-6 py-2 rounded-full font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                 selectedTag === tag
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-primary text-white'
+                  : 'bg-gray-700 text-text-light hover:bg-gray-600'
               }`}
               aria-pressed={selectedTag === tag}
             >
@@ -170,7 +171,7 @@ const Portfolio = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+                className="bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer border border-gray-700"
                 onClick={() => handleProjectClick(project)}
                 onKeyDown={(e) => handleKeyDown(e, project)}
                 tabIndex={0}
@@ -186,28 +187,28 @@ const Portfolio = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-xl font-bold text-text-light mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
+                  <p className="text-text-muted mb-4 line-clamp-2">
                     {project.shortDescription}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full"
+                        className="px-3 py-1 bg-primary/20 text-primary text-sm font-medium rounded-full"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-blue-600 font-medium">
+                    <span className="text-primary font-medium">
                       View Project
                     </span>
                     <svg 
-                      className="w-5 h-5 text-blue-600" 
+                      className="w-5 h-5 text-primary" 
                       fill="none" 
                       stroke="currentColor" 
                       viewBox="0 0 24 24"
@@ -230,15 +231,15 @@ const Portfolio = () => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <h3 className="text-2xl font-bold text-text-light mb-4">
             Ready to Start Your Project?
           </h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-text-muted mb-8 max-w-2xl mx-auto">
             Let's discuss how we can help bring your vision to life with a custom web solution
           </p>
           <button
             onClick={handleContactClick}
-            className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold text-lg rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="inline-flex items-center px-8 py-4 bg-primary text-white font-semibold text-lg rounded-lg hover:bg-primary-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             aria-label="Get in touch with us"
           >
             Get in Touch

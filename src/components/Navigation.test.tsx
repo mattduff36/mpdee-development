@@ -221,7 +221,7 @@ describe('Navigation Component', () => {
     
     // Navigation should have scrolled styles
     const nav = screen.getByRole('navigation');
-    expect(nav).toHaveClass('bg-white/95', 'backdrop-blur-sm', 'shadow-lg');
+    expect(nav).toHaveClass('bg-background-dark/95', 'backdrop-blur-sm', 'shadow-lg');
   });
 
   it('shows correct active section based on scroll position', () => {

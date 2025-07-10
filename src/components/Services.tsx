@@ -90,7 +90,7 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="py-20 bg-gray-50">
+    <section id="services" className="py-20 bg-background-dark">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -99,8 +99,8 @@ const Services = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold text-text-light mb-4">Our Services</h2>
+          <p className="text-xl text-text-muted max-w-3xl mx-auto">
             We deliver comprehensive web solutions tailored to your business needs, 
             from initial concept to final deployment.
           </p>
@@ -114,16 +114,16 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
+              className="bg-card rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-700"
             >
               <div className="text-center mb-6">
                 <div className="text-5xl mb-4" role="img" aria-label={service.title}>
                   {service.icon}
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="text-2xl font-bold text-text-light mb-3">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-text-muted leading-relaxed">
                   {service.description}
                 </p>
               </div>
@@ -132,7 +132,7 @@ const Services = () => {
                 <button
                   onClick={() => handleOpenModal(service)}
                   onKeyDown={(e) => handleKeyDown(e, service)}
-                  className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                   aria-label={`Learn more about ${service.title}`}
                 >
                   Learn More
@@ -160,7 +160,7 @@ const Services = () => {
         >
           <button
             onClick={handleContactClick}
-            className="inline-flex items-center px-8 py-4 bg-green-600 text-white font-semibold text-lg rounded-lg hover:bg-green-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+            className="inline-flex items-center px-8 py-4 bg-primary text-white font-semibold text-lg rounded-lg hover:bg-primary-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             aria-label="Discuss your project with us"
           >
             Discuss Your Project
