@@ -5,26 +5,12 @@ import Navigation from './Navigation';
 // Mock framer-motion
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({
-      children,
-      initial,
-      animate,
-      transition,
-      className,
-      ...props
-    }: any) => (
+    div: ({ children, className, ...props }: any) => (
       <div className={className} {...props}>
         {children}
       </div>
     ),
-    button: ({
-      children,
-      initial,
-      animate,
-      transition,
-      className,
-      ...props
-    }: any) => (
+    button: ({ children, className, ...props }: any) => (
       <button className={className} {...props}>
         {children}
       </button>

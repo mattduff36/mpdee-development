@@ -49,7 +49,12 @@ const services: Service[] = [
       'Social media integration',
       '3 months of support included',
     ],
-    technologies: ['React', 'Next.js', 'Content Management', 'Database Integration'],
+    technologies: [
+      'React',
+      'Next.js',
+      'Content Management',
+      'Database Integration',
+    ],
   },
   {
     id: 'premium-website',
@@ -68,7 +73,12 @@ const services: Service[] = [
       'Performance optimization',
       'Security monitoring',
     ],
-    technologies: ['Full-Stack Development', 'E-commerce', 'Advanced Analytics', 'Cloud Hosting'],
+    technologies: [
+      'Full-Stack Development',
+      'E-commerce',
+      'Advanced Analytics',
+      'Cloud Hosting',
+    ],
   },
   {
     id: 'pwa-webapps',
@@ -106,7 +116,13 @@ const services: Service[] = [
       'Professional media equipment and expertise',
       'Integrated web and media solutions',
     ],
-    technologies: ['Video Production', 'Digital Marketing', 'Social Media', 'Content Creation', 'Brand Photography'],
+    technologies: [
+      'Video Production',
+      'Digital Marketing',
+      'Social Media',
+      'Content Creation',
+      'Brand Photography',
+    ],
   },
 ];
 
@@ -170,9 +186,13 @@ const Services = () => {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
               className={`bg-card rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border ${
-                service.isPopular ? 'border-primary shadow-primary/20' : 
-                service.isComingSoon ? 'border-yellow-500 shadow-yellow-500/20' :
-                service.isPartnership ? 'border-purple-500 shadow-purple-500/20' : 'border-gray-700'
+                service.isPopular
+                  ? 'border-primary shadow-primary/20'
+                  : service.isComingSoon
+                    ? 'border-yellow-500 shadow-yellow-500/20'
+                    : service.isPartnership
+                      ? 'border-purple-500 shadow-purple-500/20'
+                      : 'border-gray-700'
               } relative ${service.isComingSoon ? 'opacity-75' : ''}`}
             >
               {service.isPopular && (

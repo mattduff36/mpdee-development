@@ -5,24 +5,10 @@ import Services from './Services';
 // Mock framer-motion
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({
-      children,
-      initial,
-      animate,
-      transition,
-      whileInView,
-      viewport,
-      ...props
-    }: any) => <div {...props}>{children}</div>,
-    section: ({
-      children,
-      initial,
-      animate,
-      transition,
-      whileInView,
-      viewport,
-      ...props
-    }: any) => <section {...props}>{children}</section>,
+    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
+    section: ({ children, ...props }: any) => (
+      <section {...props}>{children}</section>
+    ),
   },
   AnimatePresence: ({ children }: any) => <>{children}</>,
 }));

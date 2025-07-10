@@ -5,15 +5,7 @@ import Contact from './Contact';
 // Mock framer-motion
 jest.mock('framer-motion', () => ({
   motion: {
-    div: ({
-      children,
-      initial,
-      animate,
-      whileInView,
-      viewport,
-      transition,
-      ...props
-    }: any) => <div {...props}>{children}</div>,
+    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
   },
 }));
 
