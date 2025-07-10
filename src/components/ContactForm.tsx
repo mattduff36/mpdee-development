@@ -33,7 +33,7 @@ interface ContactFormProps {
 
 const ContactForm = ({
   title = 'Get in Touch',
-  subtitle = 'Ready to start your project? Let&apos;s discuss how we can help bring your vision to life.',
+  subtitle = 'Ready to start your project? Let's discuss how we can help bring your vision to life.',
   className = '',
 }: ContactFormProps) => {
   const [formData, setFormData] = useState<FormData>({
@@ -360,7 +360,7 @@ const ContactForm = ({
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
             <p className="text-gray-600 mb-6">
-              Your message has been sent successfully. We&apos;ll get back to
+              Your message has been sent successfully. We'll get back to
               you within 24 hours.
             </p>
             <button
