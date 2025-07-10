@@ -23,7 +23,7 @@ const projects: Project[] = [
     shortDescription:
       'Professional photography portfolio website with gallery showcase and booking system.',
     description:
-      'A stunning photography portfolio website for Lee Barrowcliff Photography featuring beautiful image galleries, client login section, and booking functionality. Designed to showcase the photographer's work in an elegant and professional manner.',
+      "A stunning photography portfolio website for Lee Barrowcliff Photography featuring beautiful image galleries, client login section, and booking functionality. Designed to showcase the photographer's work in an elegant and professional manner.",
     image: '/images/LBP-Logo.png',
     tags: ['Photography', 'Portfolio'],
     technologies: [
@@ -48,7 +48,7 @@ const projects: Project[] = [
     shortDescription:
       'Elegant salon website with online booking and service management.',
     description:
-      'A beautiful and functional website for Victoria Rose Salon featuring online appointment booking, service listings, and staff profiles. Designed to reflect the salon's premium brand and enhance customer experience.',
+      "A beautiful and functional website for Victoria Rose Salon featuring online appointment booking, service listings, and staff profiles. Designed to reflect the salon's premium brand and enhance customer experience.",
     image: '/images/victoria-rose-salon-logo.jpeg',
     tags: ['Beauty', 'E-commerce'],
     technologies: ['React', 'Next.js', 'Stripe', 'Sanity CMS', 'TailwindCSS'],
@@ -66,7 +66,7 @@ const projects: Project[] = [
     shortDescription:
       'Artist portfolio website with gallery and commission request system.',
     description:
-      'An artistic portfolio website showcasing Kay's paintings with a beautiful gallery layout, commission request forms, and integrated payment processing for art sales.',
+      "An artistic portfolio website showcasing Kay's paintings with a beautiful gallery layout, commission request forms, and integrated payment processing for art sales.",
     image: '/images/paintings-by-kay-logo.png',
     tags: ['Art', 'Portfolio'],
     technologies: [
@@ -143,7 +143,7 @@ const Portfolio = () => {
             Featured Projects
           </h2>
           <p className="text-xl text-text-muted max-w-3xl mx-auto">
-            Explore our recent work and see how we've helped businesses
+            Explore our recent work and see how we&apos;ve helped businesses
             grow their online presence
           </p>
         </motion.div>

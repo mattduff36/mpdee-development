@@ -153,7 +153,7 @@ const Contact = () => {
             Get in Touch
           </h2>
           <p className="text-xl text-text-muted max-w-3xl mx-auto">
-            Ready to start your project? Let's discuss how we can help
+            Ready to start your project? Let&apos;s discuss how we can help
             bring your vision to life.
           </p>
         </motion.div>
@@ -170,12 +170,12 @@ const Contact = () => {
             >
               <div>
                 <h3 className="text-2xl font-bold text-text-light mb-6">
-                  Let's Work Together
+                  Let&apos;s Work Together
                 </h3>
                 <p className="text-text-muted text-lg leading-relaxed">
-                  We're here to help you create something amazing. Whether
+                  We&apos;re here to help you create something amazing. Whether
                   you need a simple website or a complex web application,
-                  we'll work with you every step of the way.
+                  we&apos;ll work with you every step of the way.
                 </p>
               </div>
 
@@ -480,7 +480,7 @@ const Contact = () => {
               Message Sent!
             </h3>
             <p className="text-gray-600 mb-6">
-              Thank you for reaching out. We'll get back to you within 24
+              Thank you for reaching out. We&apos;ll get back to you within 24
               hours.
             </p>
             <button
