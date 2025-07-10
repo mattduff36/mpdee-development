@@ -254,31 +254,34 @@ const TextTrail = ({
 
     const mouse = [0, 0],
       target = [0, 0];
-    
+
     // Detect if we're on mobile
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
-    
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      ) || window.innerWidth <= 768;
+
     let animationId: number;
     let startTime = Date.now();
-    
+
     const onMove = (e: PointerEvent) => {
       const r = ref.current!.getBoundingClientRect();
       target[0] = ((e.clientX - r.left) / r.width) * 2 - 1;
       target[1] = ((r.top + r.height - e.clientY) / r.height) * 2 - 1;
     };
-    
+
     // Mobile circular animation
     const animateMobile = () => {
       const time = (Date.now() - startTime) * 0.001; // Convert to seconds
       const radius = 0.3; // Size of the circle
       const speed = 0.5; // Speed of rotation
-      
+
       target[0] = Math.cos(time * speed) * radius;
       target[1] = Math.sin(time * speed) * radius;
-      
+
       animationId = requestAnimationFrame(animateMobile);
     };
-    
+
     if (isMobile) {
       // Start circular animation for mobile
       animateMobile();
