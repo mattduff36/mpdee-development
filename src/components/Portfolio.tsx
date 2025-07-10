@@ -193,7 +193,7 @@ const Portfolio = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer border border-gray-700"
+                className="bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-gray-700 group"
                 onClick={() => handleProjectClick(project)}
                 onKeyDown={e => handleKeyDown(e, project)}
                 tabIndex={0}
@@ -224,25 +224,6 @@ const Portfolio = () => {
                         {tag}
                       </span>
                     ))}
-                  </div>
-                  <div className="mt-6">
-                    <div className="inline-flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-primary to-primary-dark text-white font-semibold rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-                      <span className="mr-2">View Project</span>
-                      <svg
-                        className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M13 7l5 5m0 0l-5 5m5-5H6"
-                        />
-                      </svg>
-                    </div>
                   </div>
                 </div>
               </motion.div>
