@@ -46,13 +46,13 @@ describe('Portfolio Component', () => {
     render(<Portfolio />);
 
     // Check project titles
-    expect(screen.getByText('LBP Construction Website')).toBeInTheDocument();
+    expect(screen.getByText('Lee Barrowcliff Photography')).toBeInTheDocument();
     expect(screen.getByText('Victoria Rose Salon')).toBeInTheDocument();
     expect(screen.getByText('Paintings by Kay')).toBeInTheDocument();
 
     // Check project descriptions
     expect(
-      screen.getByText(/modern construction company website/i)
+      screen.getByText(/professional photography portfolio website/i)
     ).toBeInTheDocument();
     expect(screen.getByText(/elegant salon website/i)).toBeInTheDocument();
     expect(screen.getByText(/artist portfolio website/i)).toBeInTheDocument();
@@ -72,14 +72,11 @@ describe('Portfolio Component', () => {
       button.hasAttribute('aria-pressed')
     );
 
-    expect(filterButtonsWithAria).toHaveLength(7); // All Projects + 6 tag filters
+    expect(filterButtonsWithAria).toHaveLength(6); // All Projects + 5 tag filters
     expect(
       filterButtonsWithAria.find(
-        button => button.textContent === 'Construction'
+        button => button.textContent === 'Photography'
       )
-    ).toBeInTheDocument();
-    expect(
-      filterButtonsWithAria.find(button => button.textContent === 'Business')
     ).toBeInTheDocument();
     expect(
       filterButtonsWithAria.find(button => button.textContent === 'Beauty')
@@ -99,21 +96,21 @@ describe('Portfolio Component', () => {
     render(<Portfolio />);
 
     // Initially all projects should be visible
-    expect(screen.getByText('LBP Construction Website')).toBeInTheDocument();
+    expect(screen.getByText('Lee Barrowcliff Photography')).toBeInTheDocument();
     expect(screen.getByText('Victoria Rose Salon')).toBeInTheDocument();
     expect(screen.getByText('Paintings by Kay')).toBeInTheDocument();
 
-    // Filter by Construction tag
+    // Filter by Photography tag
     const filterButtons = screen.getAllByRole('button');
-    const constructionFilterButton = filterButtons.find(
+    const photographyFilterButton = filterButtons.find(
       button =>
-        button.textContent === 'Construction' &&
+        button.textContent === 'Photography' &&
         button.hasAttribute('aria-pressed')
     );
-    fireEvent.click(constructionFilterButton!);
+    fireEvent.click(photographyFilterButton!);
 
-    // Only LBP Construction should be visible
-    expect(screen.getByText('LBP Construction Website')).toBeInTheDocument();
+    // Only Lee Barrowcliff Photography should be visible
+    expect(screen.getByText('Lee Barrowcliff Photography')).toBeInTheDocument();
     expect(screen.queryByText('Victoria Rose Salon')).not.toBeInTheDocument();
     expect(screen.queryByText('Paintings by Kay')).not.toBeInTheDocument();
 
@@ -126,7 +123,7 @@ describe('Portfolio Component', () => {
 
     // Only Victoria Rose Salon should be visible
     expect(
-      screen.queryByText('LBP Construction Website')
+      screen.queryByText('Lee Barrowcliff Photography')
     ).not.toBeInTheDocument();
     expect(screen.getByText('Victoria Rose Salon')).toBeInTheDocument();
     expect(screen.queryByText('Paintings by Kay')).not.toBeInTheDocument();
@@ -135,7 +132,7 @@ describe('Portfolio Component', () => {
     fireEvent.click(screen.getByRole('button', { name: /all projects/i }));
 
     // All projects should be visible again
-    expect(screen.getByText('LBP Construction Website')).toBeInTheDocument();
+    expect(screen.getByText('Lee Barrowcliff Photography')).toBeInTheDocument();
     expect(screen.getByText('Victoria Rose Salon')).toBeInTheDocument();
     expect(screen.getByText('Paintings by Kay')).toBeInTheDocument();
   });
@@ -143,7 +140,7 @@ describe('Portfolio Component', () => {
   it('opens project modal when project card is clicked', async () => {
     render(<Portfolio />);
 
-    // Click on LBP Construction project
+    // Click on Lee Barrowcliff Photography project
     const projectCards = screen.getAllByRole('button', {
       name: /view details for/i,
     });
@@ -153,7 +150,7 @@ describe('Portfolio Component', () => {
     await waitFor(() => {
       expect(screen.getByRole('dialog')).toBeInTheDocument();
       expect(
-        screen.getByText('LBP Construction Website', {
+        screen.getByText('Lee Barrowcliff Photography', {
           selector: '#project-modal-title',
         })
       ).toBeInTheDocument();
@@ -163,7 +160,7 @@ describe('Portfolio Component', () => {
     expect(screen.getByText(/key outcomes:/i)).toBeInTheDocument();
     expect(screen.getByText(/technologies used:/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/increased online inquiries by 150%/i)
+      screen.getByText(/increased online bookings by 200%/i)
     ).toBeInTheDocument();
     expect(screen.getByText(/react/i)).toBeInTheDocument();
   });
@@ -322,12 +319,12 @@ describe('Portfolio Component', () => {
     expect(allProjectsButton).toHaveAttribute('aria-pressed', 'true');
 
     const filterButtons = screen.getAllByRole('button');
-    const constructionFilterButton = filterButtons.find(
+    const photographyFilterButton = filterButtons.find(
       button =>
-        button.textContent === 'Construction' &&
+        button.textContent === 'Photography' &&
         button.hasAttribute('aria-pressed')
     );
-    expect(constructionFilterButton).toHaveAttribute('aria-pressed', 'false');
+    expect(photographyFilterButton).toHaveAttribute('aria-pressed', 'false');
 
     // Check project cards have proper accessibility
     const projectCards = screen.getAllByRole('button', {
@@ -336,7 +333,7 @@ describe('Portfolio Component', () => {
     expect(projectCards[0]).toHaveAttribute('tabindex', '0');
     expect(projectCards[0]).toHaveAttribute(
       'aria-label',
-      'View details for LBP Construction Website'
+      'View details for Lee Barrowcliff Photography'
     );
   });
 
@@ -346,7 +343,7 @@ describe('Portfolio Component', () => {
     // Check project images
     const images = screen.getAllByRole('img');
     expect(images[0]).toHaveAttribute('src', '/images/LBP-Logo.png');
-    expect(images[0]).toHaveAttribute('alt', 'LBP Construction Website');
+    expect(images[0]).toHaveAttribute('alt', 'Lee Barrowcliff Photography');
     expect(images[1]).toHaveAttribute(
       'src',
       '/images/victoria-rose-salon-logo.jpeg'
@@ -363,12 +360,11 @@ describe('Portfolio Component', () => {
     render(<Portfolio />);
 
     // Check that tags are displayed on project cards
-    expect(screen.getAllByText('Construction')).toHaveLength(2); // Filter button + tag
-    expect(screen.getAllByText('Business')).toHaveLength(2); // Filter button + tag
+    expect(screen.getAllByText('Photography')).toHaveLength(2); // Filter button + tag
     expect(screen.getAllByText('Beauty')).toHaveLength(2); // Filter button + tag
     expect(screen.getAllByText('E-commerce')).toHaveLength(2); // Filter button + tag
     expect(screen.getAllByText('Art')).toHaveLength(2); // Filter button + tag
-    expect(screen.getAllByText('Portfolio')).toHaveLength(2); // Filter button + tag
+    expect(screen.getAllByText('Portfolio')).toHaveLength(3); // Filter button + 2 tags (Lee Barrowcliff Photography + Paintings by Kay)
   });
 
   it('prevents modal content click from closing modal', async () => {
@@ -400,20 +396,20 @@ describe('Portfolio Component', () => {
       name: /all projects/i,
     });
     const filterButtons = screen.getAllByRole('button');
-    const constructionFilterButton = filterButtons.find(
+    const photographyFilterButton = filterButtons.find(
       button =>
-        button.textContent === 'Construction' &&
+        button.textContent === 'Photography' &&
         button.hasAttribute('aria-pressed')
     );
 
     expect(allProjectsButton).toHaveAttribute('aria-pressed', 'true');
-    expect(constructionFilterButton).toHaveAttribute('aria-pressed', 'false');
+    expect(photographyFilterButton).toHaveAttribute('aria-pressed', 'false');
 
-    // Click Construction filter
-    fireEvent.click(constructionFilterButton!);
+    // Click Photography filter
+    fireEvent.click(photographyFilterButton!);
 
-    // Construction should be active, All Projects should be inactive
+    // Photography should be active, All Projects should be inactive
     expect(allProjectsButton).toHaveAttribute('aria-pressed', 'false');
-    expect(constructionFilterButton).toHaveAttribute('aria-pressed', 'true');
+    expect(photographyFilterButton).toHaveAttribute('aria-pressed', 'true');
   });
 });
