@@ -65,7 +65,11 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           isMobile ? (
             <div
               key={dot.key}
-              className={`absolute ${dot.base} bg-white rounded-full ${i % 2 === 0 ? 'animate-pulse' : 'animate-bounce'}`}
+              className={`absolute ${dot.base} bg-white rounded-full`}
+              style={{
+                animation: 'float 8s ease-in-out infinite',
+                animationDelay: `${i * 2}s`,
+              }}
             />
           ) : (
             <div
@@ -73,7 +77,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               className={`absolute ${dot.base} bg-white rounded-full`}
               style={{
                 transform: `translate(${mouse.x * 80 * dot.factor}px, ${mouse.y * 80 * dot.factor}px)`,
-                transition: 'transform 0.2s cubic-bezier(.4,0,.2,1)',
+                transition: 'transform 0.2s cubic-bezier(.4,0,.2,1)`,
               }}
             />
           )
