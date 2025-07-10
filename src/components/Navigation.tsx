@@ -218,9 +218,9 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
               initial={{ opacity: 0, y: -10, scaleY: 0 }}
               animate={{ opacity: 1, y: 0, scaleY: 1 }}
               exit={{ opacity: 0, y: -10, scaleY: 0 }}
-              transition={{ 
+              transition={{
                 duration: 0.25,
-                ease: [0.4, 0.0, 0.2, 1]
+                ease: [0.4, 0.0, 0.2, 1],
               }}
               style={{ transformOrigin: 'top' }}
               className="md:hidden bg-background-dark border-t border-gray-700 shadow-lg overflow-hidden"
