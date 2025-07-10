@@ -8,68 +8,105 @@ interface Service {
   title: string;
   description: string;
   icon: string;
+  isPopular?: boolean;
+  isComingSoon?: boolean;
+  isPartnership?: boolean;
   details: string[];
   technologies: string[];
 }
 
 const services: Service[] = [
   {
-    id: 'ui-ux-design',
-    title: 'UI/UX Design',
+    id: 'basic-website',
+    title: 'Essential Website',
     description:
-      'Creating intuitive and visually appealing user interfaces that enhance user experience and drive engagement.',
-    icon: '🎨',
+      'Perfect for small businesses and startups. A professional 5-page website that showcases your business and requires no ongoing maintenance.',
+    icon: '🏠',
     details: [
-      'User research and persona development',
-      'Wireframing and prototyping',
-      'Visual design and branding',
-      'Usability testing and optimization',
-      'Design system creation',
+      '5 professionally designed pages',
+      'Mobile-friendly responsive design',
+      'Contact form and business information',
+      'Basic SEO optimization',
+      'No ongoing maintenance required',
+      'Perfect for small businesses and startups',
     ],
-    technologies: ['Figma', 'Adobe XD', 'Sketch', 'InVision', 'Principle'],
+    technologies: ['HTML/CSS', 'JavaScript', 'Responsive Design', 'SEO Basics'],
   },
   {
-    id: 'frontend-dev',
-    title: 'Front-end Development',
+    id: 'dynamic-website',
+    title: 'Business Website',
     description:
-      'Building responsive, interactive web applications with modern technologies and best practices.',
-    icon: '💻',
+      'Ideal for growing businesses. Up to 8 pages with a content management system so you can update your website yourself.',
+    icon: '🏢',
+    isPopular: true,
     details: [
-      'Responsive web development',
-      'Interactive animations and transitions',
+      'Up to 8 professionally designed pages',
+      'Content management system (CMS)',
+      'Admin portal for easy updates',
+      'Customer/client portal',
+      'Advanced contact forms',
+      'Blog/news section capability',
+      'Social media integration',
+      '3 months of support included',
+    ],
+    technologies: ['React', 'Next.js', 'Content Management', 'Database Integration'],
+  },
+  {
+    id: 'premium-website',
+    title: 'Premium Solution',
+    description:
+      'Complete web solution for established businesses. Unlimited pages with 12 months of support and ongoing development included.',
+    icon: '⭐',
+    details: [
+      'Unlimited pages and features',
+      'Custom functionality development',
+      'E-commerce integration available',
+      'Advanced analytics and reporting',
+      'Priority support and maintenance',
+      '12 months of support included',
+      'Ongoing development and updates',
       'Performance optimization',
-      'Cross-browser compatibility',
-      'Accessibility implementation',
+      'Security monitoring',
     ],
-    technologies: [
-      'React',
-      'Next.js',
-      'TypeScript',
-      'TailwindCSS',
-      'Framer Motion',
-    ],
+    technologies: ['Full-Stack Development', 'E-commerce', 'Advanced Analytics', 'Cloud Hosting'],
   },
   {
-    id: 'fullstack-dev',
-    title: 'Full-Stack Development',
+    id: 'pwa-webapps',
+    title: 'Progressive Web Apps',
     description:
-      'End-to-end web application development from database design to deployment and maintenance.',
-    icon: '🚀',
+      'Advanced web applications that work like native apps. Currently in development with exciting features coming soon.',
+    icon: '📱',
+    isComingSoon: true,
     details: [
-      'Database design and optimization',
-      'API development and integration',
-      'Authentication and security',
-      'Cloud deployment and scaling',
-      'Ongoing maintenance and support',
+      'Native app-like experience in the browser',
+      'Offline functionality and fast loading',
+      'Push notifications and app-like features',
+      'Cross-platform compatibility',
+      'No app store required',
+      'Automatic updates and maintenance',
+      'Enhanced user engagement',
+      'Mobile-first responsive design',
     ],
-    technologies: [
-      'Node.js',
-      'Python',
-      'PostgreSQL',
-      'MongoDB',
-      'AWS',
-      'Vercel',
+    technologies: ['PWA', 'Service Workers', 'React Native', 'Advanced APIs'],
+  },
+  {
+    id: 'gmc-media-partnership',
+    title: 'Media & Marketing Partnership',
+    description:
+      'Strategic partnership with GMC Media for comprehensive digital marketing and media solutions. Combining web development with professional media services.',
+    icon: '🎬',
+    isPartnership: true,
+    details: [
+      'Professional video production and editing',
+      'Digital marketing and social media campaigns',
+      'Brand photography and visual content',
+      'Marketing strategy and consultation',
+      'Content creation and management',
+      'Social media advertising campaigns',
+      'Professional media equipment and expertise',
+      'Integrated web and media solutions',
     ],
+    technologies: ['Video Production', 'Digital Marketing', 'Social Media', 'Content Creation', 'Brand Photography'],
   },
 ];
 
@@ -132,8 +169,33 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-card rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-700"
+              className={`bg-card rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border ${
+                service.isPopular ? 'border-primary shadow-primary/20' : 
+                service.isComingSoon ? 'border-yellow-500 shadow-yellow-500/20' :
+                service.isPartnership ? 'border-purple-500 shadow-purple-500/20' : 'border-gray-700'
+              } relative ${service.isComingSoon ? 'opacity-75' : ''}`}
             >
+              {service.isPopular && (
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+              {service.isComingSoon && (
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-yellow-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                    Coming Soon
+                  </span>
+                </div>
+              )}
+              {service.isPartnership && (
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-purple-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                    Partnership
+                  </span>
+                </div>
+              )}
               <div className="text-center mb-6">
                 <div
                   className="text-5xl mb-4"
@@ -151,28 +213,52 @@ const Services = () => {
               </div>
 
               <div className="text-center">
-                <button
-                  onClick={() => handleOpenModal(service)}
-                  onKeyDown={e => handleKeyDown(e, service)}
-                  className="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                  aria-label={`Learn more about ${service.title}`}
-                >
-                  Learn More
-                  <svg
-                    className="ml-2 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
+                {service.isComingSoon ? (
+                  <button
+                    disabled
+                    className="inline-flex items-center px-6 py-3 bg-gray-500 text-white font-semibold rounded-lg cursor-not-allowed opacity-75"
+                    aria-label={`${service.title} is coming soon`}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
+                    Coming Soon
+                    <svg
+                      className="ml-2 w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleOpenModal(service)}
+                    onKeyDown={e => handleKeyDown(e, service)}
+                    className="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                    aria-label={`Learn more about ${service.title}`}
+                  >
+                    Learn More
+                    <svg
+                      className="ml-2 w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                )}
               </div>
             </motion.div>
           ))}
