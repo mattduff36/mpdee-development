@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   CanvasTexture,
   Clock,
@@ -132,6 +132,7 @@ const TextTrail = ({
   supersample = 2,
 }: TextTrailProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [isClient, setIsClient] = useState(false);
 
   const persistColor = useRef(
     hexToRgb(textColor || startColor).map(c => c / 255)
@@ -139,7 +140,11 @@ const TextTrail = ({
   const targetColor = useRef([...persistColor.current]);
 
   useEffect(() => {
-    if (!ref.current) return;
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!ref.current || !isClient) return;
 
     const size = () => ({
       w: ref.current!.clientWidth,
@@ -255,11 +260,12 @@ const TextTrail = ({
     const mouse = [0, 0],
       target = [0, 0];
 
-    // Detect if we're on mobile
-    const isMobile =
+    // Detect if we're on mobile - only after client-side hydration
+    const isMobile = isClient && (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent
-      ) || window.innerWidth <= 768;
+      ) || window.innerWidth <= 768
+    );
 
     let animationId: number;
     let startTime = Date.now();
@@ -373,6 +379,7 @@ const TextTrail = ({
     backgroundColor,
     colorCycleInterval,
     supersample,
+    isClient,
   ]);
 
   return (

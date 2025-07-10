@@ -12,6 +12,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   const navigationItems = useMemo(
     () => [
@@ -24,6 +25,12 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
   );
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     const handleScroll = () => {
       // Check if page is scrolled
       setIsScrolled(window.scrollY > 10);
@@ -50,10 +57,12 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
     handleScroll(); // Call once to set initial state
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [navigationItems]);
+  }, [navigationItems, isClient]);
 
   const handleNavClick = (href: string, id: string) => {
     setIsMenuOpen(false);
+
+    if (!isClient) return;
 
     if (href === '#') {
       window.scrollTo({ top: 0, behavior: 'smooth' });

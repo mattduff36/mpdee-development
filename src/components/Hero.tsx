@@ -17,11 +17,18 @@ const DOTS = [
 const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const [dotPositions, setDotPositions] = useState(
     DOTS.map(() => ({ x: 0, y: 0 }))
   );
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     // Trigger animation after component mounts
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -36,9 +43,11 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
       clearTimeout(timer);
       window.removeEventListener('resize', checkMobile);
     };
-  }, []);
+  }, [isClient]);
 
   useEffect(() => {
+    if (!isClient) return;
+
     let animationId: number;
     let startTime = Date.now();
 
@@ -89,7 +98,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
         cancelAnimationFrame(animationId);
       }
     };
-  }, [isMobile]);
+  }, [isMobile, isClient]);
 
   const handleGetStarted = () => {
     if (onGetStarted) {
