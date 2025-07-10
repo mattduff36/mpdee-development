@@ -7,11 +7,11 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Cursor - Professional Web Design & Development',
+  title: 'MPDEE - Professional Web Design & Development',
   description:
     'Professional web design and development services. We create beautiful, functional websites that drive results.',
   keywords: 'web design, web development, UI/UX, frontend, full-stack',
-  authors: [{ name: 'Cursor' }],
+  authors: [{ name: 'MPDEE' }],
   viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
 };
