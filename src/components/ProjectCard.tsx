@@ -68,17 +68,20 @@ const ProjectCard = ({ project, index, onProjectClick }: ProjectCardProps) => {
           ))}
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-500">
-            Click to view details
-          </span>
-          <svg 
-            className="w-5 h-5 text-gray-400" 
-            fill="none" 
-            stroke="currentColor" 
+          <span className="text-sm text-gray-500">Click to view details</span>
+          <svg
+            className="w-5 h-5 text-gray-400"
+            fill="none"
+            stroke="currentColor"
             viewBox="0 0 24 24"
             aria-hidden="true"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
           </svg>
         </div>
       </div>
@@ -86,4 +89,4 @@ const ProjectCard = ({ project, index, onProjectClick }: ProjectCardProps) => {
   );
 };
 
-export default ProjectCard; 
+export default ProjectCard;

@@ -6,4 +6,4 @@ export default function PortfolioPage() {
       <Portfolio />
     </div>
   );
-} 
+}

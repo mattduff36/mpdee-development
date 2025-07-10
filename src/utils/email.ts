@@ -25,7 +25,9 @@ export const sendContactFormEmail = async (
     };
 
     // Log the email content for development
+    // eslint-disable-next-line no-console
     console.log('Email service:', emailService);
+    // eslint-disable-next-line no-console
     console.log('Email content:', emailContent);
 
     // In a real implementation, you would:
@@ -37,18 +39,26 @@ export const sendContactFormEmail = async (
         // return await sendWithSMTP(emailContent);
         break;
       default:
+        // eslint-disable-next-line no-console
         console.warn(`Unknown email service: ${emailService}`);
     }
 
     // Simulate successful email sending for development
     return true;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Failed to send email:', error);
     return false;
   }
 };
 
-const generateEmailHTML = (formData: EmailFormData, siteUrl: string): string => {
+// Alias export for backward compatibility
+export const sendEmail = sendContactFormEmail;
+
+const generateEmailHTML = (
+  formData: EmailFormData,
+  siteUrl: string
+): string => {
   return `
     <h2>New Contact Form Submission</h2>
     <p><strong>Name:</strong> ${formData.name}</p>

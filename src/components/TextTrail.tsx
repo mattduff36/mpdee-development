@@ -37,7 +37,7 @@ const hexToRgb = (hex: string) => {
   if (h.length === 3)
     h = h
       .split('')
-      .map((c) => c + c)
+      .map(c => c + c)
       .join('');
   const n = parseInt(h, 16);
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
@@ -133,7 +133,9 @@ const TextTrail = ({
 }: TextTrailProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const persistColor = useRef(hexToRgb(textColor || startColor).map((c) => c / 255));
+  const persistColor = useRef(
+    hexToRgb(textColor || startColor).map(c => c / 255)
+  );
   const targetColor = useRef([...persistColor.current]);
 
   useEffect(() => {
@@ -206,21 +208,24 @@ const TextTrail = ({
       texCanvas.style.width = `${max}px`;
       texCanvas.style.height = `${max}px`;
 
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(pixelRatio, pixelRatio);
-      ctx.clearRect(0, 0, max, max);
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      ctx.shadowColor = 'rgba(255,255,255,0.3)';
-      ctx.shadowBlur = 2;
-      ctx.fillStyle = '#fff';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
+      if (!ctx) return;
+      const ctx2d = ctx as CanvasRenderingContext2D;
+
+      ctx2d.setTransform(1, 0, 0, 1, 0, 0);
+      ctx2d.scale(pixelRatio, pixelRatio);
+      ctx2d.clearRect(0, 0, max, max);
+      ctx2d.imageSmoothingEnabled = true;
+      ctx2d.imageSmoothingQuality = 'high';
+      ctx2d.shadowColor = 'rgba(255,255,255,0.3)';
+      ctx2d.shadowBlur = 2;
+      ctx2d.fillStyle = '#fff';
+      ctx2d.textAlign = 'center';
+      ctx2d.textBaseline = 'middle';
 
       const refSize = 250;
-      ctx.font = `${fontWeight} ${refSize}px ${fontFamily}`;
-      const width = ctx.measureText(text).width;
-      ctx.font = `${fontWeight} ${(refSize * max) / width}px ${fontFamily}`;
+      ctx2d.font = `${fontWeight} ${refSize}px ${fontFamily}`;
+      const width = ctx2d.measureText(text).width;
+      ctx2d.font = `${fontWeight} ${(refSize * max) / width}px ${fontFamily}`;
 
       const cx = max / 2,
         cy = max / 2;
@@ -235,9 +240,9 @@ const TextTrail = ({
         [0.1, -0.1],
         [-0.1, 0.1],
       ];
-      ctx.globalAlpha = 1 / offs.length;
-      offs.forEach(([dx, dy]) => ctx.fillText(text, cx + dx, cy + dy));
-      ctx.globalAlpha = 1;
+      ctx2d.globalAlpha = 1 / offs.length;
+      offs.forEach(([dx, dy]) => ctx2d.fillText(text, cx + dx, cy + dy));
+      ctx2d.globalAlpha = 1;
 
       const tex = new CanvasTexture(texCanvas);
       tex.generateMipmaps = true;
@@ -336,7 +341,13 @@ const TextTrail = ({
     supersample,
   ]);
 
-  return <div ref={ref} className="w-full h-12 md:h-16" style={{ background: 'transparent' }} />;
+  return (
+    <div
+      ref={ref}
+      className="w-full h-12 md:h-16"
+      style={{ background: 'transparent' }}
+    />
+  );
 };
 
-export default TextTrail; 
+export default TextTrail;

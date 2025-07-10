@@ -56,4 +56,4 @@ describe('email utils', () => {
       expect.any(Object)
     );
   });
-}); 
+});

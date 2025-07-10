@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
@@ -13,12 +13,15 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
   const [activeSection, setActiveSection] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const navigationItems = [
-    { name: 'Home', href: '#', id: 'home' },
-    { name: 'Services', href: '#services', id: 'services' },
-    { name: 'Portfolio', href: '#portfolio', id: 'portfolio' },
-    { name: 'Contact', href: '#contact', id: 'contact' },
-  ];
+  const navigationItems = useMemo(
+    () => [
+      { name: 'Home', href: '#', id: 'home' },
+      { name: 'Services', href: '#services', id: 'services' },
+      { name: 'Portfolio', href: '#portfolio', id: 'portfolio' },
+      { name: 'Contact', href: '#contact', id: 'contact' },
+    ],
+    []
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +34,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
         if (section === 'home') {
           return window.scrollY < 100;
         }
-        
+
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -47,11 +50,11 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
     handleScroll(); // Call once to set initial state
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navigationItems]);
 
   const handleNavClick = (href: string, id: string) => {
     setIsMenuOpen(false);
-    
+
     if (href === '#') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
@@ -70,10 +73,10 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
   };
 
   return (
-    <nav 
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-background-dark/95 backdrop-blur-sm shadow-lg' 
+        isScrolled
+          ? 'bg-background-dark/95 backdrop-blur-sm shadow-lg'
           : 'bg-background-dark'
       }`}
       role="navigation"
@@ -207,17 +210,22 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
                         ? 'text-primary bg-primary/10'
                         : 'text-text-light hover:text-primary hover:bg-gray-800'
                     }`}
-                    aria-current={activeSection === item.id ? 'page' : undefined}
+                    aria-current={
+                      activeSection === item.id ? 'page' : undefined
+                    }
                   >
                     {item.name}
                   </motion.button>
                 ))}
-                
+
                 {/* Mobile CTA Button */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: navigationItems.length * 0.1 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: navigationItems.length * 0.1,
+                  }}
                   className="pt-4"
                 >
                   <button
@@ -252,4 +260,4 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
   );
 };
 
-export default Navigation; 
+export default Navigation;

@@ -16,4 +16,4 @@ describe('validation utils', () => {
     expect(validatePhone('')).toBe(true); // optional
     expect(validatePhone('invalid')).toBe(false);
   });
-}); 
+});

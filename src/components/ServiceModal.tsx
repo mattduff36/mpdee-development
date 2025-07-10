@@ -53,7 +53,7 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
           exit={{ scale: 0.95, opacity: 0 }}
           transition={{ duration: 0.2 }}
           className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-          onClick={(e) => e.stopPropagation()}
+          onClick={e => e.stopPropagation()}
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
@@ -70,8 +70,18 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
               className="text-gray-400 hover:text-gray-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-full p-1"
               aria-label="Close modal"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -88,12 +98,24 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
 
               {/* What We Do */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">What We Do</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  What We Do
+                </h3>
                 <ul className="space-y-2">
                   {service.details.map((detail, index) => (
                     <li key={index} className="flex items-start">
-                      <svg className="w-5 h-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      <svg
+                        className="w-5 h-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
                       </svg>
                       <span className="text-gray-600">{detail}</span>
                     </li>
@@ -103,7 +125,9 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
 
               {/* Technologies */}
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Technologies & Tools</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  Technologies & Tools
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   {service.technologies.map((tech, index) => (
                     <span
@@ -126,8 +150,18 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
                     onClick={handleContactClick}
                     className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold text-lg rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
-                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.013 8.013 0 01-7-4c0-4.418 3.582-8 8-8s8 3.582 8 8z" />
+                    <svg
+                      className="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.013 8.013 0 01-7-4c0-4.418 3.582-8 8-8s8 3.582 8 8z"
+                      />
                     </svg>
                     Discuss Your Project
                   </button>
@@ -141,4 +175,4 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
   );
 };
 
-export default ServiceModal; 
+export default ServiceModal;

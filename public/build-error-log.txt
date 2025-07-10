@@ -1,0 +1,868 @@
+[18:48:30.351] Running build in Washington, D.C., USA (East) – iad1
+[18:48:30.351] Build machine configuration: 2 cores, 8 GB
+[18:48:30.367] Cloning github.com/mattduff36/mpdee (Branch: master, Commit: 49428cd)
+[18:48:33.072] Cloning completed: 2.705s
+[18:48:33.358] Restored build cache from previous deployment (4VMb9M18hNfiWmj2vaDvRTmkpJ2y)
+[18:48:33.841] Running "vercel build"
+[18:48:34.294] Vercel CLI 44.2.13
+[18:48:34.452] WARN! Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+[18:48:34.586] Installing dependencies...
+[18:48:38.638] npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+[18:48:41.131] npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+[18:48:52.708] 
+[18:48:52.708] added 726 packages in 18s
+[18:48:52.709] 
+[18:48:52.709] 198 packages are looking for funding
+[18:48:52.709]   run `npm fund` for details
+[18:48:53.014] Detected Next.js version: 15.3.5
+[18:48:53.022] Running "npm run build"
+[18:48:53.254] 
+[18:48:53.254] > mpdee-website@1.0.0 build
+[18:48:53.254] > next build
+[18:48:53.254] 
+[18:48:54.276] Attention: Next.js now collects completely anonymous telemetry regarding usage.
+[18:48:54.278] This information is used to shape Next.js' roadmap and prioritize features.
+[18:48:54.278] You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[18:48:54.279] https://nextjs.org/telemetry
+[18:48:54.279] 
+[18:48:54.338]    ▲ Next.js 15.3.5
+[18:48:54.339] 
+[18:48:54.407]    Creating an optimized production build ...
+[18:49:00.208]  ⚠ Compiled with warnings in 4.0s
+[18:49:00.208] 
+[18:49:00.209] ./src/components/Contact.tsx
+[18:49:00.209] Attempted import error: 'sendEmail' is not exported from '@/utils/email' (imported as 'sendEmail').
+[18:49:00.209] 
+[18:49:00.209] Import trace for requested module:
+[18:49:00.210] ./src/components/Contact.tsx
+[18:49:00.210] 
+[18:49:00.210] ./src/components/ContactForm.tsx
+[18:49:00.210] Attempted import error: 'sendEmail' is not exported from '@/utils/email' (imported as 'sendEmail').
+[18:49:00.210] 
+[18:49:00.210] Import trace for requested module:
+[18:49:00.210] ./src/components/ContactForm.tsx
+[18:49:00.210] 
+[18:49:08.186]  ⚠ Compiled with warnings in 6.0s
+[18:49:08.187] 
+[18:49:08.187] ./src/components/Contact.tsx
+[18:49:08.188] Attempted import error: 'sendEmail' is not exported from '@/utils/email' (imported as 'sendEmail').
+[18:49:08.188] 
+[18:49:08.188] Import trace for requested module:
+[18:49:08.188] ./src/components/Contact.tsx
+[18:49:08.188] 
+[18:49:08.189] ./src/components/ContactForm.tsx
+[18:49:08.189] Attempted import error: 'sendEmail' is not exported from '@/utils/email' (imported as 'sendEmail').
+[18:49:08.189] 
+[18:49:08.189] Import trace for requested module:
+[18:49:08.190] ./src/components/ContactForm.tsx
+[18:49:08.190] 
+[18:49:08.215]  ✓ Compiled successfully in 10.0s
+[18:49:08.220]    Linting and checking validity of types ...
+[18:49:16.842] 
+[18:49:16.842] Failed to compile.
+[18:49:16.844] 
+[18:49:16.845] ./src/app/layout.tsx
+[18:49:16.845] 10:15  Error: Insert `⏎···`  prettier/prettier
+[18:49:16.845] 
+[18:49:16.845] ./src/app/portfolio/page.tsx
+[18:49:16.846] 9:2  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.848] 
+[18:49:16.848] ./src/app/services/page.tsx
+[18:49:16.848] 9:2  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.848] 
+[18:49:16.848] ./src/components/Contact.test.tsx
+[18:49:16.848] 8:12  Error: Replace `·children,·initial,·animate,·whileInView,·viewport,·transition,·...props` with `⏎······children,⏎······initial,⏎······animate,⏎······whileInView,⏎······viewport,⏎······transition,⏎······...props⏎···`  prettier/prettier
+[18:49:16.848] 8:23  Warning: 'initial' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.848] 8:32  Warning: 'animate' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.849] 8:41  Warning: 'whileInView' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.849] 8:54  Warning: 'viewport' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.849] 8:64  Warning: 'transition' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.849] 8:88  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.849] 26:64  Error: Replace `typeof·validateEmail` with `⏎··typeof·validateEmail⏎`  prettier/prettier
+[18:49:16.849] 38:1  Error: Delete `····`  prettier/prettier
+[18:49:16.849] 40:12  Error: Replace `screen.getByRole('heading',·{·level:·2,·name:·/get·in·touch/i·})` with `⏎······screen.getByRole('heading',·{·level:·2,·name:·/get·in·touch/i·})⏎····`  prettier/prettier
+[18:49:16.849] 41:1  Error: Delete `····`  prettier/prettier
+[18:49:16.857] 43:12  Error: Replace `screen.getByText(/ready·to·start·your·project/i)` with `⏎······screen.getByText(/ready·to·start·your·project/i)⏎····`  prettier/prettier
+[18:49:16.858] 44:1  Error: Delete `····`  prettier/prettier
+[18:49:16.859] 46:12  Error: Replace `screen.getByRole('button',·{·name:·/send·message/i·})` with `⏎······screen.getByRole('button',·{·name:·/send·message/i·})⏎····`  prettier/prettier
+[18:49:16.860] 51:1  Error: Delete `····`  prettier/prettier
+[18:49:16.860] 55:1  Error: Delete `····`  prettier/prettier
+[18:49:16.860] 59:1  Error: Delete `····`  prettier/prettier
+[18:49:16.860] 67:1  Error: Delete `····`  prettier/prettier
+[18:49:16.863] 71:12  Error: Replace `screen.getByRole('heading',·{·name:·/response·time/i·})` with `⏎······screen.getByRole('heading',·{·name:·/response·time/i·})⏎····`  prettier/prettier
+[18:49:16.863] 72:12  Error: Replace `screen.getByRole('heading',·{·name:·/free·consultation/i·})` with `⏎······screen.getByRole('heading',·{·name:·/free·consultation/i·})⏎····`  prettier/prettier
+[18:49:16.863] 73:1  Error: Delete `····`  prettier/prettier
+[18:49:16.863] 81:1  Error: Delete `····`  prettier/prettier
+[18:49:16.864] 83:1  Error: Delete `····`  prettier/prettier
+[18:49:16.864] 86:1  Error: Delete `····`  prettier/prettier
+[18:49:16.864] 92:1  Error: Delete `····`  prettier/prettier
+[18:49:16.864] 99:1  Error: Delete `····`  prettier/prettier
+[18:49:16.869] 102:24  Error: Replace `.getByRole('button',·{·name:·/send·message/i·})` with `⏎······.getByRole('button',·{·name:·/send·message/i·})⏎······`  prettier/prettier
+[18:49:16.869] 103:1  Error: Delete `····`  prettier/prettier
+[18:49:16.869] 107:1  Error: Delete `····`  prettier/prettier
+[18:49:16.869] 110:1  Error: Delete `····`  prettier/prettier
+[18:49:16.869] 112:1  Error: Delete `····`  prettier/prettier
+[18:49:16.869] 114:14  Error: Replace `screen.getByText(/please·enter·a·valid·email·address/i)` with `⏎········screen.getByText(/please·enter·a·valid·email·address/i)⏎······`  prettier/prettier
+[18:49:16.869] 116:1  Error: Delete `····`  prettier/prettier
+[18:49:16.869] 122:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 125:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 129:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 131:14  Error: Replace `screen.getByText(/name·must·be·at·least·2·characters/i)` with `⏎········screen.getByText(/name·must·be·at·least·2·characters/i)⏎······`  prettier/prettier
+[18:49:16.870] 137:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 142:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 147:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 149:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 151:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 153:14  Error: Replace `screen.getByText(/please·enter·a·valid·phone·number/i)` with `⏎········screen.getByText(/please·enter·a·valid·phone·number/i)⏎······`  prettier/prettier
+[18:49:16.870] 159:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 164:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 170:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 172:1  Error: Delete `····`  prettier/prettier
+[18:49:16.870] 174:1  Error: Delete `····`  prettier/prettier
+[18:49:16.871] 176:14  Error: Replace `screen.getByText(/project·details·must·be·less·than·1000·characters/i)` with `⏎········screen.getByText(/project·details·must·be·less·than·1000·characters/i)⏎······`  prettier/prettier
+[18:49:16.871] 182:1  Error: Delete `····`  prettier/prettier
+[18:49:16.871] 184:1  Error: Delete `····`  prettier/prettier
+[18:49:16.871] 187:1  Error: Delete `····`  prettier/prettier
+[18:49:16.872] 190:1  Error: Delete `····`  prettier/prettier
+[18:49:16.872] 197:1  Error: Delete `····`  prettier/prettier
+[18:49:16.872] 200:1  Error: Delete `····`  prettier/prettier
+[18:49:16.872] 203:1  Error: Delete `····`  prettier/prettier
+[18:49:16.872] 207:1  Error: Delete `····`  prettier/prettier
+[18:49:16.872] 210:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 217:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 223:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 228:44  Error: Replace `·target:·{·value:·'I·need·a·website'·}` with `⏎······target:·{·value:·'I·need·a·website'·},⏎···`  prettier/prettier
+[18:49:16.873] 229:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 232:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 234:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 239:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 246:50  Error: Insert `,`  prettier/prettier
+[18:49:16.873] 249:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 258:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 262:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 266:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 269:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 271:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 276:1  Error: Delete `····`  prettier/prettier
+[18:49:16.873] 283:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 287:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 291:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 294:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 296:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 301:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 305:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 314:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 318:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 322:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 325:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 327:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 332:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 336:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 346:1  Error: Delete `····`  prettier/prettier
+[18:49:16.874] 352:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 357:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 359:12  Error: Replace `screen.getByRole('button',·{·name:·/send·message/i·})` with `⏎······screen.getByRole('button',·{·name:·/send·message/i·})⏎····`  prettier/prettier
+[18:49:16.875] 364:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 367:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 370:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 380:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 384:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 388:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 390:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 393:44  Error: Replace `(resolve)` with `resolve`  prettier/prettier
+[18:49:16.875] 397:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 399:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 405:1  Error: Delete `····`  prettier/prettier
+[18:49:16.875] 409:4  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.875] 
+[18:49:16.881] ./src/components/Contact.tsx
+[18:49:16.881] 33:23  Error: Insert `,`  prettier/prettier
+[18:49:16.881] 40:22  Error: Insert `,`  prettier/prettier
+[18:49:16.881] 66:9  Error: Replace `formData.projectDetails.trim()·&&·formData.projectDetails.trim().length·>·1000` with `⏎······formData.projectDetails.trim()·&&⏎······formData.projectDetails.trim().length·>·1000⏎····`  prettier/prettier
+[18:49:16.882] 67:33  Error: Insert `⏎·······`  prettier/prettier
+[18:49:16.882] 80:20  Error: Insert `,`  prettier/prettier
+[18:49:16.882] 87:26  Error: Insert `,`  prettier/prettier
+[18:49:16.882] 102:24  Error: Insert `,`  prettier/prettier
+[18:49:16.882] 124:10  Error: Insert `,`  prettier/prettier
+[18:49:16.882] 130:26  Error: Insert `,`  prettier/prettier
+[18:49:16.882] 138:27  Error: Insert `,`  prettier/prettier
+[18:49:16.882] 139:10  Error: Delete `⏎`  prettier/prettier
+[18:49:16.882] 141:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.882] 145:21  Error: Replace `·'Failed·to·send·message.·Please·try·again·or·contact·us·directly.'` with `⏎··········'Failed·to·send·message.·Please·try·again·or·contact·us·directly.',`  prettier/prettier
+[18:49:16.882] 153:25  Error: Insert `,`  prettier/prettier
+[18:49:16.882] 167:67  Error: Replace `Get·in·Touch` with `⏎············Get·in·Touch⏎··········`  prettier/prettier
+[18:49:16.882] 169:45  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[18:49:16.882] 169:77  Error: Insert `⏎···········`  prettier/prettier
+[18:49:16.882] 185:22  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[18:49:16.883] 188:21  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[18:49:16.883] 188:79  Error: Replace `·need·a·simple·website·⏎··················or·a·complex·web·application,·we'll·work` with `⏎··················need·a·simple·website·or·a·complex·web·application,·we'll·work⏎·················`  prettier/prettier
+[18:49:16.883] 189:51  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[18:49:16.883] 196:25  Error: Replace `·className="w-6·h-6·text-primary"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎······················className="w-6·h-6·text-primary"⏎······················fill="none"⏎······················stroke="currentColor"⏎······················viewBox="0·0·24·24"⏎····················`  prettier/prettier
+[18:49:16.883] 197:28  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M3·8l7.89·4.26a2·2·0·002.22·0L21·8M5·19h14a2·2·0·002-2V7a2·2·0·00-2-2H5a2·2·0·00-2·2v10a2·2·0·002·2z"` with `⏎························strokeLinecap="round"⏎························strokeLinejoin="round"⏎························strokeWidth={2}⏎························d="M3·8l7.89·4.26a2·2·0·002.22·0L21·8M5·19h14a2·2·0·002-2V7a2·2·0·00-2-2H5a2·2·0·00-2·2v10a2·2·0·002·2z"⏎·····················`  prettier/prettier
+[18:49:16.883] 201:75  Error: Replace `Email` with `⏎······················Email⏎····················`  prettier/prettier
+[18:49:16.883] 208:25  Error: Replace `·className="w-6·h-6·text-primary"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎······················className="w-6·h-6·text-primary"⏎······················fill="none"⏎······················stroke="currentColor"⏎······················viewBox="0·0·24·24"⏎····················`  prettier/prettier
+[18:49:16.883] 209:28  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M12·8v4l3·3m6-3a9·9·0·11-18·0·9·9·0·0118·0z"` with `⏎························strokeLinecap="round"⏎························strokeLinejoin="round"⏎························strokeWidth={2}⏎························d="M12·8v4l3·3m6-3a9·9·0·11-18·0·9·9·0·0118·0z"⏎·····················`  prettier/prettier
+[18:49:16.883] 213:75  Error: Replace `Response·Time` with `⏎······················Response·Time⏎····················`  prettier/prettier
+[18:49:16.883] 220:25  Error: Replace `·className="w-6·h-6·text-primary"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎······················className="w-6·h-6·text-primary"⏎······················fill="none"⏎······················stroke="currentColor"⏎······················viewBox="0·0·24·24"⏎····················`  prettier/prettier
+[18:49:16.883] 221:28  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M17·8h2a2·2·0·012·2v6a2·2·0·01-2·2h-2v4l-4-4H9a1.994·1.994·0·01-1.414-.586m0·0L11·14h4a2·2·0·002-2V6a2·2·0·00-2-2H5a2·2·0·00-2·2v6a2·2·0·002·2h2v4l.586-.586z"` with `⏎························strokeLinecap="round"⏎························strokeLinejoin="round"⏎························strokeWidth={2}⏎························d="M17·8h2a2·2·0·012·2v6a2·2·0·01-2·2h-2v4l-4-4H9a1.994·1.994·0·01-1.414-.586m0·0L11·14h4a2·2·0·002-2V6a2·2·0·00-2-2H5a2·2·0·00-2·2v6a2·2·0·002·2h2v4l.586-.586z"⏎·····················`  prettier/prettier
+[18:49:16.883] 225:75  Error: Replace `Free·Consultation` with `⏎······················Free·Consultation⏎····················`  prettier/prettier
+[18:49:16.883] 226:52  Error: Replace `No·obligation·project·discussion` with `⏎······················No·obligation·project·discussion⏎····················`  prettier/prettier
+[18:49:16.884] 243:25  Error: Delete `·`  prettier/prettier
+[18:49:16.884] 244:35  Error: Delete `·`  prettier/prettier
+[18:49:16.884] 263:23  Error: Replace `·id="name-error"·className="mt-1·text-sm·text-red-600"·role="alert"` with `⏎······················id="name-error"⏎······················className="mt-1·text-sm·text-red-600"⏎······················role="alert"⏎····················`  prettier/prettier
+[18:49:16.884] 271:25  Error: Delete `·`  prettier/prettier
+[18:49:16.884] 272:36  Error: Delete `·`  prettier/prettier
+[18:49:16.884] 291:23  Error: Replace `·id="email-error"·className="mt-1·text-sm·text-red-600"·role="alert"` with `⏎······················id="email-error"⏎······················className="mt-1·text-sm·text-red-600"⏎······················role="alert"⏎····················`  prettier/prettier
+[18:49:16.884] 299:25  Error: Delete `·`  prettier/prettier
+[18:49:16.884] 300:36  Error: Delete `·`  prettier/prettier
+[18:49:16.884] 319:23  Error: Replace `·id="phone-error"·className="mt-1·text-sm·text-red-600"·role="alert"` with `⏎······················id="phone-error"⏎······················className="mt-1·text-sm·text-red-600"⏎······················role="alert"⏎····················`  prettier/prettier
+[18:49:16.884] 327:25  Error: Delete `·`  prettier/prettier
+[18:49:16.884] 328:45  Error: Delete `·`  prettier/prettier
+[18:49:16.884] 331:36  Error: Insert `{'·'}⏎···················`  prettier/prettier
+[18:49:16.884] 340:44  Error: Replace `·?·'border-red-500'` with `⏎························?·'border-red-500'⏎·······················`  prettier/prettier
+[18:49:16.884] 344:39  Error: Replace `errors.projectDetails·?·'project-error'·:·undefined` with `⏎······················errors.projectDetails·?·'project-error'·:·undefined⏎····················`  prettier/prettier
+[18:49:16.884] 347:23  Error: Replace `·id="project-error"·className="mt-1·text-sm·text-red-600"·role="alert"` with `⏎······················id="project-error"⏎······················className="mt-1·text-sm·text-red-600"⏎······················role="alert"⏎····················`  prettier/prettier
+[18:49:16.884] 368:27  Error: Replace `·className="animate-spin·-ml-1·mr-3·h-5·w-5·text-white"·fill="none"·viewBox="0·0·24·24"` with `⏎························className="animate-spin·-ml-1·mr-3·h-5·w-5·text-white"⏎························fill="none"⏎························viewBox="0·0·24·24"⏎······················`  prettier/prettier
+[18:49:16.885] 369:32  Error: Replace `·className="opacity-25"·cx="12"·cy="12"·r="10"·stroke="currentColor"·strokeWidth="4"` with `⏎··························className="opacity-25"⏎··························cx="12"⏎··························cy="12"⏎··························r="10"⏎··························stroke="currentColor"⏎··························strokeWidth="4"⏎························`  prettier/prettier
+[18:49:16.885] 370:30  Error: Replace `·className="opacity-75"·fill="currentColor"·d="M4·12a8·8·0·018-8V0C5.373·0·0·5.373·0·12h4zm2·5.291A7.962·7.962·0·014·12H0c0·3.042·1.135·5.824·3·7.938l3-2.647z"` with `⏎··························className="opacity-75"⏎··························fill="currentColor"⏎··························d="M4·12a8·8·0·018-8V0C5.373·0·0·5.373·0·12h4zm2·5.291A7.962·7.962·0·014·12H0c0·3.042·1.135·5.824·3·7.938l3-2.647z"⏎························`  prettier/prettier
+[18:49:16.885] 402:19  Error: Replace `·className="w-8·h-8·text-green-600"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎················className="w-8·h-8·text-green-600"⏎················fill="none"⏎················stroke="currentColor"⏎················viewBox="0·0·24·24"⏎··············`  prettier/prettier
+[18:49:16.885] 403:22  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M5·13l4·4L19·7"` with `⏎··················strokeLinecap="round"⏎··················strokeLinejoin="round"⏎··················strokeWidth={2}⏎··················d="M5·13l4·4L19·7"⏎···············`  prettier/prettier
+[18:49:16.885] 406:67  Error: Replace `Message·Sent!` with `⏎··············Message·Sent!⏎············`  prettier/prettier
+[18:49:16.885] 408:45  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[18:49:16.885] 423:24  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.885] 
+[18:49:16.885] ./src/components/ContactForm.tsx
+[18:49:16.885] 34:23  Error: Delete `·`  prettier/prettier
+[18:49:16.885] 35:11  Error: Replace `"Get·in·Touch",·` with `'Get·in·Touch',`  prettier/prettier
+[18:49:16.885] 37:15  Error: Replace `""` with `'',`  prettier/prettier
+[18:49:16.885] 43:23  Error: Insert `,`  prettier/prettier
+[18:49:16.885] 50:22  Error: Insert `,`  prettier/prettier
+[18:49:16.885] 76:9  Error: Replace `formData.projectDetails.trim()·&&·formData.projectDetails.trim().length·>·1000` with `⏎······formData.projectDetails.trim()·&&⏎······formData.projectDetails.trim().length·>·1000⏎····`  prettier/prettier
+[18:49:16.886] 77:33  Error: Insert `⏎·······`  prettier/prettier
+[18:49:16.886] 90:20  Error: Insert `,`  prettier/prettier
+[18:49:16.886] 97:26  Error: Insert `,`  prettier/prettier
+[18:49:16.886] 112:24  Error: Insert `,`  prettier/prettier
+[18:49:16.886] 134:10  Error: Insert `,`  prettier/prettier
+[18:49:16.886] 140:26  Error: Insert `,`  prettier/prettier
+[18:49:16.886] 148:27  Error: Insert `,`  prettier/prettier
+[18:49:16.886] 149:10  Error: Delete `⏎`  prettier/prettier
+[18:49:16.886] 151:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.886] 155:21  Error: Replace `·'Failed·to·send·message.·Please·try·again·or·contact·us·directly.'` with `⏎··········'Failed·to·send·message.·Please·try·again·or·contact·us·directly.',`  prettier/prettier
+[18:49:16.886] 163:25  Error: Insert `,`  prettier/prettier
+[18:49:16.886] 177:64  Error: Replace `⏎··········{subtitle}⏎········` with `{subtitle}`  prettier/prettier
+[18:49:16.886] 193:21  Error: Replace `·htmlFor="name"·className="block·text-sm·font-medium·text-gray-700·mb-2"` with `⏎················htmlFor="name"⏎················className="block·text-sm·font-medium·text-gray-700·mb-2"⏎··············`  prettier/prettier
+[18:49:16.886] 217:21  Error: Replace `·htmlFor="email"·className="block·text-sm·font-medium·text-gray-700·mb-2"` with `⏎················htmlFor="email"⏎················className="block·text-sm·font-medium·text-gray-700·mb-2"⏎··············`  prettier/prettier
+[18:49:16.886] 242:19  Error: Replace `·htmlFor="phone"·className="block·text-sm·font-medium·text-gray-700·mb-2"` with `⏎··············htmlFor="phone"⏎··············className="block·text-sm·font-medium·text-gray-700·mb-2"⏎············`  prettier/prettier
+[18:49:16.886] 251:1  Error: Replace `······························` with `··············`  prettier/prettier
+[18:49:16.886] 252:17  Error: Delete `··`  prettier/prettier
+[18:49:16.887] 253:1  Error: Delete `··`  prettier/prettier
+[18:49:16.891] 265:19  Error: Replace `·htmlFor="projectDetails"·className="block·text-sm·font-medium·text-gray-700·mb-2"` with `⏎··············htmlFor="projectDetails"⏎··············className="block·text-sm·font-medium·text-gray-700·mb-2"⏎············`  prettier/prettier
+[18:49:16.891] 274:1  Error: Replace `······························` with `··············`  prettier/prettier
+[18:49:16.891] 275:1  Error: Delete `··`  prettier/prettier
+[18:49:16.891] 276:15  Error: Delete `··`  prettier/prettier
+[18:49:16.891] 278:33  Error: Replace `errors.projectDetails·?·'projectDetails-error'·:·undefined` with `⏎················errors.projectDetails·?·'projectDetails-error'·:·undefined⏎··············`  prettier/prettier
+[18:49:16.891] 281:17  Error: Replace `·id="projectDetails-error"·className="mt-1·text-sm·text-red-600"` with `⏎················id="projectDetails-error"⏎················className="mt-1·text-sm·text-red-600"⏎··············`  prettier/prettier
+[18:49:16.891] 296:23  Error: Replace `·className="animate-spin·-ml-1·mr-3·h-5·w-5·text-white"·xmlns="http://www.w3.org/2000/svg"·fill="none"·viewBox="0·0·24·24"` with `⏎····················className="animate-spin·-ml-1·mr-3·h-5·w-5·text-white"⏎····················xmlns="http://www.w3.org/2000/svg"⏎····················fill="none"⏎····················viewBox="0·0·24·24"⏎··················`  prettier/prettier
+[18:49:16.892] 297:28  Error: Replace `·className="opacity-25"·cx="12"·cy="12"·r="10"·stroke="currentColor"·strokeWidth="4"` with `⏎······················className="opacity-25"⏎······················cx="12"⏎······················cy="12"⏎······················r="10"⏎······················stroke="currentColor"⏎······················strokeWidth="4"⏎····················`  prettier/prettier
+[18:49:16.892] 298:26  Error: Replace `·className="opacity-75"·fill="currentColor"·d="M4·12a8·8·0·018-8V0C5.373·0·0·5.373·0·12h4zm2·5.291A7.962·7.962·0·014·12H0c0·3.042·1.135·5.824·3·7.938l3-2.647z"` with `⏎······················className="opacity-75"⏎······················fill="currentColor"⏎······················d="M4·12a8·8·0·018-8V0C5.373·0·0·5.373·0·12h4zm2·5.291A7.962·7.962·0·014·12H0c0·3.042·1.135·5.824·3·7.938l3-2.647z"⏎····················`  prettier/prettier
+[18:49:16.892] 328:22  Error: Replace `(e)` with `e`  prettier/prettier
+[18:49:16.892] 331:19  Error: Replace `·className="w-8·h-8·text-green-600"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎················className="w-8·h-8·text-green-600"⏎················fill="none"⏎················stroke="currentColor"⏎················viewBox="0·0·24·24"⏎··············`  prettier/prettier
+[18:49:16.892] 332:22  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M5·13l4·4L19·7"` with `⏎··················strokeLinecap="round"⏎··················strokeLinejoin="round"⏎··················strokeWidth={2}⏎··················d="M5·13l4·4L19·7"⏎···············`  prettier/prettier
+[18:49:16.892] 337:58  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[18:49:16.892] 337:77  Error: Insert `⏎·············`  prettier/prettier
+[18:49:16.892] 352:28  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.892] 
+[18:49:16.892] ./src/components/Footer.test.tsx
+[18:49:16.892] 8:1  Error: Delete `····`  prettier/prettier
+[18:49:16.892] 11:1  Error: Delete `····`  prettier/prettier
+[18:49:16.893] 14:1  Error: Delete `····`  prettier/prettier
+[18:49:16.893] 16:12  Error: Replace `screen.getByText(/professional·web·design·and·development·services/i)` with `⏎······screen.getByText(/professional·web·design·and·development·services/i)⏎····`  prettier/prettier
+[18:49:16.893] 21:1  Error: Delete `····`  prettier/prettier
+[18:49:16.893] 23:12  Error: Replace `screen.getByRole('heading',·{·name:·/services/i·})` with `⏎······screen.getByRole('heading',·{·name:·/services/i·})⏎····`  prettier/prettier
+[18:49:16.893] 24:1  Error: Delete `····`  prettier/prettier
+[18:49:16.893] 26:12  Error: Replace `screen.getByRole('link',·{·name:·/ui\/ux·design/i·})` with `⏎······screen.getByRole('link',·{·name:·/ui\/ux·design/i·})⏎····`  prettier/prettier
+[18:49:16.893] 27:12  Error: Replace `screen.getByRole('link',·{·name:·/front-end·development/i·})` with `⏎······screen.getByRole('link',·{·name:·/front-end·development/i·})⏎····`  prettier/prettier
+[18:49:16.893] 28:12  Error: Replace `screen.getByRole('link',·{·name:·/full-stack·development/i·})` with `⏎······screen.getByRole('link',·{·name:·/full-stack·development/i·})⏎····`  prettier/prettier
+[18:49:16.893] 29:12  Error: Replace `screen.getByRole('link',·{·name:·/web·consulting/i·})` with `⏎······screen.getByRole('link',·{·name:·/web·consulting/i·})⏎····`  prettier/prettier
+[18:49:16.893] 34:1  Error: Delete `····`  prettier/prettier
+[18:49:16.893] 36:12  Error: Replace `screen.getByRole('heading',·{·name:·/quick·links/i·})` with `⏎······screen.getByRole('heading',·{·name:·/quick·links/i·})⏎····`  prettier/prettier
+[18:49:16.893] 37:1  Error: Delete `····`  prettier/prettier
+[18:49:16.893] 41:12  Error: Replace `screen.getByRole('link',·{·name:·/portfolio/i·})` with `⏎······screen.getByRole('link',·{·name:·/portfolio/i·})⏎····`  prettier/prettier
+[18:49:16.893] 47:1  Error: Delete `····`  prettier/prettier
+[18:49:16.893] 49:12  Error: Replace `screen.getByRole('heading',·{·name:·/contact·info/i·})` with `⏎······screen.getByRole('heading',·{·name:·/contact·info/i·})⏎····`  prettier/prettier
+[18:49:16.894] 50:1  Error: Delete `····`  prettier/prettier
+[18:49:16.894] 55:1  Error: Delete `····`  prettier/prettier
+[18:49:16.894] 58:1  Error: Delete `····`  prettier/prettier
+[18:49:16.894] 65:1  Error: Delete `····`  prettier/prettier
+[18:49:16.894] 67:12  Error: Replace `screen.getByRole('link',·{·name:·/follow·us·on·twitter/i·})` with `⏎······screen.getByRole('link',·{·name:·/follow·us·on·twitter/i·})⏎····`  prettier/prettier
+[18:49:16.894] 68:12  Error: Replace `screen.getByRole('link',·{·name:·/follow·us·on·linkedin/i·})` with `⏎······screen.getByRole('link',·{·name:·/follow·us·on·linkedin/i·})⏎····`  prettier/prettier
+[18:49:16.894] 69:12  Error: Replace `screen.getByRole('link',·{·name:·/follow·us·on·github/i·})` with `⏎······screen.getByRole('link',·{·name:·/follow·us·on·github/i·})⏎····`  prettier/prettier
+[18:49:16.894] 74:1  Error: Delete `····`  prettier/prettier
+[18:49:16.894] 76:12  Error: Replace `screen.getByText(new·RegExp(`©·${currentYear}·MPDEE.·All·rights·reserved.`))` with `⏎······screen.getByText(⏎········new·RegExp(`©·${currentYear}·MPDEE.·All·rights·reserved.`)⏎······)⏎····`  prettier/prettier
+[18:49:16.894] 81:1  Error: Delete `····`  prettier/prettier
+[18:49:16.894] 83:12  Error: Replace `screen.getByRole('link',·{·name:·/privacy·policy/i·})` with `⏎······screen.getByRole('link',·{·name:·/privacy·policy/i·})⏎····`  prettier/prettier
+[18:49:16.894] 84:12  Error: Replace `screen.getByRole('link',·{·name:·/terms·of·service/i·})` with `⏎······screen.getByRole('link',·{·name:·/terms·of·service/i·})⏎····`  prettier/prettier
+[18:49:16.894] 85:12  Error: Replace `screen.getByRole('link',·{·name:·/cookie·policy/i·})` with `⏎······screen.getByRole('link',·{·name:·/cookie·policy/i·})⏎····`  prettier/prettier
+[18:49:16.895] 90:1  Error: Delete `····`  prettier/prettier
+[18:49:16.895] 95:1  Error: Delete `····`  prettier/prettier
+[18:49:16.895] 98:11  Error: Replace `link.textContent?.includes('Services')·&&·!link.textContent?.includes('UI/UX')` with `⏎········link.textContent?.includes('Services')·&&⏎········!link.textContent?.includes('UI/UX')⏎······`  prettier/prettier
+[18:49:16.895] 102:1  Error: Delete `····`  prettier/prettier
+[18:49:16.895] 109:1  Error: Delete `····`  prettier/prettier
+[18:49:16.895] 112:1  Error: Delete `····`  prettier/prettier
+[18:49:16.895] 120:1  Error: Delete `····`  prettier/prettier
+[18:49:16.895] 124:1  Error: Delete `····`  prettier/prettier
+[18:49:16.896] 128:1  Error: Delete `····`  prettier/prettier
+[18:49:16.896] 136:1  Error: Delete `····`  prettier/prettier
+[18:49:16.896] 139:1  Error: Delete `····`  prettier/prettier
+[18:49:16.896] 140:39  Error: Replace `'grid-cols-1',·'md:grid-cols-2',·'lg:grid-cols-4'` with `⏎······'grid-cols-1',⏎······'md:grid-cols-2',⏎······'lg:grid-cols-4'⏎····`  prettier/prettier
+[18:49:16.896] 145:1  Error: Delete `····`  prettier/prettier
+[18:49:16.896] 150:4  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.897] 
+[18:49:16.897] ./src/components/Footer.tsx
+[18:49:16.897] 12:76  Error: Insert `⏎·············`  prettier/prettier
+[18:49:16.897] 20:21  Error: Replace `·className="w-5·h-5"·fill="currentColor"·viewBox="0·0·24·24"` with `⏎··················className="w-5·h-5"⏎··················fill="currentColor"⏎··················viewBox="0·0·24·24"⏎················`  prettier/prettier
+[18:49:16.899] 21:520  Error: Insert `·`  prettier/prettier
+[18:49:16.899] 29:21  Error: Replace `·className="w-5·h-5"·fill="currentColor"·viewBox="0·0·24·24"` with `⏎··················className="w-5·h-5"⏎··················fill="currentColor"⏎··················viewBox="0·0·24·24"⏎················`  prettier/prettier
+[18:49:16.900] 30:527  Error: Insert `·`  prettier/prettier
+[18:49:16.900] 38:21  Error: Replace `·className="w-5·h-5"·fill="currentColor"·viewBox="0·0·24·24"` with `⏎··················className="w-5·h-5"⏎··················fill="currentColor"⏎··················viewBox="0·0·24·24"⏎················`  prettier/prettier
+[18:49:16.900] 39:742  Error: Insert `·`  prettier/prettier
+[18:49:16.900] 50:19  Error: Replace `·href="#services"·className="text-gray-400·hover:text-white·transition-colors"` with `⏎··················href="#services"⏎··················className="text-gray-400·hover:text-white·transition-colors"⏎················`  prettier/prettier
+[18:49:16.900] 55:19  Error: Replace `·href="#services"·className="text-gray-400·hover:text-white·transition-colors"` with `⏎··················href="#services"⏎··················className="text-gray-400·hover:text-white·transition-colors"⏎················`  prettier/prettier
+[18:49:16.900] 60:19  Error: Replace `·href="#services"·className="text-gray-400·hover:text-white·transition-colors"` with `⏎··················href="#services"⏎··················className="text-gray-400·hover:text-white·transition-colors"⏎················`  prettier/prettier
+[18:49:16.900] 65:19  Error: Replace `·href="#services"·className="text-gray-400·hover:text-white·transition-colors"` with `⏎··················href="#services"⏎··················className="text-gray-400·hover:text-white·transition-colors"⏎················`  prettier/prettier
+[18:49:16.901] 77:19  Error: Replace `·href="#"·className="text-gray-400·hover:text-white·transition-colors"` with `⏎··················href="#"⏎··················className="text-gray-400·hover:text-white·transition-colors"⏎················`  prettier/prettier
+[18:49:16.901] 82:19  Error: Replace `·href="#services"·className="text-gray-400·hover:text-white·transition-colors"` with `⏎··················href="#services"⏎··················className="text-gray-400·hover:text-white·transition-colors"⏎················`  prettier/prettier
+[18:49:16.901] 87:19  Error: Replace `·href="#portfolio"·className="text-gray-400·hover:text-white·transition-colors"` with `⏎··················href="#portfolio"⏎··················className="text-gray-400·hover:text-white·transition-colors"⏎················`  prettier/prettier
+[18:49:16.901] 92:19  Error: Replace `·href="#contact"·className="text-gray-400·hover:text-white·transition-colors"` with `⏎··················href="#contact"⏎··················className="text-gray-400·hover:text-white·transition-colors"⏎················`  prettier/prettier
+[18:49:16.901] 104:21  Error: Replace `·className="w-5·h-5·text-gray-400·mt-0.5"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎··················className="w-5·h-5·text-gray-400·mt-0.5"⏎··················fill="none"⏎··················stroke="currentColor"⏎··················viewBox="0·0·24·24"⏎················`  prettier/prettier
+[18:49:16.901] 105:24  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M3·8l7.89·4.26a2·2·0·002.22·0L21·8M5·19h14a2·2·0·002-2V7a2·2·0·00-2-2H5a2·2·0·00-2·2v10a2·2·0·002·2z"` with `⏎····················strokeLinecap="round"⏎····················strokeLinejoin="round"⏎····················strokeWidth={2}⏎····················d="M3·8l7.89·4.26a2·2·0·002.22·0L21·8M5·19h14a2·2·0·002-2V7a2·2·0·00-2-2H5a2·2·0·00-2·2v10a2·2·0·002·2z"⏎·················`  prettier/prettier
+[18:49:16.902] 109:21  Error: Replace `·href="mailto:hello@example.com"·className="text-white·hover:text-gray-300·transition-colors"` with `⏎····················href="mailto:hello@example.com"⏎····················className="text-white·hover:text-gray-300·transition-colors"⏎··················`  prettier/prettier
+[18:49:16.903] 115:21  Error: Replace `·className="w-5·h-5·text-gray-400·mt-0.5"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎··················className="w-5·h-5·text-gray-400·mt-0.5"⏎··················fill="none"⏎··················stroke="currentColor"⏎··················viewBox="0·0·24·24"⏎················`  prettier/prettier
+[18:49:16.903] 116:24  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M12·8v4l3·3m6-3a9·9·0·11-18·0·9·9·0·0118·0z"` with `⏎····················strokeLinecap="round"⏎····················strokeLinejoin="round"⏎····················strokeWidth={2}⏎····················d="M12·8v4l3·3m6-3a9·9·0·11-18·0·9·9·0·0118·0z"⏎·················`  prettier/prettier
+[18:49:16.904] 124:21  Error: Replace `·className="w-5·h-5·text-gray-400·mt-0.5"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎··················className="w-5·h-5·text-gray-400·mt-0.5"⏎··················fill="none"⏎··················stroke="currentColor"⏎··················viewBox="0·0·24·24"⏎················`  prettier/prettier
+[18:49:16.904] 125:24  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M17.657·16.657L13.414·20.9a1.998·1.998·0·01-2.827·0l-4.244-4.243a8·8·0·1111.314·0z"` with `⏎····················strokeLinecap="round"⏎····················strokeLinejoin="round"⏎····················strokeWidth={2}⏎····················d="M17.657·16.657L13.414·20.9a1.998·1.998·0·01-2.827·0l-4.244-4.243a8·8·0·1111.314·0z"⏎·················`  prettier/prettier
+[18:49:16.904] 126:24  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M15·11a3·3·0·11-6·0·3·3·0·016·0z"` with `⏎····················strokeLinecap="round"⏎····················strokeLinejoin="round"⏎····················strokeWidth={2}⏎····················d="M15·11a3·3·0·11-6·0·3·3·0·016·0z"⏎·················`  prettier/prettier
+[18:49:16.904] 144:17  Error: Replace `·href="#"·className="text-gray-400·hover:text-white·text-sm·transition-colors"` with `⏎················href="#"⏎················className="text-gray-400·hover:text-white·text-sm·transition-colors"⏎··············`  prettier/prettier
+[18:49:16.904] 147:17  Error: Replace `·href="#"·className="text-gray-400·hover:text-white·text-sm·transition-colors"` with `⏎················href="#"⏎················className="text-gray-400·hover:text-white·text-sm·transition-colors"⏎··············`  prettier/prettier
+[18:49:16.904] 150:17  Error: Replace `·href="#"·className="text-gray-400·hover:text-white·text-sm·transition-colors"` with `⏎················href="#"⏎················className="text-gray-400·hover:text-white·text-sm·transition-colors"⏎··············`  prettier/prettier
+[18:49:16.904] 161:23  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.904] 
+[18:49:16.904] ./src/components/Hero.test.tsx
+[18:49:16.904] 26:1  Error: Delete `····`  prettier/prettier
+[18:49:16.904] 27:12  Error: Replace `screen.getByText('Professional·Web·Design·&·Development')` with `⏎······screen.getByText('Professional·Web·Design·&·Development')⏎····`  prettier/prettier
+[18:49:16.904] 28:12  Error: Replace `screen.getByText(/We·create·beautiful,·functional·websites/)` with `⏎······screen.getByText(/We·create·beautiful,·functional·websites/)⏎····`  prettier/prettier
+[18:49:16.904] 29:12  Error: Replace `screen.getByRole('button',·{·name:·/get·started/i·})` with `⏎······screen.getByRole('button',·{·name:·/get·started/i·})⏎····`  prettier/prettier
+[18:49:16.904] 35:1  Error: Delete `····`  prettier/prettier
+[18:49:16.904] 38:1  Error: Delete `····`  prettier/prettier
+[18:49:16.904] 45:1  Error: Delete `····`  prettier/prettier
+[18:49:16.904] 47:1  Error: Delete `····`  prettier/prettier
+[18:49:16.904] 50:1  Error: Delete `····`  prettier/prettier
+[18:49:16.905] 57:1  Error: Delete `····`  prettier/prettier
+[18:49:16.905] 59:1  Error: Delete `····`  prettier/prettier
+[18:49:16.905] 62:1  Error: Delete `····`  prettier/prettier
+[18:49:16.905] 69:1  Error: Delete `····`  prettier/prettier
+[18:49:16.905] 71:36  Error: Replace `'aria-label',·'Get·started·with·our·web·design·services');` with `⏎······'aria-label',⏎······'Get·started·with·our·web·design·services'`  prettier/prettier
+[18:49:16.905] 72:5  Error: Insert `);⏎`  prettier/prettier
+[18:49:16.905] 80:1  Error: Delete `····`  prettier/prettier
+[18:49:16.905] 82:19  Error: Insert `⏎······`  prettier/prettier
+[18:49:16.905] 83:1  Error: Replace `······const·heading·=·screen.getByText('Professional·Web·Design·&·Development'` with `········const·heading·=·screen.getByText(⏎··········'Professional·Web·Design·&·Development'⏎········`  prettier/prettier
+[18:49:16.905] 84:1  Error: Insert `··`  prettier/prettier
+[18:49:16.905] 85:5  Error: Replace `},·{·timeout:·200·}` with `··},⏎······{·timeout:·200·}⏎····`  prettier/prettier
+[18:49:16.905] 87:4  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.905] 
+[18:49:16.905] ./src/components/Hero.tsx
+[18:49:16.905] 5:8  Warning: 'TextTrail' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.905] 86:15  Error: Replace `·className={`flex·flex-col·items-center·mb-8·transition-all·duration-1000·ease-out·${isVisible·?·'opacity-100·scale-100'·:·'opacity-0·scale-95'}`}` with `⏎············className={`flex·flex-col·items-center·mb-8·transition-all·duration-1000·ease-out·${isVisible·?·'opacity-100·scale-100'·:·'opacity-0·scale-95'}`}⏎··········`  prettier/prettier
+[18:49:16.905] 120:24  Error: Replace `⏎················?·'opacity-100·scale-100'⏎···············` with `·?·'opacity-100·scale-100'`  prettier/prettier
+[18:49:16.905] 165:21  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.905] 
+[18:49:16.905] ./src/components/Layout.test.tsx
+[18:49:16.905] 15:12  Error: Replace `<Layout><div>Content</div></Layout>);` with `⏎······<Layout>⏎········<div>Content</div>⏎······</Layout>`  prettier/prettier
+[18:49:16.905] 16:5  Error: Insert `);⏎`  prettier/prettier
+[18:49:16.905] 19:1  Error: Delete `····`  prettier/prettier
+[18:49:16.905] 21:12  Error: Replace `screen.getByRole('button',·{·name:·/go·to·homepage/i·})` with `⏎······screen.getByRole('button',·{·name:·/go·to·homepage/i·})⏎····`  prettier/prettier
+[18:49:16.905] 25:12  Error: Replace `<Layout><div>Content</div></Layout>);` with `⏎······<Layout>⏎········<div>Content</div>⏎······</Layout>`  prettier/prettier
+[18:49:16.905] 26:5  Error: Insert `);⏎`  prettier/prettier
+[18:49:16.905] 29:1  Error: Delete `····`  prettier/prettier
+[18:49:16.905] 37:12  Error: Replace `<Layout><div>Content</div></Layout>);` with `⏎······<Layout>⏎········<div>Content</div>⏎······</Layout>`  prettier/prettier
+[18:49:16.905] 38:5  Error: Insert `);⏎`  prettier/prettier
+[18:49:16.905] 42:4  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.911] 
+[18:49:16.912] ./src/components/Navigation.test.tsx
+[18:49:16.912] 8:12  Error: Replace `·children,·initial,·animate,·transition,·className,·...props·}:·any)·=>·<div·className={className}·{...props}>{children}</div>` with `⏎······children,⏎······initial,⏎······animate,⏎······transition,⏎······className,⏎······...props⏎····}:·any)·=>·(⏎······<div·className={className}·{...props}>⏎········{children}⏎······</div>⏎····)`  prettier/prettier
+[18:49:16.913] 8:23  Warning: 'initial' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.913] 8:32  Warning: 'animate' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.913] 8:41  Warning: 'transition' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.913] 8:76  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.913] 9:15  Error: Replace `·children,·initial,·animate,·transition,·className,·...props·}:·any)·=>·<button·className={className}·{...props}>{children}</button>` with `⏎······children,⏎······initial,⏎······animate,⏎······transition,⏎······className,⏎······...props⏎····}:·any)·=>·(⏎······<button·className={className}·{...props}>⏎········{children}⏎······</button>⏎····)`  prettier/prettier
+[18:49:16.915] 9:26  Warning: 'initial' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.918] 9:35  Warning: 'animate' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.919] 9:44  Warning: 'transition' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.919] 9:79  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.920] 11:35  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.920] 33:1  Error: Delete `····`  prettier/prettier
+[18:49:16.920] 43:1  Error: Delete `····`  prettier/prettier
+[18:49:16.920] 45:12  Error: Replace `screen.getByRole('navigation',·{·name:·/main·navigation/i·})` with `⏎······screen.getByRole('navigation',·{·name:·/main·navigation/i·})⏎····`  prettier/prettier
+[18:49:16.920] 46:1  Error: Delete `····`  prettier/prettier
+[18:49:16.920] 48:12  Error: Replace `screen.getByRole('button',·{·name:·/go·to·homepage/i·})` with `⏎······screen.getByRole('button',·{·name:·/go·to·homepage/i·})⏎····`  prettier/prettier
+[18:49:16.920] 50:1  Error: Delete `····`  prettier/prettier
+[18:49:16.920] 52:12  Error: Replace `screen.getByRole('button',·{·name:·/open·menu/i·})` with `⏎······screen.getByRole('button',·{·name:·/open·menu/i·})⏎····`  prettier/prettier
+[18:49:16.920] 57:1  Error: Delete `····`  prettier/prettier
+[18:49:16.921] 63:1  Error: Delete `····`  prettier/prettier
+[18:49:16.921] 69:1  Error: Delete `····`  prettier/prettier
+[18:49:16.921] 71:12  Error: Replace `screen.getByRole('button',·{·name:·/get·in·touch/i·})` with `⏎······screen.getByRole('button',·{·name:·/get·in·touch/i·})⏎····`  prettier/prettier
+[18:49:16.921] 76:1  Error: Delete `····`  prettier/prettier
+[18:49:16.921] 78:1  Error: Delete `····`  prettier/prettier
+[18:49:16.921] 80:12  Error: Replace `screen.queryByRole('button',·{·name:·/close·menu/i·})` with `⏎······screen.queryByRole('button',·{·name:·/close·menu/i·})⏎····`  prettier/prettier
+[18:49:16.921] 81:1  Error: Delete `····`  prettier/prettier
+[18:49:16.921] 84:1  Error: Delete `····`  prettier/prettier
+[18:49:16.921] 87:14  Error: Replace `screen.getByRole('button',·{·name:·/close·menu/i·})` with `⏎········screen.getByRole('button',·{·name:·/close·menu/i·})⏎······`  prettier/prettier
+[18:49:16.922] 89:1  Error: Delete `····`  prettier/prettier
+[18:49:16.922] 92:1  Error: Delete `····`  prettier/prettier
+[18:49:16.922] 95:14  Error: Replace `screen.queryByRole('button',·{·name:·/close·menu/i·})` with `⏎········screen.queryByRole('button',·{·name:·/close·menu/i·})⏎······`  prettier/prettier
+[18:49:16.922] 101:1  Error: Delete `····`  prettier/prettier
+[18:49:16.922] 104:1  Error: Delete `····`  prettier/prettier
+[18:49:16.922] 106:14  Error: Replace `screen.getByRole('button',·{·name:·/close·menu/i·})` with `⏎········screen.getByRole('button',·{·name:·/close·menu/i·})⏎······`  prettier/prettier
+[18:49:16.922] 112:1  Error: Delete `····`  prettier/prettier
+[18:49:16.922] 115:1  Error: Delete `····`  prettier/prettier
+[18:49:16.923] 125:1  Error: Delete `····`  prettier/prettier
+[18:49:16.923] 127:1  Error: Delete `····`  prettier/prettier
+[18:49:16.924] 130:1  Error: Delete `····`  prettier/prettier
+[18:49:16.924] 132:48  Error: Delete `·`  prettier/prettier
+[18:49:16.924] 134:25  Error: Replace `·` with `,`  prettier/prettier
+[18:49:16.924] 143:1  Error: Delete `····`  prettier/prettier
+[18:49:16.924] 145:1  Error: Delete `····`  prettier/prettier
+[18:49:16.924] 148:1  Error: Delete `····`  prettier/prettier
+[18:49:16.924] 150:48  Error: Delete `·`  prettier/prettier
+[18:49:16.924] 152:25  Error: Replace `·` with `,`  prettier/prettier
+[18:49:16.924] 158:1  Error: Delete `····`  prettier/prettier
+[18:49:16.925] 162:1  Error: Delete `····`  prettier/prettier
+[18:49:16.925] 164:14  Error: Replace `screen.getByRole('button',·{·name:·/close·menu/i·})` with `⏎········screen.getByRole('button',·{·name:·/close·menu/i·})⏎······`  prettier/prettier
+[18:49:16.925] 166:1  Error: Delete `····`  prettier/prettier
+[18:49:16.925] 170:1  Error: Delete `····`  prettier/prettier
+[18:49:16.925] 173:14  Error: Replace `screen.queryByRole('button',·{·name:·/close·menu/i·})` with `⏎········screen.queryByRole('button',·{·name:·/close·menu/i·})⏎······`  prettier/prettier
+[18:49:16.925] 179:1  Error: Delete `····`  prettier/prettier
+[18:49:16.925] 183:1  Error: Delete `····`  prettier/prettier
+[18:49:16.925] 188:1  Error: Delete `····`  prettier/prettier
+[18:49:16.925] 196:1  Error: Delete `····`  prettier/prettier
+[18:49:16.926] 198:1  Error: Delete `····`  prettier/prettier
+[18:49:16.926] 201:1  Error: Delete `····`  prettier/prettier
+[18:49:16.926] 204:1  Error: Delete `····`  prettier/prettier
+[18:49:16.926] 213:1  Error: Delete `····`  prettier/prettier
+[18:49:16.926] 219:1  Error: Delete `····`  prettier/prettier
+[18:49:16.926] 221:1  Error: Delete `····`  prettier/prettier
+[18:49:16.926] 224:29  Error: Replace `'bg-background-dark/95',·'backdrop-blur-sm',·'shadow-lg'` with `⏎······'bg-background-dark/95',⏎······'backdrop-blur-sm',⏎······'shadow-lg'⏎····`  prettier/prettier
+[18:49:16.927] 233:1  Error: Delete `····`  prettier/prettier
+[18:49:16.927] 237:1  Error: Delete `····`  prettier/prettier
+[18:49:16.927] 239:1  Error: Delete `····`  prettier/prettier
+[18:49:16.927] 241:1  Error: Delete `····`  prettier/prettier
+[18:49:16.927] 247:1  Error: Delete `····`  prettier/prettier
+[18:49:16.927] 249:1  Error: Delete `····`  prettier/prettier
+[18:49:16.927] 257:1  Error: Delete `····`  prettier/prettier
+[18:49:16.927] 259:30  Error: Replace `.getByRole('navigation')` with `⏎······.getByRole('navigation')⏎······`  prettier/prettier
+[18:49:16.928] 261:1  Error: Delete `····`  prettier/prettier
+[18:49:16.928] 263:32  Error: Replace `.getByRole('navigation')` with `⏎······.getByRole('navigation')⏎······`  prettier/prettier
+[18:49:16.928] 269:1  Error: Delete `····`  prettier/prettier
+[18:49:16.928] 273:1  Error: Delete `····`  prettier/prettier
+[18:49:16.928] 275:14  Error: Replace `screen.getByRole('button',·{·name:·/close·menu/i·})` with `⏎········screen.getByRole('button',·{·name:·/close·menu/i·})⏎······`  prettier/prettier
+[18:49:16.928] 277:1  Error: Delete `····`  prettier/prettier
+[18:49:16.928] 283:1  Error: Delete `····`  prettier/prettier
+[18:49:16.928] 286:14  Error: Replace `screen.queryByRole('button',·{·name:·/close·menu/i·})` with `⏎········screen.queryByRole('button',·{·name:·/close·menu/i·})⏎······`  prettier/prettier
+[18:49:16.929] 292:1  Error: Delete `····`  prettier/prettier
+[18:49:16.929] 295:1  Error: Delete `····`  prettier/prettier
+[18:49:16.929] 299:1  Error: Delete `····`  prettier/prettier
+[18:49:16.929] 304:4  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.929] 
+[18:49:16.929] ./src/components/Navigation.tsx
+[18:49:16.929] 34:1  Error: Delete `········`  prettier/prettier
+[18:49:16.929] 50:6  Warning: React Hook useEffect has a missing dependency: 'navigationItems'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+[18:49:16.930] 54:1  Error: Delete `····`  prettier/prettier
+[18:49:16.930] 73:9  Error: Delete `·`  prettier/prettier
+[18:49:16.930] 75:19  Error: Delete `·`  prettier/prettier
+[18:49:16.930] 76:63  Error: Delete `·`  prettier/prettier
+[18:49:16.930] 210:35  Error: Replace `activeSection·===·item.id·?·'page'·:·undefined` with `⏎······················activeSection·===·item.id·?·'page'·:·undefined⏎····················`  prettier/prettier
+[18:49:16.930] 215:1  Error: Delete `················`  prettier/prettier
+[18:49:16.930] 220:32  Error: Replace `·duration:·0.3,·delay:·navigationItems.length·*·0.1` with `⏎····················duration:·0.3,⏎····················delay:·navigationItems.length·*·0.1,⏎·················`  prettier/prettier
+[18:49:16.930] 255:27  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.931] 
+[18:49:16.931] ./src/components/Portfolio.test.tsx
+[18:49:16.931] 8:12  Error: Replace `·children,·initial,·animate,·exit,·transition,·whileInView,·viewport,·...props` with `⏎······children,⏎······initial,⏎······animate,⏎······exit,⏎······transition,⏎······whileInView,⏎······viewport,⏎······...props⏎···`  prettier/prettier
+[18:49:16.931] 8:23  Warning: 'initial' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.931] 8:32  Warning: 'animate' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.931] 8:41  Warning: 'exit' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.931] 8:47  Warning: 'transition' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.931] 8:59  Warning: 'whileInView' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.932] 8:72  Warning: 'viewport' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.932] 8:94  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.932] 9:16  Error: Replace `·children,·initial,·animate,·exit,·transition,·whileInView,·viewport,·...props` with `⏎······children,⏎······initial,⏎······animate,⏎······exit,⏎······transition,⏎······whileInView,⏎······viewport,⏎······...props⏎···`  prettier/prettier
+[18:49:16.932] 9:27  Warning: 'initial' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.932] 9:36  Warning: 'animate' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.932] 9:45  Warning: 'exit' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.932] 9:51  Warning: 'transition' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.933] 9:63  Warning: 'whileInView' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.933] 9:76  Warning: 'viewport' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.933] 9:98  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.933] 11:35  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.933] 28:1  Error: Delete `····`  prettier/prettier
+[18:49:16.933] 30:12  Error: Replace `screen.getByRole('heading',·{·level:·2,·name:·/featured·projects/i·})` with `⏎······screen.getByRole('heading',·{·level:·2,·name:·/featured·projects/i·})⏎····`  prettier/prettier
+[18:49:16.933] 31:1  Error: Delete `····`  prettier/prettier
+[18:49:16.934] 34:1  Error: Delete `····`  prettier/prettier
+[18:49:16.934] 36:12  Error: Replace `screen.getByRole('button',·{·name:·/get·in·touch·with·us/i·})` with `⏎······screen.getByRole('button',·{·name:·/get·in·touch·with·us/i·})⏎····`  prettier/prettier
+[18:49:16.934] 41:1  Error: Delete `····`  prettier/prettier
+[18:49:16.934] 46:1  Error: Delete `····`  prettier/prettier
+[18:49:16.934] 48:12  Error: Replace `screen.getByText(/modern·construction·company·website/i)` with `⏎······screen.getByText(/modern·construction·company·website/i)⏎····`  prettier/prettier
+[18:49:16.934] 55:1  Error: Delete `····`  prettier/prettier
+[18:49:16.934] 57:12  Error: Replace `screen.getByRole('button',·{·name:·/all·projects/i·})` with `⏎······screen.getByRole('button',·{·name:·/all·projects/i·})⏎····`  prettier/prettier
+[18:49:16.934] 58:1  Error: Delete `····`  prettier/prettier
+[18:49:16.934] 61:65  Error: Replace `·button.hasAttribute('aria-pressed'));` with `⏎······button.hasAttribute('aria-pressed')`  prettier/prettier
+[18:49:16.934] 62:5  Error: Insert `);⏎`  prettier/prettier
+[18:49:16.934] 64:12  Error: Replace `filterButtonsWithAria.find(button·=>·button.textContent·===·'Construction')` with `⏎······filterButtonsWithAria.find(⏎········button·=>·button.textContent·===·'Construction'⏎······)⏎····`  prettier/prettier
+[18:49:16.934] 65:12  Error: Replace `filterButtonsWithAria.find(button·=>·button.textContent·===·'Business')` with `⏎······filterButtonsWithAria.find(button·=>·button.textContent·===·'Business')⏎····`  prettier/prettier
+[18:49:16.934] 66:12  Error: Replace `filterButtonsWithAria.find(button·=>·button.textContent·===·'Beauty')` with `⏎······filterButtonsWithAria.find(button·=>·button.textContent·===·'Beauty')⏎····`  prettier/prettier
+[18:49:16.934] 67:12  Error: Replace `filterButtonsWithAria.find(button·=>·button.textContent·===·'E-commerce')` with `⏎······filterButtonsWithAria.find(button·=>·button.textContent·===·'E-commerce')⏎····`  prettier/prettier
+[18:49:16.935] 68:12  Error: Replace `filterButtonsWithAria.find(button·=>·button.textContent·===·'Art')` with `⏎······filterButtonsWithAria.find(button·=>·button.textContent·===·'Art')⏎····`  prettier/prettier
+[18:49:16.935] 69:12  Error: Replace `filterButtonsWithAria.find(button·=>·button.textContent·===·'Portfolio')` with `⏎······filterButtonsWithAria.find(button·=>·button.textContent·===·'Portfolio')⏎····`  prettier/prettier
+[18:49:16.935] 74:1  Error: Delete `····`  prettier/prettier
+[18:49:16.935] 79:1  Error: Delete `····`  prettier/prettier
+[18:49:16.935] 82:57  Error: Replace `button·=>·⏎······button.textContent·===·'Construction'·&&` with `⏎······button·=>⏎········button.textContent·===·'Construction'·&&⏎·······`  prettier/prettier
+[18:49:16.935] 86:1  Error: Delete `····`  prettier/prettier
+[18:49:16.935] 91:1  Error: Delete `····`  prettier/prettier
+[18:49:16.935] 93:51  Error: Replace `button·=>·⏎` with `⏎······button·=>⏎··`  prettier/prettier
+[18:49:16.935] 97:1  Error: Delete `····`  prettier/prettier
+[18:49:16.935] 99:12  Error: Replace `screen.queryByText('LBP·Construction·Website')` with `⏎······screen.queryByText('LBP·Construction·Website')⏎····`  prettier/prettier
+[18:49:16.935] 102:1  Error: Delete `····`  prettier/prettier
+[18:49:16.935] 105:1  Error: Delete `····`  prettier/prettier
+[18:49:16.935] 114:1  Error: Delete `····`  prettier/prettier
+[18:49:16.935] 116:57  Error: Replace `·name:·/view·details·for/i` with `⏎······name:·/view·details·for/i,⏎···`  prettier/prettier
+[18:49:16.935] 118:1  Error: Delete `····`  prettier/prettier
+[18:49:16.935] 122:14  Error: Replace `screen.getByText('LBP·Construction·Website',·{·selector:·'#project-modal-title'·})` with `⏎········screen.getByText('LBP·Construction·Website',·{⏎··········selector:·'#project-modal-title',⏎········})⏎······`  prettier/prettier
+[18:49:16.935] 124:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 128:12  Error: Replace `screen.getByText(/increased·online·inquiries·by·150%/i)` with `⏎······screen.getByText(/increased·online·inquiries·by·150%/i)⏎····`  prettier/prettier
+[18:49:16.936] 134:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 136:57  Error: Replace `·name:·/view·details·for/i` with `⏎······name:·/view·details·for/i,⏎···`  prettier/prettier
+[18:49:16.936] 138:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 142:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 146:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 154:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 156:57  Error: Replace `·name:·/view·details·for/i` with `⏎······name:·/view·details·for/i,⏎···`  prettier/prettier
+[18:49:16.936] 158:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 162:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 166:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 174:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 175:57  Error: Replace `·name:·/view·details·for/i` with `⏎······name:·/view·details·for/i,⏎···`  prettier/prettier
+[18:49:16.936] 176:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 182:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 186:1  Error: Delete `····`  prettier/prettier
+[18:49:16.936] 190:1  Error: Delete `····`  prettier/prettier
+[18:49:16.937] 200:1  Error: Delete `····`  prettier/prettier
+[18:49:16.937] 202:57  Error: Replace `·name:·/view·details·for/i` with `⏎······name:·/view·details·for/i,⏎···`  prettier/prettier
+[18:49:16.937] 204:1  Error: Delete `····`  prettier/prettier
+[18:49:16.937] 208:1  Error: Delete `····`  prettier/prettier
+[18:49:16.937] 211:1  Error: Delete `····`  prettier/prettier
+[18:49:16.937] 219:1  Error: Delete `····`  prettier/prettier
+[18:49:16.937] 222:9  Error: Replace `.spyOn(document,·'getElementById')` with `⏎······.spyOn(document,·'getElementById')⏎······`  prettier/prettier
+[18:49:16.937] 222:82  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.937] 223:1  Error: Delete `····`  prettier/prettier
+[18:49:16.937] 225:57  Error: Replace `·name:·/view·details·for/i` with `⏎······name:·/view·details·for/i,⏎···`  prettier/prettier
+[18:49:16.937] 227:1  Error: Delete `····`  prettier/prettier
+[18:49:16.937] 231:1  Error: Delete `····`  prettier/prettier
+[18:49:16.937] 233:60  Error: Replace `·name:·/start·your·project/i` with `⏎······name:·/start·your·project/i,⏎···`  prettier/prettier
+[18:49:16.937] 235:1  Error: Delete `····`  prettier/prettier
+[18:49:16.937] 245:1  Error: Delete `····`  prettier/prettier
+[18:49:16.937] 248:9  Error: Replace `.spyOn(document,·'getElementById')` with `⏎······.spyOn(document,·'getElementById')⏎······`  prettier/prettier
+[18:49:16.937] 248:82  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.938] 249:1  Error: Delete `····`  prettier/prettier
+[18:49:16.938] 251:58  Error: Replace `·name:·/get·in·touch·with·us/i` with `⏎······name:·/get·in·touch·with·us/i,⏎···`  prettier/prettier
+[18:49:16.938] 253:1  Error: Delete `····`  prettier/prettier
+[18:49:16.938] 260:1  Error: Delete `····`  prettier/prettier
+[18:49:16.938] 262:59  Error: Replace `·name:·/all·projects/i` with `⏎······name:·/all·projects/i,⏎···`  prettier/prettier
+[18:49:16.938] 264:1  Error: Delete `····`  prettier/prettier
+[18:49:16.938] 266:57  Error: Replace `button·=>·⏎······button.textContent·===·'Construction'·&&` with `⏎······button·=>⏎········button.textContent·===·'Construction'·&&⏎·······`  prettier/prettier
+[18:49:16.938] 270:1  Error: Delete `····`  prettier/prettier
+[18:49:16.938] 272:57  Error: Replace `·name:·/view·details·for/i` with `⏎······name:·/view·details·for/i,⏎···`  prettier/prettier
+[18:49:16.938] 274:45  Error: Replace `'aria-label',·'View·details·for·LBP·Construction·Website'` with `⏎······'aria-label',⏎······'View·details·for·LBP·Construction·Website'⏎····`  prettier/prettier
+[18:49:16.938] 279:1  Error: Delete `····`  prettier/prettier
+[18:49:16.938] 284:39  Error: Replace `'src',·'/images/victoria-rose-salon-logo.jpeg'` with `⏎······'src',⏎······'/images/victoria-rose-salon-logo.jpeg'⏎····`  prettier/prettier
+[18:49:16.938] 286:39  Error: Replace `'src',·'/images/paintings-by-kay-logo.png'` with `⏎······'src',⏎······'/images/paintings-by-kay-logo.png'⏎····`  prettier/prettier
+[18:49:16.938] 292:1  Error: Delete `····`  prettier/prettier
+[18:49:16.938] 304:1  Error: Delete `····`  prettier/prettier
+[18:49:16.938] 306:57  Error: Replace `·name:·/view·details·for/i` with `⏎······name:·/view·details·for/i,⏎···`  prettier/prettier
+[18:49:16.938] 308:1  Error: Delete `····`  prettier/prettier
+[18:49:16.938] 312:1  Error: Delete `····`  prettier/prettier
+[18:49:16.938] 316:1  Error: Delete `····`  prettier/prettier
+[18:49:16.939] 323:1  Error: Delete `····`  prettier/prettier
+[18:49:16.939] 325:59  Error: Replace `·name:·/all·projects/i` with `⏎······name:·/all·projects/i,⏎···`  prettier/prettier
+[18:49:16.939] 327:57  Error: Replace `button·=>·⏎······button.textContent·===·'Construction'·&&` with `⏎······button·=>⏎········button.textContent·===·'Construction'·&&⏎·······`  prettier/prettier
+[18:49:16.939] 330:1  Error: Delete `····`  prettier/prettier
+[18:49:16.939] 333:1  Error: Delete `····`  prettier/prettier
+[18:49:16.939] 336:1  Error: Delete `····`  prettier/prettier
+[18:49:16.939] 341:4  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.939] 
+[18:49:16.939] ./src/components/Portfolio.tsx
+[18:49:16.940] 23:22  Error: Insert `⏎·····`  prettier/prettier
+[18:49:16.940] 24:17  Error: Replace `·'A·stunning·photography·portfolio·website·for·Lee·Barrowcliff·Photography·featuring·beautiful·image·galleries,·client·login·section,·and·booking·functionality.·Designed·to·showcase·the·photographer\'s·work·in·an·elegant·and·professional·manner.'` with `⏎······"A·stunning·photography·portfolio·website·for·Lee·Barrowcliff·Photography·featuring·beautiful·image·galleries,·client·login·section,·and·booking·functionality.·Designed·to·showcase·the·photographer's·work·in·an·elegant·and·professional·manner."`  prettier/prettier
+[18:49:16.940] 27:20  Error: Replace `'React',·'Next.js',·'TypeScript',·'TailwindCSS',·'Framer·Motion'` with `⏎······'React',⏎······'Next.js',⏎······'TypeScript',⏎······'TailwindCSS',⏎······'Framer·Motion',⏎····`  prettier/prettier
+[18:49:16.940] 32:36  Error: Insert `,`  prettier/prettier
+[18:49:16.940] 35:51  Error: Insert `,`  prettier/prettier
+[18:49:16.940] 40:22  Error: Insert `⏎·····`  prettier/prettier
+[18:49:16.940] 41:17  Error: Replace `·'A·beautiful·and·functional·website·for·Victoria·Rose·Salon·featuring·online·appointment·booking,·service·listings,·and·staff·profiles.·Designed·to·reflect·the·salon\'s·premium·brand·and·enhance·customer·experience.'` with `⏎······"A·beautiful·and·functional·website·for·Victoria·Rose·Salon·featuring·online·appointment·booking,·service·listings,·and·staff·profiles.·Designed·to·reflect·the·salon's·premium·brand·and·enhance·customer·experience."`  prettier/prettier
+[18:49:16.940] 49:40  Error: Insert `,`  prettier/prettier
+[18:49:16.940] 51:54  Error: Insert `,`  prettier/prettier
+[18:49:16.940] 56:22  Error: Insert `⏎·····`  prettier/prettier
+[18:49:16.940] 57:17  Error: Replace `·'An·artistic·portfolio·website·showcasing·Kay\'s·paintings·with·a·beautiful·gallery·layout,·commission·request·forms,·and·integrated·payment·processing  for·art·sales.'` with `⏎······"An·artistic·portfolio·website·showcasing·Kay's·paintings·with·a·beautiful·gallery·layout,·commission·request·forms,·and·integrated·payment·processing·for·art·sales."`  prettier/prettier
+[18:49:16.940] 60:20  Error: Replace `'React',·'Next.js',·'PayPal',·'Cloudinary',·'Styled·Components'` with `⏎······'React',⏎······'Next.js',⏎······'PayPal',⏎······'Cloudinary',⏎······'Styled·Components',⏎····`  prettier/prettier
+[18:49:16.940] 65:37  Error: Insert `,`  prettier/prettier
+[18:49:16.941] 67:49  Error: Insert `,`  prettier/prettier
+[18:49:16.941] 68:4  Error: Insert `,`  prettier/prettier
+[18:49:16.941] 77:27  Error: Replace `·selectedTag·===·'All'·` with `⏎····selectedTag·===·'All'`  prettier/prettier
+[18:49:16.941] 78:5  Error: Replace `?·projects·⏎` with `··?·projects⏎··`  prettier/prettier
+[18:49:16.941] 123:67  Error: Replace `Featured·Projects` with `⏎············Featured·Projects⏎··········`  prettier/prettier
+[18:49:16.941] 125:51  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[18:49:16.941] 125:77  Error: Insert `⏎···········`  prettier/prettier
+[18:49:16.941] 139:1  Error: Replace `··························` with `············`  prettier/prettier
+[18:49:16.941] 140:15  Error: Delete `··`  prettier/prettier
+[18:49:16.941] 141:1  Error: Delete `··`  prettier/prettier
+[18:49:16.941] 142:1  Error: Replace `··················` with `················`  prettier/prettier
+[18:49:16.941] 143:1  Error: Delete `··`  prettier/prettier
+[18:49:16.941] 148:23  Error: Replace `((tag)` with `(tag`  prettier/prettier
+[18:49:16.941] 176:28  Error: Replace `(e)` with `e`  prettier/prettier
+[18:49:16.942] 182:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+[18:49:16.943] 210:25  Error: Delete `·`  prettier/prettier
+[18:49:16.943] 211:55  Error: Delete `·`  prettier/prettier
+[18:49:16.943] 212:34  Error: Delete `·`  prettier/prettier
+[18:49:16.943] 213:44  Error: Delete `·`  prettier/prettier
+[18:49:16.944] 217:28  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M9·5l7·7-7·7"` with `⏎························strokeLinecap="round"⏎························strokeLinejoin="round"⏎························strokeWidth={2}⏎························d="M9·5l7·7-7·7"⏎·····················`  prettier/prettier
+[18:49:16.944] 238:16  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+[18:49:16.944] 238:75  Error: Insert `⏎···········`  prettier/prettier
+[18:49:16.944] 246:17  Error: Delete `·`  prettier/prettier
+[18:49:16.944] 247:39  Error: Delete `·`  prettier/prettier
+[18:49:16.944] 248:26  Error: Delete `·`  prettier/prettier
+[18:49:16.944] 249:36  Error: Delete `·`  prettier/prettier
+[18:49:16.944] 253:20  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M8·12h.01M12·12h.01M16·12h.01M21·12c0·4.418-3.582·8-8·8a8.013·8.013·0·01-7-4c0-4.418·3.582-8·8-8s8·3.582·8·8z"` with `⏎················strokeLinecap="round"⏎················strokeLinejoin="round"⏎················strokeWidth={2}⏎················d="M8·12h.01M12·12h.01M16·12h.01M21·12c0·4.418-3.582·8-8·8a8.013·8.013·0·01-7-4c0-4.418·3.582-8·8-8s8·3.582·8·8z"⏎·············`  prettier/prettier
+[18:49:16.944] 280:24  Error: Replace `(e)` with `e`  prettier/prettier
+[18:49:16.944] 284:22  Error: Replace `·id="project-modal-title"·className="text-3xl·font-bold·text-gray-900"` with `⏎····················id="project-modal-title"⏎····················className="text-3xl·font-bold·text-gray-900"⏎··················`  prettier/prettier
+[18:49:16.944] 292:25  Error: Replace `·className="w-6·h-6"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎······················className="w-6·h-6"⏎······················fill="none"⏎······················stroke="currentColor"⏎······················viewBox="0·0·24·24"⏎····················`  prettier/prettier
+[18:49:16.944] 293:28  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M6·18L18·6M6·6l12·12"` with `⏎························strokeLinecap="round"⏎························strokeLinejoin="round"⏎························strokeWidth={2}⏎························d="M6·18L18·6M6·6l12·12"⏎·····················`  prettier/prettier
+[18:49:16.944] 301:23  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+[18:49:16.948] 325:80  Error: Replace `Key·Outcomes:` with `⏎························Key·Outcomes:⏎······················`  prettier/prettier
+[18:49:16.948] 329:33  Error: Delete `·`  prettier/prettier
+[18:49:16.948] 330:91  Error: Delete `·`  prettier/prettier
+[18:49:16.948] 331:42  Error: Delete `·`  prettier/prettier
+[18:49:16.948] 332:52  Error: Delete `·`  prettier/prettier
+[18:49:16.948] 336:36  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M5·13l4·4L19·7"` with `⏎································strokeLinecap="round"⏎································strokeLinejoin="round"⏎································strokeWidth={2}⏎································d="M5·13l4·4L19·7"⏎·····························`  prettier/prettier
+[18:49:16.948] 345:80  Error: Replace `Technologies·Used:` with `⏎························Technologies·Used:⏎······················`  prettier/prettier
+[18:49:16.948] 396:26  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.948] 
+[18:49:16.948] ./src/components/ProjectCard.tsx
+[18:49:16.948] 46:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+[18:49:16.948] 71:51  Error: Replace `⏎············Click·to·view·details⏎··········` with `Click·to·view·details`  prettier/prettier
+[18:49:16.949] 74:15  Error: Delete `·`  prettier/prettier
+[18:49:16.949] 75:46  Error: Delete `·`  prettier/prettier
+[18:49:16.949] 76:24  Error: Delete `·`  prettier/prettier
+[18:49:16.949] 77:34  Error: Delete `·`  prettier/prettier
+[18:49:16.949] 81:18  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M9·5l7·7-7·7"` with `⏎··············strokeLinecap="round"⏎··············strokeLinejoin="round"⏎··············strokeWidth={2}⏎··············d="M9·5l7·7-7·7"⏎···········`  prettier/prettier
+[18:49:16.949] 89:28  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.949] 
+[18:49:16.949] ./src/components/ProjectModal.tsx
+[18:49:16.949] 60:20  Error: Replace `(e)` with `e`  prettier/prettier
+[18:49:16.949] 72:19  Error: Replace `·className="w-6·h-6"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎················className="w-6·h-6"⏎················fill="none"⏎················stroke="currentColor"⏎················viewBox="0·0·24·24"⏎··············`  prettier/prettier
+[18:49:16.949] 73:22  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M6·18L18·6M6·6l12·12"` with `⏎··················strokeLinecap="round"⏎··················strokeLinejoin="round"⏎··················strokeWidth={2}⏎··················d="M6·18L18·6M6·6l12·12"⏎···············`  prettier/prettier
+[18:49:16.949] 84:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+[18:49:16.949] 90:1  Error: Delete `················`  prettier/prettier
+[18:49:16.949] 107:76  Error: Replace `Project·Overview` with `⏎····················Project·Overview⏎··················`  prettier/prettier
+[18:49:16.949] 114:76  Error: Replace `Technologies·Used` with `⏎····················Technologies·Used⏎··················`  prettier/prettier
+[18:49:16.949] 128:76  Error: Replace `Key·Outcomes` with `⏎····················Key·Outcomes⏎··················`  prettier/prettier
+[18:49:16.949] 132:29  Error: Replace `·className="w-5·h-5·text-green-500·mr-2·mt-0.5·flex-shrink-0"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎··························className="w-5·h-5·text-green-500·mr-2·mt-0.5·flex-shrink-0"⏎··························fill="none"⏎··························stroke="currentColor"⏎··························viewBox="0·0·24·24"⏎························`  prettier/prettier
+[18:49:16.949] 133:32  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M5·13l4·4L19·7"` with `⏎····························strokeLinecap="round"⏎····························strokeLinejoin="round"⏎····························strokeWidth={2}⏎····························d="M5·13l4·4L19·7"⏎·························`  prettier/prettier
+[18:49:16.949] 150:27  Error: Replace `·className="w-4·h-4·mr-2"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎························className="w-4·h-4·mr-2"⏎························fill="none"⏎························stroke="currentColor"⏎························viewBox="0·0·24·24"⏎······················`  prettier/prettier
+[18:49:16.950] 151:30  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M10·6H6a2·2·0·00-2·2v10a2·2·0·002·2h10a2·2·0·002-2v-4M14·4h6m0·0v6m0-6L10·14"` with `⏎··························strokeLinecap="round"⏎··························strokeLinejoin="round"⏎··························strokeWidth={2}⏎··························d="M10·6H6a2·2·0·00-2·2v10a2·2·0·002·2h10a2·2·0·002-2v-4M14·4h6m0·0v6m0-6L10·14"⏎·······················`  prettier/prettier
+[18:49:16.950] 156:1  Error: Delete `··················`  prettier/prettier
+[18:49:16.950] 164:27  Error: Replace `·className="w-4·h-4·mr-2"·fill="currentColor"·viewBox="0·0·24·24"` with `⏎························className="w-4·h-4·mr-2"⏎························fill="currentColor"⏎························viewBox="0·0·24·24"⏎······················`  prettier/prettier
+[18:49:16.950] 165:748  Error: Insert `·`  prettier/prettier
+[18:49:16.950] 175:25  Error: Replace `·className="w-4·h-4·mr-2"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎······················className="w-4·h-4·mr-2"⏎······················fill="none"⏎······················stroke="currentColor"⏎······················viewBox="0·0·24·24"⏎····················`  prettier/prettier
+[18:49:16.950] 176:28  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M8·12h.01M12·12h.01M16·12h.01M21·12c0·4.418-3.582·8-8·8a8.013·8.013·0·01-7-4c0-4.418·3.582-8·8-8s8·3.582·8·8z"` with `⏎························strokeLinecap="round"⏎························strokeLinejoin="round"⏎························strokeWidth={2}⏎························d="M8·12h.01M12·12h.01M16·12h.01M21·12c0·4.418-3.582·8-8·8a8.013·8.013·0·01-7-4c0-4.418·3.582-8·8-8s8·3.582·8·8z"⏎·····················`  prettier/prettier
+[18:49:16.950] 190:29  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.950] 
+[18:49:16.950] ./src/components/ServiceCard.tsx
+[18:49:16.950] 43:54  Error: Replace `⏎··········{service.description}⏎········` with `{service.description}`  prettier/prettier
+[18:49:16.950] 47:1  Error: Delete `······`  prettier/prettier
+[18:49:16.950] 56:15  Error: Delete `·`  prettier/prettier
+[18:49:16.950] 57:37  Error: Delete `·`  prettier/prettier
+[18:49:16.950] 58:24  Error: Delete `·`  prettier/prettier
+[18:49:16.950] 59:34  Error: Delete `·`  prettier/prettier
+[18:49:16.950] 63:18  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M9·5l7·7-7·7"` with `⏎··············strokeLinecap="round"⏎··············strokeLinejoin="round"⏎··············strokeWidth={2}⏎··············d="M9·5l7·7-7·7"⏎···········`  prettier/prettier
+[18:49:16.950] 71:28  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.950] 
+[18:49:16.950] ./src/components/ServiceModal.tsx
+[18:49:16.950] 56:20  Error: Replace `(e)` with `e`  prettier/prettier
+[18:49:16.950] 73:19  Error: Replace `·className="w-6·h-6"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎················className="w-6·h-6"⏎················fill="none"⏎················stroke="currentColor"⏎················viewBox="0·0·24·24"⏎··············`  prettier/prettier
+[18:49:16.950] 74:22  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M6·18L18·6M6·6l12·12"` with `⏎··················strokeLinecap="round"⏎··················strokeLinejoin="round"⏎··················strokeWidth={2}⏎··················d="M6·18L18·6M6·6l12·12"⏎···············`  prettier/prettier
+[18:49:16.951] 91:74  Error: Replace `What·We·Do` with `⏎··················What·We·Do⏎················`  prettier/prettier
+[18:49:16.951] 95:27  Error: Replace `·className="w-5·h-5·text-blue-500·mr-3·mt-0.5·flex-shrink-0"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎························className="w-5·h-5·text-blue-500·mr-3·mt-0.5·flex-shrink-0"⏎························fill="none"⏎························stroke="currentColor"⏎························viewBox="0·0·24·24"⏎······················`  prettier/prettier
+[18:49:16.951] 96:30  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M5·13l4·4L19·7"` with `⏎··························strokeLinecap="round"⏎··························strokeLinejoin="round"⏎··························strokeWidth={2}⏎··························d="M5·13l4·4L19·7"⏎·······················`  prettier/prettier
+[18:49:16.951] 106:74  Error: Replace `Technologies·&·Tools` with `⏎··················Technologies·&·Tools⏎················`  prettier/prettier
+[18:49:16.951] 129:25  Error: Replace `·className="w-5·h-5·mr-2"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎······················className="w-5·h-5·mr-2"⏎······················fill="none"⏎······················stroke="currentColor"⏎······················viewBox="0·0·24·24"⏎····················`  prettier/prettier
+[18:49:16.951] 130:28  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M8·12h.01M12·12h.01M16·12h.01M21·12c0·4.418-3.582·8-8·8a8.013·8.013·0·01-7-4c0-4.418·3.582-8·8-8s8·3.582·8·8z"` with `⏎························strokeLinecap="round"⏎························strokeLinejoin="round"⏎························strokeWidth={2}⏎························d="M8·12h.01M12·12h.01M16·12h.01M21·12c0·4.418-3.582·8-8·8a8.013·8.013·0·01-7-4c0-4.418·3.582-8·8-8s8·3.582·8·8z"⏎·····················`  prettier/prettier
+[18:49:16.951] 144:29  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.951] 
+[18:49:16.951] ./src/components/Services.test.tsx
+[18:49:16.951] 8:12  Error: Replace `·children,·initial,·animate,·transition,·whileInView,·viewport,·...props` with `⏎······children,⏎······initial,⏎······animate,⏎······transition,⏎······whileInView,⏎······viewport,⏎······...props⏎···`  prettier/prettier
+[18:49:16.951] 8:23  Warning: 'initial' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.951] 8:32  Warning: 'animate' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.951] 8:41  Warning: 'transition' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.951] 8:53  Warning: 'whileInView' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.951] 8:66  Warning: 'viewport' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.953] 8:88  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.953] 9:16  Error: Replace `·children,·initial,·animate,·transition,·whileInView,·viewport,·...props` with `⏎······children,⏎······initial,⏎······animate,⏎······transition,⏎······whileInView,⏎······viewport,⏎······...props⏎···`  prettier/prettier
+[18:49:16.953] 9:27  Warning: 'initial' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.954] 9:36  Warning: 'animate' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.954] 9:45  Warning: 'transition' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.954] 9:57  Warning: 'whileInView' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.954] 9:70  Warning: 'viewport' is defined but never used.  @typescript-eslint/no-unused-vars
+[18:49:16.954] 9:92  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.954] 11:35  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.954] 28:1  Error: Delete `····`  prettier/prettier
+[18:49:16.954] 30:12  Error: Replace `screen.getByRole('heading',·{·level:·2,·name:·/our·services/i·})` with `⏎······screen.getByRole('heading',·{·level:·2,·name:·/our·services/i·})⏎····`  prettier/prettier
+[18:49:16.954] 31:1  Error: Delete `····`  prettier/prettier
+[18:49:16.954] 33:12  Error: Replace `screen.getByText(/we·deliver·comprehensive·web·solutions/i)` with `⏎······screen.getByText(/we·deliver·comprehensive·web·solutions/i)⏎····`  prettier/prettier
+[18:49:16.954] 34:1  Error: Delete `····`  prettier/prettier
+[18:49:16.954] 36:12  Error: Replace `screen.getByRole('button',·{·name:·/discuss·your·project/i·})` with `⏎······screen.getByRole('button',·{·name:·/discuss·your·project/i·})⏎····`  prettier/prettier
+[18:49:16.954] 41:1  Error: Delete `····`  prettier/prettier
+[18:49:16.954] 43:12  Error: Replace `screen.getByRole('heading',·{·level:·3,·name:·/ui\/ux·design/i·})` with `⏎······screen.getByRole('heading',·{·level:·3,·name:·/ui\/ux·design/i·})⏎····`  prettier/prettier
+[18:49:16.954] 44:12  Error: Replace `screen.getByRole('heading',·{·level:·3,·name:·/front-end·development/i·})` with `⏎······screen.getByRole('heading',·{·level:·3,·name:·/front-end·development/i·})⏎····`  prettier/prettier
+[18:49:16.954] 45:12  Error: Replace `screen.getByRole('heading',·{·level:·3,·name:·/full-stack·development/i·})` with `⏎······screen.getByRole('heading',·{·level:·3,·name:·/full-stack·development/i·})⏎····`  prettier/prettier
+[18:49:16.954] 46:1  Error: Delete `····`  prettier/prettier
+[18:49:16.954] 48:12  Error: Replace `screen.getByText(/creating·intuitive·and·visually·appealing/i)` with `⏎······screen.getByText(/creating·intuitive·and·visually·appealing/i)⏎····`  prettier/prettier
+[18:49:16.954] 49:12  Error: Replace `screen.getByText(/building·responsive,·interactive·web·applications/i)` with `⏎······screen.getByText(/building·responsive,·interactive·web·applications/i)⏎····`  prettier/prettier
+[18:49:16.956] 50:12  Error: Replace `screen.getByText(/end-to-end·web·application·development/i)` with `⏎······screen.getByText(/end-to-end·web·application·development/i)⏎····`  prettier/prettier
+[18:49:16.956] 51:1  Error: Delete `····`  prettier/prettier
+[18:49:16.956] 53:61  Error: Replace `·name:·/learn·more/i` with `⏎······name:·/learn·more/i,⏎···`  prettier/prettier
+[18:49:16.956] 59:1  Error: Delete `····`  prettier/prettier
+[18:49:16.956] 61:61  Error: Replace `·name:·/learn·more/i` with `⏎······name:·/learn·more/i,⏎···`  prettier/prettier
+[18:49:16.956] 63:1  Error: Delete `····`  prettier/prettier
+[18:49:16.956] 67:14  Error: Replace `screen.getByText('UI/UX·Design',·{·selector:·'#modal-title'·})` with `⏎········screen.getByText('UI/UX·Design',·{·selector:·'#modal-title'·})⏎······`  prettier/prettier
+[18:49:16.956] 69:1  Error: Delete `····`  prettier/prettier
+[18:49:16.956] 73:12  Error: Replace `screen.getByText(/user·research·and·persona·development/i)` with `⏎······screen.getByText(/user·research·and·persona·development/i)⏎····`  prettier/prettier
+[18:49:16.956] 79:1  Error: Delete `····`  prettier/prettier
+[18:49:16.956] 81:61  Error: Replace `·name:·/learn·more/i` with `⏎······name:·/learn·more/i,⏎···`  prettier/prettier
+[18:49:16.957] 83:1  Error: Delete `····`  prettier/prettier
+[18:49:16.957] 87:1  Error: Delete `····`  prettier/prettier
+[18:49:16.957] 91:1  Error: Delete `····`  prettier/prettier
+[18:49:16.957] 99:1  Error: Delete `····`  prettier/prettier
+[18:49:16.957] 101:61  Error: Replace `·name:·/learn·more/i` with `⏎······name:·/learn·more/i,⏎···`  prettier/prettier
+[18:49:16.963] 103:1  Error: Delete `····`  prettier/prettier
+[18:49:16.963] 107:1  Error: Delete `····`  prettier/prettier
+[18:49:16.963] 111:1  Error: Delete `····`  prettier/prettier
+[18:49:16.963] 119:1  Error: Delete `····`  prettier/prettier
+[18:49:16.963] 120:61  Error: Replace `·name:·/learn·more/i` with `⏎······name:·/learn·more/i,⏎···`  prettier/prettier
+[18:49:16.963] 121:1  Error: Delete `····`  prettier/prettier
+[18:49:16.963] 127:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 131:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 135:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 145:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 147:61  Error: Replace `·name:·/learn·more/i` with `⏎······name:·/learn·more/i,⏎···`  prettier/prettier
+[18:49:16.964] 149:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 153:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 156:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 164:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 167:9  Error: Replace `.spyOn(document,·'getElementById')` with `⏎······.spyOn(document,·'getElementById')⏎······`  prettier/prettier
+[18:49:16.964] 167:82  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.964] 168:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 170:61  Error: Replace `·name:·/learn·more/i` with `⏎······name:·/learn·more/i,⏎···`  prettier/prettier
+[18:49:16.964] 172:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 176:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 178:58  Error: Replace `·name:·/get·started/i` with `⏎······name:·/get·started/i,⏎···`  prettier/prettier
+[18:49:16.964] 180:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 190:1  Error: Delete `····`  prettier/prettier
+[18:49:16.964] 193:9  Error: Replace `.spyOn(document,·'getElementById')` with `⏎······.spyOn(document,·'getElementById')⏎······`  prettier/prettier
+[18:49:16.964] 193:82  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.964] 194:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 196:55  Error: Replace `·name:·/discuss·your·project/i` with `⏎······name:·/discuss·your·project/i,⏎···`  prettier/prettier
+[18:49:16.965] 198:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 205:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 211:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 213:61  Error: Replace `·name:·/learn·more·about/i` with `⏎······name:·/learn·more·about/i,⏎···`  prettier/prettier
+[18:49:16.965] 215:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 217:55  Error: Replace `·name:·/discuss·your·project·with·us/i` with `⏎······name:·/discuss·your·project·with·us/i,⏎···`  prettier/prettier
+[18:49:16.965] 223:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 225:61  Error: Replace `·name:·/learn·more/i` with `⏎······name:·/learn·more/i,⏎···`  prettier/prettier
+[18:49:16.965] 227:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 229:12  Error: Replace `screen.getByText(/user·research·and·persona·development/i)` with `⏎······screen.getByText(/user·research·and·persona·development/i)⏎····`  prettier/prettier
+[18:49:16.965] 231:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 235:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 237:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 245:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 247:61  Error: Replace `·name:·/learn·more/i` with `⏎······name:·/learn·more/i,⏎···`  prettier/prettier
+[18:49:16.965] 249:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 253:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 257:1  Error: Delete `····`  prettier/prettier
+[18:49:16.965] 261:4  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.966] 
+[18:49:16.966] ./src/components/Services.tsx
+[18:49:16.966] 19:17  Error: Insert `⏎·····`  prettier/prettier
+[18:49:16.966] 26:31  Error: Insert `,`  prettier/prettier
+[18:49:16.966] 28:75  Error: Insert `,`  prettier/prettier
+[18:49:16.966] 33:17  Error: Insert `⏎·····`  prettier/prettier
+[18:49:16.966] 40:37  Error: Insert `,`  prettier/prettier
+[18:49:16.966] 42:20  Error: Replace `'React',·'Next.js',·'TypeScript',·'TailwindCSS',·'Framer·Motion']` with `⏎······'React',⏎······'Next.js',⏎······'TypeScript',⏎······'TailwindCSS',⏎······'Framer·Motion',⏎····],`  prettier/prettier
+[18:49:16.966] 47:17  Error: Insert `⏎·····`  prettier/prettier
+[18:49:16.966] 54:40  Error: Insert `,`  prettier/prettier
+[18:49:16.966] 56:20  Error: Replace `'Node.js',·'Python',·'PostgreSQL',·'MongoDB',·'AWS',·'Vercel']` with `⏎······'Node.js',⏎······'Python',⏎······'PostgreSQL',⏎······'MongoDB',⏎······'AWS',⏎······'Vercel',⏎····],`  prettier/prettier
+[18:49:16.966] 57:4  Error: Insert `,`  prettier/prettier
+[18:49:16.966] 102:67  Error: Replace `Our·Services` with `⏎············Our·Services⏎··········`  prettier/prettier
+[18:49:16.966] 104:77  Error: Delete `·needs,·`  prettier/prettier
+[18:49:16.966] 105:12  Error: Insert `·needs,`  prettier/prettier
+[18:49:16.966] 120:21  Error: Replace `·className="text-5xl·mb-4"·role="img"·aria-label={service.title}` with `⏎··················className="text-5xl·mb-4"⏎··················role="img"⏎··················aria-label={service.title}⏎················`  prettier/prettier
+[18:49:16.966] 130:1  Error: Delete `··············`  prettier/prettier
+[18:49:16.966] 134:30  Error: Replace `(e)` with `e`  prettier/prettier
+[18:49:16.966] 139:23  Error: Delete `·`  prettier/prettier
+[18:49:16.966] 140:45  Error: Delete `·`  prettier/prettier
+[18:49:16.966] 141:32  Error: Delete `·`  prettier/prettier
+[18:49:16.966] 142:42  Error: Delete `·`  prettier/prettier
+[18:49:16.966] 146:26  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M9·5l7·7-7·7"` with `⏎······················strokeLinecap="round"⏎······················strokeLinejoin="round"⏎······················strokeWidth={2}⏎······················d="M9·5l7·7-7·7"⏎···················`  prettier/prettier
+[18:49:16.967] 167:17  Error: Delete `·`  prettier/prettier
+[18:49:16.967] 168:39  Error: Delete `·`  prettier/prettier
+[18:49:16.967] 169:26  Error: Delete `·`  prettier/prettier
+[18:49:16.967] 170:36  Error: Delete `·`  prettier/prettier
+[18:49:16.967] 174:20  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M8·12h.01M12·12h.01M16·12h.01M21·12c0·4.418-3.582·8-8·8a8.013·8.013·0·01-7-4c0-4.418·3.582-8·8-8s8·3.582·8·8z"` with `⏎················strokeLinecap="round"⏎················strokeLinejoin="round"⏎················strokeWidth={2}⏎················d="M8·12h.01M12·12h.01M16·12h.01M21·12c0·4.418-3.582·8-8·8a8.013·8.013·0·01-7-4c0-4.418·3.582-8·8-8s8·3.582·8·8z"⏎·············`  prettier/prettier
+[18:49:16.967] 201:24  Error: Replace `(e)` with `e`  prettier/prettier
+[18:49:16.967] 206:26  Error: Replace `·className="text-4xl·mr-4"·role="img"·aria-label={selectedService.title}` with `⏎······················className="text-4xl·mr-4"⏎······················role="img"⏎······················aria-label={selectedService.title}⏎····················`  prettier/prettier
+[18:49:16.967] 209:24  Error: Replace `·id="modal-title"·className="text-3xl·font-bold·text-gray-900"` with `⏎······················id="modal-title"⏎······················className="text-3xl·font-bold·text-gray-900"⏎····················`  prettier/prettier
+[18:49:16.967] 218:25  Error: Replace `·className="w-6·h-6"·fill="none"·stroke="currentColor"·viewBox="0·0·24·24"` with `⏎······················className="w-6·h-6"⏎······················fill="none"⏎······················stroke="currentColor"⏎······················viewBox="0·0·24·24"⏎····················`  prettier/prettier
+[18:49:16.967] 219:28  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M6·18L18·6M6·6l12·12"` with `⏎························strokeLinecap="round"⏎························strokeLinejoin="round"⏎························strokeWidth={2}⏎························d="M6·18L18·6M6·6l12·12"⏎·····················`  prettier/prettier
+[18:49:16.967] 230:78  Error: Replace `What·We·Deliver:` with `⏎······················What·We·Deliver:⏎····················`  prettier/prettier
+[18:49:16.967] 234:31  Error: Delete `·`  prettier/prettier
+[18:49:16.967] 235:89  Error: Delete `·`  prettier/prettier
+[18:49:16.967] 236:40  Error: Delete `·`  prettier/prettier
+[18:49:16.967] 237:50  Error: Delete `·`  prettier/prettier
+[18:49:16.967] 241:34  Error: Replace `·strokeLinecap="round"·strokeLinejoin="round"·strokeWidth={2}·d="M5·13l4·4L19·7"` with `⏎······························strokeLinecap="round"⏎······························strokeLinejoin="round"⏎······························strokeWidth={2}⏎······························d="M5·13l4·4L19·7"⏎···························`  prettier/prettier
+[18:49:16.967] 250:78  Error: Replace `Technologies·We·Use:` with `⏎······················Technologies·We·Use:⏎····················`  prettier/prettier
+[18:49:16.967] 290:25  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.967] 
+[18:49:16.967] ./src/components/TextTrail.tsx
+[18:49:16.967] 40:12  Error: Replace `(c)` with `c`  prettier/prettier
+[18:49:16.967] 46:47  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.967] 136:31  Error: Replace `hexToRgb(textColor·||·startColor).map((c)·=>·c·/·255)` with `⏎····hexToRgb(textColor·||·startColor).map(c·=>·c·/·255)⏎··`  prettier/prettier
+[18:49:16.967] 199:10  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.967] 259:31  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+[18:49:16.967] 314:11  Warning: The ref value 'ref.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'ref.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+[18:49:16.967] 339:10  Error: Replace `<div·ref={ref}·className="w-full·h-12·md:h-16"·style={{·background:·'transparent'·}}·/>` with `(⏎····<div⏎······ref={ref}⏎······className="w-full·h-12·md:h-16"⏎······style={{·background:·'transparent'·}}⏎····/>⏎··)`  prettier/prettier
+[18:49:16.967] 342:26  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.967] 
+[18:49:16.967] ./src/utils/email.test.ts
+[18:49:16.968] 59:4  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.968] 
+[18:49:16.968] ./src/utils/email.ts
+[18:49:16.968] 28:5  Warning: Unexpected console statement.  no-console
+[18:49:16.968] 29:5  Warning: Unexpected console statement.  no-console
+[18:49:16.968] 40:9  Warning: Unexpected console statement.  no-console
+[18:49:16.968] 46:5  Warning: Unexpected console statement.  no-console
+[18:49:16.968] 51:28  Error: Replace `formData:·EmailFormData,·siteUrl:·string` with `⏎··formData:·EmailFormData,⏎··siteUrl:·string⏎`  prettier/prettier
+[18:49:16.968] 
+[18:49:16.968] ./src/utils/validation.test.ts
+[18:49:16.975] 19:4  Error: Replace `·` with `⏎`  prettier/prettier
+[18:49:16.975] 
+[18:49:16.975] info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+[18:49:16.999] Error: Command "npm run build" exited with 1
+[18:49:17.301] 
+[18:49:20.454] Exiting build container

@@ -6,4 +6,4 @@ export default function ServicesPage() {
       <Services />
     </div>
   );
-} 
+}

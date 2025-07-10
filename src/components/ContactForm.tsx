@@ -31,23 +31,23 @@ interface ContactFormProps {
   className?: string;
 }
 
-const ContactForm = ({ 
-  title = "Get in Touch", 
-  subtitle = "Ready to start your project? Let's discuss how we can help bring your vision to life.",
-  className = ""
+const ContactForm = ({
+  title = 'Get in Touch',
+  subtitle = 'Ready to start your project? Let&apos;s discuss how we can help bring your vision to life.',
+  className = '',
 }: ContactFormProps) => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
-    projectDetails: ''
+    projectDetails: '',
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [formState, setFormState] = useState<FormState>({
     isSubmitting: false,
     isSubmitted: false,
-    submitError: null
+    submitError: null,
   });
 
   const validateForm = (): boolean => {
@@ -73,8 +73,12 @@ const ContactForm = ({
     }
 
     // Project details validation (optional)
-    if (formData.projectDetails.trim() && formData.projectDetails.trim().length > 1000) {
-      newErrors.projectDetails = 'Project details must be less than 1000 characters';
+    if (
+      formData.projectDetails.trim() &&
+      formData.projectDetails.trim().length > 1000
+    ) {
+      newErrors.projectDetails =
+        'Project details must be less than 1000 characters';
     }
 
     setErrors(newErrors);
@@ -87,14 +91,14 @@ const ContactForm = ({
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     // Clear error for this field when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
-        [name]: undefined
+        [name]: undefined,
       }));
     }
   };
@@ -109,35 +113,16 @@ const ContactForm = ({
     setFormState({
       isSubmitting: true,
       isSubmitted: false,
-      submitError: null
+      submitError: null,
     });
 
     try {
-      await sendEmail({
-        to: 'contact@example.com', // This would be the site owner's email
-        subject: `New Project Inquiry from ${formData.name}`,
-        text: `
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone || 'Not provided'}
-
-Project Details:
-${formData.projectDetails || 'No details provided'}
-        `,
-        html: `
-<h2>New Project Inquiry</h2>
-<p><strong>Name:</strong> ${formData.name}</p>
-<p><strong>Email:</strong> ${formData.email}</p>
-<p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
-<h3>Project Details:</h3>
-<p>${formData.projectDetails || 'No details provided'}</p>
-        `
-      });
+      await sendEmail(formData);
 
       setFormState({
         isSubmitting: false,
         isSubmitted: true,
-        submitError: null
+        submitError: null,
       });
 
       // Reset form
@@ -145,14 +130,14 @@ ${formData.projectDetails || 'No details provided'}
         name: '',
         email: '',
         phone: '',
-        projectDetails: ''
+        projectDetails: '',
       });
-
-    } catch (error) {
+    } catch {
       setFormState({
         isSubmitting: false,
         isSubmitted: false,
-        submitError: 'Failed to send message. Please try again or contact us directly.'
+        submitError:
+          'Failed to send message. Please try again or contact us directly.',
       });
     }
   };
@@ -160,7 +145,7 @@ ${formData.projectDetails || 'No details provided'}
   const handleCloseSuccess = () => {
     setFormState(prev => ({
       ...prev,
-      isSubmitted: false
+      isSubmitted: false,
     }));
   };
 
@@ -174,9 +159,7 @@ ${formData.projectDetails || 'No details provided'}
         className="text-center mb-16"
       >
         <h2 className="text-4xl font-bold text-gray-900 mb-4">{title}</h2>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          {subtitle}
-        </p>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
       </motion.div>
 
       <div className="max-w-2xl mx-auto">
@@ -190,7 +173,10 @@ ${formData.projectDetails || 'No details provided'}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -214,7 +200,10 @@ ${formData.projectDetails || 'No details provided'}
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Email <span className="text-red-500">*</span>
               </label>
               <input
@@ -239,7 +228,10 @@ ${formData.projectDetails || 'No details provided'}
           </div>
 
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Phone Number
             </label>
             <input
@@ -248,9 +240,9 @@ ${formData.projectDetails || 'No details provided'}
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-                              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 bg-gray-800 text-text-light ${
-                  errors.phone ? 'border-red-500' : 'border-gray-600'
-                }`}
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 bg-gray-800 text-text-light ${
+                errors.phone ? 'border-red-500' : 'border-gray-600'
+              }`}
               placeholder="(555) 123-4567"
               aria-describedby={errors.phone ? 'phone-error' : undefined}
             />
@@ -262,7 +254,10 @@ ${formData.projectDetails || 'No details provided'}
           </div>
 
           <div>
-            <label htmlFor="projectDetails" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="projectDetails"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Project Details
             </label>
             <textarea
@@ -271,14 +266,19 @@ ${formData.projectDetails || 'No details provided'}
               value={formData.projectDetails}
               onChange={handleInputChange}
               rows={6}
-                              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 resize-vertical bg-gray-800 text-text-light ${
-                  errors.projectDetails ? 'border-red-500' : 'border-gray-600'
-                }`}
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 resize-vertical bg-gray-800 text-text-light ${
+                errors.projectDetails ? 'border-red-500' : 'border-gray-600'
+              }`}
               placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
-              aria-describedby={errors.projectDetails ? 'projectDetails-error' : undefined}
+              aria-describedby={
+                errors.projectDetails ? 'projectDetails-error' : undefined
+              }
             />
             {errors.projectDetails && (
-              <p id="projectDetails-error" className="mt-1 text-sm text-red-600">
+              <p
+                id="projectDetails-error"
+                className="mt-1 text-sm text-red-600"
+              >
                 {errors.projectDetails}
               </p>
             )}
@@ -293,9 +293,25 @@ ${formData.projectDetails || 'No details provided'}
             >
               {formState.isSubmitting ? (
                 <>
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  <svg
+                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
                   </svg>
                   Sending...
                 </>
@@ -325,16 +341,27 @@ ${formData.projectDetails || 'No details provided'}
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             className="bg-white rounded-lg p-8 max-w-md w-full text-center"
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
           >
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              <svg
+                className="w-8 h-8 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
               </svg>
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
             <p className="text-gray-600 mb-6">
-              Your message has been sent successfully. We'll get back to you within 24 hours.
+              Your message has been sent successfully. We&apos;ll get back to
+              you within 24 hours.
             </p>
             <button
               onClick={handleCloseSuccess}
@@ -349,4 +376,4 @@ ${formData.projectDetails || 'No details provided'}
   );
 };
 
-export default ContactForm; 
+export default ContactForm;

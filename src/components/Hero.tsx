@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import TextTrail from './TextTrail';
 
 interface HeroProps {
   onGetStarted?: () => void;
@@ -83,7 +82,9 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           {/* Logo above heading */}
-          <div className={`flex flex-col items-center mb-8 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+          <div
+            className={`flex flex-col items-center mb-8 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+          >
             <Image
               src="/images/mpdee_logo.png"
               alt="MPDEE logo"
@@ -117,9 +118,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           {/* CTA button with delayed fade-in and scale animation */}
           <div
             className={`transition-all duration-1000 ease-out delay-600 ${
-              isVisible
-                ? 'opacity-100 scale-100'
-                : 'opacity-0 scale-95'
+              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}
           >
             <button
@@ -162,4 +161,4 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   );
 };
 
-export default Hero; 
+export default Hero;

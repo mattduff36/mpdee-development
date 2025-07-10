@@ -30,14 +30,14 @@ const Contact = () => {
     name: '',
     email: '',
     phone: '',
-    projectDetails: ''
+    projectDetails: '',
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [formState, setFormState] = useState<FormState>({
     isSubmitting: false,
     isSubmitted: false,
-    submitError: null
+    submitError: null,
   });
 
   const validateForm = (): boolean => {
@@ -63,8 +63,12 @@ const Contact = () => {
     }
 
     // Project details validation (optional)
-    if (formData.projectDetails.trim() && formData.projectDetails.trim().length > 1000) {
-      newErrors.projectDetails = 'Project details must be less than 1000 characters';
+    if (
+      formData.projectDetails.trim() &&
+      formData.projectDetails.trim().length > 1000
+    ) {
+      newErrors.projectDetails =
+        'Project details must be less than 1000 characters';
     }
 
     setErrors(newErrors);
@@ -77,14 +81,14 @@ const Contact = () => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     // Clear error for this field when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
-        [name]: undefined
+        [name]: undefined,
       }));
     }
   };
@@ -99,35 +103,16 @@ const Contact = () => {
     setFormState({
       isSubmitting: true,
       isSubmitted: false,
-      submitError: null
+      submitError: null,
     });
 
     try {
-      await sendEmail({
-        to: 'sendme@mpdee.info', // This would be the site owner's email
-        subject: `New Project Inquiry from ${formData.name}`,
-        text: `
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone || 'Not provided'}
-
-Project Details:
-${formData.projectDetails || 'No details provided'}
-        `,
-        html: `
-<h2>New Project Inquiry</h2>
-<p><strong>Name:</strong> ${formData.name}</p>
-<p><strong>Email:</strong> ${formData.email}</p>
-<p><strong>Phone:</strong> ${formData.phone || 'Not provided'}</p>
-<h3>Project Details:</h3>
-<p>${formData.projectDetails || 'No details provided'}</p>
-        `
-      });
+      await sendEmail(formData);
 
       setFormState({
         isSubmitting: false,
         isSubmitted: true,
-        submitError: null
+        submitError: null,
       });
 
       // Reset form
@@ -135,14 +120,14 @@ ${formData.projectDetails || 'No details provided'}
         name: '',
         email: '',
         phone: '',
-        projectDetails: ''
+        projectDetails: '',
       });
-
-    } catch (error) {
+    } catch {
       setFormState({
         isSubmitting: false,
         isSubmitted: false,
-        submitError: 'Failed to send message. Please try again or contact us directly.'
+        submitError:
+          'Failed to send message. Please try again or contact us directly.',
       });
     }
   };
@@ -150,7 +135,7 @@ ${formData.projectDetails || 'No details provided'}
   const handleCloseSuccess = () => {
     setFormState(prev => ({
       ...prev,
-      isSubmitted: false
+      isSubmitted: false,
     }));
   };
 
@@ -164,9 +149,12 @@ ${formData.projectDetails || 'No details provided'}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-text-light mb-4">Get in Touch</h2>
+          <h2 className="text-4xl font-bold text-text-light mb-4">
+            Get in Touch
+          </h2>
           <p className="text-xl text-text-muted max-w-3xl mx-auto">
-            Ready to start your project? Let's discuss how we can help bring your vision to life.
+            Ready to start your project? Let&apos;s discuss how we can help
+            bring your vision to life.
           </p>
         </motion.div>
 
@@ -182,48 +170,87 @@ ${formData.projectDetails || 'No details provided'}
             >
               <div>
                 <h3 className="text-2xl font-bold text-text-light mb-6">
-                  Let's Work Together
+                  Let&apos;s Work Together
                 </h3>
                 <p className="text-text-muted text-lg leading-relaxed">
-                  We're here to help you create something amazing. Whether you need a simple website 
-                  or a complex web application, we'll work with you every step of the way.
+                  We&apos;re here to help you create something amazing. Whether
+                  you need a simple website or a complex web application,
+                  we&apos;ll work with you every step of the way.
                 </p>
               </div>
 
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    <svg
+                      className="w-6 h-6 text-primary"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-text-light">Email</h4>
+                    <h4 className="text-lg font-semibold text-text-light">
+                      Email
+                    </h4>
                     <p className="text-text-muted">sendme@mpdee.info</p>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-6 h-6 text-primary"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-text-light">Response Time</h4>
+                    <h4 className="text-lg font-semibold text-text-light">
+                      Response Time
+                    </h4>
                     <p className="text-text-muted">Usually within 24 hours</p>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                    <svg
+                      className="w-6 h-6 text-primary"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+                      />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-text-light">Free Consultation</h4>
-                    <p className="text-text-muted">No obligation project discussion</p>
+                    <h4 className="text-lg font-semibold text-text-light">
+                      Free Consultation
+                    </h4>
+                    <p className="text-text-muted">
+                      No obligation project discussion
+                    </p>
                   </div>
                 </div>
               </div>
@@ -240,8 +267,8 @@ ${formData.projectDetails || 'No details provided'}
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name Field */}
                 <div>
-                  <label 
-                    htmlFor="name" 
+                  <label
+                    htmlFor="name"
                     className="block text-sm font-medium text-text-light mb-2"
                   >
                     Name <span className="text-red-500">*</span>
@@ -260,7 +287,11 @@ ${formData.projectDetails || 'No details provided'}
                     aria-describedby={errors.name ? 'name-error' : undefined}
                   />
                   {errors.name && (
-                    <p id="name-error" className="mt-1 text-sm text-red-600" role="alert">
+                    <p
+                      id="name-error"
+                      className="mt-1 text-sm text-red-600"
+                      role="alert"
+                    >
                       {errors.name}
                     </p>
                   )}
@@ -268,8 +299,8 @@ ${formData.projectDetails || 'No details provided'}
 
                 {/* Email Field */}
                 <div>
-                  <label 
-                    htmlFor="email" 
+                  <label
+                    htmlFor="email"
                     className="block text-sm font-medium text-text-light mb-2"
                   >
                     Email <span className="text-red-500">*</span>
@@ -288,7 +319,11 @@ ${formData.projectDetails || 'No details provided'}
                     aria-describedby={errors.email ? 'email-error' : undefined}
                   />
                   {errors.email && (
-                    <p id="email-error" className="mt-1 text-sm text-red-600" role="alert">
+                    <p
+                      id="email-error"
+                      className="mt-1 text-sm text-red-600"
+                      role="alert"
+                    >
                       {errors.email}
                     </p>
                   )}
@@ -296,8 +331,8 @@ ${formData.projectDetails || 'No details provided'}
 
                 {/* Phone Field */}
                 <div>
-                  <label 
-                    htmlFor="phone" 
+                  <label
+                    htmlFor="phone"
                     className="block text-sm font-medium text-text-light mb-2"
                   >
                     Phone <span className="text-gray-400">(optional)</span>
@@ -316,7 +351,11 @@ ${formData.projectDetails || 'No details provided'}
                     aria-describedby={errors.phone ? 'phone-error' : undefined}
                   />
                   {errors.phone && (
-                    <p id="phone-error" className="mt-1 text-sm text-red-600" role="alert">
+                    <p
+                      id="phone-error"
+                      className="mt-1 text-sm text-red-600"
+                      role="alert"
+                    >
                       {errors.phone}
                     </p>
                   )}
@@ -324,11 +363,12 @@ ${formData.projectDetails || 'No details provided'}
 
                 {/* Project Details Field */}
                 <div>
-                  <label 
-                    htmlFor="projectDetails" 
+                  <label
+                    htmlFor="projectDetails"
                     className="block text-sm font-medium text-text-light mb-2"
                   >
-                    Project Details <span className="text-gray-400">(optional)</span>
+                    Project Details{' '}
+                    <span className="text-gray-400">(optional)</span>
                   </label>
                   <textarea
                     id="projectDetails"
@@ -337,14 +377,22 @@ ${formData.projectDetails || 'No details provided'}
                     onChange={handleInputChange}
                     rows={4}
                     className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors resize-vertical bg-gray-800 text-text-light ${
-                      errors.projectDetails ? 'border-red-500' : 'border-gray-600'
+                      errors.projectDetails
+                        ? 'border-red-500'
+                        : 'border-gray-600'
                     }`}
                     placeholder="Tell us about your project, goals, timeline, etc."
                     aria-invalid={!!errors.projectDetails}
-                    aria-describedby={errors.projectDetails ? 'project-error' : undefined}
+                    aria-describedby={
+                      errors.projectDetails ? 'project-error' : undefined
+                    }
                   />
                   {errors.projectDetails && (
-                    <p id="project-error" className="mt-1 text-sm text-red-600" role="alert">
+                    <p
+                      id="project-error"
+                      className="mt-1 text-sm text-red-600"
+                      role="alert"
+                    >
                       {errors.projectDetails}
                     </p>
                   )}
@@ -365,9 +413,24 @@ ${formData.projectDetails || 'No details provided'}
                 >
                   {formState.isSubmitting ? (
                     <span className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
                       </svg>
                       Sending...
                     </span>
@@ -399,13 +462,26 @@ ${formData.projectDetails || 'No details provided'}
             className="bg-white rounded-lg max-w-md w-full p-8 text-center"
           >
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              <svg
+                className="w-8 h-8 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">
+              Message Sent!
+            </h3>
             <p className="text-gray-600 mb-6">
-              Thank you for reaching out. We'll get back to you within 24 hours.
+              Thank you for reaching out. We&apos;ll get back to you within 24
+              hours.
             </p>
             <button
               onClick={handleCloseSuccess}
@@ -420,4 +496,4 @@ ${formData.projectDetails || 'No details provided'}
   );
 };
 
-export default Contact; 
+export default Contact;
