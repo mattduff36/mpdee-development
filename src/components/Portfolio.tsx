@@ -225,24 +225,24 @@ const Portfolio = () => {
                       </span>
                     ))}
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-primary font-medium">
-                      View Project
-                    </span>
-                    <svg
-                      className="w-5 h-5 text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                  <div className="mt-6">
+                    <div className="inline-flex items-center justify-center w-full px-4 py-3 bg-gradient-to-r from-primary to-primary-dark text-white font-semibold rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                      <span className="mr-2">View Project</span>
+                      <svg
+                        className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 7l5 5m0 0l-5 5m5-5H6"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </motion.div>
