@@ -19,6 +19,7 @@
     "@types/node": "^24.0.12",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "@vercel/analytics": "^1.5.0",
     "framer-motion": "^12.23.3",
     "next": "^15.3.5",
     "react": "^19.1.0",
