@@ -72,7 +72,7 @@ const Footer = () => {
                   href="#services"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  UI/UX Design
+                  Essential Website
                 </a>
               </li>
               <li>
@@ -80,7 +80,7 @@ const Footer = () => {
                   href="#services"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Front-end Development
+                  Business Website
                 </a>
               </li>
               <li>
@@ -88,7 +88,7 @@ const Footer = () => {
                   href="#services"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Full-Stack Development
+                  Premium Solution
                 </a>
               </li>
               <li>
@@ -96,7 +96,15 @@ const Footer = () => {
                   href="#services"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Web Consulting
+                  Progressive Web Apps
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Media & Marketing Partnership
                 </a>
               </li>
             </ul>
@@ -162,10 +170,10 @@ const Footer = () => {
                 <div>
                   <p className="text-gray-400">Email</p>
                   <a
-                    href="mailto:hello@example.com"
+                    href="mailto:sendme@mpdee.info"
                     className="text-white hover:text-gray-300 transition-colors"
                   >
-                    hello@example.com
+                    sendme@mpdee.info
                   </a>
                 </div>
               </div>
