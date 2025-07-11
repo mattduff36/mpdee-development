@@ -209,7 +209,7 @@ const Portfolio = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-gray-800/80 rounded-lg shadow-lg overflow-hidden cursor-pointer border border-gray-700 group hover:border-2 hover:border-blue-500/70 transition-all duration-300 ease-out"
+                className="bg-gray-800/80 rounded-lg shadow-lg overflow-hidden cursor-pointer border-2 border-gray-700 group hover:border-blue-500/70 transition-colors duration-300 ease-out"
                 onClick={() => handleProjectClick(project)}
                 onKeyDown={e => handleKeyDown(e, project)}
                 tabIndex={0}
