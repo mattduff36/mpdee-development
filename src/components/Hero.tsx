@@ -106,7 +106,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
       source: 'hero',
       buttonText: 'Get Started',
     });
-    
+
     if (onGetStarted) {
       onGetStarted();
     } else {
