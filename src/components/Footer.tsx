@@ -15,7 +15,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold">MPDEE</h3>
+            <h4 className="text-xl font-bold">MPDEE</h4>
             <p className="text-gray-400 leading-relaxed">
               Professional web design and development services to help your
               business grow online.
@@ -65,7 +65,7 @@ const Footer = () => {
 
           {/* Services */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Services</h3>
+            <h4 className="text-lg font-semibold">Services</h4>
             <ul className="space-y-2">
               <li>
                 <a
@@ -104,7 +104,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Quick Links</h3>
+            <h4 className="text-lg font-semibold">Quick Links</h4>
             <ul className="space-y-2">
               <li>
                 <a
@@ -143,7 +143,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Contact Info</h3>
+            <h4 className="text-lg font-semibold">Contact Info</h4>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <svg

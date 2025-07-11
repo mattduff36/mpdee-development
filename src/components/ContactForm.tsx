@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { track } from '@vercel/analytics';
 import { validateEmail } from '@/utils/validation';
 import { sendEmail } from '@/utils/email';
 
@@ -107,6 +108,10 @@ const ContactForm = ({
     e.preventDefault();
 
     if (!validateForm()) {
+      track('form_validation_error', {
+        page: 'contact',
+        errors: Object.keys(errors).join(', '),
+      });
       return;
     }
 
@@ -118,6 +123,13 @@ const ContactForm = ({
 
     try {
       await sendEmail(formData);
+
+      track('form_submission_success', {
+        page: 'contact',
+        hasPhone: !!formData.phone,
+        hasProjectDetails: !!formData.projectDetails,
+        projectDetailsLength: formData.projectDetails.length,
+      });
 
       setFormState({
         isSubmitting: false,
@@ -133,6 +145,12 @@ const ContactForm = ({
         projectDetails: '',
       });
     } catch {
+      track('form_submission_error', {
+        page: 'contact',
+        hasPhone: !!formData.phone,
+        hasProjectDetails: !!formData.projectDetails,
+      });
+
       setFormState({
         isSubmitting: false,
         isSubmitted: false,

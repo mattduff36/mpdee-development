@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { track } from '@vercel/analytics';
 import Image from 'next/image';
 
 interface Project {
@@ -99,10 +100,20 @@ const Portfolio = () => {
       : projects.filter(project => project.tags.includes(selectedTag));
 
   const handleTagFilter = (tag: string) => {
+    track('portfolio_filter', {
+      filterTag: tag,
+      previousFilter: selectedTag,
+    });
     setSelectedTag(tag);
   };
 
   const handleProjectClick = (project: Project) => {
+    track('project_view', {
+      projectId: project.id,
+      projectTitle: project.title,
+      projectTags: project.tags.join(', '),
+      currentFilter: selectedTag,
+    });
     setSelectedProject(project);
   };
 
@@ -124,6 +135,10 @@ const Portfolio = () => {
   };
 
   const handleContactClick = () => {
+    track('contact_cta_click', {
+      source: 'portfolio',
+      section: 'cta',
+    });
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -204,7 +219,7 @@ const Portfolio = () => {
                 <div className="aspect-video bg-gray-200 flex items-center justify-center overflow-hidden relative">
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} logo and branding`}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-contain"
@@ -330,7 +345,7 @@ const Portfolio = () => {
                     <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden mb-6 relative">
                       <Image
                         src={selectedProject.image}
-                        alt={selectedProject.title}
+                        alt={`${selectedProject.title} logo and branding`}
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-contain"

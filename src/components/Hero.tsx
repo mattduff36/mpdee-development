@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { track } from '@vercel/analytics';
 import Image from 'next/image';
 
 interface HeroProps {
@@ -101,6 +102,11 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   }, [isMobile, isClient]);
 
   const handleGetStarted = () => {
+    track('hero_cta_click', {
+      source: 'hero',
+      buttonText: 'Get Started',
+    });
+    
     if (onGetStarted) {
       onGetStarted();
     } else {

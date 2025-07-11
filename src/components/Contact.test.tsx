@@ -84,7 +84,7 @@ describe('Contact Component', () => {
     ).toBeInTheDocument();
 
     // Check contact details
-    expect(screen.getByText(/hello@example.com/i)).toBeInTheDocument();
+    expect(screen.getByText(/sendme@mpdee.info/i)).toBeInTheDocument();
     expect(screen.getByText(/usually within 24 hours/i)).toBeInTheDocument();
   });
 
@@ -264,10 +264,10 @@ describe('Contact Component', () => {
     // Should call sendEmail with correct data
     await waitFor(() => {
       expect(mockSendEmail).toHaveBeenCalledWith({
-        to: 'contact@example.com',
-        subject: 'New Project Inquiry from John Doe',
-        text: expect.stringContaining('John Doe'),
-        html: expect.stringContaining('John Doe'),
+        name: 'John Doe',
+        email: 'john@example.com',
+        phone: '1234567890',
+        projectDetails: 'I need a website',
       });
     });
 

@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { track } from '@vercel/analytics';
+import { ServiceCard } from './ServiceCard';
+import { ServiceModal } from './ServiceModal';
 
 interface Service {
   id: string;
@@ -130,6 +133,12 @@ const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   const handleOpenModal = (service: Service) => {
+    track('service_view', {
+      serviceId: service.id,
+      serviceTitle: service.title,
+      serviceTags: service.technologies.join(', '),
+      priceRange: 'N/A', // No price range for these services
+    });
     setSelectedService(service);
   };
 
@@ -150,8 +159,21 @@ const Services = () => {
     }
   };
 
+  const handleServiceClick = (service: Service) => {
+    track('service_view', {
+      serviceId: service.id,
+      serviceTitle: service.title,
+      serviceTags: service.technologies.join(', '),
+      priceRange: 'N/A', // No price range for these services
+    });
+    setSelectedService(service);
+  };
+
   const handleContactClick = () => {
-    // Scroll to contact form when implemented
+    track('contact_cta_click', {
+      source: 'services',
+      section: 'cta',
+    });
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
