@@ -74,9 +74,7 @@ describe('Portfolio Component', () => {
 
     expect(filterButtonsWithAria).toHaveLength(6); // All Projects + 5 tag filters
     expect(
-      filterButtonsWithAria.find(
-        button => button.textContent === 'Photography'
-      )
+      filterButtonsWithAria.find(button => button.textContent === 'Photography')
     ).toBeInTheDocument();
     expect(
       filterButtonsWithAria.find(button => button.textContent === 'Beauty')

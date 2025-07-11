@@ -83,8 +83,18 @@
     - [x] 7.1.1 Add specific meta title and description for Home page ("Home | MPDEE")
     - [x] 7.1.2 Add specific meta title and description for Portfolio page ("Portfolio | MPDEE")
     - [x] 7.1.3 Add specific meta title and description for Services page ("Services | MPDEE")
-  - [ ] 7.2 Implement semantic HTML5 structure throughout
-  - [ ] 7.3 Optimize images and assets for web performance
+  - [x] 7.2 Implement semantic HTML5 structure throughout
+    - [x] 7.2.1 Review and improve semantic HTML5 structure in Layout component
+    - [x] 7.2.2 Ensure proper semantic structure in Hero component  
+    - [x] 7.2.3 Ensure proper semantic structure in Services component
+    - [x] 7.2.4 Ensure proper semantic structure in Portfolio component
+    - [x] 7.2.5 Ensure proper semantic structure in Contact component
+  - [x] 7.3 Optimize images and assets for web performance
+    - [x] 7.3.1 Review and optimize project images (convert to WebP if needed, optimize sizes)
+    - [x] 7.3.2 Add proper image optimization with Next.js Image component
+    - [x] 7.3.3 Review and optimize CSS/JS bundle sizes
+    - [x] 7.3.4 Add image preloading for critical images
+    - [x] 7.3.5 Implement lazy loading for non-critical images
   - [ ] 7.4 Add Open Graph and Twitter Card meta tags
   - [ ] 7.5 Implement proper heading hierarchy (h1, h2, h3)
   - [ ] 7.6 Add alt text for all images

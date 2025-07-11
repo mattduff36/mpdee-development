@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface Project {
   id: string;
@@ -90,11 +91,14 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Project Image */}
               <div className="space-y-4">
-                <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden">
-                  <img
+                <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden relative">
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-contain"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-contain"
+                    priority
                   />
                 </div>
 

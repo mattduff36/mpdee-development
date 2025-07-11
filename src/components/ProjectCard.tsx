@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface Project {
   id: string;
@@ -42,11 +43,13 @@ const ProjectCard = ({ project, index, onProjectClick }: ProjectCardProps) => {
       role="button"
       aria-label={`View details for ${project.title}`}
     >
-      <div className="aspect-video bg-gray-200 flex items-center justify-center overflow-hidden">
-        <img
+      <div className="aspect-video bg-gray-200 flex items-center justify-center overflow-hidden relative">
+        <Image
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-contain"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-contain"
           loading="lazy"
         />
       </div>

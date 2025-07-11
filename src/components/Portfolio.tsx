@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface Project {
   id: string;
@@ -193,18 +194,20 @@ const Portfolio = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-gray-700 group"
+                className="bg-gray-800/80 rounded-lg shadow-lg overflow-hidden cursor-pointer border border-gray-700 group hover:border-2 hover:border-blue-500/70 transition-all duration-300 ease-out"
                 onClick={() => handleProjectClick(project)}
                 onKeyDown={e => handleKeyDown(e, project)}
                 tabIndex={0}
                 role="button"
                 aria-label={`View details for ${project.title}`}
               >
-                <div className="aspect-video bg-gray-200 flex items-center justify-center overflow-hidden">
-                  <img
+                <div className="aspect-video bg-gray-200 flex items-center justify-center overflow-hidden relative">
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-contain"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-contain"
                     loading="lazy"
                   />
                 </div>
@@ -324,11 +327,14 @@ const Portfolio = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                   <div>
-                    <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden mb-6">
-                      <img
+                    <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden mb-6 relative">
+                      <Image
                         src={selectedProject.image}
                         alt={selectedProject.title}
-                        className="w-full h-full object-contain"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-contain"
+                        priority
                       />
                     </div>
                     <div className="flex flex-wrap gap-2 mb-4">
