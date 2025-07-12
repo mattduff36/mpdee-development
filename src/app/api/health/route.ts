@@ -24,10 +24,14 @@ export async function GET() {
       status: 'healthy',
       timestamp: new Date().toISOString(),
       environment: process.env.NODE_ENV || 'development',
+      deployment: process.env.VERCEL_ENV || 'local',
       email_config: {
         configured: allConfigured,
         details: envStatus,
       },
+      message: allConfigured
+        ? 'Email service is properly configured'
+        : 'Email service needs environment variables to be configured in Vercel',
     });
   } catch {
     return NextResponse.json(
