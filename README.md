@@ -21,6 +21,10 @@ A modern, responsive website built with Next.js, TypeScript, and Tailwind CSS.
 - **Analytics**: Vercel Analytics
 - **Deployment**: Vercel
 
+## Live Demo
+
+🌐 **[Visit the live website](https://www.mpdee.co.uk)**
+
 ## Getting Started
 
 ### Prerequisites
@@ -33,7 +37,7 @@ A modern, responsive website built with Next.js, TypeScript, and Tailwind CSS.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/mpdee.git
+git clone https://github.com/mattduff36/mpdee.git
 cd mpdee
 ```
 
@@ -90,6 +94,11 @@ The contact form uses Gmail SMTP to send emails. Features include:
 - Reply-to functionality
 - Error handling for production
 
+## API Endpoints
+
+- `/api/contact` - Handle contact form submissions
+- `/api/health` - Health check and environment validation
+
 ## Contributing
 
 1. Fork the repository
@@ -101,3 +110,7 @@ The contact form uses Gmail SMTP to send emails. Features include:
 ## License
 
 This project is licensed under the MIT License.
+
+---
+
+**Last Updated**: July 2025 - Contact form with Gmail SMTP integration implemented
