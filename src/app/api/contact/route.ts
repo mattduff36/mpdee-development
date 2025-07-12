@@ -2,11 +2,21 @@ import { NextRequest, NextResponse } from 'next/server';
 import { sendContactFormEmail } from '@/utils/email';
 import { validateEmail, validateRequired } from '@/utils/validation';
 
+// Configure timeout for this API route
+export const maxDuration = 30;
+
 export async function POST(request: NextRequest) {
   try {
     // Add timeout for serverless functions
-    const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error('Request timeout')), 25000); // 25 seconds for Vercel
+    const timeoutPromise = new Promise<NextResponse>(resolve => {
+      setTimeout(() => {
+        resolve(
+          NextResponse.json(
+            { error: 'Request timeout. Please try again.' },
+            { status: 408 }
+          )
+        );
+      }, 25000); // 25 seconds for Vercel
     });
 
     const processRequest = async () => {
@@ -73,31 +83,28 @@ export async function POST(request: NextRequest) {
 
     // Race between request processing and timeout
     return await Promise.race([processRequest(), timeoutPromise]);
-
   } catch (error) {
     console.error('Contact form error:', error);
-    
+
     // More specific error handling
     if (error instanceof Error) {
-      if (error.message === 'Request timeout') {
-        return NextResponse.json(
-          { error: 'Request timeout. Please try again.' },
-          { status: 408 }
-        );
-      }
-      
       // Check for authentication errors
-      if (error.message.includes('authentication') || error.message.includes('password')) {
+      if (
+        error.message.includes('authentication') ||
+        error.message.includes('password')
+      ) {
         return NextResponse.json(
-          { error: 'Email service configuration error. Please contact support.' },
+          {
+            error: 'Email service configuration error. Please contact support.',
+          },
           { status: 500 }
         );
       }
     }
-    
+
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
     );
   }
-} 
+}

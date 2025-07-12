@@ -166,7 +166,9 @@ const ContactForm = ({
         isSubmitting: false,
         isSubmitted: false,
         submitError:
-          error instanceof Error ? error.message : 'Failed to send message. Please try again or contact us directly.',
+          error instanceof Error
+            ? error.message
+            : 'Failed to send message. Please try again or contact us directly.',
       });
     }
   };

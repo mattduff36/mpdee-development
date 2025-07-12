@@ -1,5 +1,6 @@
 // Email notification utilities
 import nodemailer from 'nodemailer';
+import type { TransportOptions } from 'nodemailer';
 
 interface EmailFormData {
   name: string;
@@ -18,13 +19,17 @@ export const sendContactFormEmail = async (
     const contactEmail = process.env.CONTACT_EMAIL;
 
     if (!smtpUser || !smtpPass || !contactEmail) {
-      console.error('Gmail SMTP configuration missing. Please check your environment variables.');
+      console.error(
+        'Gmail SMTP configuration missing. Please check your environment variables.'
+      );
       return false;
     }
 
     // Create transporter for Gmail SMTP
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
       auth: {
         user: smtpUser,
         pass: smtpPass,
@@ -33,7 +38,7 @@ export const sendContactFormEmail = async (
       pool: false, // Disable connection pooling for serverless
       maxConnections: 1,
       maxMessages: 1,
-    });
+    } as TransportOptions);
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 

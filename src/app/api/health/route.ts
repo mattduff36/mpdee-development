@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 
+// Configure timeout for this API route
+export const maxDuration = 30;
+
 export async function GET() {
   try {
     // Check if required environment variables are present
@@ -26,7 +29,7 @@ export async function GET() {
         details: envStatus,
       },
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       {
         status: 'error',
@@ -36,4 +39,4 @@ export async function GET() {
       { status: 500 }
     );
   }
-} 
+}
