@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { validateEmail } from '@/utils/validation';
-import { sendEmail } from '@/utils/email';
 
 interface FormData {
   name: string;
@@ -107,7 +106,18 @@ const Contact = () => {
     });
 
     try {
-      await sendEmail(formData);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to send message');
+      }
 
       setFormState({
         isSubmitting: false,
@@ -122,12 +132,12 @@ const Contact = () => {
         phone: '',
         projectDetails: '',
       });
-    } catch {
+    } catch (error) {
       setFormState({
         isSubmitting: false,
         isSubmitted: false,
         submitError:
-          'Failed to send message. Please try again or contact us directly.',
+          error instanceof Error ? error.message : 'Failed to send message. Please try again or contact us directly.',
       });
     }
   };

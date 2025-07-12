@@ -52,47 +52,26 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
     let animationId: number;
     let startTime = Date.now();
 
-    if (isMobile) {
-      // Mobile: Circular animation
-      const animateMobile = () => {
-        const time = (Date.now() - startTime) * 0.001; // Convert to seconds
-        const radius = 15; // Size of the circle in pixels
-        const speed = 0.8; // Speed of rotation
+    // Both mobile and desktop: Circular animation
+    const animateCircular = () => {
+      const time = (Date.now() - startTime) * 0.001; // Convert to seconds
+      const radius = isMobile ? 15 : 20; // Slightly larger radius for desktop
+      const speed = 0.8; // Speed of rotation
 
-        setDotPositions(
-          DOTS.map((dot, i) => {
-            const phase = i * 1.5; // Stagger the animation for each dot
-            return {
-              x: Math.cos(time * speed + phase) * radius,
-              y: Math.sin(time * speed + phase) * radius,
-            };
-          })
-        );
+      setDotPositions(
+        DOTS.map((dot, i) => {
+          const phase = i * 1.5; // Stagger the animation for each dot
+          return {
+            x: Math.cos(time * speed + phase) * radius,
+            y: Math.sin(time * speed + phase) * radius,
+          };
+        })
+      );
 
-        animationId = requestAnimationFrame(animateMobile);
-      };
+      animationId = requestAnimationFrame(animateCircular);
+    };
 
-      animateMobile();
-    } else {
-      // Desktop: Mouse tracking
-      const handleMouseMove = (e: MouseEvent) => {
-        const mx = e.clientX / window.innerWidth - 0.5;
-        const my = e.clientY / window.innerHeight - 0.5;
-
-        setDotPositions(
-          DOTS.map(dot => ({
-            x: mx * 80 * dot.factor,
-            y: my * 80 * dot.factor,
-          }))
-        );
-      };
-
-      window.addEventListener('mousemove', handleMouseMove);
-
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-      };
-    }
+    animateCircular();
 
     return () => {
       if (animationId) {
@@ -130,9 +109,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             className={`absolute ${dot.base} bg-white rounded-full`}
             style={{
               transform: `translate(${dotPositions[i].x}px, ${dotPositions[i].y}px)`,
-              transition: isMobile
-                ? 'none'
-                : 'transform 0.2s cubic-bezier(.4,0,.2,1)',
+              transition: 'none', // No transition needed for smooth animation
             }}
           />
         ))}

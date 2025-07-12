@@ -94,7 +94,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden relative">
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} logo and branding`}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-contain"

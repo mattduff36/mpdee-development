@@ -1,4 +1,5 @@
 // Email notification utilities
+import nodemailer from 'nodemailer';
 
 interface EmailFormData {
   name: string;
@@ -11,42 +12,46 @@ export const sendContactFormEmail = async (
   formData: EmailFormData
 ): Promise<boolean> => {
   try {
-    // Get environment variables
-    const emailService = process.env.EMAIL_SERVICE || 'sendgrid';
-    const contactEmail = process.env.CONTACT_EMAIL || 'contact@example.com';
+    // Check if Gmail SMTP is configured
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+    const contactEmail = process.env.CONTACT_EMAIL;
+
+    if (!smtpUser || !smtpPass || !contactEmail) {
+      console.error('Gmail SMTP configuration missing. Please check your environment variables.');
+      return false;
+    }
+
+    // Create transporter for Gmail SMTP
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: smtpUser,
+        pass: smtpPass,
+      },
+      // Optimize for serverless environments
+      pool: false, // Disable connection pooling for serverless
+      maxConnections: 1,
+      maxMessages: 1,
+    });
+
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
     // Prepare email content
-    const emailContent = {
+    const mailOptions = {
+      from: `"MPDEE Contact Form" <${smtpUser}>`,
       to: contactEmail,
-      from: process.env.SENDGRID_FROM_EMAIL || 'noreply@example.com',
       subject: `New Contact Form Submission from ${formData.name}`,
       html: generateEmailHTML(formData, siteUrl),
+      replyTo: formData.email, // Allow replying directly to the person who submitted
     };
 
-    // Log the email content for development
-    // eslint-disable-next-line no-console
-    console.log('Email service:', emailService);
-    // eslint-disable-next-line no-console
-    console.log('Email content:', emailContent);
+    // Send email with Gmail SMTP
+    await transporter.sendMail(mailOptions);
 
-    // In a real implementation, you would:
-    switch (emailService) {
-      case 'sendgrid':
-        // return await sendWithSendGrid(emailContent);
-        break;
-      case 'smtp':
-        // return await sendWithSMTP(emailContent);
-        break;
-      default:
-        // eslint-disable-next-line no-console
-        console.warn(`Unknown email service: ${emailService}`);
-    }
-
-    // Simulate successful email sending for development
+    console.log('Email sent successfully via Gmail SMTP');
     return true;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Failed to send email:', error);
     return false;
   }

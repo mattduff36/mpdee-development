@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { track } from '@vercel/analytics';
 import { validateEmail } from '@/utils/validation';
-import { sendEmail } from '@/utils/email';
 
 interface FormData {
   name: string;
@@ -122,7 +121,18 @@ const ContactForm = ({
     });
 
     try {
-      await sendEmail(formData);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to send message');
+      }
 
       track('form_submission_success', {
         page: 'contact',
@@ -144,18 +154,19 @@ const ContactForm = ({
         phone: '',
         projectDetails: '',
       });
-    } catch {
+    } catch (error) {
       track('form_submission_error', {
         page: 'contact',
         hasPhone: !!formData.phone,
         hasProjectDetails: !!formData.projectDetails,
+        error: error instanceof Error ? error.message : 'Unknown error',
       });
 
       setFormState({
         isSubmitting: false,
         isSubmitted: false,
         submitError:
-          'Failed to send message. Please try again or contact us directly.',
+          error instanceof Error ? error.message : 'Failed to send message. Please try again or contact us directly.',
       });
     }
   };

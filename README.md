@@ -1,90 +1,103 @@
-# Cursor Website
+# MPDEE - Professional Web Design & Development
 
-A professional web design and development services website built with Next.js, TypeScript, and TailwindCSS.
+A modern, responsive website built with Next.js, TypeScript, and Tailwind CSS.
 
-## Project Structure
+## Features
 
-```
-src/
-├── app/                 # Next.js App Router
-│   ├── globals.css     # Global styles with TailwindCSS
-│   ├── layout.tsx      # Root layout component
-│   └── page.tsx        # Homepage
-├── components/         # Reusable React components
-│   ├── index.ts        # Component exports
-│   └── Layout.tsx      # Main layout wrapper
-├── pages/              # Additional pages (if needed)
-├── types/              # TypeScript type definitions
-│   └── index.ts        # Main types file
-└── utils/              # Utility functions
-    ├── email.ts        # Email notification utilities
-    └── validation.ts   # Form validation utilities
-```
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Modern UI**: Clean, professional design with smooth animations
+- **Contact Form**: Functional contact form with Gmail SMTP integration
+- **Portfolio Showcase**: Dynamic project gallery with modal views
+- **Service Listings**: Detailed service offerings with interactive cards
+- **Performance Optimized**: Fast loading with Next.js optimizations
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Email**: Nodemailer with Gmail SMTP
+- **Analytics**: Vercel Analytics
+- **Deployment**: Vercel
 
 ## Getting Started
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
+### Prerequisites
 
-2. Set up environment variables:
-   ```bash
-   cp env.example .env.local
-   ```
-   Edit `.env.local` with your actual email service credentials.
+- Node.js 18+ 
+- npm or yarn
+- Gmail account for contact form
 
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
+### Installation
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/mpdee.git
+cd mpdee
+```
 
-## Environment Variables
+2. Install dependencies:
+```bash
+npm install
+```
 
-The following environment variables are required for email functionality:
+3. Set up environment variables:
+```bash
+cp env.example .env.local
+```
 
-- `EMAIL_SERVICE` - Email service provider ('sendgrid', 'smtp', etc.)
-- `CONTACT_EMAIL` - Email address to receive contact form submissions
-- `NEXT_PUBLIC_SITE_URL` - Your site URL (for email templates)
+4. Configure your Gmail SMTP settings in `.env.local`:
+```env
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-gmail-app-password
+CONTACT_EMAIL=your-email@gmail.com
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
 
-### SendGrid Configuration
-- `SENDGRID_API_KEY` - Your SendGrid API key
-- `SENDGRID_FROM_EMAIL` - From email address for SendGrid
+5. Run the development server:
+```bash
+npm run dev
+```
 
-### SMTP Configuration
-- `SMTP_HOST` - SMTP server hostname
-- `SMTP_PORT` - SMTP server port
-- `SMTP_USER` - SMTP username
-- `SMTP_PASS` - SMTP password
-- `SMTP_FROM` - From email address for SMTP
+## Deployment
 
-See `env.example` for a complete list with example values.
+### Vercel Deployment
 
-## Available Scripts
+1. Connect your GitHub repository to Vercel
+2. Set up environment variables in Vercel dashboard:
+   - `SMTP_USER`: Your Gmail address
+   - `SMTP_PASS`: Your Gmail App Password
+   - `CONTACT_EMAIL`: Where to receive contact form emails
+   - `NEXT_PUBLIC_SITE_URL`: Your production domain
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run generate-favicons` - Generate favicon assets
+3. Deploy automatically on push to main branch
 
-## Technologies Used
+### Gmail App Password Setup
 
-- **Next.js 15** - React framework
-- **TypeScript** - Type safety
-- **TailwindCSS** - Utility-first CSS framework
-- **ESLint** - Code linting
-- **PostCSS** - CSS processing
+1. Enable 2-Factor Authentication on your Gmail account
+2. Go to Google Account Settings → Security → App passwords
+3. Generate an app password for "Mail"
+4. Use this 16-character password in your environment variables
 
-## Deployment (Vercel)
+## Contact Form
 
-This project is ready for deployment on [Vercel](https://vercel.com/):
+The contact form uses Gmail SMTP to send emails. Features include:
 
-1. Push your code to GitHub.
-2. Go to [vercel.com](https://vercel.com/) and import your repository.
-3. Vercel will auto-detect Next.js and deploy your site.
-4. For custom configuration, see `vercel.json` in the project root.
+- Client-side and server-side validation
+- Rate limiting and timeout protection
+- HTML email formatting
+- Reply-to functionality
+- Error handling for production
 
-No additional configuration is required for a standard Next.js app.
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License.
