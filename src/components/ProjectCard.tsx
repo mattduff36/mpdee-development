@@ -36,7 +36,7 @@ const ProjectCard = ({ project, index, onProjectClick }: ProjectCardProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+      className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer h-full flex flex-col"
       onClick={() => onProjectClick(project)}
       onKeyDown={handleKeyDown}
       tabIndex={0}
@@ -53,27 +53,27 @@ const ProjectCard = ({ project, index, onProjectClick }: ProjectCardProps) => {
           loading="lazy"
         />
       </div>
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-2">
+      <div className="p-4 flex flex-col flex-1">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">
           {project.title}
         </h3>
-        <p className="text-gray-600 mb-4 line-clamp-2">
+        <p className="text-gray-600 mb-3 line-clamp-2 text-sm flex-1">
           {project.shortDescription}
         </p>
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-1.5 mb-3">
           {project.tags.map((tag, tagIndex) => (
             <span
               key={tagIndex}
-              className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full"
+              className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full"
             >
               {tag}
             </span>
           ))}
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-sm text-gray-500">Click to view details</span>
+          <span className="text-xs text-gray-500">Click to view details</span>
           <svg
-            className="w-5 h-5 text-gray-400"
+            className="w-4 h-4 text-gray-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

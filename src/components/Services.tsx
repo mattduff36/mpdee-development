@@ -2,53 +2,69 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { track } from '@vercel/analytics';
-
-interface Service {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
-  isPopular?: boolean;
-  isComingSoon?: boolean;
-  isPartnership?: boolean;
-  details: string[];
-  technologies: string[];
-}
+import { Service } from '@/types';
+import ServiceCard from './ServiceCard';
+import {
+  BronzeIcon,
+  SilverIcon,
+  GoldIcon,
+  PlatinumIcon,
+  PWAIcon,
+  MediaPartnershipIcon,
+} from '@/components/icons';
 
 const services: Service[] = [
   {
-    id: 'basic-website',
-    title: 'Essential Website',
+    id: 'bronze-website',
+    title: 'Bronze Website Package',
     description:
-      'Perfect for small businesses and startups. A professional 5-page website that showcases your business and requires no ongoing maintenance.',
-    icon: '🏠',
+      'Essential foundation package designed for businesses establishing their initial digital presence. Includes professionally crafted landing page with complimentary domain and hosting services.',
+    icon: <BronzeIcon />, // Use SVG component
+    price: 'From £100',
     details: [
-      '5 professionally designed pages',
-      'Mobile-friendly responsive design',
-      'Contact form and business information',
-      'Basic SEO optimization',
-      'No ongoing maintenance required',
-      'Perfect for small businesses and startups',
+      'Professional 1-2 page website design',
+      'Complimentary domain registration (12 months)',
+      'Premium hosting services (12 months)',
+      'Hosting renewal at £10/month (billed annually)',
+    ],
+    technologies: ['HTML/CSS', 'Responsive Design', 'Domain Setup', 'Hosting'],
+  },
+  {
+    id: 'silver-website',
+    title: 'Silver Website Package',
+    description:
+      'Comprehensive business solution featuring all Bronze benefits plus a complete 5-page professional website, integrated contact systems, and dedicated support services.',
+    icon: <SilverIcon />, // Use SVG component
+    price: 'From £300',
+    details: [
+      '5 professionally designed and optimized pages',
+      'Fully responsive mobile-friendly design',
+      'Advanced contact forms and business integration',
+      'Search engine optimization (SEO) foundation',
+      'Maintenance-free architecture',
+      'Dedicated support services (3 months)',
+      'Premium hosting included (12 months)',
     ],
     technologies: ['HTML/CSS', 'JavaScript', 'Responsive Design', 'SEO Basics'],
   },
   {
-    id: 'dynamic-website',
-    title: 'Business Website',
+    id: 'gold-website',
+    title: 'Gold Website Package',
     description:
-      'Ideal for growing businesses. Up to 8 pages with a content management system so you can update your website yourself.',
-    icon: '🏢',
+      'Our flagship solution combining all Silver features with expanded functionality, including comprehensive content management systems, client portals, and extended professional support.',
+    icon: <GoldIcon />, // Use SVG component
     isPopular: true,
+    price: 'From £550',
     details: [
       'Up to 8 professionally designed pages',
-      'Content management system (CMS)',
-      'Admin portal for easy updates',
-      'Customer/client portal',
-      'Advanced contact forms',
-      'Blog/news section capability',
-      'Social media integration',
-      '3 months of support included',
+      'Advanced content management system (CMS)',
+      'Secure administrative portal',
+      'Dedicated client/customer portal',
+      'Sophisticated contact and inquiry systems',
+      'Integrated blog and news management',
+      'Social media platform integration',
+      'Extended support services (6 months)',
+      'Premium hosting included (12 months)',
     ],
     technologies: [
       'React',
@@ -58,21 +74,23 @@ const services: Service[] = [
     ],
   },
   {
-    id: 'premium-website',
-    title: 'Premium Solution',
+    id: 'platinum-website',
+    title: 'Platinum Website Package',
     description:
-      'Complete web solution for established businesses. Unlimited pages with 12 months of support and ongoing development included.',
-    icon: '⭐',
+      'Enterprise-grade solution featuring unlimited scalability, bespoke functionality development, comprehensive e-commerce capabilities, and premium ongoing support services.',
+    icon: <PlatinumIcon />, // Use SVG component
+    price: 'Bespoke pricing',
     details: [
-      'Unlimited pages and features',
-      'Custom functionality development',
-      'E-commerce integration available',
-      'Advanced analytics and reporting',
-      'Priority support and maintenance',
-      '12 months of support included',
-      'Ongoing development and updates',
-      'Performance optimization',
-      'Security monitoring',
+      'Unlimited pages and advanced features',
+      'Bespoke functionality development',
+      'Complete e-commerce integration solutions',
+      'Advanced analytics and business intelligence',
+      'Priority technical support and maintenance',
+      'Comprehensive support services (12 months)',
+      'Continuous development and enhancement',
+      'Performance optimization and monitoring',
+      'Enterprise-grade security implementation',
+      'Premium hosting included (12 months)',
     ],
     technologies: [
       'Full-Stack Development',
@@ -83,20 +101,20 @@ const services: Service[] = [
   },
   {
     id: 'pwa-webapps',
-    title: 'Progressive Web Apps',
+    title: 'Progressive Web Applications',
     description:
-      'Advanced web applications that work like native apps. Currently in development with exciting features coming soon.',
-    icon: '📱',
+      'Next-generation web applications delivering native app performance and functionality through advanced web technologies. Currently in development with innovative features being finalized.',
+    icon: <PWAIcon />,
     isComingSoon: true,
     details: [
-      'Native app-like experience in the browser',
-      'Offline functionality and fast loading',
-      'Push notifications and app-like features',
-      'Cross-platform compatibility',
-      'No app store required',
-      'Automatic updates and maintenance',
-      'Enhanced user engagement',
-      'Mobile-first responsive design',
+      'Native application experience within web browsers',
+      'Offline functionality with high-performance loading',
+      'Push notifications and advanced app-like features',
+      'Cross-platform compatibility and deployment',
+      'Direct installation without app store requirements',
+      'Automatic updates and seamless maintenance',
+      'Enhanced user engagement and retention',
+      'Mobile-first responsive architecture',
     ],
     technologies: ['PWA', 'Service Workers', 'React Native', 'Advanced APIs'],
   },
@@ -104,18 +122,18 @@ const services: Service[] = [
     id: 'gmc-media-partnership',
     title: 'Media & Marketing Partnership',
     description:
-      'Strategic partnership with GMC Media for comprehensive digital marketing and media solutions. Combining web development with professional media services.',
-    icon: '🎬',
+      'Strategic collaboration with GMC Media delivering integrated digital marketing and professional media services. Comprehensive solutions combining web development expertise with specialized media production capabilities.',
+    icon: <MediaPartnershipIcon />,
     isPartnership: true,
     details: [
-      'Professional video production and editing',
-      'Digital marketing and social media campaigns',
-      'Brand photography and visual content',
-      'Marketing strategy and consultation',
-      'Content creation and management',
-      'Social media advertising campaigns',
-      'Professional media equipment and expertise',
-      'Integrated web and media solutions',
+      'Professional video production and post-production services',
+      'Comprehensive digital marketing and social media strategies',
+      'Professional brand photography and visual content creation',
+      'Strategic marketing consultation and campaign development',
+      'Advanced content creation and management systems',
+      'Targeted social media advertising and optimization',
+      'Professional-grade media equipment and technical expertise',
+      'Fully integrated web development and media solutions',
     ],
     technologies: [
       'Video Production',
@@ -131,24 +149,11 @@ const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   const handleOpenModal = (service: Service) => {
-    track('service_view', {
-      serviceId: service.id,
-      serviceTitle: service.title,
-      serviceTags: service.technologies.join(', '),
-      priceRange: 'N/A', // No price range for these services
-    });
     setSelectedService(service);
   };
 
   const handleCloseModal = () => {
     setSelectedService(null);
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent, service: Service) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      handleOpenModal(service);
-    }
   };
 
   const handleModalKeyDown = (event: React.KeyboardEvent) => {
@@ -158,14 +163,28 @@ const Services = () => {
   };
 
   const handleContactClick = () => {
-    track('contact_cta_click', {
-      source: 'services',
-      section: 'cta',
-    });
+    // Scroll to contact form when implemented
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  // Get price tag styling based on service tier
+  const getPriceTagStyle = (service: Service) => {
+    if (service.id === 'bronze-website') {
+      return 'bg-gradient-to-r from-amber-600 to-amber-700 text-white border-amber-500';
+    }
+    if (service.id === 'silver-website') {
+      return 'bg-gradient-to-r from-slate-400 to-slate-500 text-white border-slate-400';
+    }
+    if (service.id === 'gold-website') {
+      return 'bg-gradient-to-r from-yellow-400 to-yellow-500 text-black border-yellow-400';
+    }
+    if (service.id === 'platinum-website') {
+      return 'bg-gradient-to-r from-gray-300 to-gray-400 text-black border-gray-300';
+    }
+    return 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-500';
   };
 
   return (
@@ -189,108 +208,12 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <motion.div
+            <ServiceCard
               key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className={`bg-card rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border ${
-                service.isPopular
-                  ? 'border-primary shadow-primary/20'
-                  : service.isComingSoon
-                    ? 'border-yellow-500 shadow-yellow-500/20'
-                    : service.isPartnership
-                      ? 'border-purple-500 shadow-purple-500/20'
-                      : 'border-gray-700'
-              } relative ${service.isComingSoon ? 'opacity-75' : ''}`}
-            >
-              {service.isPopular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
-                    Most Popular
-                  </span>
-                </div>
-              )}
-              {service.isComingSoon && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-yellow-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                    Coming Soon
-                  </span>
-                </div>
-              )}
-              {service.isPartnership && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-purple-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                    Partnership
-                  </span>
-                </div>
-              )}
-              <div className="text-center mb-6">
-                <div
-                  className="text-5xl mb-4"
-                  role="img"
-                  aria-label={service.title}
-                >
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-bold text-text-light mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-text-muted leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-
-              <div className="text-center">
-                {service.isComingSoon ? (
-                  <button
-                    disabled
-                    className="inline-flex items-center px-6 py-3 bg-gray-500 text-white font-semibold rounded-lg cursor-not-allowed opacity-75"
-                    aria-label={`${service.title} is coming soon`}
-                  >
-                    Coming Soon
-                    <svg
-                      className="ml-2 w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => handleOpenModal(service)}
-                    onKeyDown={e => handleKeyDown(e, service)}
-                    className="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                    aria-label={`Learn more about ${service.title}`}
-                  >
-                    Learn More
-                    <svg
-                      className="ml-2 w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                )}
-              </div>
-            </motion.div>
+              service={service}
+              index={index}
+              onLearnMore={handleOpenModal}
+            />
           ))}
         </div>
 
@@ -358,12 +281,32 @@ const Services = () => {
                     >
                       {selectedService.icon}
                     </span>
-                    <h3
-                      id="modal-title"
-                      className="text-3xl font-bold text-gray-900"
-                    >
-                      {selectedService.title}
-                    </h3>
+                    <div>
+                                              <h3
+                          id="modal-title"
+                          className="text-xl lg:text-2xl font-bold text-gray-900"
+                        >
+                          {selectedService.title}
+                        </h3>
+                      {selectedService.price && (
+                                                  <div className={`inline-flex items-center px-4 py-2 mt-3 ${getPriceTagStyle(selectedService)} text-xs sm:text-sm font-bold rounded-lg shadow-lg border-2 transform -skew-x-12`}>
+                          <svg
+                            className="w-4 h-4 sm:w-5 sm:h-5 mr-2"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                            />
+                          </svg>
+                          <span className="transform skew-x-12">{selectedService.price}</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <button
                     onClick={handleCloseModal}
@@ -387,12 +330,12 @@ const Services = () => {
                 </div>
 
                 <div id="modal-description" className="mb-8">
-                  <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                  <p className="text-gray-600 text-sm lg:text-base leading-relaxed mb-6">
                     {selectedService.description}
                   </p>
 
                   <div className="mb-6">
-                    <h4 className="text-xl font-semibold text-gray-900 mb-4">
+                    <h4 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">
                       What We Deliver:
                     </h4>
                     <ul className="space-y-2">
@@ -412,14 +355,14 @@ const Services = () => {
                               d="M5 13l4 4L19 7"
                             />
                           </svg>
-                          <span className="text-gray-700">{detail}</span>
+                          <span className="text-gray-700 text-sm">{detail}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
                   <div className="mb-8">
-                    <h4 className="text-xl font-semibold text-gray-900 mb-4">
+                    <h4 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">
                       Technologies We Use:
                     </h4>
                     <div className="flex flex-wrap gap-2">
@@ -438,7 +381,7 @@ const Services = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-end">
                   <button
                     onClick={handleCloseModal}
-                    className="px-6 py-3 text-gray-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                    className="px-6 py-3 text-gray-600 font-semibold text-sm rounded-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                   >
                     Close
                   </button>
@@ -447,7 +390,7 @@ const Services = () => {
                       handleCloseModal();
                       handleContactClick();
                     }}
-                    className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    className="px-6 py-3 bg-blue-600 text-white font-semibold text-sm rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
                     Get Started
                   </button>

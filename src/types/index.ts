@@ -14,8 +14,13 @@ export interface Service {
   id: string;
   title: string;
   description: string;
-  icon: string;
-  features: string[];
+  icon: React.ReactNode;
+  price?: string;
+  isPopular?: boolean;
+  isComingSoon?: boolean;
+  isPartnership?: boolean;
+  details: string[];
+  technologies: string[];
 }
 
 export interface ContactForm {

@@ -1,0 +1,24 @@
+I want to re-vamp the 'Services' section. More specifically, the 3 'Website' services.
+I want to change the service names from Essential / Business / Premium, to Bronze / Silver / Gold / Platinum. Here are the details:
+
+Bronze will be a new service, which will be the most affordable. 
+
+This package will deliver:
+- 1 or 2 page basic holding page.
+- free domain name (1 year)
+- free hosting (1 year)
+- Price starts at £100
+
+Silver is the new name for the old 'Essential' package. Include everything from the old 'Essential' package and add:
+- 3 months free support
+- Price starts at £300
+
+Gold is the new name for the old 'Business' package. Include everything from the old 'Business' package and add:
+- 6 months free support
+- Price starts at £550
+
+Platinum is the new name for the old 'Premium' package. Include everything from the old 'Premium' package and add:
+- 12 months free support
+- Please contact for price.
+
+So to summarize, I want the 3 current website packages replacing with the 4 'new' packages detailed above. I would also like the icons for each package changing to something more professional, and in-fitting with the professional website. Feel free to make suggestions or ask questions.

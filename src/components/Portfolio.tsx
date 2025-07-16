@@ -170,11 +170,11 @@ const Portfolio = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-3 mb-10"
         >
           <button
             onClick={() => handleTagFilter('All')}
-            className={`px-6 py-2 rounded-full font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+            className={`px-4 py-2 rounded-full font-medium text-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
               selectedTag === 'All'
                 ? 'bg-primary text-white'
                 : 'bg-gray-700 text-text-light hover:bg-gray-600'
@@ -187,7 +187,7 @@ const Portfolio = () => {
             <button
               key={tag}
               onClick={() => handleTagFilter(tag)}
-              className={`px-6 py-2 rounded-full font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+              className={`px-4 py-2 rounded-full font-medium text-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                 selectedTag === tag
                   ? 'bg-primary text-white'
                   : 'bg-gray-700 text-text-light hover:bg-gray-600'
@@ -200,7 +200,7 @@ const Portfolio = () => {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence>
             {filteredProjects.map((project, index) => (
               <motion.div
@@ -226,18 +226,18 @@ const Portfolio = () => {
                     loading="lazy"
                   />
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-text-light mb-2">
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-text-light mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-text-muted mb-4 line-clamp-2">
+                  <p className="text-text-muted mb-3 line-clamp-2 text-sm">
                     {project.shortDescription}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-1.5 mb-3">
                     {project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-3 py-1 bg-primary/20 text-primary text-sm font-medium rounded-full"
+                        className="px-2 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full"
                       >
                         {tag}
                       </span>
@@ -365,12 +365,12 @@ const Portfolio = () => {
                   </div>
 
                   <div id="project-modal-description">
-                    <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                    <p className="text-gray-600 text-sm lg:text-base leading-relaxed mb-6">
                       {selectedProject.description}
                     </p>
 
                     <div className="mb-6">
-                      <h4 className="text-xl font-semibold text-gray-900 mb-4">
+                      <h4 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">
                         Key Outcomes:
                       </h4>
                       <ul className="space-y-2">
@@ -390,14 +390,14 @@ const Portfolio = () => {
                                 d="M5 13l4 4L19 7"
                               />
                             </svg>
-                            <span className="text-gray-700">{outcome}</span>
+                            <span className="text-gray-700 text-sm">{outcome}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
                     <div className="mb-8">
-                      <h4 className="text-xl font-semibold text-gray-900 mb-4">
+                      <h4 className="text-base lg:text-lg font-semibold text-gray-900 mb-4">
                         Technologies Used:
                       </h4>
                       <div className="flex flex-wrap gap-2">
@@ -417,7 +417,7 @@ const Portfolio = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-end">
                   <button
                     onClick={handleCloseModal}
-                    className="px-6 py-3 text-gray-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                    className="px-6 py-3 text-gray-600 font-semibold text-sm rounded-lg hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                   >
                     Close
                   </button>
@@ -426,7 +426,7 @@ const Portfolio = () => {
                       href={selectedProject.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-center"
+                      className="px-6 py-3 bg-green-600 text-white font-semibold text-sm rounded-lg hover:bg-green-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-center"
                     >
                       View Live Site
                     </a>
@@ -436,7 +436,7 @@ const Portfolio = () => {
                       handleCloseModal();
                       handleContactClick();
                     }}
-                    className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    className="px-6 py-3 bg-blue-600 text-white font-semibold text-sm rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
                     Start Your Project
                   </button>

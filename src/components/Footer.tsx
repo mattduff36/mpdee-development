@@ -72,7 +72,7 @@ const Footer = () => {
                   href="#services"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Essential Website
+                  Bronze Website Package
                 </a>
               </li>
               <li>
@@ -80,7 +80,7 @@ const Footer = () => {
                   href="#services"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Business Website
+                  Silver Website Package
                 </a>
               </li>
               <li>
@@ -88,7 +88,15 @@ const Footer = () => {
                   href="#services"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Premium Solution
+                  Gold Website Package
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Platinum Website Package
                 </a>
               </li>
               <li>
