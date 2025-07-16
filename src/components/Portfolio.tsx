@@ -390,7 +390,9 @@ const Portfolio = () => {
                                 d="M5 13l4 4L19 7"
                               />
                             </svg>
-                            <span className="text-gray-700 text-sm">{outcome}</span>
+                            <span className="text-gray-700 text-sm">
+                              {outcome}
+                            </span>
                           </li>
                         ))}
                       </ul>

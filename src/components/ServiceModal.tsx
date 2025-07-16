@@ -25,6 +25,9 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
 
   // Get price tag styling based on service tier
   const getPriceTagStyle = () => {
+    if (!service) {
+      return 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-500';
+    }
     if (service.id === 'bronze-website') {
       return 'bg-gradient-to-r from-amber-600 to-amber-700 text-white border-amber-500';
     }
@@ -82,7 +85,9 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
                   {service.title}
                 </h2>
                 {service.price && (
-                  <div className={`inline-flex items-center px-4 py-2 mt-3 ${getPriceTagStyle()} text-xs sm:text-sm font-bold rounded-lg shadow-lg border-2 transform -skew-x-12`}>
+                  <div
+                    className={`inline-flex items-center px-4 py-2 mt-3 ${getPriceTagStyle()} text-xs sm:text-sm font-bold rounded-lg shadow-lg border-2 transform -skew-x-12`}
+                  >
                     <svg
                       className="w-4 h-4 sm:w-5 sm:h-5 mr-2"
                       fill="none"

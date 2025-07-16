@@ -282,14 +282,16 @@ const Services = () => {
                       {selectedService.icon}
                     </span>
                     <div>
-                                              <h3
-                          id="modal-title"
-                          className="text-xl lg:text-2xl font-bold text-gray-900"
-                        >
-                          {selectedService.title}
-                        </h3>
+                      <h3
+                        id="modal-title"
+                        className="text-xl lg:text-2xl font-bold text-gray-900"
+                      >
+                        {selectedService.title}
+                      </h3>
                       {selectedService.price && (
-                                                  <div className={`inline-flex items-center px-4 py-2 mt-3 ${getPriceTagStyle(selectedService)} text-xs sm:text-sm font-bold rounded-lg shadow-lg border-2 transform -skew-x-12`}>
+                        <div
+                          className={`inline-flex items-center px-4 py-2 mt-3 ${getPriceTagStyle(selectedService)} text-xs sm:text-sm font-bold rounded-lg shadow-lg border-2 transform -skew-x-12`}
+                        >
                           <svg
                             className="w-4 h-4 sm:w-5 sm:h-5 mr-2"
                             fill="none"
@@ -303,7 +305,9 @@ const Services = () => {
                               d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
                             />
                           </svg>
-                          <span className="transform skew-x-12">{selectedService.price}</span>
+                          <span className="transform skew-x-12">
+                            {selectedService.price}
+                          </span>
                         </div>
                       )}
                     </div>
@@ -355,7 +359,9 @@ const Services = () => {
                               d="M5 13l4 4L19 7"
                             />
                           </svg>
-                          <span className="text-gray-700 text-sm">{detail}</span>
+                          <span className="text-gray-700 text-sm">
+                            {detail}
+                          </span>
                         </li>
                       ))}
                     </ul>
