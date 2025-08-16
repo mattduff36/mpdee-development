@@ -21,7 +21,7 @@
 
 ## Tasks
 
-- [ ] 1.0 Update Service Package Data Structure
+- [x] 1.0 Update Service Package Data Structure
   - [x] 1.1 Replace current 3 website packages with 4 new packages in the services array
   - [x] 1.2 Create Bronze package with 1-2 page basic holding page, starting at £100
   - [x] 1.3 Update Silver package (was "Essential") with 3 months support, starting at £300
@@ -31,12 +31,12 @@
   - [x] 1.7 Ensure PWA and Media Partnership services remain unchanged
 
 - [ ] 2.0 Create Professional Package Icons
-  - [ ] 2.1 Design or source professional SVG icons for Bronze package (avoid emojis)
-  - [ ] 2.2 Design or source professional SVG icons for Silver package (avoid emojis)
-  - [ ] 2.3 Design or source professional SVG icons for Gold package (avoid emojis)
-  - [ ] 2.4 Design or source professional SVG icons for Platinum package (avoid emojis)
-  - [ ] 2.5 Update icon imports and exports in `src/components/icons/index.tsx`
-  - [ ] 2.6 Ensure icons are accessible with proper ARIA labels
+  - [x] 2.1 Design or source professional SVG icons for Bronze package (avoid emojis)
+  - [x] 2.2 Design or source professional SVG icons for Silver package (avoid emojis)
+  - [x] 2.3 Design or source professional SVG icons for Gold package (avoid emojis)
+  - [x] 2.4 Design or source professional SVG icons for Platinum package (avoid emojis)
+  - [x] 2.5 Update icon imports and exports in `src/components/icons/index.tsx`
+  - [x] 2.6 Ensure icons are accessible with proper ARIA labels
 
 - [ ] 3.0 Implement Package Pricing and Highlights
   - [ ] 3.1 Add pricing display logic to show prices only in modal/details view (not main cards)
