@@ -30,7 +30,7 @@
   - [x] 1.6 Add hosting information to all packages: "12 months hosting free, then £10/month billed annually"
   - [x] 1.7 Ensure PWA and Media Partnership services remain unchanged
 
-- [ ] 2.0 Create Professional Package Icons
+- [x] 2.0 Create Professional Package Icons
   - [x] 2.1 Design or source professional SVG icons for Bronze package (avoid emojis)
   - [x] 2.2 Design or source professional SVG icons for Silver package (avoid emojis)
   - [x] 2.3 Design or source professional SVG icons for Gold package (avoid emojis)
@@ -39,11 +39,11 @@
   - [x] 2.6 Ensure icons are accessible with proper ARIA labels
 
 - [ ] 3.0 Implement Package Pricing and Highlights
-  - [ ] 3.1 Add pricing display logic to show prices only in modal/details view (not main cards)
-  - [ ] 3.2 Implement "Most Popular" badge/highlight for Gold package
-  - [ ] 3.3 Update pricing display styling to match current design system
-  - [ ] 3.4 Ensure Platinum package shows "Please contact for price" instead of fixed pricing
-  - [ ] 3.5 Add visual differentiation between package tiers (colors, styling)
+  - [x] 3.1 Add pricing display logic to show prices only in modal/details view (not main cards)
+  - [x] 3.2 Implement "Most Popular" badge/highlight for Gold package
+  - [x] 3.3 Update pricing display styling to match current design system
+  - [x] 3.4 Ensure Platinum package shows "Please contact for price" instead of fixed pricing
+  - [x] 3.5 Add visual differentiation between package tiers (colors, styling)
 
 - [ ] 4.0 Update Service Modal Content and Formatting
   - [ ] 4.1 Update modal content to display new package features and benefits
