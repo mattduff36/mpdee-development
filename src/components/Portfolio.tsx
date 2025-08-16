@@ -24,9 +24,9 @@ const projects: Project[] = [
     id: 'lbp-website',
     title: 'Lee Barrowcliff Photography',
     shortDescription:
-      'Professional photography portfolio website with gallery showcase and client login system.',
+      'Professional photography portfolio website with secure client authentication and admin portal.',
     description:
-      "A stunning photography portfolio website for Lee Barrowcliff Photography featuring beautiful image galleries across multiple categories (Wedding, Portrait, Lifestyle, Landscape, Wildlife, Sport, Baby, Family, Pets), client login section for private galleries, and professional presentation. Designed to showcase the photographer's diverse work across the East Midlands.",
+      "A comprehensive photography portfolio platform featuring secure client login functionality with private gallery access and a dedicated admin portal for content management. The site includes multi-category image galleries (Wedding, Portrait, Lifestyle, Landscape, Wildlife, Sport, Baby, Family, Pets), user authentication system, and administrative dashboard for managing client access and gallery content. Built with responsive design and optimized image delivery for professional photography showcase.",
     image: '/images/portfolio-images/Lee-Barrowcliff-Photography/lbp-1.png',
     images: [
       '/images/portfolio-images/Lee-Barrowcliff-Photography/lbp-1.png',
@@ -43,10 +43,10 @@ const projects: Project[] = [
       'Client Authentication',
     ],
     outcomes: [
-      'Professional portfolio showcasing 9 photography categories',
-      'Secure client login system for private galleries',
-      'Enhanced online presence across East Midlands',
-      'Streamlined client experience and engagement',
+      'Secure multi-user authentication system with role-based access',
+      'Admin portal for content management and client administration',
+      'Private gallery system with personalized client access',
+      'Responsive image galleries with optimized loading performance',
     ],
     liveUrl: 'https://www.leebarrowcliffphotography.com/',
   },
@@ -54,9 +54,9 @@ const projects: Project[] = [
     id: 'victoria-rose-salon',
     title: 'Victoria Rose Salon',
     shortDescription:
-      'Professional hair and beauty salon website with comprehensive service showcase.',
+      'Dynamic salon website with automated content management and integrated booking system.',
     description:
-      "A beautiful and functional website for Victoria Rose Salon in Mansfield Woodhouse, Nottinghamshire, featuring comprehensive hair and beauty services, detailed service pages, customer reviews, and professional presentation. Operating since 2012, the salon offers expert hair cutting, styling, colouring, beauty treatments, manicures, pedicures, and advanced aesthetic services.",
+      "A sophisticated salon website featuring dynamic services management through Google Sheets integration, allowing real-time content updates without technical intervention. The platform includes automated team photo synchronization via Google Drive integration, dynamic job title updates, and seamless integration with the salon's existing booking system. Additionally, the site features a custom-built virtual assistant created from scratch to enhance customer interaction and service inquiries. Each service page is directly linked to their booking platform, enabling streamlined customer journey from service discovery to appointment booking.",
     image: '/images/portfolio-images/Victoria-Rose-Salon/vr-1.png',
     images: [
       '/images/portfolio-images/Victoria-Rose-Salon/vr-1.png',
@@ -64,12 +64,13 @@ const projects: Project[] = [
       '/images/portfolio-images/Victoria-Rose-Salon/vr-3.png',
     ],
     tags: ['Beauty', 'Business'],
-    technologies: ['React', 'Next.js', 'TailwindCSS', 'Contact Forms', 'SEO'],
+    technologies: ['React', 'Next.js', 'TailwindCSS', 'Google Sheets API', 'Google Drive API', 'Booking Integration', 'Custom Virtual Assistant'],
     outcomes: [
-      'Professional online presence for established salon',
-      'Comprehensive service showcase and information',
-      'Enhanced customer engagement and accessibility',
-      'Improved local business visibility in Nottinghamshire',
+      'Dynamic content management via Google Sheets integration',
+      'Automated team photo updates through Google Drive sync',
+      'Custom-built virtual assistant for enhanced customer interaction',
+      'Direct booking system integration for seamless appointments',
+      'Real-time service updates without technical maintenance',
     ],
     liveUrl: 'https://www.victoriaroselimited.co.uk/',
   },
@@ -77,9 +78,9 @@ const projects: Project[] = [
     id: 'lwbarker-transport',
     title: 'L.W. Barker Transport Services',
     shortDescription:
-      'Professional transport company website with comprehensive fleet showcase and service coverage.',
+      'Professional transport services website with comprehensive service management and logistics tracking.',
     description:
-      "A comprehensive website for L.W. Barker Transport Services LTD, a family-run business with 21 years of experience providing complete transport solutions across the UK. Features detailed fleet information (3.5t vans to 44t articulated lorries), service coverage from local to long-distance transport, specialized load handling, and 24/7 emergency transport availability.",
+      "A robust transport services platform featuring comprehensive logistics management capabilities and service area optimization. The website includes detailed service categorization with specialized handling for medical equipment, IT equipment, and automotive parts transport. Built with responsive design for mobile accessibility, integrated contact systems for quote requests, and optimized service area mapping covering extensive UK coverage from local to long-distance transport solutions.",
     image: '/images/portfolio-images/LW-Barker-Transport-Services/lwb-1.png',
     images: [
       '/images/portfolio-images/LW-Barker-Transport-Services/lwb-1.png',
@@ -92,14 +93,15 @@ const projects: Project[] = [
       'Next.js',
       'TypeScript',
       'TailwindCSS',
-      'Framer Motion',
-      'PWA',
+      'Logistics Management',
+      'Service Optimization',
+      'Mobile Responsive Design',
     ],
     outcomes: [
-      'Professional showcase of comprehensive transport services',
-      'Detailed fleet presentation from 3.5t to 44t vehicles',
-      'UK-wide service coverage with local Newark base',
-      '24/7 availability and emergency transport solutions',
+      'Comprehensive logistics management and service categorization',
+      'Specialized transport handling for medical and IT equipment',
+      'Optimized service area mapping and coverage display',
+      'Mobile-accessible quote request and contact systems',
     ],
     liveUrl: 'https://www.lwbarkertransport.com/',
   },
@@ -107,9 +109,9 @@ const projects: Project[] = [
     id: 'bouncy-castle-hire',
     title: 'T&S Bouncy Castle Hire',
     shortDescription:
-      'Family-run bouncy castle hire business serving Nottinghamshire with safe, professional party equipment.',
+      'Complete booking management platform with integrated payment processing and digital contracts.',
     description:
-      "A vibrant and engaging website for T&S Bouncy Castle Hire, a family-run business based in Edwinstowe serving Nottinghamshire since 2024. Features comprehensive bouncy castle showcase, service area coverage (Edwinstowe, Mansfield, Newark, Worksop, Ollerton, Nottingham, Bilsthorpe), safety information, and professional party equipment rental services with full insurance and PIPA testing.",
+      "A comprehensive business management platform featuring a fully bespoke booking system designed to handle all operational requirements. The system includes integrated payment processing, electronically signed hire agreements, calendar synchronization for availability management, and comprehensive reporting for bookings and financial accounts. Built with automated workflow management to streamline the entire hire process from initial inquiry to equipment return.",
     image: '/images/portfolio-images/TS-Bouncy-Castle-Hire/tns-1.png',
     images: [
       '/images/portfolio-images/TS-Bouncy-Castle-Hire/tns-1.png',
@@ -122,14 +124,16 @@ const projects: Project[] = [
       'React',
       'Next.js',
       'TailwindCSS',
-      'Contact Forms',
-      'Local SEO',
+      'Payment Processing',
+      'Digital Signatures',
+      'Calendar Integration',
+      'Reporting Dashboard',
     ],
     outcomes: [
-      'Professional online presence for new family business',
-      'Comprehensive service area coverage across Nottinghamshire',
-      'Safety-focused presentation with insurance details',
-      'Enhanced local community engagement and bookings',
+      'Full bespoke booking system with automated workflows',
+      'Integrated payment processing and digital contract signing',
+      'Real-time calendar synchronization and availability management',
+      'Comprehensive reporting system for bookings and financial tracking',
     ],
     liveUrl: 'https://www.bouncy-castle-hire.com/',
   },
@@ -137,9 +141,9 @@ const projects: Project[] = [
     id: 'paintings-by-kay',
     title: 'Paintings by Kay',
     shortDescription:
-      'Nature-inspired art portfolio with gallery showcase and commission services.',
+      'E-commerce art platform with integrated order management and commission system.',
     description:
-      "An artistic portfolio website showcasing Kay's nature-inspired paintings from Mansfield, Nottinghamshire. Features a beautiful gallery of original acrylic and oil paintings including woodland scenes, dramatic skies, tranquil waters, and coastal landscapes. Includes commission services for custom landscape and scenery pieces, online shop with free UK delivery, and contact system for inquiries.",
+      "A comprehensive e-commerce platform for original artwork featuring a complete online shop with integrated order management system. The platform includes secure payment processing, inventory management, automated order fulfillment workflows, and customer account management. Built with commission request functionality, digital gallery showcasing, and administrative dashboard for order tracking, customer management, and sales reporting.",
     image: '/images/portfolio-images/Paintings-by-Kay/pbk-1.png',
     images: [
       '/images/portfolio-images/Paintings-by-Kay/pbk-1.png',
@@ -446,14 +450,15 @@ const Portfolio = () => {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                  <div>
+                  {/* Mobile: Single image with navigation */}
+                  <div className="lg:hidden">
                     {/* Main Image Display */}
                     <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden mb-4 relative group">
                       <Image
                         src={selectedProject.images[selectedImageIndex]}
                         alt={`${selectedProject.title} screenshot ${selectedImageIndex + 1}`}
                         fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        sizes="100vw"
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                         priority
                       />
@@ -514,6 +519,35 @@ const Portfolio = () => {
                         ))}
                       </div>
                     )}
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {selectedProject.tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Desktop: All images stacked vertically */}
+                  <div className="hidden lg:block">
+                    <div className="space-y-4 mb-6">
+                      {selectedProject.images.map((image, index) => (
+                        <div key={index} className="aspect-video bg-gray-200 rounded-lg overflow-hidden relative group">
+                          <Image
+                            src={image}
+                            alt={`${selectedProject.title} screenshot ${index + 1}`}
+                            fill
+                            sizes="50vw"
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            priority={index === 0}
+                          />
+                        </div>
+                      ))}
+                    </div>
 
                     <div className="flex flex-wrap gap-2 mb-4">
                       {selectedProject.tags.map((tag, index) => (

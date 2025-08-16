@@ -60,7 +60,7 @@ const services: Service[] = [
       'Everything in Silver plus up to 8 pages, client management system with customer login portals, admin dashboard for managing customer accounts, reports and analytics, social media integration, and extended 6 months support.',
     icon: <GoldIcon />, // Use SVG component
     isPopular: true,
-    price: 'From £550',
+    price: 'From £600',
     details: [
       'Up to 8 professionally designed pages',
       'Client management system with secure login',
@@ -279,53 +279,140 @@ const Services = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto relative"
               onClick={e => e.stopPropagation()}
             >
+              {/* Price Corner Sash */}
+              {selectedService.price && (
+                <div className="absolute top-0 left-0 z-10">
+                  {/* Corner fold - back of ribbon */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      width: '110px',
+                      height: '110px',
+                      top: '0px',
+                      left: '0px',
+                      background: 'linear-gradient(225deg, #ffffff 0%, #f8f9fa 20%, #e9ecef 40%, #dee2e6 70%, #ced4da 100%)',
+                      clipPath: 'polygon(0 0, 100% 0, 0 100%)',
+                      boxShadow: 'inset -5px -5px 10px rgba(0,0,0,0.25), inset 2px 2px 4px rgba(255,255,255,0.8)',
+                      border: '1px solid rgba(0,0,0,0.2)'
+                    }}
+                  />
+                  
+                  {/* Corner fold crease line */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      width: '155px',
+                      height: '2px',
+                      top: '78px',
+                      left: '0px',
+                      transform: 'rotate(-45deg)',
+                      transformOrigin: 'left center',
+                      background: 'linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%)'
+                    }}
+                  />
+                  
+                  {/* Ribbon shadow (underneath) */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      width: '200px',
+                      height: '55px',
+                      top: '17px',
+                      left: '-55px',
+                      transform: 'rotate(-45deg)',
+                      transformOrigin: 'center',
+                      background: 'rgba(0,0,0,0.1)',
+                      filter: 'blur(3px)',
+                      borderRadius: '4px'
+                    }}
+                  />
+                  
+                  {/* Main ribbon */}
+                  <div
+                    className={`${getPriceTagStyle(selectedService)}`}
+                    style={{
+                      position: 'absolute',
+                      width: '200px',
+                      height: '55px',
+                      top: '15px',
+                      left: '-55px',
+                      transform: 'rotate(-45deg)',
+                      transformOrigin: 'center',
+                      boxShadow: '0 6px 16px rgba(0,0,0,0.3)',
+                      border: '2px solid rgba(0,0,0,0.2)',
+                      borderRadius: '4px',
+                      background: `linear-gradient(180deg, ${selectedService.id === 'gold-website' ? '#ffd700' : '#f59e0b'} 0%, ${selectedService.id === 'gold-website' ? '#ffed4e' : '#f59e0b'} 40%, ${selectedService.id === 'gold-website' ? '#eab308' : '#d97706'} 100%)`
+                    }}
+                  />
+                  
+                  {/* Ribbon highlight */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      width: '200px',
+                      height: '10px',
+                      top: '13px',
+                      left: '-55px',
+                      transform: 'rotate(-45deg)',
+                      transformOrigin: 'center',
+                      background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%)',
+                      borderRadius: '4px 4px 0 0'
+                    }}
+                  />
+                  
+
+                  
+                  {/* Text on ribbon */}
+                  <div 
+                    className="absolute text-black font-bold"
+                    style={{ 
+                      top: '22px',
+                      left: '15px',
+                      transform: 'rotate(-45deg)',
+                      transformOrigin: 'center',
+                      textShadow: '0 2px 4px rgba(255,255,255,0.9)',
+                      zIndex: 10
+                    }}
+                  >
+                    {selectedService.price.includes('From') ? (
+                      <div className="text-center leading-tight whitespace-nowrap">
+                        <div className="text-[10px] opacity-70 font-medium">From</div>
+                        <div className="text-2xl font-bold">
+                          {selectedService.price.replace('From ', '')}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="text-2xl font-bold whitespace-nowrap">
+                        {selectedService.price}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
               <div className="p-8">
                 <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center">
+                  <div className="flex-1 flex flex-col items-center">
                     <span
-                      className="text-4xl mr-4"
+                      className="text-4xl mb-2"
                       role="img"
                       aria-label={selectedService.title}
                     >
                       {selectedService.icon}
                     </span>
-                    <div>
-                      <h3
-                        id="modal-title"
-                        className="text-xl lg:text-2xl font-bold text-gray-900"
-                      >
-                        {selectedService.title}
-                      </h3>
-                      {selectedService.price && (
-                        <div
-                          className={`inline-flex items-center px-4 py-2 mt-3 ${getPriceTagStyle(selectedService)} text-xs sm:text-sm font-bold rounded-lg shadow-lg border-2 transform -skew-x-12`}
-                        >
-                          <svg
-                            className="w-4 h-4 sm:w-5 sm:h-5 mr-2"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                            />
-                          </svg>
-                          <span className="transform skew-x-12">
-                            {selectedService.price}
-                          </span>
-                        </div>
-                      )}
-                    </div>
+                    <h3
+                      id="modal-title"
+                      className="text-xl lg:text-2xl font-bold text-gray-900 text-center"
+                    >
+                      {selectedService.title}
+                    </h3>
                   </div>
                   <button
                     onClick={handleCloseModal}
-                    className="text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-full p-2"
+                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 rounded-full p-2"
                     aria-label="Close modal"
                   >
                     <svg
