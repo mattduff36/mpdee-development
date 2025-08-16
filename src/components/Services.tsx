@@ -51,7 +51,13 @@ const services: Service[] = [
       '3 months free support',
       '12 months hosting free, then £15/month billed annually',
     ],
-    technologies: ['HTML/CSS', 'JavaScript', 'Google APIs', 'Contact Forms', 'SEO Basics'],
+    technologies: [
+      'HTML/CSS',
+      'JavaScript',
+      'Google APIs',
+      'Contact Forms',
+      'SEO Basics',
+    ],
   },
   {
     id: 'gold-website',
@@ -293,13 +299,15 @@ const Services = () => {
                       height: '110px',
                       top: '0px',
                       left: '0px',
-                      background: 'linear-gradient(225deg, #ffffff 0%, #f8f9fa 20%, #e9ecef 40%, #dee2e6 70%, #ced4da 100%)',
+                      background:
+                        'linear-gradient(225deg, #ffffff 0%, #f8f9fa 20%, #e9ecef 40%, #dee2e6 70%, #ced4da 100%)',
                       clipPath: 'polygon(0 0, 100% 0, 0 100%)',
-                      boxShadow: 'inset -5px -5px 10px rgba(0,0,0,0.25), inset 2px 2px 4px rgba(255,255,255,0.8)',
-                      border: '1px solid rgba(0,0,0,0.2)'
+                      boxShadow:
+                        'inset -5px -5px 10px rgba(0,0,0,0.25), inset 2px 2px 4px rgba(255,255,255,0.8)',
+                      border: '1px solid rgba(0,0,0,0.2)',
                     }}
                   />
-                  
+
                   {/* Corner fold crease line */}
                   <div
                     style={{
@@ -310,10 +318,11 @@ const Services = () => {
                       left: '0px',
                       transform: 'rotate(-45deg)',
                       transformOrigin: 'left center',
-                      background: 'linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%)'
+                      background:
+                        'linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%)',
                     }}
                   />
-                  
+
                   {/* Ribbon shadow (underneath) */}
                   <div
                     style={{
@@ -326,10 +335,10 @@ const Services = () => {
                       transformOrigin: 'center',
                       background: 'rgba(0,0,0,0.1)',
                       filter: 'blur(3px)',
-                      borderRadius: '4px'
+                      borderRadius: '4px',
                     }}
                   />
-                  
+
                   {/* Main ribbon */}
                   <div
                     className={`${getPriceTagStyle(selectedService)}`}
@@ -345,24 +354,33 @@ const Services = () => {
                       border: '2px solid rgba(0,0,0,0.2)',
                       borderRadius: '4px',
                       background: `linear-gradient(180deg, ${
-                        selectedService.id === 'gold-website' ? '#ffd700' : 
-                        selectedService.id === 'silver-website' ? '#e2e8f0' :
-                        selectedService.id === 'platinum-website' ? '#e5e7eb' :
-                        '#f59e0b'
+                        selectedService.id === 'gold-website'
+                          ? '#ffd700'
+                          : selectedService.id === 'silver-website'
+                            ? '#e2e8f0'
+                            : selectedService.id === 'platinum-website'
+                              ? '#e5e7eb'
+                              : '#f59e0b'
                       } 0%, ${
-                        selectedService.id === 'gold-website' ? '#ffed4e' : 
-                        selectedService.id === 'silver-website' ? '#cbd5e1' :
-                        selectedService.id === 'platinum-website' ? '#d1d5db' :
-                        '#f59e0b'
+                        selectedService.id === 'gold-website'
+                          ? '#ffed4e'
+                          : selectedService.id === 'silver-website'
+                            ? '#cbd5e1'
+                            : selectedService.id === 'platinum-website'
+                              ? '#d1d5db'
+                              : '#f59e0b'
                       } 40%, ${
-                        selectedService.id === 'gold-website' ? '#eab308' : 
-                        selectedService.id === 'silver-website' ? '#94a3b8' :
-                        selectedService.id === 'platinum-website' ? '#9ca3af' :
-                        '#d97706'
-                      } 100%)`
+                        selectedService.id === 'gold-website'
+                          ? '#eab308'
+                          : selectedService.id === 'silver-website'
+                            ? '#94a3b8'
+                            : selectedService.id === 'platinum-website'
+                              ? '#9ca3af'
+                              : '#d97706'
+                      } 100%)`,
                     }}
                   />
-                  
+
                   {/* Ribbon highlight */}
                   <div
                     style={{
@@ -373,28 +391,29 @@ const Services = () => {
                       left: '-55px',
                       transform: 'rotate(-45deg)',
                       transformOrigin: 'center',
-                      background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%)',
-                      borderRadius: '4px 4px 0 0'
+                      background:
+                        'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%)',
+                      borderRadius: '4px 4px 0 0',
                     }}
                   />
-                  
 
-                  
                   {/* Text on ribbon */}
-                  <div 
+                  <div
                     className="absolute text-black font-bold"
-                    style={{ 
+                    style={{
                       top: '22px',
                       left: '15px',
                       transform: 'rotate(-45deg)',
                       transformOrigin: 'center',
                       textShadow: '0 2px 4px rgba(255,255,255,0.9)',
-                      zIndex: 10
+                      zIndex: 10,
                     }}
                   >
                     {selectedService.price.includes('From') ? (
                       <div className="text-center leading-tight whitespace-nowrap">
-                        <div className="text-[10px] opacity-70 font-medium">From</div>
+                        <div className="text-[10px] opacity-70 font-medium">
+                          From
+                        </div>
                         <div className="text-2xl font-bold">
                           {selectedService.price.replace('From ', '')}
                         </div>

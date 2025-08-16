@@ -26,7 +26,7 @@ const projects: Project[] = [
     shortDescription:
       'Professional photography portfolio website with secure client authentication and admin portal.',
     description:
-      "A comprehensive photography portfolio platform featuring secure client login functionality with private gallery access and a dedicated admin portal for content management. The site includes multi-category image galleries (Wedding, Portrait, Lifestyle, Landscape, Wildlife, Sport, Baby, Family, Pets), user authentication system, and administrative dashboard for managing client access and gallery content. Built with responsive design and optimized image delivery for professional photography showcase.",
+      'A comprehensive photography portfolio platform featuring secure client login functionality with private gallery access and a dedicated admin portal for content management. The site includes multi-category image galleries (Wedding, Portrait, Lifestyle, Landscape, Wildlife, Sport, Baby, Family, Pets), user authentication system, and administrative dashboard for managing client access and gallery content. Built with responsive design and optimized image delivery for professional photography showcase.',
     image: '/images/portfolio-images/Lee-Barrowcliff-Photography/lbp-1.png',
     images: [
       '/images/portfolio-images/Lee-Barrowcliff-Photography/lbp-1.png',
@@ -64,7 +64,15 @@ const projects: Project[] = [
       '/images/portfolio-images/Victoria-Rose-Salon/vr-3.png',
     ],
     tags: ['Beauty', 'Business'],
-    technologies: ['React', 'Next.js', 'TailwindCSS', 'Google Sheets API', 'Google Drive API', 'Booking Integration', 'Custom Virtual Assistant'],
+    technologies: [
+      'React',
+      'Next.js',
+      'TailwindCSS',
+      'Google Sheets API',
+      'Google Drive API',
+      'Booking Integration',
+      'Custom Virtual Assistant',
+    ],
     outcomes: [
       'Dynamic content management via Google Sheets integration',
       'Automated team photo updates through Google Drive sync',
@@ -80,7 +88,7 @@ const projects: Project[] = [
     shortDescription:
       'Professional transport services website with comprehensive service management and logistics tracking.',
     description:
-      "A robust transport services platform featuring comprehensive logistics management capabilities and service area optimization. The website includes detailed service categorization with specialized handling for medical equipment, IT equipment, and automotive parts transport. Built with responsive design for mobile accessibility, integrated contact systems for quote requests, and optimized service area mapping covering extensive UK coverage from local to long-distance transport solutions.",
+      'A robust transport services platform featuring comprehensive logistics management capabilities and service area optimization. The website includes detailed service categorization with specialized handling for medical equipment, IT equipment, and automotive parts transport. Built with responsive design for mobile accessibility, integrated contact systems for quote requests, and optimized service area mapping covering extensive UK coverage from local to long-distance transport solutions.',
     image: '/images/portfolio-images/LW-Barker-Transport-Services/lwb-1.png',
     images: [
       '/images/portfolio-images/LW-Barker-Transport-Services/lwb-1.png',
@@ -111,7 +119,7 @@ const projects: Project[] = [
     shortDescription:
       'Complete booking management platform with integrated payment processing and digital contracts.',
     description:
-      "A comprehensive business management platform featuring a fully bespoke booking system designed to handle all operational requirements. The system includes integrated payment processing, electronically signed hire agreements, calendar synchronization for availability management, and comprehensive reporting for bookings and financial accounts. Built with automated workflow management to streamline the entire hire process from initial inquiry to equipment return.",
+      'A comprehensive business management platform featuring a fully bespoke booking system designed to handle all operational requirements. The system includes integrated payment processing, electronically signed hire agreements, calendar synchronization for availability management, and comprehensive reporting for bookings and financial accounts. Built with automated workflow management to streamline the entire hire process from initial inquiry to equipment return.',
     image: '/images/portfolio-images/TS-Bouncy-Castle-Hire/tns-1.png',
     images: [
       '/images/portfolio-images/TS-Bouncy-Castle-Hire/tns-1.png',
@@ -143,7 +151,7 @@ const projects: Project[] = [
     shortDescription:
       'E-commerce art platform with integrated order management and commission system.',
     description:
-      "A comprehensive e-commerce platform for original artwork featuring a complete online shop with integrated order management system. The platform includes secure payment processing, inventory management, automated order fulfillment workflows, and customer account management. Built with commission request functionality, digital gallery showcasing, and administrative dashboard for order tracking, customer management, and sales reporting.",
+      'A comprehensive e-commerce platform for original artwork featuring a complete online shop with integrated order management system. The platform includes secure payment processing, inventory management, automated order fulfillment workflows, and customer account management. Built with commission request functionality, digital gallery showcasing, and administrative dashboard for order tracking, customer management, and sales reporting.',
     image: '/images/portfolio-images/Paintings-by-Kay/pbk-1.png',
     images: [
       '/images/portfolio-images/Paintings-by-Kay/pbk-1.png',
@@ -211,7 +219,7 @@ const Portfolio = () => {
 
   const handlePrevImage = () => {
     if (selectedProject && selectedProject.images.length > 1) {
-      setSelectedImageIndex((prev) => 
+      setSelectedImageIndex(prev =>
         prev === 0 ? selectedProject.images.length - 1 : prev - 1
       );
     }
@@ -219,7 +227,7 @@ const Portfolio = () => {
 
   const handleNextImage = () => {
     if (selectedProject && selectedProject.images.length > 1) {
-      setSelectedImageIndex((prev) => 
+      setSelectedImageIndex(prev =>
         prev === selectedProject.images.length - 1 ? 0 : prev + 1
       );
     }
@@ -462,7 +470,7 @@ const Portfolio = () => {
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                         priority
                       />
-                      
+
                       {/* Navigation Arrows */}
                       {selectedProject.images.length > 1 && (
                         <>
@@ -471,8 +479,18 @@ const Portfolio = () => {
                             className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             aria-label="Previous image"
                           >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M15 19l-7-7 7-7"
+                              />
                             </svg>
                           </button>
                           <button
@@ -480,17 +498,28 @@ const Portfolio = () => {
                             className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             aria-label="Next image"
                           >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                              />
                             </svg>
                           </button>
                         </>
                       )}
-                      
+
                       {/* Image Counter */}
                       {selectedProject.images.length > 1 && (
                         <div className="absolute bottom-2 right-2 bg-black/50 text-white px-2 py-1 rounded text-sm">
-                          {selectedImageIndex + 1} / {selectedProject.images.length}
+                          {selectedImageIndex + 1} /{' '}
+                          {selectedProject.images.length}
                         </div>
                       )}
                     </div>
@@ -536,7 +565,10 @@ const Portfolio = () => {
                   <div className="hidden lg:block">
                     <div className="space-y-4 mb-6">
                       {selectedProject.images.map((image, index) => (
-                        <div key={index} className="aspect-video bg-gray-200 rounded-lg overflow-hidden relative group">
+                        <div
+                          key={index}
+                          className="aspect-video bg-gray-200 rounded-lg overflow-hidden relative group"
+                        >
                           <Image
                             src={image}
                             alt={`${selectedProject.title} screenshot ${index + 1}`}

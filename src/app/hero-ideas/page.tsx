@@ -13,113 +13,145 @@ interface Project {
 }
 
 const projects: Project[] = [
-  { id: 'lbp', title: 'Lee Barrowcliff Photography', image: '/images/LBP-Logo.png', color: '#1f2937' },
-  { id: 'victoria', title: 'Victoria Rose Salon', image: '/images/victoria-rose-salon-logo.jpeg', color: '#ec4899' },
-  { id: 'lwbarker', title: 'L.W. Barker Transport', image: '/images/lwbarker-logo.png', color: '#059669' },
-  { id: 'bouncy', title: 'T&S Bouncy Castle Hire', image: '/images/ts-bouncy-castle-logo.png', color: '#f59e0b' },
-  { id: 'paintings', title: 'Paintings by Kay', image: '/images/paintings-by-kay-logo.png', color: '#7c3aed' },
+  {
+    id: 'lbp',
+    title: 'Lee Barrowcliff Photography',
+    image: '/images/LBP-Logo.png',
+    color: '#1f2937',
+  },
+  {
+    id: 'victoria',
+    title: 'Victoria Rose Salon',
+    image: '/images/victoria-rose-salon-logo.jpeg',
+    color: '#ec4899',
+  },
+  {
+    id: 'lwbarker',
+    title: 'L.W. Barker Transport',
+    image: '/images/lwbarker-logo.png',
+    color: '#059669',
+  },
+  {
+    id: 'bouncy',
+    title: 'T&S Bouncy Castle Hire',
+    image: '/images/ts-bouncy-castle-logo.png',
+    color: '#f59e0b',
+  },
+  {
+    id: 'paintings',
+    title: 'Paintings by Kay',
+    image: '/images/paintings-by-kay-logo.png',
+    color: '#7c3aed',
+  },
 ];
 
-const HeroIdea1 = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Auto-cycle through projects
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+// Original Interactive Grid (now Variation 1)
+const InteractiveGridV1 = () => {
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
   return (
-    <div className="relative h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 overflow-hidden">
-      {/* Animated Background Circles */}
-      <motion.div
-        className="absolute inset-0"
-        animate={{
-          background: [
-            'radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%)',
-            'radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%)',
-            'radial-gradient(circle at 40% 80%, rgba(119, 255, 198, 0.3) 0%, transparent 50%)',
-          ],
-        }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
-
-      {/* Portfolio Carousel */}
-      <div className="absolute top-1/2 right-10 transform -translate-y-1/2 z-10">
-        <div className="relative w-32 h-32">
-          <AnimatePresence mode="wait">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                className={`absolute inset-0 rounded-full p-4 cursor-pointer ${
-                  index === currentIndex ? 'ring-4 ring-white' : ''
-                }`}
-                style={{ backgroundColor: project.color }}
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{
-                  scale: index === currentIndex ? 1.2 : 0.8,
-                  rotate: 0,
-                  x: Math.cos((index * 2 * Math.PI) / projects.length) * 60,
-                  y: Math.sin((index * 2 * Math.PI) / projects.length) * 60,
-                }}
-                exit={{ scale: 0, rotate: 180 }}
-                transition={{ duration: 0.6 }}
-                onClick={() => setCurrentIndex(index)}
-              >
-                <div className="w-full h-full bg-white rounded-full p-2 flex items-center justify-center">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={40}
-                    height={40}
-                    className="object-contain"
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+    <div className="relative h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+      {/* Grid of Portfolio Previews */}
+      <div className="absolute inset-0 grid grid-cols-5 grid-rows-4 gap-4 p-8 opacity-20">
+        {Array.from({ length: 20 }).map((_, i) => {
+          const project = projects[i % projects.length];
+          return (
+            <motion.div
+              key={i}
+              className="bg-white rounded-lg p-2 flex items-center justify-center"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ scale: 1.1, opacity: 0.8 }}
+            >
+              <Image
+                src={project.image}
+                alt={project.title}
+                width={60}
+                height={60}
+                className="object-contain"
+              />
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Main Content */}
       <div className="relative z-20 h-full flex items-center justify-center">
-        <div className="text-center text-white max-w-4xl mx-auto px-6">
-          <motion.h1
-            className="text-6xl md:text-8xl font-bold mb-8"
-            initial={{ opacity: 0, y: 50 }}
+        <div className="text-center text-white max-w-5xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
+            className="mb-8"
           >
-            MPDEE
-          </motion.h1>
-          
-          <motion.div
-            className="text-xl md:text-2xl mb-8 h-16"
-            key={currentIndex}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 50 }}
-            transition={{ duration: 0.5 }}
-          >
-            Creating amazing websites like <br />
-            <span className="text-yellow-400 font-semibold">
-              {projects[currentIndex].title}
-            </span>
+            <h1 className="text-8xl md:text-9xl font-bold mb-4">MPDEE</h1>
+            <div className="w-32 h-1 bg-gradient-to-r from-yellow-400 to-pink-500 mx-auto"></div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+          <motion.p
+            className="text-2xl md:text-3xl mb-12 leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="space-x-4"
           >
-            <button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
-              View Portfolio
+            Professional Web Design & Development
+            <br />
+            <span className="text-yellow-400">
+              Transforming Ideas into Digital Reality
+            </span>
+          </motion.p>
+
+          {/* Interactive Portfolio Navigation */}
+          <motion.div
+            className="flex justify-center space-x-4 mb-12"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1 }}
+          >
+            {projects.map(project => (
+              <motion.div
+                key={project.id}
+                className="w-16 h-16 bg-white rounded-full p-2 cursor-pointer"
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                onHoverStart={() => setHoveredProject(project.id)}
+                onHoverEnd={() => setHoveredProject(null)}
+              >
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={48}
+                  height={48}
+                  className="object-contain w-full h-full"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <AnimatePresence>
+            {hoveredProject && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                className="text-xl mb-8"
+              >
+                {projects.find(p => p.id === hoveredProject)?.title}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.5 }}
+            className="space-x-6"
+          >
+            <button className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
+              View Our Portfolio
             </button>
             <button className="border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
-              Get Started
+              Start Your Project
             </button>
           </motion.div>
         </div>
@@ -137,7 +169,7 @@ const HeroIdea2 = () => {
           <motion.div
             key={project.id}
             className="absolute w-40 h-40 bg-white rounded-xl shadow-2xl p-4"
-            initial={{ 
+            initial={{
               x: Math.random() * window.innerWidth,
               y: Math.random() * window.innerHeight,
               rotate: Math.random() * 360,
@@ -158,7 +190,7 @@ const HeroIdea2 = () => {
             transition={{
               duration: 20 + index * 5,
               repeat: Infinity,
-              ease: "linear",
+              ease: 'linear',
             }}
           >
             <Image
@@ -182,11 +214,11 @@ const HeroIdea2 = () => {
             className="text-7xl md:text-9xl font-bold mb-8 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 1, type: "spring" }}
+            transition={{ duration: 1, type: 'spring' }}
           >
             MPDEE
           </motion.h1>
-          
+
           <motion.p
             className="text-2xl md:text-3xl mb-12"
             initial={{ opacity: 0 }}
@@ -263,7 +295,9 @@ const HeroIdea3 = () => {
           >
             Professional Web Design & Development
             <br />
-            <span className="text-yellow-400">Transforming Ideas into Digital Reality</span>
+            <span className="text-yellow-400">
+              Transforming Ideas into Digital Reality
+            </span>
           </motion.p>
 
           {/* Interactive Portfolio Navigation */}
@@ -273,7 +307,7 @@ const HeroIdea3 = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
           >
-            {projects.map((project) => (
+            {projects.map(project => (
               <motion.div
                 key={project.id}
                 className="w-16 h-16 bg-white rounded-full p-2 cursor-pointer"
@@ -330,7 +364,7 @@ const HeroIdea4 = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
+      setCurrentIndex(prevIndex => (prevIndex + 1) % projects.length);
     }, 4000);
     return () => clearInterval(interval);
   }, []);
@@ -374,7 +408,9 @@ const HeroIdea4 = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <h3 className="text-white font-semibold text-lg">{projects[currentIndex].title}</h3>
+            <h3 className="text-white font-semibold text-lg">
+              {projects[currentIndex].title}
+            </h3>
           </motion.div>
         </motion.div>
       </div>
@@ -390,7 +426,7 @@ const HeroIdea4 = () => {
           >
             MPDEE
           </motion.h1>
-          
+
           <motion.p
             className="text-xl md:text-2xl mb-8 text-gray-300"
             initial={{ x: -100, opacity: 0 }}
@@ -409,7 +445,9 @@ const HeroIdea4 = () => {
           >
             <span className="text-blue-400">Currently showcasing:</span>
             <br />
-            <span className="text-2xl font-semibold">{projects[currentIndex].title}</span>
+            <span className="text-2xl font-semibold">
+              {projects[currentIndex].title}
+            </span>
           </motion.div>
 
           <motion.div
@@ -455,7 +493,7 @@ const HeroIdea5 = () => {
             >
               MPDEE
             </motion.h1>
-            
+
             <motion.p
               className="text-xl mb-12"
               initial={{ opacity: 0, y: 30 }}
@@ -554,14 +592,22 @@ const HeroIdea6 = () => {
               top: `${30 + index * 10}%`,
             }}
             animate={{
-              x: (mousePosition.x - window.innerWidth / 2) * (0.01 + index * 0.005),
-              y: (mousePosition.y - window.innerHeight / 2) * (0.01 + index * 0.005),
+              x:
+                (mousePosition.x - window.innerWidth / 2) *
+                (0.01 + index * 0.005),
+              y:
+                (mousePosition.y - window.innerHeight / 2) *
+                (0.01 + index * 0.005),
               rotate: [0, 360],
             }}
             transition={{
               x: { duration: 0.3 },
               y: { duration: 0.3 },
-              rotate: { duration: 10 + index * 2, repeat: Infinity, ease: "linear" },
+              rotate: {
+                duration: 10 + index * 2,
+                repeat: Infinity,
+                ease: 'linear',
+              },
             }}
             whileHover={{ scale: 1.5, zIndex: 10 }}
           >
@@ -587,7 +633,7 @@ const HeroIdea6 = () => {
           >
             MPDEE
           </motion.h1>
-          
+
           <motion.p
             className="text-2xl mb-8"
             initial={{ opacity: 0 }}
@@ -628,7 +674,7 @@ const HeroIdea7 = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setVisibleProjects(prev => prev < projects.length ? prev + 1 : 1);
+      setVisibleProjects(prev => (prev < projects.length ? prev + 1 : 1));
     }, 2000);
     return () => clearInterval(timer);
   }, []);
@@ -654,7 +700,9 @@ const HeroIdea7 = () => {
             }}
             transition={{ duration: 0.8, delay: index * 0.2 }}
           >
-            <div className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+            <div
+              className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+            >
               <motion.div
                 className="w-24 h-24 bg-white rounded-full p-4 shadow-lg"
                 whileHover={{ scale: 1.2, rotate: 360 }}
@@ -668,9 +716,13 @@ const HeroIdea7 = () => {
                   className="object-contain w-full h-full"
                 />
               </motion.div>
-              
-              <div className={`mx-8 ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
-                <h3 className="text-white text-xl font-semibold">{project.title}</h3>
+
+              <div
+                className={`mx-8 ${index % 2 === 0 ? 'text-left' : 'text-right'}`}
+              >
+                <h3 className="text-white text-xl font-semibold">
+                  {project.title}
+                </h3>
                 <div
                   className={`w-16 h-1 mt-2 ${index % 2 === 0 ? 'ml-0' : 'ml-auto'}`}
                   style={{ backgroundColor: project.color }}
@@ -710,7 +762,7 @@ const HeroIdea8 = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentProject((prev) => (prev + 1) % projects.length);
+      setCurrentProject(prev => (prev + 1) % projects.length);
     }, 3500);
     return () => clearInterval(interval);
   }, []);
@@ -742,7 +794,7 @@ const HeroIdea8 = () => {
         <motion.div
           className="relative w-96 h-96"
           animate={{ rotateY: [0, 360] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -791,7 +843,7 @@ const HeroIdea8 = () => {
             </h1>
             <div className="w-32 h-1 bg-gradient-to-r from-cyan-500 to-purple-500" />
           </motion.div>
-          
+
           <motion.p
             className="text-2xl mb-8 text-gray-300"
             initial={{ opacity: 0, x: -100 }}
@@ -852,7 +904,8 @@ export default function HeroIdeasPage() {
     { id: 8, name: 'Holographic Display', component: HeroIdea8 },
   ];
 
-  const CurrentHeroComponent = ideas.find(idea => idea.id === currentIdea)?.component || HeroIdea1;
+  const CurrentHeroComponent =
+    ideas.find(idea => idea.id === currentIdea)?.component || HeroIdea1;
 
   return (
     <div>
@@ -866,7 +919,7 @@ export default function HeroIdeasPage() {
         </Link>
         <div className="bg-white rounded-lg shadow-lg p-4">
           <h3 className="font-semibold mb-2 text-gray-900">Hero Ideas:</h3>
-          {ideas.map((idea) => (
+          {ideas.map(idea => (
             <button
               key={idea.id}
               onClick={() => setCurrentIdea(idea.id)}

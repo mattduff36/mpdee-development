@@ -52,10 +52,20 @@ describe('Portfolio Component', () => {
 
     // Check project descriptions
     expect(
-      screen.getByText(/professional photography portfolio website with gallery showcase and client login system/i)
+      screen.getByText(
+        /professional photography portfolio website with gallery showcase and client login system/i
+      )
     ).toBeInTheDocument();
-    expect(screen.getByText(/professional hair and beauty salon website with comprehensive service showcase/i)).toBeInTheDocument();
-    expect(screen.getByText(/nature-inspired art portfolio with gallery showcase and commission services/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /professional hair and beauty salon website with comprehensive service showcase/i
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /nature-inspired art portfolio with gallery showcase and commission services/i
+      )
+    ).toBeInTheDocument();
   });
 
   it('renders filter buttons correctly', () => {
@@ -158,7 +168,9 @@ describe('Portfolio Component', () => {
     expect(screen.getByText(/key outcomes:/i)).toBeInTheDocument();
     expect(screen.getByText(/technologies used:/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/professional portfolio showcasing 9 photography categories/i)
+      screen.getByText(
+        /professional portfolio showcasing 9 photography categories/i
+      )
     ).toBeInTheDocument();
     expect(screen.getByText(/react/i)).toBeInTheDocument();
   });
@@ -340,11 +352,26 @@ describe('Portfolio Component', () => {
 
     // Check project images (Next.js optimized images will have different src)
     const images = screen.getAllByRole('img');
-    expect(images[0]).toHaveAttribute('alt', 'Lee Barrowcliff Photography website screenshot');
-    expect(images[1]).toHaveAttribute('alt', 'Victoria Rose Salon website screenshot');
-    expect(images[2]).toHaveAttribute('alt', 'L.W. Barker Transport Services website screenshot');
-    expect(images[3]).toHaveAttribute('alt', 'T&S Bouncy Castle Hire website screenshot');
-    expect(images[4]).toHaveAttribute('alt', 'Paintings by Kay website screenshot');
+    expect(images[0]).toHaveAttribute(
+      'alt',
+      'Lee Barrowcliff Photography website screenshot'
+    );
+    expect(images[1]).toHaveAttribute(
+      'alt',
+      'Victoria Rose Salon website screenshot'
+    );
+    expect(images[2]).toHaveAttribute(
+      'alt',
+      'L.W. Barker Transport Services website screenshot'
+    );
+    expect(images[3]).toHaveAttribute(
+      'alt',
+      'T&S Bouncy Castle Hire website screenshot'
+    );
+    expect(images[4]).toHaveAttribute(
+      'alt',
+      'Paintings by Kay website screenshot'
+    );
   });
 
   it('displays project tags correctly', () => {

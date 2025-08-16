@@ -58,12 +58,17 @@ describe('Services Component', () => {
       screen.getByRole('heading', { level: 3, name: /gold website package/i })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { level: 3, name: /platinum website package/i })
+      screen.getByRole('heading', {
+        level: 3,
+        name: /platinum website package/i,
+      })
     ).toBeInTheDocument();
 
     // Check service descriptions
     expect(
-      screen.getByText(/perfect for businesses needing a simple online presence/i)
+      screen.getByText(
+        /perfect for businesses needing a simple online presence/i
+      )
     ).toBeInTheDocument();
     expect(
       screen.getByText(/comprehensive business solution with up to 5 pages/i)
@@ -299,7 +304,9 @@ describe('Services Component', () => {
     fireEvent.click(silverButton);
 
     // Check Silver package specific content
-    expect(screen.getByText(/up to 5 professionally designed pages/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/up to 5 professionally designed pages/i)
+    ).toBeInTheDocument();
     expect(screen.getByText(/from £300/i)).toBeInTheDocument();
   });
 
