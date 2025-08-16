@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { track } from '@vercel/analytics';
 import Image from 'next/image';
@@ -183,6 +183,36 @@ const Portfolio = () => {
   const [selectedTag, setSelectedTag] = useState<string>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
+
+  // Listen for hero project clicks
+  useEffect(() => {
+    const handleOpenProjectModal = (event: CustomEvent) => {
+      const { projectId } = event.detail;
+      const project = projects.find(p => p.id === projectId);
+      if (project) {
+        setSelectedProject(project);
+        setSelectedImageIndex(0);
+        track('project_view', {
+          projectId: project.id,
+          projectTitle: project.title,
+          projectTags: project.tags.join(', '),
+          source: 'hero_click',
+        });
+      }
+    };
+
+    window.addEventListener(
+      'openProjectModal',
+      handleOpenProjectModal as EventListener
+    );
+
+    return () => {
+      window.removeEventListener(
+        'openProjectModal',
+        handleOpenProjectModal as EventListener
+      );
+    };
+  }, []);
 
   const filteredProjects =
     selectedTag === 'All'

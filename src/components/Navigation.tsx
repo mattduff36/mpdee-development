@@ -105,15 +105,10 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex-shrink-0"
-          >
+          <div className="flex-shrink-0">
             <button
               onClick={() => handleNavClick('#', 'home')}
-              className="flex items-center text-2xl font-bold text-text-light hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+              className="flex items-center text-2xl font-bold text-text-light focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
               aria-label="Go to homepage"
               tabIndex={0}
             >
@@ -125,9 +120,12 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
                 className="mr-2 w-8 h-8 object-contain"
                 priority
               />
-              {logo}
+              MPDEE&nbsp;
+              <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+                Development
+              </span>
             </button>
-          </motion.div>
+          </div>
 
           {/* Desktop Navigation */}
           <motion.div

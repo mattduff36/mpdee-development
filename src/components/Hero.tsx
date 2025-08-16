@@ -73,6 +73,7 @@ const shuffleArray = (array: string[]) => {
 const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [shuffledTiles, setShuffledTiles] = useState<string[]>([]);
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
 
   useEffect(() => {
     // Shuffle tiles on component mount
@@ -107,10 +108,32 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
     }
   };
 
+  const handleProjectClick = (projectId: string) => {
+    track('hero_project_circle_click', {
+      source: 'hero',
+      project: projectId,
+    });
+
+    // Scroll to portfolio section
+    const portfolioSection = document.getElementById('portfolio');
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({ behavior: 'smooth' });
+
+      // Wait for scroll to complete, then trigger modal
+      setTimeout(() => {
+        // Dispatch custom event to open the correct project modal
+        const event = new CustomEvent('openProjectModal', {
+          detail: { projectId },
+        });
+        window.dispatchEvent(event);
+      }, 1000); // Wait 1 second for scroll to complete
+    }
+  };
+
   return (
     <section
       id="home"
-      className="relative h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"
+      className="relative h-[calc(100vh-4rem)] bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"
     >
       {/* Grid of Portfolio Previews */}
       <div className="absolute inset-0 grid grid-cols-5 grid-rows-4 gap-4 p-8 opacity-20">
@@ -132,8 +155,8 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               <Image
                 src={tileImage}
                 alt="Portfolio tile"
-                width={60}
-                height={60}
+                width={78}
+                height={78}
                 className="object-contain"
               />
             </motion.div>
@@ -166,37 +189,59 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             transition={{ duration: 1, delay: 0.5 }}
           >
             Professional Web Design & Development
-            <br />
-            <span className="text-yellow-400">
-              Transforming Ideas into Digital Reality
-            </span>
           </motion.p>
 
-          {/* Interactive Portfolio Navigation */}
+          {/* Interactive Portfolio Navigation - Netflix Style Carousel */}
           <motion.div
-            className="flex justify-center space-x-6 mb-8"
+            className="relative w-full max-w-2xl mx-auto mb-8 py-4"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
+            style={{
+              maskImage:
+                'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
+            }}
           >
-            {projects.map(project => (
-              <motion.div
-                key={project.id}
-                className="w-28 h-28 bg-white rounded-full p-3 cursor-pointer"
-                whileHover={{ scale: 1.2, rotate: 360 }}
-                transition={{ duration: 0.6 }}
-                onHoverStart={() => setHoveredProject(project.id)}
-                onHoverEnd={() => setHoveredProject(null)}
-              >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  width={80}
-                  height={80}
-                  className="object-contain w-full h-full"
-                />
-              </motion.div>
-            ))}
+            {/* Scrolling container */}
+            <motion.div
+              className="flex space-x-6 px-16"
+              animate={{
+                x: isCarouselPaused ? 0 : [-200, -400],
+              }}
+              transition={{
+                x: {
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: 'linear',
+                },
+              }}
+              onHoverStart={() => setIsCarouselPaused(true)}
+              onHoverEnd={() => setIsCarouselPaused(false)}
+            >
+              {/* Duplicate projects array to create seamless loop */}
+              {[...projects, ...projects, ...projects].map((project, index) => (
+                <motion.div
+                  key={`${project.id}-${index}`}
+                  className="w-28 h-28 bg-white rounded-full p-3 cursor-pointer flex-shrink-0"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  onMouseEnter={() => setHoveredProject(project.id)}
+                  onMouseLeave={() => setHoveredProject(null)}
+                  onClick={() => handleProjectClick(project.id)}
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={80}
+                    height={80}
+                    className="object-contain w-full h-full"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
 
           {/* Static gap for project title */}
@@ -207,7 +252,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
-                  className="text-xl"
+                  className="text-2xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-orange-600 bg-clip-text text-transparent"
                 >
                   {projects.find(p => p.id === hoveredProject)?.title}
                 </motion.div>
