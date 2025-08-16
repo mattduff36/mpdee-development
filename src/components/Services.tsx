@@ -344,7 +344,22 @@ const Services = () => {
                       boxShadow: '0 6px 16px rgba(0,0,0,0.3)',
                       border: '2px solid rgba(0,0,0,0.2)',
                       borderRadius: '4px',
-                      background: `linear-gradient(180deg, ${selectedService.id === 'gold-website' ? '#ffd700' : '#f59e0b'} 0%, ${selectedService.id === 'gold-website' ? '#ffed4e' : '#f59e0b'} 40%, ${selectedService.id === 'gold-website' ? '#eab308' : '#d97706'} 100%)`
+                      background: `linear-gradient(180deg, ${
+                        selectedService.id === 'gold-website' ? '#ffd700' : 
+                        selectedService.id === 'silver-website' ? '#e2e8f0' :
+                        selectedService.id === 'platinum-website' ? '#e5e7eb' :
+                        '#f59e0b'
+                      } 0%, ${
+                        selectedService.id === 'gold-website' ? '#ffed4e' : 
+                        selectedService.id === 'silver-website' ? '#cbd5e1' :
+                        selectedService.id === 'platinum-website' ? '#d1d5db' :
+                        '#f59e0b'
+                      } 40%, ${
+                        selectedService.id === 'gold-website' ? '#eab308' : 
+                        selectedService.id === 'silver-website' ? '#94a3b8' :
+                        selectedService.id === 'platinum-website' ? '#9ca3af' :
+                        '#d97706'
+                      } 100%)`
                     }}
                   />
                   
