@@ -39,7 +39,7 @@ const services: Service[] = [
     description:
       'Comprehensive business solution with up to 5 pages including About Us, Contact with forms, Services/Products pages, and dynamic elements like Google integration (Drive, Calendar). Includes 3 months support for any changes.',
     icon: <SilverIcon />, // Use SVG component
-    price: 'From £300',
+    price: 'From £350',
     details: [
       'Up to 5 professionally designed pages',
       'About Us, Contact, Services/Products pages',
