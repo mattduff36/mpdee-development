@@ -20,31 +20,31 @@ const projects: Project[] = [
   {
     id: 'lbp',
     title: 'Lee Barrowcliff Photography',
-    image: '/images/LBP-Logo.png',
+    image: '/images/hero-tiles/LBP-logo-328x328.png',
     color: '#1f2937',
   },
   {
     id: 'victoria',
     title: 'Victoria Rose Salon',
-    image: '/images/victoria-rose-salon-logo.jpeg',
+    image: '/images/hero-tiles/VRS-logo-328x328.png',
     color: '#ec4899',
   },
   {
     id: 'lwbarker',
     title: 'L.W. Barker Transport',
-    image: '/images/lwbarker-logo.png',
+    image: '/images/hero-tiles/LWB-logo-328x328.png',
     color: '#059669',
   },
   {
     id: 'bouncy',
     title: 'T&S Bouncy Castle Hire',
-    image: '/images/ts-bouncy-castle-logo.png',
+    image: '/images/hero-tiles/TNS-logo-328x328.png',
     color: '#f59e0b',
   },
   {
     id: 'paintings',
     title: 'Paintings by Kay',
-    image: '/images/paintings-by-kay-logo.png',
+    image: '/images/hero-tiles/PBK-logo-328x328.png',
     color: '#7c3aed',
   },
 ];
@@ -115,9 +115,11 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
       {/* Grid of Portfolio Previews */}
       <div className="absolute inset-0 grid grid-cols-5 grid-rows-4 gap-4 p-8 opacity-20">
         {Array.from({ length: 20 }).map((_, i) => {
-          const tileImage =
-            shuffledTiles[i % shuffledTiles.length] ||
-            heroTiles[i % heroTiles.length];
+          // Ensure we always have a tile by cycling through available tiles
+          const tilesToUse =
+            shuffledTiles.length > 0 ? shuffledTiles : heroTiles;
+          const tileImage = tilesToUse[i % tilesToUse.length];
+
           return (
             <motion.div
               key={i}
@@ -148,8 +150,11 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             transition={{ duration: 1 }}
             className="mb-8"
           >
-            <h1 className="text-8xl md:text-9xl font-bold mb-4">
-              MPDEE <span className="text-yellow-400">Development</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 whitespace-nowrap text-center">
+              MPDEE{' '}
+              <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+                Development
+              </span>
             </h1>
             <div className="w-32 h-1 bg-gradient-to-r from-yellow-400 to-pink-500 mx-auto"></div>
           </motion.div>
@@ -177,7 +182,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             {projects.map(project => (
               <motion.div
                 key={project.id}
-                className="w-20 h-20 bg-white rounded-full p-2 cursor-pointer"
+                className="w-28 h-28 bg-white rounded-full p-3 cursor-pointer"
                 whileHover={{ scale: 1.2, rotate: 360 }}
                 transition={{ duration: 0.6 }}
                 onHoverStart={() => setHoveredProject(project.id)}
@@ -186,8 +191,8 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                 <Image
                   src={project.image}
                   alt={project.title}
-                  width={64}
-                  height={64}
+                  width={80}
+                  height={80}
                   className="object-contain w-full h-full"
                 />
               </motion.div>
