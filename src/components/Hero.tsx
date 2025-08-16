@@ -1,84 +1,83 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { track } from '@vercel/analytics';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { track } from '@vercel/analytics';
+
+interface Project {
+  id: string;
+  title: string;
+  image: string;
+  color: string;
+}
 
 interface HeroProps {
   onGetStarted?: () => void;
 }
 
-const DOTS = [
-  { key: 'dot1', base: 'top-10 left-10 w-20 h-20', factor: 0.04 },
-  { key: 'dot2', base: 'top-40 right-20 w-16 h-16', factor: -0.03 },
-  { key: 'dot3', base: 'bottom-20 left-1/4 w-12 h-12', factor: 0.06 },
-  { key: 'dot4', base: 'bottom-40 right-1/3 w-8 h-8', factor: -0.05 },
+const projects: Project[] = [
+  {
+    id: 'lbp',
+    title: 'Lee Barrowcliff Photography',
+    image: '/images/LBP-Logo.png',
+    color: '#1f2937',
+  },
+  {
+    id: 'victoria',
+    title: 'Victoria Rose Salon',
+    image: '/images/victoria-rose-salon-logo.jpeg',
+    color: '#ec4899',
+  },
+  {
+    id: 'lwbarker',
+    title: 'L.W. Barker Transport',
+    image: '/images/lwbarker-logo.png',
+    color: '#059669',
+  },
+  {
+    id: 'bouncy',
+    title: 'T&S Bouncy Castle Hire',
+    image: '/images/ts-bouncy-castle-logo.png',
+    color: '#f59e0b',
+  },
+  {
+    id: 'paintings',
+    title: 'Paintings by Kay',
+    image: '/images/paintings-by-kay-logo.png',
+    color: '#7c3aed',
+  },
 ];
 
+// Hero tiles for background grid
+const heroTiles = [
+  '/images/hero-tiles/MPDEE-logo.png',
+  '/images/hero-tiles/LBP-logo-328x328.png',
+  '/images/hero-tiles/VRS-logo-328x328.png',
+  '/images/hero-tiles/LWB-logo-328x328.png',
+  '/images/hero-tiles/TNS-logo-328x328.png',
+  '/images/hero-tiles/PBK-logo-328x328.png',
+  '/images/hero-tiles/FTC-logo-328x328.png',
+];
+
+// Function to shuffle array randomly
+const shuffleArray = (array: string[]) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
 const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-  const [dotPositions, setDotPositions] = useState(
-    DOTS.map(() => ({ x: 0, y: 0 }))
-  );
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const [shuffledTiles, setShuffledTiles] = useState<string[]>([]);
 
   useEffect(() => {
-    setIsClient(true);
+    // Shuffle tiles on component mount
+    setShuffledTiles(shuffleArray(heroTiles));
   }, []);
-
-  useEffect(() => {
-    if (!isClient) return;
-
-    // Trigger animation after component mounts
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-
-    // Detect mobile
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('resize', checkMobile);
-    };
-  }, [isClient]);
-
-  useEffect(() => {
-    if (!isClient) return;
-
-    let animationId: number;
-    let startTime = Date.now();
-
-    // Both mobile and desktop: Circular animation
-    const animateCircular = () => {
-      const time = (Date.now() - startTime) * 0.001; // Convert to seconds
-      const radius = isMobile ? 15 : 20; // Slightly larger radius for desktop
-      const speed = 0.8; // Speed of rotation
-
-      setDotPositions(
-        DOTS.map((dot, i) => {
-          const phase = i * 1.5; // Stagger the animation for each dot
-          return {
-            x: Math.cos(time * speed + phase) * radius,
-            y: Math.sin(time * speed + phase) * radius,
-          };
-        })
-      );
-
-      animationId = requestAnimationFrame(animateCircular);
-    };
-
-    animateCircular();
-
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, [isMobile, isClient]);
 
   const handleGetStarted = () => {
     track('hero_cta_click', {
@@ -96,105 +95,140 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
     }
   };
 
+  const handleViewPortfolio = () => {
+    track('hero_portfolio_click', {
+      source: 'hero',
+      buttonText: 'View Portfolio',
+    });
+
+    const portfolioSection = document.getElementById('portfolio');
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section
       id="home"
-      className="relative bg-background-dark text-text-light py-20 overflow-hidden"
+      className="relative h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"
     >
-      {/* Background animation elements */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none select-none">
-        {DOTS.map((dot, i) => (
-          <div
-            key={dot.key}
-            className={`absolute ${dot.base} bg-white rounded-full`}
-            style={{
-              transform: `translate(${dotPositions[i].x}px, ${dotPositions[i].y}px)`,
-              transition: 'none', // No transition needed for smooth animation
-            }}
-          />
-        ))}
+      {/* Grid of Portfolio Previews */}
+      <div className="absolute inset-0 grid grid-cols-5 grid-rows-4 gap-4 p-8 opacity-20">
+        {Array.from({ length: 20 }).map((_, i) => {
+          const tileImage =
+            shuffledTiles[i % shuffledTiles.length] ||
+            heroTiles[i % heroTiles.length];
+          return (
+            <motion.div
+              key={i}
+              className="bg-white rounded-lg p-2 flex items-center justify-center"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ scale: 1.1, opacity: 0.8 }}
+            >
+              <Image
+                src={tileImage}
+                alt="Portfolio tile"
+                width={60}
+                height={60}
+                className="object-contain"
+              />
+            </motion.div>
+          );
+        })}
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          {/* Logo above heading */}
-          <div
-            className={`flex flex-col items-center mb-8 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+      {/* Main Content */}
+      <div className="relative z-20 h-full flex items-center justify-center">
+        <div className="text-center text-white max-w-5xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="mb-8"
           >
-            <Image
-              src="/images/mpdee_logo.png"
-              alt="MPDEE logo"
-              width={96}
-              height={96}
-              className="mx-auto w-24 h-24 md:w-32 md:h-32 object-contain"
-              priority
-            />
-          </div>
+            <h1 className="text-8xl md:text-9xl font-bold mb-4">
+              MPDEE <span className="text-yellow-400">Development</span>
+            </h1>
+            <div className="w-32 h-1 bg-gradient-to-r from-yellow-400 to-pink-500 mx-auto"></div>
+          </motion.div>
 
-          {/* Main heading with slide-up animation */}
-          <h1
-            className={`text-4xl md:text-6xl font-bold mb-6 transition-all duration-1000 ease-out ${
-              isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-8'
-            }`}
+          <motion.p
+            className="text-2xl md:text-3xl mb-12 leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
           >
             Professional Web Design & Development
-          </h1>
+            <br />
+            <span className="text-yellow-400">
+              Transforming Ideas into Digital Reality
+            </span>
+          </motion.p>
 
-          {/* Subtitle with delayed slide-up animation */}
-          <p
-            className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto transition-all duration-1000 ease-out delay-300 ${
-              isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-8'
-            }`}
+          {/* Interactive Portfolio Navigation */}
+          <motion.div
+            className="flex justify-center space-x-6 mb-8"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1 }}
           >
-            We create beautiful, functional websites that drive results for your
-            business
-          </p>
+            {projects.map(project => (
+              <motion.div
+                key={project.id}
+                className="w-20 h-20 bg-white rounded-full p-2 cursor-pointer"
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+                onHoverStart={() => setHoveredProject(project.id)}
+                onHoverEnd={() => setHoveredProject(null)}
+              >
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={64}
+                  height={64}
+                  className="object-contain w-full h-full"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
 
-          {/* CTA button with delayed fade-in and scale animation */}
-          <div
-            className={`transition-all duration-1000 ease-out delay-600 ${
-              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-            }`}
+          {/* Static gap for project title */}
+          <div className="h-16 mb-8 flex items-center justify-center">
+            <AnimatePresence>
+              {hoveredProject && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="text-xl"
+                >
+                  {projects.find(p => p.id === hoveredProject)?.title}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.5 }}
+            className="space-x-6"
           >
             <button
-              onClick={handleGetStarted}
-              className="bg-primary text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-primary-dark hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-              aria-label="Get started with our web design services"
+              onClick={handleViewPortfolio}
+              className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
             >
-              Get Started
+              View Our Portfolio
             </button>
-          </div>
-
-          {/* Scroll indicator with bounce animation */}
-          <div
-            className={`mt-16 transition-all duration-1000 ease-out delay-1000 ${
-              isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-4'
-            }`}
-          >
-            <div className="flex flex-col items-center">
-              <span className="text-sm mb-2 opacity-80">Scroll to explore</span>
-              <svg
-                className="w-6 h-6 animate-bounce"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </div>
-          </div>
+            <button
+              onClick={handleGetStarted}
+              className="border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
+            >
+              Start Your Project
+            </button>
+          </motion.div>
         </div>
       </div>
     </section>
