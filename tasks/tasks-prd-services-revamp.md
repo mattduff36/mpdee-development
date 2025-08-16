@@ -38,20 +38,20 @@
   - [x] 2.5 Update icon imports and exports in `src/components/icons/index.tsx`
   - [x] 2.6 Ensure icons are accessible with proper ARIA labels
 
-- [ ] 3.0 Implement Package Pricing and Highlights
+- [x] 3.0 Implement Package Pricing and Highlights
   - [x] 3.1 Add pricing display logic to show prices only in modal/details view (not main cards)
   - [x] 3.2 Implement "Most Popular" badge/highlight for Gold package
   - [x] 3.3 Update pricing display styling to match current design system
   - [x] 3.4 Ensure Platinum package shows "Please contact for price" instead of fixed pricing
   - [x] 3.5 Add visual differentiation between package tiers (colors, styling)
 
-- [ ] 4.0 Update Service Modal Content and Formatting
-  - [ ] 4.1 Update modal content to display new package features and benefits
-  - [ ] 4.2 Ensure hosting information is prominently displayed in each modal
-  - [ ] 4.3 Update support duration information (3, 6, 12 months) in modal details
-  - [ ] 4.4 Maintain current modal structure and formatting consistency
-  - [ ] 4.5 Update modal accessibility features (keyboard navigation, ARIA labels)
-  - [ ] 4.6 Ensure responsive design works across all screen sizes
+- [x] 4.0 Update Service Modal Content and Formatting
+  - [x] 4.1 Update modal content to display new package features and benefits
+  - [x] 4.2 Ensure hosting information is prominently displayed in each modal
+  - [x] 4.3 Update support duration information (3, 6, 12 months) in modal details
+  - [x] 4.4 Maintain current modal structure and formatting consistency
+  - [x] 4.5 Update modal accessibility features (keyboard navigation, ARIA labels)
+  - [x] 4.6 Ensure responsive design works across all screen sizes
 
 - [ ] 5.0 Test and Validate Implementation
   - [ ] 5.1 Write unit tests for updated Services component with new package structure
