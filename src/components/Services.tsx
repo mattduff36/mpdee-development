@@ -87,7 +87,7 @@ const services: Service[] = [
     description:
       'Ultimate solution with unlimited pages, everything from Gold package, plus 12 months on-call assistance, continuous development and enhancement, performance monitoring, and integration with existing business systems (booking systems, etc.).',
     icon: <PlatinumIcon />, // Use SVG component
-    price: 'Please contact for price',
+    price: 'From £900',
     details: [
       'Unlimited pages and advanced features',
       'Everything from Gold package included',
