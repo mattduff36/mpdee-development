@@ -52,10 +52,10 @@ describe('Portfolio Component', () => {
 
     // Check project descriptions
     expect(
-      screen.getByText(/professional photography portfolio website/i)
+      screen.getByText(/professional photography portfolio website with gallery showcase and client login system/i)
     ).toBeInTheDocument();
-    expect(screen.getByText(/elegant salon website/i)).toBeInTheDocument();
-    expect(screen.getByText(/artist portfolio website/i)).toBeInTheDocument();
+    expect(screen.getByText(/professional hair and beauty salon website with comprehensive service showcase/i)).toBeInTheDocument();
+    expect(screen.getByText(/nature-inspired art portfolio with gallery showcase and commission services/i)).toBeInTheDocument();
   });
 
   it('renders filter buttons correctly', () => {
@@ -72,7 +72,7 @@ describe('Portfolio Component', () => {
       button.hasAttribute('aria-pressed')
     );
 
-    expect(filterButtonsWithAria).toHaveLength(6); // All Projects + 5 tag filters
+    expect(filterButtonsWithAria).toHaveLength(8); // All Projects + 7 tag filters (Photography, Portfolio, Beauty, Business, Transport, Entertainment, Art)
     expect(
       filterButtonsWithAria.find(button => button.textContent === 'Photography')
     ).toBeInTheDocument();
@@ -80,7 +80,7 @@ describe('Portfolio Component', () => {
       filterButtonsWithAria.find(button => button.textContent === 'Beauty')
     ).toBeInTheDocument();
     expect(
-      filterButtonsWithAria.find(button => button.textContent === 'E-commerce')
+      filterButtonsWithAria.find(button => button.textContent === 'Transport')
     ).toBeInTheDocument();
     expect(
       filterButtonsWithAria.find(button => button.textContent === 'Art')
@@ -158,7 +158,7 @@ describe('Portfolio Component', () => {
     expect(screen.getByText(/key outcomes:/i)).toBeInTheDocument();
     expect(screen.getByText(/technologies used:/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/increased online bookings by 200%/i)
+      screen.getByText(/professional portfolio showcasing 9 photography categories/i)
     ).toBeInTheDocument();
     expect(screen.getByText(/react/i)).toBeInTheDocument();
   });
@@ -338,20 +338,13 @@ describe('Portfolio Component', () => {
   it('displays project images correctly', () => {
     render(<Portfolio />);
 
-    // Check project images
+    // Check project images (Next.js optimized images will have different src)
     const images = screen.getAllByRole('img');
-    expect(images[0]).toHaveAttribute('src', '/images/LBP-Logo.png');
-    expect(images[0]).toHaveAttribute('alt', 'Lee Barrowcliff Photography');
-    expect(images[1]).toHaveAttribute(
-      'src',
-      '/images/victoria-rose-salon-logo.jpeg'
-    );
-    expect(images[1]).toHaveAttribute('alt', 'Victoria Rose Salon');
-    expect(images[2]).toHaveAttribute(
-      'src',
-      '/images/paintings-by-kay-logo.png'
-    );
-    expect(images[2]).toHaveAttribute('alt', 'Paintings by Kay');
+    expect(images[0]).toHaveAttribute('alt', 'Lee Barrowcliff Photography website screenshot');
+    expect(images[1]).toHaveAttribute('alt', 'Victoria Rose Salon website screenshot');
+    expect(images[2]).toHaveAttribute('alt', 'L.W. Barker Transport Services website screenshot');
+    expect(images[3]).toHaveAttribute('alt', 'T&S Bouncy Castle Hire website screenshot');
+    expect(images[4]).toHaveAttribute('alt', 'Paintings by Kay website screenshot');
   });
 
   it('displays project tags correctly', () => {
@@ -360,7 +353,8 @@ describe('Portfolio Component', () => {
     // Check that tags are displayed on project cards
     expect(screen.getAllByText('Photography')).toHaveLength(2); // Filter button + tag
     expect(screen.getAllByText('Beauty')).toHaveLength(2); // Filter button + tag
-    expect(screen.getAllByText('E-commerce')).toHaveLength(2); // Filter button + tag
+    expect(screen.getAllByText('Transport')).toHaveLength(2); // Filter button + tag
+    expect(screen.getAllByText('Entertainment')).toHaveLength(2); // Filter button + tag
     expect(screen.getAllByText('Art')).toHaveLength(2); // Filter button + tag
     expect(screen.getAllByText('Portfolio')).toHaveLength(3); // Filter button + 2 tags (Lee Barrowcliff Photography + Paintings by Kay)
   });

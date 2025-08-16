@@ -11,6 +11,7 @@ interface Project {
   description: string;
   shortDescription: string;
   image: string;
+  images: string[];
   tags: string[];
   technologies: string[];
   outcomes: string[];
@@ -26,7 +27,12 @@ const projects: Project[] = [
       'Professional photography portfolio website with gallery showcase and client login system.',
     description:
       "A stunning photography portfolio website for Lee Barrowcliff Photography featuring beautiful image galleries across multiple categories (Wedding, Portrait, Lifestyle, Landscape, Wildlife, Sport, Baby, Family, Pets), client login section for private galleries, and professional presentation. Designed to showcase the photographer's diverse work across the East Midlands.",
-    image: '/images/LBP-Logo.png',
+    image: '/images/portfolio-images/Lee-Barrowcliff-Photography/lbp-1.png',
+    images: [
+      '/images/portfolio-images/Lee-Barrowcliff-Photography/lbp-1.png',
+      '/images/portfolio-images/Lee-Barrowcliff-Photography/lbp-2.png',
+      '/images/portfolio-images/Lee-Barrowcliff-Photography/lbp-3.png',
+    ],
     tags: ['Photography', 'Portfolio'],
     technologies: [
       'React',
@@ -51,7 +57,12 @@ const projects: Project[] = [
       'Professional hair and beauty salon website with comprehensive service showcase.',
     description:
       "A beautiful and functional website for Victoria Rose Salon in Mansfield Woodhouse, Nottinghamshire, featuring comprehensive hair and beauty services, detailed service pages, customer reviews, and professional presentation. Operating since 2012, the salon offers expert hair cutting, styling, colouring, beauty treatments, manicures, pedicures, and advanced aesthetic services.",
-    image: '/images/victoria-rose-salon-logo.jpeg',
+    image: '/images/portfolio-images/Victoria-Rose-Salon/vr-1.png',
+    images: [
+      '/images/portfolio-images/Victoria-Rose-Salon/vr-1.png',
+      '/images/portfolio-images/Victoria-Rose-Salon/vr-2.png',
+      '/images/portfolio-images/Victoria-Rose-Salon/vr-3.png',
+    ],
     tags: ['Beauty', 'Business'],
     technologies: ['React', 'Next.js', 'TailwindCSS', 'Contact Forms', 'SEO'],
     outcomes: [
@@ -69,7 +80,12 @@ const projects: Project[] = [
       'Professional transport company website with comprehensive fleet showcase and service coverage.',
     description:
       "A comprehensive website for L.W. Barker Transport Services LTD, a family-run business with 21 years of experience providing complete transport solutions across the UK. Features detailed fleet information (3.5t vans to 44t articulated lorries), service coverage from local to long-distance transport, specialized load handling, and 24/7 emergency transport availability.",
-    image: '/images/lwbarker-logo.png',
+    image: '/images/portfolio-images/LW-Barker-Transport-Services/lwb-1.png',
+    images: [
+      '/images/portfolio-images/LW-Barker-Transport-Services/lwb-1.png',
+      '/images/portfolio-images/LW-Barker-Transport-Services/lwb-2.png',
+      '/images/portfolio-images/LW-Barker-Transport-Services/lwb-3.png',
+    ],
     tags: ['Transport', 'Business'],
     technologies: [
       'React',
@@ -94,7 +110,13 @@ const projects: Project[] = [
       'Family-run bouncy castle hire business serving Nottinghamshire with safe, professional party equipment.',
     description:
       "A vibrant and engaging website for T&S Bouncy Castle Hire, a family-run business based in Edwinstowe serving Nottinghamshire since 2024. Features comprehensive bouncy castle showcase, service area coverage (Edwinstowe, Mansfield, Newark, Worksop, Ollerton, Nottingham, Bilsthorpe), safety information, and professional party equipment rental services with full insurance and PIPA testing.",
-    image: '/images/ts-bouncy-castle-logo.png',
+    image: '/images/portfolio-images/TS-Bouncy-Castle-Hire/tns-1.png',
+    images: [
+      '/images/portfolio-images/TS-Bouncy-Castle-Hire/tns-1.png',
+      '/images/portfolio-images/TS-Bouncy-Castle-Hire/tns-2.png',
+      '/images/portfolio-images/TS-Bouncy-Castle-Hire/tns-3.png',
+      '/images/portfolio-images/TS-Bouncy-Castle-Hire/tns-4.png',
+    ],
     tags: ['Entertainment', 'Business'],
     technologies: [
       'React',
@@ -118,7 +140,12 @@ const projects: Project[] = [
       'Nature-inspired art portfolio with gallery showcase and commission services.',
     description:
       "An artistic portfolio website showcasing Kay's nature-inspired paintings from Mansfield, Nottinghamshire. Features a beautiful gallery of original acrylic and oil paintings including woodland scenes, dramatic skies, tranquil waters, and coastal landscapes. Includes commission services for custom landscape and scenery pieces, online shop with free UK delivery, and contact system for inquiries.",
-    image: '/images/paintings-by-kay-logo.png',
+    image: '/images/portfolio-images/Paintings-by-Kay/pbk-1.png',
+    images: [
+      '/images/portfolio-images/Paintings-by-Kay/pbk-1.png',
+      '/images/portfolio-images/Paintings-by-Kay/pbk-2.png',
+      '/images/portfolio-images/Paintings-by-Kay/pbk-3.png',
+    ],
     tags: ['Art', 'Portfolio'],
     technologies: [
       'React',
@@ -143,6 +170,7 @@ const allTags = Array.from(new Set(projects.flatMap(project => project.tags)));
 const Portfolio = () => {
   const [selectedTag, setSelectedTag] = useState<string>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
 
   const filteredProjects =
     selectedTag === 'All'
@@ -165,10 +193,32 @@ const Portfolio = () => {
       currentFilter: selectedTag,
     });
     setSelectedProject(project);
+    setSelectedImageIndex(0);
   };
 
   const handleCloseModal = () => {
     setSelectedProject(null);
+    setSelectedImageIndex(0);
+  };
+
+  const handleImageSelect = (index: number) => {
+    setSelectedImageIndex(index);
+  };
+
+  const handlePrevImage = () => {
+    if (selectedProject && selectedProject.images.length > 1) {
+      setSelectedImageIndex((prev) => 
+        prev === 0 ? selectedProject.images.length - 1 : prev - 1
+      );
+    }
+  };
+
+  const handleNextImage = () => {
+    if (selectedProject && selectedProject.images.length > 1) {
+      setSelectedImageIndex((prev) => 
+        prev === selectedProject.images.length - 1 ? 0 : prev + 1
+      );
+    }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent, project: Project) => {
@@ -266,15 +316,20 @@ const Portfolio = () => {
                 role="button"
                 aria-label={`View details for ${project.title}`}
               >
-                <div className="aspect-video bg-gray-200 flex items-center justify-center overflow-hidden relative">
+                <div className="aspect-video bg-gray-200 overflow-hidden relative group">
                   <Image
                     src={project.image}
-                    alt={`${project.title} logo and branding`}
+                    alt={`${project.title} website screenshot`}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-contain"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
                     loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-gray-800 font-medium text-sm">
+                      View Project
+                    </div>
+                  </div>
                 </div>
                 <div className="p-4">
                   <h3 className="text-lg font-bold text-text-light mb-2">
@@ -392,16 +447,74 @@ const Portfolio = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                   <div>
-                    <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden mb-6 relative">
+                    {/* Main Image Display */}
+                    <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden mb-4 relative group">
                       <Image
-                        src={selectedProject.image}
-                        alt={`${selectedProject.title} logo and branding`}
+                        src={selectedProject.images[selectedImageIndex]}
+                        alt={`${selectedProject.title} screenshot ${selectedImageIndex + 1}`}
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-contain"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
                         priority
                       />
+                      
+                      {/* Navigation Arrows */}
+                      {selectedProject.images.length > 1 && (
+                        <>
+                          <button
+                            onClick={handlePrevImage}
+                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            aria-label="Previous image"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                          </button>
+                          <button
+                            onClick={handleNextImage}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            aria-label="Next image"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                        </>
+                      )}
+                      
+                      {/* Image Counter */}
+                      {selectedProject.images.length > 1 && (
+                        <div className="absolute bottom-2 right-2 bg-black/50 text-white px-2 py-1 rounded text-sm">
+                          {selectedImageIndex + 1} / {selectedProject.images.length}
+                        </div>
+                      )}
                     </div>
+
+                    {/* Image Thumbnails */}
+                    {selectedProject.images.length > 1 && (
+                      <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
+                        {selectedProject.images.map((image, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handleImageSelect(index)}
+                            className={`flex-shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                              index === selectedImageIndex
+                                ? 'border-blue-500 opacity-100'
+                                : 'border-gray-300 opacity-70 hover:opacity-100'
+                            }`}
+                          >
+                            <Image
+                              src={image}
+                              alt={`${selectedProject.title} thumbnail ${index + 1}`}
+                              width={80}
+                              height={56}
+                              className="w-full h-full object-cover"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    )}
+
                     <div className="flex flex-wrap gap-2 mb-4">
                       {selectedProject.tags.map((tag, index) => (
                         <span
