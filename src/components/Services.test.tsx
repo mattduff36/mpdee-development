@@ -44,52 +44,58 @@ describe('Services Component', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders all three service cards', () => {
+  it('renders all website package service cards', () => {
     render(<Services />);
 
-    // Check service titles
+    // Check service titles for website packages
     expect(
-      screen.getByRole('heading', { level: 3, name: /ui\/ux design/i })
+      screen.getByRole('heading', { level: 3, name: /bronze website package/i })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { level: 3, name: /front-end development/i })
+      screen.getByRole('heading', { level: 3, name: /silver website package/i })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { level: 3, name: /full-stack development/i })
+      screen.getByRole('heading', { level: 3, name: /gold website package/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 3, name: /platinum website package/i })
     ).toBeInTheDocument();
 
     // Check service descriptions
     expect(
-      screen.getByText(/creating intuitive and visually appealing/i)
+      screen.getByText(/perfect for businesses needing a simple online presence/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/building responsive, interactive web applications/i)
+      screen.getByText(/comprehensive business solution with up to 5 pages/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/end-to-end web application development/i)
+      screen.getByText(/everything in silver plus up to 8 pages/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/ultimate solution with unlimited pages/i)
     ).toBeInTheDocument();
 
-    // Check Learn More buttons
+    // Check Learn More buttons (should have 5 total: 4 website packages + Media Partnership, PWA is Coming Soon)
     const learnMoreButtons = screen.getAllByRole('button', {
-      name: /learn more/i,
+      name: /learn more about/i,
     });
-    expect(learnMoreButtons).toHaveLength(3);
+    expect(learnMoreButtons).toHaveLength(5);
   });
 
   it('opens modal when Learn More button is clicked', async () => {
     render(<Services />);
 
-    // Click on UI/UX Design Learn More button
-    const learnMoreButtons = screen.getAllByRole('button', {
-      name: /learn more/i,
+    // Click on Bronze Website Package Learn More button
+    const bronzeButton = screen.getByRole('button', {
+      name: /learn more about bronze website package/i,
     });
-    fireEvent.click(learnMoreButtons[0]);
+    fireEvent.click(bronzeButton);
 
     // Check modal is open
     await waitFor(() => {
       expect(screen.getByRole('dialog')).toBeInTheDocument();
       expect(
-        screen.getByText('UI/UX Design', { selector: '#modal-title' })
+        screen.getByText('Bronze Website Package', { selector: '#modal-title' })
       ).toBeInTheDocument();
     });
 
@@ -97,9 +103,8 @@ describe('Services Component', () => {
     expect(screen.getByText(/what we deliver:/i)).toBeInTheDocument();
     expect(screen.getByText(/technologies we use:/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/user research and persona development/i)
+      screen.getByText(/professional 1 or 2 page basic holding page/i)
     ).toBeInTheDocument();
-    expect(screen.getByText(/figma/i)).toBeInTheDocument();
   });
 
   it('closes modal when close button is clicked', async () => {
@@ -251,15 +256,16 @@ describe('Services Component', () => {
 
     // Check service icons have proper aria-label
     const icons = screen.getAllByRole('img');
-    expect(icons[0]).toHaveAttribute('aria-label', 'UI/UX Design');
-    expect(icons[1]).toHaveAttribute('aria-label', 'Front-end Development');
-    expect(icons[2]).toHaveAttribute('aria-label', 'Full-Stack Development');
+    expect(icons[0]).toHaveAttribute('aria-label', 'Bronze Website Package');
+    expect(icons[1]).toHaveAttribute('aria-label', 'Silver Website Package');
+    expect(icons[2]).toHaveAttribute('aria-label', 'Gold Website Package');
+    expect(icons[3]).toHaveAttribute('aria-label', 'Platinum Website Package');
 
     // Check buttons have proper aria-labels
     const learnMoreButtons = screen.getAllByRole('button', {
       name: /learn more about/i,
     });
-    expect(learnMoreButtons).toHaveLength(3);
+    expect(learnMoreButtons).toHaveLength(5);
 
     // Check main CTA button has proper aria-label
     const discussButton = screen.getByRole('button', {
@@ -271,37 +277,40 @@ describe('Services Component', () => {
   it('displays correct content for each service', () => {
     render(<Services />);
 
-    // Open UI/UX Design modal
-    const learnMoreButtons = screen.getAllByRole('button', {
-      name: /learn more/i,
+    // Open Bronze Website Package modal
+    const bronzeButton = screen.getByRole('button', {
+      name: /learn more about bronze website package/i,
     });
-    fireEvent.click(learnMoreButtons[0]);
+    fireEvent.click(bronzeButton);
 
-    // Check UI/UX specific content
+    // Check Bronze package specific content
     expect(
-      screen.getByText(/user research and persona development/i)
+      screen.getByText(/professional 1 or 2 page basic holding page/i)
     ).toBeInTheDocument();
-    expect(screen.getByText(/figma/i)).toBeInTheDocument();
+    expect(screen.getByText(/from £100/i)).toBeInTheDocument();
 
-    // Close and open Front-end Development modal
+    // Close and open Silver Website Package modal
     const closeButton = screen.getByRole('button', { name: /close modal/i });
     fireEvent.click(closeButton);
 
-    fireEvent.click(learnMoreButtons[1]);
+    const silverButton = screen.getByRole('button', {
+      name: /learn more about silver website package/i,
+    });
+    fireEvent.click(silverButton);
 
-    // Check Front-end specific content
-    expect(screen.getByText(/responsive web development/i)).toBeInTheDocument();
-    expect(screen.getByText(/react/i)).toBeInTheDocument();
+    // Check Silver package specific content
+    expect(screen.getByText(/up to 5 professionally designed pages/i)).toBeInTheDocument();
+    expect(screen.getByText(/from £300/i)).toBeInTheDocument();
   });
 
   it('prevents modal content click from closing modal', async () => {
     render(<Services />);
 
     // Open modal
-    const learnMoreButtons = screen.getAllByRole('button', {
-      name: /learn more/i,
+    const bronzeButton = screen.getByRole('button', {
+      name: /learn more about bronze website package/i,
     });
-    fireEvent.click(learnMoreButtons[0]);
+    fireEvent.click(bronzeButton);
 
     await waitFor(() => {
       expect(screen.getByRole('dialog')).toBeInTheDocument();
