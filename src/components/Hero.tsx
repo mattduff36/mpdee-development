@@ -208,7 +208,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             <motion.div
               className="flex space-x-6 px-16 min-w-0"
               animate={{
-                x: isCarouselPaused ? 0 : -((projects.length * (112 + 24)) * 2), // 112px width + 24px gap (space-x-6), move by 2 sets
+                x: isCarouselPaused ? 0 : -(projects.length * (112 + 24) * 2), // 112px width + 24px gap (space-x-6), move by 2 sets
               }}
               transition={{
                 x: {
@@ -227,26 +227,28 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               }}
             >
               {/* Create enough duplicates for seamless loop */}
-              {[...projects, ...projects, ...projects, ...projects].map((project, index) => (
-                <motion.div
-                  key={`${project.id}-${index}`}
-                  className="w-28 h-28 bg-white rounded-full p-3 cursor-pointer flex-shrink-0"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  onMouseEnter={() => setHoveredProject(project.id)}
-                  onMouseLeave={() => setHoveredProject(null)}
-                  onClick={() => handleProjectClick(project.id)}
-                >
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={80}
-                    height={80}
-                    className="object-contain w-full h-full"
-                  />
-                </motion.div>
-              ))}
+              {[...projects, ...projects, ...projects, ...projects].map(
+                (project, index) => (
+                  <motion.div
+                    key={`${project.id}-${index}`}
+                    className="w-28 h-28 bg-white rounded-full p-3 cursor-pointer flex-shrink-0"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    onMouseEnter={() => setHoveredProject(project.id)}
+                    onMouseLeave={() => setHoveredProject(null)}
+                    onClick={() => handleProjectClick(project.id)}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={80}
+                      height={80}
+                      className="object-contain w-full h-full"
+                    />
+                  </motion.div>
+                )
+              )}
             </motion.div>
           </motion.div>
 
