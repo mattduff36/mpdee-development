@@ -139,7 +139,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
       }}
     >
       {/* Grid of Portfolio Previews */}
-      <div className="absolute inset-0 grid grid-cols-5 grid-rows-4 gap-4 p-8 opacity-20">
+      <div className="absolute inset-0 grid grid-cols-5 grid-rows-4 gap-4 p-8 pt-28 opacity-20">
         {Array.from({ length: 20 }).map((_, i) => {
           // Ensure we always have a tile by cycling through available tiles
           const tilesToUse =
