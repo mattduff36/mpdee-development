@@ -16,7 +16,6 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
 
   const navigationItems = useMemo(
     () => [
-      { name: 'Home', href: '#', id: 'home' },
       { name: 'Services', href: '#services', id: 'services' },
       { name: 'Portfolio', href: '#portfolio', id: 'portfolio' },
       { name: 'Contact', href: '#contact', id: 'contact' },
@@ -103,9 +102,9 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
       onKeyDown={handleKeyDown}
     >
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex items-center h-20">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 w-1/3">
             <button
               onClick={() => handleNavClick('#', 'home')}
               className="flex items-center text-2xl font-bold text-text-light focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
@@ -127,12 +126,12 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
             </button>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Perfectly Centered */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="hidden md:flex space-x-8"
+            className="hidden md:flex space-x-8 w-1/3 justify-center"
           >
             {navigationItems.map((item, index) => (
               <motion.button
@@ -159,7 +158,7 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="hidden md:block"
+            className="hidden md:flex w-1/3 justify-end"
           >
             <button
               onClick={() => handleNavClick('#contact', 'contact')}

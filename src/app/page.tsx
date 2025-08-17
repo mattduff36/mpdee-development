@@ -1,4 +1,5 @@
 import { Hero, Services, Portfolio, Contact } from '@/components';
+import ScrollToTop from '@/components/ScrollToTop';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -52,6 +53,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <ScrollToTop />
+      
       {/* Hero Section */}
       <Hero />
 
