@@ -74,36 +74,11 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [shuffledTiles, setShuffledTiles] = useState<string[]>([]);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
-  const [animationPhase, setAnimationPhase] = useState<'fast' | 'medium' | 'slow'>('fast');
 
   useEffect(() => {
     // Shuffle tiles on component mount
     setShuffledTiles(shuffleArray(heroTiles));
-    
-    // Phase-based speed changes for better Framer Motion compatibility
-    const timer1 = setTimeout(() => {
-      setAnimationPhase('medium'); // Transition to medium speed
-    }, 3000);
-    
-    const timer2 = setTimeout(() => {
-      setAnimationPhase('slow'); // Transition to normal speed
-    }, 5000);
-    
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-    };
   }, []);
-  
-  // Get animation duration based on current phase
-  const getAnimationDuration = () => {
-    switch (animationPhase) {
-      case 'fast': return 1.5;   // 20x faster
-      case 'medium': return 8;   // 4x faster  
-      case 'slow': return 30;    // Normal speed
-      default: return 30;
-    }
-  };
 
   const handleGetStarted = () => {
     track('hero_cta_click', {
@@ -231,18 +206,29 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           >
             {/* Scrolling container */}
             <motion.div
-              key={animationPhase} // Force re-animation when phase changes
               className="flex space-x-6 px-16 min-w-0"
               animate={{
-                x: isCarouselPaused ? 0 : -(projects.length * (112 + 24) * 2), // 112px width + 24px gap (space-x-6), move by 2 sets
+                x: isCarouselPaused 
+                  ? 0 
+                  : [
+                      0,
+                      -50,   // Fast initial movement
+                      -150,  // Continuing fast
+                      -300,  // Starting to slow
+                      -(projects.length * (112 + 24) * 2), // Final position
+                    ]
               }}
               transition={{
                 x: {
-                  duration: getAnimationDuration(), // Phase-based speed changes
+                  duration: 30,
                   repeat: Infinity,
                   ease: 'linear',
                   repeatType: 'loop',
+                  times: [0, 0.05, 0.15, 0.35, 1], // Keyframe timing - fast start, gradual slowdown
                 },
+              }}
+              initial={{
+                x: 0,
               }}
               onHoverStart={() => setIsCarouselPaused(true)}
               onHoverEnd={() => setIsCarouselPaused(false)}
