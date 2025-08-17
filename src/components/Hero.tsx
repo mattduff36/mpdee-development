@@ -208,15 +208,15 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             <motion.div
               className="flex space-x-6 px-16 min-w-0"
               animate={{
-                x: isCarouselPaused 
-                  ? 0 
+                x: isCarouselPaused
+                  ? 0
                   : [
                       0,
-                      -50,   // Fast initial movement
-                      -150,  // Continuing fast
-                      -300,  // Starting to slow
+                      -50, // Fast initial movement
+                      -150, // Continuing fast
+                      -300, // Starting to slow
                       -(projects.length * (112 + 24) * 2), // Final position
-                    ]
+                    ],
               }}
               transition={{
                 x: {
