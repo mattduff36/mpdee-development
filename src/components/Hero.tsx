@@ -74,10 +74,18 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [shuffledTiles, setShuffledTiles] = useState<string[]>([]);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
     // Shuffle tiles on component mount
     setShuffledTiles(shuffleArray(heroTiles));
+    
+    // After 3 seconds, slow down the carousel animation
+    const timer = setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const handleGetStarted = () => {
@@ -212,7 +220,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               }}
               transition={{
                 x: {
-                  duration: 30, // Slower for smoother effect
+                  duration: isInitialLoad ? 1.5 : 30, // 20x faster initially (30/20 = 1.5), then normal speed
                   repeat: Infinity,
                   ease: 'linear',
                   repeatType: 'loop',
