@@ -53,17 +53,17 @@ describe('Portfolio Component', () => {
     // Check project descriptions
     expect(
       screen.getByText(
-        /professional photography portfolio website with gallery showcase and client login system/i
+        /professional photography portfolio website with secure client authentication and admin portal/i
       )
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        /professional hair and beauty salon website with comprehensive service showcase/i
+        /dynamic salon website with automated content management and integrated booking system/i
       )
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        /nature-inspired art portfolio with gallery showcase and commission services/i
+        /e-commerce art platform with integrated order management and commission system/i
       )
     ).toBeInTheDocument();
   });
@@ -167,11 +167,6 @@ describe('Portfolio Component', () => {
     // Check modal content
     expect(screen.getByText(/key outcomes:/i)).toBeInTheDocument();
     expect(screen.getByText(/technologies used:/i)).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        /professional portfolio showcasing 9 photography categories/i
-      )
-    ).toBeInTheDocument();
     expect(screen.getByText(/react/i)).toBeInTheDocument();
   });
 

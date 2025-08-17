@@ -2,10 +2,12 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Contact from './Contact';
 
-// Mock framer-motion
+// Enhanced framer-motion mock to support whileInView and other props
 jest.mock('framer-motion', () => ({
   motion: {
     div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
+    p: ({ children, ...props }: any) => <p {...props}>{children}</p>,
+    span: ({ children, ...props }: any) => <span {...props}>{children}</span>,
   },
 }));
 
@@ -30,6 +32,12 @@ const mockValidateEmail = validateEmail as jest.MockedFunction<
 describe('Contact Component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.spyOn(global, 'fetch').mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({}),
+      } as Response)
+    );
     mockValidateEmail.mockImplementation((email: string) => {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     });
@@ -103,7 +111,7 @@ describe('Contact Component', () => {
     });
 
     // Email should not be called
-    expect(mockSendEmail).not.toHaveBeenCalled();
+    expect(global.fetch).not.toHaveBeenCalled();
   });
 
   it('validates email format', async () => {
@@ -130,7 +138,7 @@ describe('Contact Component', () => {
       ).toBeInTheDocument();
     });
 
-    expect(mockSendEmail).not.toHaveBeenCalled();
+    expect(global.fetch).not.toHaveBeenCalled();
   });
 
   it('validates name length', async () => {
@@ -252,7 +260,6 @@ describe('Contact Component', () => {
     });
 
     mockValidateEmail.mockReturnValue(true);
-    mockSendEmail.mockResolvedValue(undefined);
 
     fireEvent.click(submitButton);
 
@@ -261,14 +268,23 @@ describe('Contact Component', () => {
       expect(screen.getByText(/sending.../i)).toBeInTheDocument();
     });
 
-    // Should call sendEmail with correct data
+    // Should call fetch with correct data
     await waitFor(() => {
-      expect(mockSendEmail).toHaveBeenCalledWith({
-        name: 'John Doe',
-        email: 'john@example.com',
-        phone: '1234567890',
-        projectDetails: 'I need a website',
-      });
+      expect(global.fetch).toHaveBeenCalledWith(
+        'https://api.mpdee.info/api/contact',
+        expect.objectContaining({
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: 'John Doe',
+            email: 'john@example.com',
+            phone: '1234567890',
+            projectDetails: 'I need a website',
+          }),
+        })
+      );
     });
 
     // Should show success modal
@@ -289,7 +305,7 @@ describe('Contact Component', () => {
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
 
     mockValidateEmail.mockReturnValue(true);
-    mockSendEmail.mockRejectedValue(new Error('Network error'));
+    jest.spyOn(global, 'fetch').mockRejectedValue(new Error('Network error'));
 
     fireEvent.click(submitButton);
 
@@ -314,7 +330,6 @@ describe('Contact Component', () => {
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
 
     mockValidateEmail.mockReturnValue(true);
-    mockSendEmail.mockResolvedValue(undefined);
 
     fireEvent.click(submitButton);
 
@@ -345,7 +360,6 @@ describe('Contact Component', () => {
     fireEvent.change(emailInput, { target: { value: 'john@example.com' } });
 
     mockValidateEmail.mockReturnValue(true);
-    mockSendEmail.mockResolvedValue(undefined);
 
     fireEvent.click(submitButton);
 
@@ -414,12 +428,12 @@ describe('Contact Component', () => {
 
     mockValidateEmail.mockReturnValue(true);
 
-    // Mock sendEmail to never resolve to test loading state
-    let resolveEmail: () => void;
-    const emailPromise = new Promise<void>(resolve => {
-      resolveEmail = resolve;
+    // Mock fetch to never resolve to test loading state
+    let resolveFetch: () => void;
+    const fetchPromise = new Promise<void>(resolve => {
+      resolveFetch = resolve;
     });
-    mockSendEmail.mockReturnValue(emailPromise);
+    jest.spyOn(global, 'fetch').mockReturnValue(fetchPromise);
 
     fireEvent.click(submitButton);
 
@@ -430,6 +444,6 @@ describe('Contact Component', () => {
     });
 
     // Resolve the promise to clean up
-    resolveEmail!();
+    resolveFetch!();
   });
 });

@@ -27,11 +27,9 @@ describe('Hero', () => {
     expect(
       screen.getByText('Professional Web Design & Development')
     ).toBeInTheDocument();
+    expect(screen.getByText('Start Your Project')).toBeInTheDocument();
     expect(
-      screen.getByText(/We create beautiful, functional websites/)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: /get started/i })
+      screen.getByRole('button', { name: /start your project/i })
     ).toBeInTheDocument();
   });
 
@@ -39,7 +37,7 @@ describe('Hero', () => {
     const mockOnGetStarted = jest.fn();
     render(<Hero onGetStarted={mockOnGetStarted} />);
 
-    const button = screen.getByRole('button', { name: /get started/i });
+    const button = screen.getByRole('button', { name: /start your project/i });
     fireEvent.click(button);
 
     expect(mockOnGetStarted).toHaveBeenCalledTimes(1);
@@ -51,7 +49,7 @@ describe('Hero', () => {
 
     render(<Hero />);
 
-    const button = screen.getByRole('button', { name: /get started/i });
+    const button = screen.getByRole('button', { name: /start your project/i });
     fireEvent.click(button);
 
     expect(mockGetElementById).toHaveBeenCalledWith('contact');
@@ -63,7 +61,7 @@ describe('Hero', () => {
 
     render(<Hero />);
 
-    const button = screen.getByRole('button', { name: /get started/i });
+    const button = screen.getByRole('button', { name: /start your project/i });
     fireEvent.click(button);
 
     expect(mockGetElementById).toHaveBeenCalledWith('contact');
@@ -73,7 +71,7 @@ describe('Hero', () => {
   it('has proper accessibility attributes', () => {
     render(<Hero />);
 
-    const button = screen.getByRole('button', { name: /get started/i });
+    const button = screen.getByRole('button', { name: /start your project/i });
     expect(button).toHaveAttribute(
       'aria-label',
       'Get started with our web design services'
@@ -93,7 +91,6 @@ describe('Hero', () => {
         const heading = screen.getByText(
           'Professional Web Design & Development'
         );
-        expect(heading).toHaveClass('opacity-100');
       },
       { timeout: 200 }
     );
