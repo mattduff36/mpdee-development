@@ -74,40 +74,36 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [shuffledTiles, setShuffledTiles] = useState<string[]>([]);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
-  const [animationSpeed, setAnimationSpeed] = useState(1.5); // Start fast
+  const [animationPhase, setAnimationPhase] = useState<'fast' | 'medium' | 'slow'>('fast');
 
   useEffect(() => {
     // Shuffle tiles on component mount
     setShuffledTiles(shuffleArray(heroTiles));
     
-    // Gradually slow down the animation from 1.5s to 30s over 4 seconds
-    const startTime = Date.now();
-    const initialSpeed = 1.5;
-    const finalSpeed = 30;
-    const transitionDuration = 4000; // 4 seconds
-    
-    const updateSpeed = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / transitionDuration, 1);
-      
-      // Use easeOut curve for smooth deceleration
-      const easedProgress = 1 - Math.pow(1 - progress, 3);
-      const currentSpeed = initialSpeed + (finalSpeed - initialSpeed) * easedProgress;
-      
-      setAnimationSpeed(currentSpeed);
-      
-      if (progress < 1) {
-        requestAnimationFrame(updateSpeed);
-      }
-    };
-    
-    // Start the gradual slowdown after 3 seconds
-    const timer = setTimeout(() => {
-      requestAnimationFrame(updateSpeed);
+    // Phase-based speed changes for better Framer Motion compatibility
+    const timer1 = setTimeout(() => {
+      setAnimationPhase('medium'); // Transition to medium speed
     }, 3000);
     
-    return () => clearTimeout(timer);
+    const timer2 = setTimeout(() => {
+      setAnimationPhase('slow'); // Transition to normal speed
+    }, 5000);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, []);
+  
+  // Get animation duration based on current phase
+  const getAnimationDuration = () => {
+    switch (animationPhase) {
+      case 'fast': return 1.5;   // 20x faster
+      case 'medium': return 8;   // 4x faster  
+      case 'slow': return 30;    // Normal speed
+      default: return 30;
+    }
+  };
 
   const handleGetStarted = () => {
     track('hero_cta_click', {
@@ -235,13 +231,14 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           >
             {/* Scrolling container */}
             <motion.div
+              key={animationPhase} // Force re-animation when phase changes
               className="flex space-x-6 px-16 min-w-0"
               animate={{
                 x: isCarouselPaused ? 0 : -(projects.length * (112 + 24) * 2), // 112px width + 24px gap (space-x-6), move by 2 sets
               }}
               transition={{
                 x: {
-                  duration: animationSpeed, // Dynamic speed that gradually slows down
+                  duration: getAnimationDuration(), // Phase-based speed changes
                   repeat: Infinity,
                   ease: 'linear',
                   repeatType: 'loop',
