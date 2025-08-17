@@ -133,7 +133,10 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   return (
     <section
       id="home"
-      className="relative h-[calc(100vh-4rem)] bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 overflow-hidden"
+      className="relative -mt-20 h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 overflow-hidden"
+      style={{
+        height: '100dvh', // Use dvh for better mobile viewport handling, full height
+      }}
     >
       {/* Grid of Portfolio Previews */}
       <div className="absolute inset-0 grid grid-cols-5 grid-rows-4 gap-4 p-8 opacity-20">
@@ -165,7 +168,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 h-full flex items-center justify-center">
+      <div className="relative z-20 h-full flex items-center justify-center pt-20">
         <div className="text-center text-white max-w-5xl mx-auto px-4 sm:px-6 w-full">
           <motion.div
             initial={{ opacity: 0, y: -50 }}
