@@ -275,7 +275,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
-                  className="text-2xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-orange-600 bg-clip-text text-transparent"
+                  className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent"
                 >
                   {projects.find(p => p.id === hoveredProject)?.title}
                 </motion.div>
