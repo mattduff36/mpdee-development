@@ -18,31 +18,31 @@ interface HeroProps {
 
 const projects: Project[] = [
   {
-    id: 'lbp',
+    id: 'lbp-website',
     title: 'Lee Barrowcliff Photography',
     image: '/images/hero-tiles/LBP-logo-328x328.png',
     color: '#1f2937',
   },
   {
-    id: 'victoria',
+    id: 'victoria-rose-salon',
     title: 'Victoria Rose Salon',
     image: '/images/hero-tiles/VRS-logo-328x328.png',
     color: '#ec4899',
   },
   {
-    id: 'lwbarker',
-    title: 'L.W. Barker Transport',
+    id: 'lwbarker-transport',
+    title: 'L.W. Barker Transport Services',
     image: '/images/hero-tiles/LWB-logo-328x328.png',
     color: '#059669',
   },
   {
-    id: 'bouncy',
+    id: 'bouncy-castle-hire',
     title: 'T&S Bouncy Castle Hire',
     image: '/images/hero-tiles/TNS-logo-328x328.png',
     color: '#f59e0b',
   },
   {
-    id: 'paintings',
+    id: 'paintings-by-kay',
     title: 'Paintings by Kay',
     image: '/images/hero-tiles/PBK-logo-328x328.png',
     color: '#7c3aed',
@@ -96,15 +96,15 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
     }
   };
 
-  const handleViewPortfolio = () => {
-    track('hero_portfolio_click', {
+  const handleViewServices = () => {
+    track('hero_services_click', {
       source: 'hero',
-      buttonText: 'View Portfolio',
+      buttonText: 'View Services',
     });
 
-    const portfolioSection = document.getElementById('portfolio');
-    if (portfolioSection) {
-      portfolioSection.scrollIntoView({ behavior: 'smooth' });
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -133,7 +133,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   return (
     <section
       id="home"
-      className="relative h-[calc(100vh-4rem)] bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"
+      className="relative h-[calc(100vh-4rem)] bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 overflow-hidden"
     >
       {/* Grid of Portfolio Previews */}
       <div className="absolute inset-0 grid grid-cols-5 grid-rows-4 gap-4 p-8 opacity-20">
@@ -166,14 +166,14 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
 
       {/* Main Content */}
       <div className="relative z-20 h-full flex items-center justify-center">
-        <div className="text-center text-white max-w-5xl mx-auto px-6">
+        <div className="text-center text-white max-w-5xl mx-auto px-4 sm:px-6 w-full">
           <motion.div
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             className="mb-8"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 whitespace-nowrap text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 text-center leading-tight">
               MPDEE{' '}
               <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
                 Development
@@ -183,7 +183,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           </motion.div>
 
           <motion.p
-            className="text-2xl md:text-3xl mb-12 leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 sm:mb-12 leading-relaxed px-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -193,7 +193,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
 
           {/* Interactive Portfolio Navigation - Netflix Style Carousel */}
           <motion.div
-            className="relative w-full max-w-2xl mx-auto mb-8 py-4"
+            className="relative w-full max-w-2xl mx-auto mb-8 py-4 overflow-hidden"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
@@ -206,22 +206,28 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           >
             {/* Scrolling container */}
             <motion.div
-              className="flex space-x-6 px-16"
+              className="flex space-x-6 px-16 min-w-0"
               animate={{
-                x: isCarouselPaused ? 0 : [-200, -400],
+                x: isCarouselPaused ? 0 : -((projects.length * (112 + 24)) * 2), // 112px width + 24px gap (space-x-6), move by 2 sets
               }}
               transition={{
                 x: {
-                  duration: 20,
+                  duration: 30, // Slower for smoother effect
                   repeat: Infinity,
                   ease: 'linear',
+                  repeatType: 'loop',
                 },
               }}
               onHoverStart={() => setIsCarouselPaused(true)}
               onHoverEnd={() => setIsCarouselPaused(false)}
+              style={{
+                touchAction: 'pan-y',
+                WebkitTransform: 'translateZ(0)',
+                transform: 'translateZ(0)',
+              }}
             >
-              {/* Duplicate projects array to create seamless loop */}
-              {[...projects, ...projects, ...projects].map((project, index) => (
+              {/* Create enough duplicates for seamless loop */}
+              {[...projects, ...projects, ...projects, ...projects].map((project, index) => (
                 <motion.div
                   key={`${project.id}-${index}`}
                   className="w-28 h-28 bg-white rounded-full p-3 cursor-pointer flex-shrink-0"
@@ -264,19 +270,21 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.5 }}
-            className="space-x-6"
+            className="flex gap-3 sm:gap-6 items-center justify-center"
           >
             <button
-              onClick={handleViewPortfolio}
-              className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
+              onClick={handleViewServices}
+              className="bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-colors"
             >
-              View Our Portfolio
+              <span className="hidden sm:inline">View Services</span>
+              <span className="sm:hidden">Services</span>
             </button>
             <button
               onClick={handleGetStarted}
-              className="border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
+              className="border-2 border-white hover:bg-white hover:text-gray-900 px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition-colors"
             >
-              Start Your Project
+              <span className="hidden sm:inline">Start Your Project</span>
+              <span className="sm:hidden">Contact</span>
             </button>
           </motion.div>
         </div>
