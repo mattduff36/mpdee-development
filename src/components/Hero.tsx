@@ -74,15 +74,36 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [shuffledTiles, setShuffledTiles] = useState<string[]>([]);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [animationSpeed, setAnimationSpeed] = useState(1.5); // Start fast
 
   useEffect(() => {
     // Shuffle tiles on component mount
     setShuffledTiles(shuffleArray(heroTiles));
     
-    // After 3 seconds, slow down the carousel animation
+    // Gradually slow down the animation from 1.5s to 30s over 4 seconds
+    const startTime = Date.now();
+    const initialSpeed = 1.5;
+    const finalSpeed = 30;
+    const transitionDuration = 4000; // 4 seconds
+    
+    const updateSpeed = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / transitionDuration, 1);
+      
+      // Use easeOut curve for smooth deceleration
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const currentSpeed = initialSpeed + (finalSpeed - initialSpeed) * easedProgress;
+      
+      setAnimationSpeed(currentSpeed);
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateSpeed);
+      }
+    };
+    
+    // Start the gradual slowdown after 3 seconds
     const timer = setTimeout(() => {
-      setIsInitialLoad(false);
+      requestAnimationFrame(updateSpeed);
     }, 3000);
     
     return () => clearTimeout(timer);
@@ -220,7 +241,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
               }}
               transition={{
                 x: {
-                  duration: isInitialLoad ? 1.5 : 30, // 20x faster initially (30/20 = 1.5), then normal speed
+                  duration: animationSpeed, // Dynamic speed that gradually slows down
                   repeat: Infinity,
                   ease: 'linear',
                   repeatType: 'loop',
