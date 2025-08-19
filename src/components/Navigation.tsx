@@ -111,7 +111,7 @@ const Navigation = () => {
           <div className="flex-shrink-0 md:w-full">
             <button
               onClick={() => handleNavClick('#', 'home')}
-              className="flex items-center text-2xl font-bold text-text-light focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+              className="flex items-center text-2xl font-bold text-text-light focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded space-x-3"
               aria-label="Go to homepage"
               tabIndex={0}
             >
@@ -123,6 +123,9 @@ const Navigation = () => {
                 className="h-8 w-auto object-contain"
                 priority
               />
+              <span className="text-xl font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
+                Development
+              </span>
             </button>
           </div>
 
