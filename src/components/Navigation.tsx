@@ -4,6 +4,14 @@ import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
+// Global function declarations for analytics tracking
+declare global {
+  interface Window {
+    trackConversion?: (action: string) => void;
+    trackHubReferral?: () => void;
+  }
+}
+
 interface NavigationProps {
   logo?: string;
 }
@@ -19,6 +27,17 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
       { name: 'Services', href: '#services', id: 'services' },
       { name: 'Portfolio', href: '#portfolio', id: 'portfolio' },
       { name: 'Contact', href: '#contact', id: 'contact' },
+      {
+        name: 'All MPDEE Services',
+        href: 'https://mpdee.co.uk',
+        id: 'hub',
+        external: true,
+        onClick: () => {
+          if (typeof window !== 'undefined' && window.trackHubReferral) {
+            window.trackHubReferral();
+          }
+        },
+      },
     ],
     []
   );
@@ -133,24 +152,41 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="hidden md:flex space-x-8 justify-center"
           >
-            {navigationItems.map((item, index) => (
-              <motion.button
-                key={item.id}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                onClick={() => handleNavClick(item.href, item.id)}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-                  activeSection === item.id
-                    ? 'text-primary bg-primary/10'
-                    : 'text-text-light hover:text-primary hover:bg-gray-800'
-                }`}
-                aria-current={activeSection === item.id ? 'page' : undefined}
-                tabIndex={0}
-              >
-                {item.name}
-              </motion.button>
-            ))}
+            {navigationItems.map((item, index) =>
+              item.external ? (
+                <motion.a
+                  key={item.id}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={item.onClick}
+                  className="px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 text-text-light hover:text-primary hover:bg-gray-800 border border-primary"
+                  tabIndex={0}
+                >
+                  {item.name}
+                </motion.a>
+              ) : (
+                <motion.button
+                  key={item.id}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                  onClick={() => handleNavClick(item.href, item.id)}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+                    activeSection === item.id
+                      ? 'text-primary bg-primary/10'
+                      : 'text-text-light hover:text-primary hover:bg-gray-800'
+                  }`}
+                  aria-current={activeSection === item.id ? 'page' : undefined}
+                  tabIndex={0}
+                >
+                  {item.name}
+                </motion.button>
+              )
+            )}
           </motion.div>
 
           {/* CTA Button (Desktop) + Mobile Menu Button */}

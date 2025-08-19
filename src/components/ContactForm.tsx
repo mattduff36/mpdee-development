@@ -141,19 +141,13 @@ const ContactForm = ({
         projectDetailsLength: formData.projectDetails.length,
       });
 
-      setFormState({
-        isSubmitting: false,
-        isSubmitted: true,
-        submitError: null,
-      });
+      // Track contact form submission
+      if (typeof window !== 'undefined' && window.trackConversion) {
+        window.trackConversion('contact_form_submit');
+      }
 
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        projectDetails: '',
-      });
+      // Redirect to hub confirmation page
+      window.location.href = 'https://mpdee.co.uk/contact-received';
     } catch (error) {
       track('form_submission_error', {
         page: 'contact',
