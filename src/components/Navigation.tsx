@@ -120,17 +120,13 @@ const Navigation = ({ logo = 'MPDEE' }: NavigationProps) => {
               tabIndex={0}
             >
               <Image
-                src="/images/mpdee_logo.png"
-                alt="MPDEE logo"
-                width={32}
-                height={32}
-                className="mr-2 w-8 h-8 object-contain"
+                src="/images/MPDEE-Development-logo-trans.png"
+                alt="MPDEE Development logo"
+                width={120}
+                height={40}
+                className="h-8 w-auto object-contain"
                 priority
               />
-              MPDEE&nbsp;
-              <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
-                Development
-              </span>
             </button>
           </div>
 
