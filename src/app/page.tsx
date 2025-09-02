@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description:
       'Professional web design and development services. We create beautiful, functional websites that drive results for your business.',
     type: 'website',
-    url: 'https://mpdee.vercel.app',
+    url: 'https://development.mpdee.co.uk',
     siteName: 'MPDEE',
     images: [
       {
