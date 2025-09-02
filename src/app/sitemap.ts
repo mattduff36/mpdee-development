@@ -2,14 +2,15 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://development.mpdee.co.uk';
-  const currentDate = new Date().toISOString();
+  // Use simple date format to match other MPDEE sitemaps
+  const currentDate = new Date().toISOString().split('T')[0];
 
   return [
     {
-      url: baseUrl,
+      url: `${baseUrl}/`,
       lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 1,
+      changeFrequency: 'monthly',
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/services`,
