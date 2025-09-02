@@ -6,4 +6,4 @@ Disallow: /admin/
 # Allow indexing of downloads page
 Allow: /downloads.html
 
-Sitemap: https://mpdee.co.uk/sitemap.xml 
+Sitemap: https://development.mpdee.co.uk/sitemap.xml 
