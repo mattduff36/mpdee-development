@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /private/
-Disallow: /admin/
-
-# Allow indexing of downloads page
-Allow: /downloads.html
-
-Sitemap: https://development.mpdee.co.uk/sitemap.xml 
