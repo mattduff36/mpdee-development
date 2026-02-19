@@ -111,38 +111,6 @@ export default function Home() {
         <Line />
       </RevealFx>
 
-      {routes['/work'] && (
-        <Column fillWidth gap="l">
-          <Column fillWidth gap="4">
-            <Flex fillWidth horizontal="between" vertical="end">
-              <Column gap="4">
-                <Heading as="h2" variant="display-strong-xs">
-                  Featured{' '}
-                  <Text
-                    as="span"
-                    variant="display-strong-xs"
-                    className="brand-gradient-text"
-                  >
-                    Projects
-                  </Text>
-                </Heading>
-                <Text variant="body-default-s" onBackground="neutral-weak">
-                  A selection of recent client work
-                </Text>
-              </Column>
-              <SmartLink href="/work" suffixIcon="arrowRight" iconSize="xs">
-                <Text variant="body-default-s">View all</Text>
-              </SmartLink>
-            </Flex>
-          </Column>
-          <Projects range={[1, 3]} />
-        </Column>
-      )}
-
-      <RevealFx translateY="8" fillWidth>
-        <Line />
-      </RevealFx>
-
       {routes['/services'] && (
         <Column fillWidth gap="l">
           <Column fillWidth gap="4">
@@ -168,6 +136,38 @@ export default function Home() {
             </Flex>
           </Column>
           <ServiceHighlights />
+        </Column>
+      )}
+
+      <RevealFx translateY="8" fillWidth>
+        <Line />
+      </RevealFx>
+
+      {routes['/work'] && (
+        <Column fillWidth gap="l">
+          <Column fillWidth gap="4">
+            <Flex fillWidth horizontal="between" vertical="end">
+              <Column gap="4">
+                <Heading as="h2" variant="display-strong-xs">
+                  Featured{' '}
+                  <Text
+                    as="span"
+                    variant="display-strong-xs"
+                    className="brand-gradient-text"
+                  >
+                    Projects
+                  </Text>
+                </Heading>
+                <Text variant="body-default-s" onBackground="neutral-weak">
+                  A selection of recent client work
+                </Text>
+              </Column>
+              <SmartLink href="/work" suffixIcon="arrowRight" iconSize="xs">
+                <Text variant="body-default-s">View all</Text>
+              </SmartLink>
+            </Flex>
+          </Column>
+          <Projects range={[1, 3]} />
         </Column>
       )}
 
