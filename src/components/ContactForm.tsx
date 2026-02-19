@@ -1,8 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { track } from '@vercel/analytics';
+import {
+  Column,
+  Row,
+  Button,
+  Input,
+  Textarea,
+  Text,
+  Card,
+  Heading,
+  RevealFx,
+} from '@once-ui-system/core';
 import { validateEmail } from '@/utils/validation';
 
 interface FormData {
@@ -25,17 +35,7 @@ interface FormState {
   submitError: string | null;
 }
 
-interface ContactFormProps {
-  title?: string;
-  subtitle?: string;
-  className?: string;
-}
-
-const ContactForm = ({
-  title = 'Get in Touch',
-  subtitle = 'Ready to start your project? Let&apos;s discuss how we can help bring your vision to life.',
-  className = '',
-}: ContactFormProps) => {
+export function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -53,33 +53,23 @@ const ContactForm = ({
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Name validation (required)
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    } else if (formData.name.trim().length < 2) {
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    else if (formData.name.trim().length < 2)
       newErrors.name = 'Name must be at least 2 characters';
-    }
 
-    // Email validation (required)
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!validateEmail(formData.email)) {
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    else if (!validateEmail(formData.email))
       newErrors.email = 'Please enter a valid email address';
-    }
 
-    // Phone validation (optional, but if provided should be valid)
-    if (formData.phone.trim() && formData.phone.trim().length < 10) {
+    if (formData.phone.trim() && formData.phone.trim().length < 10)
       newErrors.phone = 'Please enter a valid phone number';
-    }
 
-    // Project details validation (optional)
     if (
       formData.projectDetails.trim() &&
       formData.projectDetails.trim().length > 1000
-    ) {
+    )
       newErrors.projectDetails =
         'Project details must be less than 1000 characters';
-    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -89,43 +79,21 @@ const ContactForm = ({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    // Clear error for this field when user starts typing
-    if (errors[name as keyof FormErrors]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: undefined,
-      }));
-    }
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name as keyof FormErrors])
+      setErrors(prev => ({ ...prev, [name]: undefined }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
 
-    if (!validateForm()) {
-      track('form_validation_error', {
-        page: 'contact',
-        errors: Object.keys(errors).join(', '),
-      });
-      return;
-    }
-
-    setFormState({
-      isSubmitting: true,
-      isSubmitted: false,
-      submitError: null,
-    });
+    setFormState({ isSubmitting: true, isSubmitted: false, submitError: null });
 
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
@@ -134,28 +102,17 @@ const ContactForm = ({
         throw new Error(errorData.error || 'Failed to send message');
       }
 
-      track('form_submission_success', {
-        page: 'contact',
-        hasPhone: !!formData.phone,
-        hasProjectDetails: !!formData.projectDetails,
-        projectDetailsLength: formData.projectDetails.length,
+      track('contact_form_submit', {
+        source: 'contact_page',
+        status: 'success',
       });
-
-      // Track contact form submission
-      if (typeof window !== 'undefined' && window.trackConversion) {
-        window.trackConversion('contact_form_submit');
-      }
-
-      // Redirect to hub confirmation page
-      window.location.href = 'https://mpdee.co.uk/contact-received';
+      setFormState({
+        isSubmitting: false,
+        isSubmitted: true,
+        submitError: null,
+      });
+      setFormData({ name: '', email: '', phone: '', projectDetails: '' });
     } catch (error) {
-      track('form_submission_error', {
-        page: 'contact',
-        hasPhone: !!formData.phone,
-        hasProjectDetails: !!formData.projectDetails,
-        error: error instanceof Error ? error.message : 'Unknown error',
-      });
-
       setFormState({
         isSubmitting: false,
         isSubmitted: false,
@@ -167,238 +124,96 @@ const ContactForm = ({
     }
   };
 
-  const handleCloseSuccess = () => {
-    setFormState(prev => ({
-      ...prev,
-      isSubmitted: false,
-    }));
-  };
+  if (formState.isSubmitted) {
+    return (
+      <RevealFx translateY="4" fillWidth>
+        <Card fillWidth padding="32" radius="l" border="brand-alpha-medium">
+          <Column gap="16" horizontal="center" fillWidth>
+            <Heading as="h3" variant="heading-strong-l" align="center">
+              Message Sent!
+            </Heading>
+            <Text
+              variant="body-default-m"
+              onBackground="neutral-weak"
+              align="center"
+            >
+              Thank you for getting in touch. We&apos;ll respond within 24
+              hours.
+            </Text>
+            <Button
+              variant="secondary"
+              onClick={() =>
+                setFormState(prev => ({ ...prev, isSubmitted: false }))
+              }
+            >
+              Send Another Message
+            </Button>
+          </Column>
+        </Card>
+      </RevealFx>
+    );
+  }
 
   return (
-    <div className={className}>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">{title}</h2>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
-      </motion.div>
+    <form onSubmit={handleSubmit}>
+      <Column gap="20" fillWidth>
+        <Input
+          id="contact-name"
+          name="name"
+          label="Name"
+          value={formData.name}
+          onChange={handleInputChange}
+          error={!!errors.name}
+          errorMessage={errors.name}
+          required
+        />
+        <Input
+          id="contact-email"
+          name="email"
+          label="Email"
+          value={formData.email}
+          onChange={handleInputChange}
+          error={!!errors.email}
+          errorMessage={errors.email}
+          required
+        />
+        <Input
+          id="contact-phone"
+          name="phone"
+          label="Phone (optional)"
+          value={formData.phone}
+          onChange={handleInputChange}
+          error={!!errors.phone}
+          errorMessage={errors.phone}
+        />
+        <Textarea
+          id="contact-details"
+          name="projectDetails"
+          label="Tell us about your project"
+          value={formData.projectDetails}
+          onChange={handleInputChange}
+          error={!!errors.projectDetails}
+          errorMessage={errors.projectDetails}
+          lines={5}
+        />
 
-      <div className="max-w-2xl mx-auto">
-        <motion.form
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          onSubmit={handleSubmit}
-          className="space-y-6"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 bg-gray-800 text-text-light ${
-                  errors.name ? 'border-red-500' : 'border-gray-600'
-                }`}
-                placeholder="Your name"
-                aria-describedby={errors.name ? 'name-error' : undefined}
-                required
-              />
-              {errors.name && (
-                <p id="name-error" className="mt-1 text-sm text-red-600">
-                  {errors.name}
-                </p>
-              )}
-            </div>
+        {formState.submitError && (
+          <Text variant="body-default-s" onBackground="danger-strong">
+            {formState.submitError}
+          </Text>
+        )}
 
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Email <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 bg-gray-800 text-text-light ${
-                  errors.email ? 'border-red-500' : 'border-gray-600'
-                }`}
-                placeholder="your.email@example.com"
-                aria-describedby={errors.email ? 'email-error' : undefined}
-                required
-              />
-              {errors.email && (
-                <p id="email-error" className="mt-1 text-sm text-red-600">
-                  {errors.email}
-                </p>
-              )}
-            </div>
-          </div>
-
-          <div>
-            <label
-              htmlFor="phone"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 bg-gray-800 text-text-light ${
-                errors.phone ? 'border-red-500' : 'border-gray-600'
-              }`}
-              placeholder="(555) 123-4567"
-              aria-describedby={errors.phone ? 'phone-error' : undefined}
-            />
-            {errors.phone && (
-              <p id="phone-error" className="mt-1 text-sm text-red-600">
-                {errors.phone}
-              </p>
-            )}
-          </div>
-
-          <div>
-            <label
-              htmlFor="projectDetails"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Project Details
-            </label>
-            <textarea
-              id="projectDetails"
-              name="projectDetails"
-              value={formData.projectDetails}
-              onChange={handleInputChange}
-              rows={6}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 resize-vertical bg-gray-800 text-text-light ${
-                errors.projectDetails ? 'border-red-500' : 'border-gray-600'
-              }`}
-              placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
-              aria-describedby={
-                errors.projectDetails ? 'projectDetails-error' : undefined
-              }
-            />
-            {errors.projectDetails && (
-              <p
-                id="projectDetails-error"
-                className="mt-1 text-sm text-red-600"
-              >
-                {errors.projectDetails}
-              </p>
-            )}
-          </div>
-
-          <div className="text-center">
-            <button
-              type="submit"
-              disabled={formState.isSubmitting}
-              className="inline-flex items-center px-8 py-4 bg-primary text-white font-semibold text-lg rounded-lg hover:bg-primary-dark disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              aria-label="Submit project inquiry"
-            >
-              {formState.isSubmitting ? (
-                <>
-                  <svg
-                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  Sending...
-                </>
-              ) : (
-                'Send Message'
-              )}
-            </button>
-          </div>
-
-          {formState.submitError && (
-            <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-600 text-sm">{formState.submitError}</p>
-            </div>
-          )}
-        </motion.form>
-      </div>
-
-      {/* Success Overlay */}
-      {formState.isSubmitted && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-          onClick={handleCloseSuccess}
-        >
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="bg-white rounded-lg p-8 max-w-md w-full text-center"
-            onClick={e => e.stopPropagation()}
+        <Row gap="12">
+          <Button
+            type="submit"
+            variant="primary"
+            size="l"
+            loading={formState.isSubmitting}
           >
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-8 h-8 text-green-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
-            <p className="text-gray-600 mb-6">
-              Your message has been sent successfully. We&apos;ll get back to
-              you within 24 hours.
-            </p>
-            <button
-              onClick={handleCloseSuccess}
-              className="inline-flex items-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            >
-              Close
-            </button>
-          </motion.div>
-        </motion.div>
-      )}
-    </div>
+            {formState.isSubmitting ? 'Sending...' : 'Send Message'}
+          </Button>
+        </Row>
+      </Column>
+    </form>
   );
-};
-
-export default ContactForm;
+}

@@ -1,0 +1,25 @@
+/* Custom styles for MPDEE Development */
+
+.project-carousel-trimmed img {
+  transform: scale(1.06) !important;
+  object-fit: cover !important;
+}
+
+.brand-gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--scheme-yellow-700) 0%,
+    var(--scheme-orange-600) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-gradient-bg {
+  background: linear-gradient(
+    135deg,
+    var(--scheme-yellow-700),
+    var(--scheme-orange-600)
+  );
+}

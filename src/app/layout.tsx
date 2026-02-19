@@ -1,34 +1,60 @@
-import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/react';
-import { generateMPDEEMetadata } from '@/shared/seo-utils';
-import Script from 'next/script';
-import Layout from '@/components/Layout';
-import StructuredData from '@/components/StructuredData';
-import './globals.css';
+import '@once-ui-system/core/css/styles.css';
+import '@once-ui-system/core/css/tokens.css';
+import '@/resources/custom.css';
 
-const inter = Inter({ subsets: ['latin'] });
+import classNames from 'classnames';
+import type { Metadata, Viewport } from 'next';
+import { Analytics } from '@vercel/analytics/react';
+import Script from 'next/script';
+
+import { Background, Column, Flex } from '@once-ui-system/core';
+import { Footer, Header, Providers } from '@/components';
+import { baseURL, fonts, style, effects, home } from '@/resources';
+
+const resolvedBaseURL = baseURL.startsWith('http')
+  ? baseURL
+  : `https://${baseURL}`;
 
 export const metadata: Metadata = {
-  ...generateMPDEEMetadata({
-    title: 'MPDEE Development - Professional Web Design & Development',
-    description:
-      'Professional web design and development services. Custom websites, e-commerce solutions, and digital platforms that drive results.',
-    keywords: [
-      'web design',
-      'web development',
-      'UI/UX design',
-      'frontend development',
-      'full-stack development',
-      'e-commerce solutions',
-      'custom websites',
-      'digital platforms',
-      'responsive design',
-      'professional web services',
+  title: {
+    default: home.title,
+    template: `%s | MPDEE Development`,
+  },
+  description: home.description,
+  metadataBase: new URL(resolvedBaseURL),
+  openGraph: {
+    type: 'website',
+    locale: 'en_GB',
+    url: resolvedBaseURL,
+    siteName: 'MPDEE Development',
+    title: home.title,
+    description: home.description,
+    images: [
+      {
+        url: '/images/mpdee_logo_with_text.png',
+        width: 1200,
+        height: 630,
+        alt: 'MPDEE Development',
+      },
     ],
-    canonicalUrl: '/',
-    service: 'development',
-  }),
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: home.title,
+    description: home.description,
+    images: ['/images/mpdee_logo_with_text.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: [
       { url: '/images/favicon/favicon.ico', sizes: 'any' },
@@ -61,34 +87,67 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={classNames(
+        fonts.heading.variable,
+        fonts.body.variable,
+        fonts.label.variable,
+        fonts.code.variable
+      )}
+    >
       <head>
-        <StructuredData />
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              if ('scrollRestoration' in history) {
-                history.scrollRestoration = 'manual';
-              }
-              window.addEventListener('beforeunload', function() {
-                window.scrollTo(0, 0);
-              });
+              (function() {
+                try {
+                  const config = ${JSON.stringify({
+                    theme: style.theme,
+                    brand: style.brand,
+                    accent: style.accent,
+                    neutral: style.neutral,
+                    solid: style.solid,
+                    'solid-style': style.solidStyle,
+                    border: style.border,
+                    surface: style.surface,
+                    transition: style.transition,
+                    scaling: style.scaling,
+                  })};
+                  const root = document.documentElement;
+                  Object.entries(config).forEach(([key, value]) => {
+                    root.setAttribute('data-' + key, value);
+                  });
+                  const savedTheme = localStorage.getItem('data-theme');
+                  if (savedTheme) {
+                    root.setAttribute('data-theme', savedTheme);
+                  }
+                } catch (e) {
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                }
+              })();
             `,
           }}
         />
       </head>
-      <body className={inter.className}>
-        {/* Cross-Domain Google Analytics */}
+      <body
+        style={{
+          background: 'var(--page-background)',
+          margin: 0,
+          padding: 0,
+        }}
+      >
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-FNQX2LJQQE"
           strategy="afterInteractive"
         />
-        <Script id="google-analytics-cross-domain" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -96,35 +155,45 @@ export default function RootLayout({
             gtag('config', 'G-FNQX2LJQQE', {
               linker: {
                 domains: ['mpdee.co.uk', 'creative.mpdee.co.uk', 'development.mpdee.co.uk', 'support.mpdee.co.uk']
-              },
-              custom_map: {
-                'custom_parameter_1': 'service_conversion'
               }
             });
-            
-            // Track conversions
-            function trackConversion(action) {
-              gtag('event', 'conversion', {
-                'send_to': 'G-FNQX2LJQQE/' + action,
-                'service_type': 'development',
-                'source_site': 'specialized'
-              });
-            }
-            
-            // Track hub referrals
-            function trackHubReferral() {
-              gtag('event', 'hub_referral', {
-                'service_type': 'development',
-                'destination': 'hub'
-              });
-            }
-            
-            window.trackConversion = trackConversion;
-            window.trackHubReferral = trackHubReferral;
           `}
         </Script>
 
-        <Layout>{children}</Layout>
+        <Providers>
+          <Column style={{ minHeight: '100vh' }}>
+            <Background
+              position="fixed"
+              mask={effects.mask}
+              gradient={effects.gradient as any}
+              dots={effects.dots as any}
+              grid={effects.grid as any}
+              lines={effects.lines as any}
+            />
+            <Flex fillWidth minHeight="16" />
+            <Header />
+            <Flex
+              zIndex={0}
+              fillWidth
+              paddingY="l"
+              paddingX="l"
+              horizontal="center"
+              flex={1}
+            >
+              <Flex horizontal="center" fillWidth minHeight="0">
+                <Column
+                  fillWidth
+                  paddingX="32"
+                  maxWidth="l"
+                  horizontal="center"
+                >
+                  {children}
+                </Column>
+              </Flex>
+            </Flex>
+            <Footer />
+          </Column>
+        </Providers>
         <Analytics />
       </body>
     </html>

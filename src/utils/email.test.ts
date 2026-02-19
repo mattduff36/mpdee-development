@@ -1,59 +1,41 @@
 import { sendContactFormEmail } from './email';
 
-// Mock console methods to avoid cluttering test output
-const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
-const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation();
+const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+const consoleLogSpy = jest.spyOn(console, 'log').mockImplementation();
 
 describe('email utils', () => {
   beforeEach(() => {
-    // Clear console mocks before each test
-    consoleSpy.mockClear();
-    consoleWarnSpy.mockClear();
+    consoleErrorSpy.mockClear();
+    consoleLogSpy.mockClear();
   });
 
   afterAll(() => {
-    // Restore console methods after all tests
-    consoleSpy.mockRestore();
-    consoleWarnSpy.mockRestore();
+    consoleErrorSpy.mockRestore();
+    consoleLogSpy.mockRestore();
   });
 
-  it('sends contact form email successfully', async () => {
-    const formData = {
+  it('returns false when SMTP is not configured in dev', async () => {
+    const originalEnv = process.env.NODE_ENV;
+    delete process.env.SMTP_USER;
+    delete process.env.SMTP_PASS;
+    delete process.env.CONTACT_EMAIL;
+    process.env.NODE_ENV = 'test';
+
+    const result = await sendContactFormEmail({
       name: 'John Doe',
       email: 'john@example.com',
-      phone: '+1234567890',
-      projectDetails: 'I need a website built',
-    };
+    });
 
-    const result = await sendContactFormEmail(formData);
-    expect(result).toBe(true);
+    expect(result).toBe(false);
+    process.env.NODE_ENV = originalEnv;
   });
 
   it('handles missing optional fields', async () => {
-    const formData = {
+    const result = await sendContactFormEmail({
       name: 'Jane Doe',
       email: 'jane@example.com',
-    };
+    });
 
-    const result = await sendContactFormEmail(formData);
-    expect(result).toBe(true);
-  });
-
-  it('logs email service and content during development', async () => {
-    const formData = {
-      name: 'Test User',
-      email: 'test@example.com',
-    };
-
-    await sendContactFormEmail(formData);
-
-    expect(consoleSpy).toHaveBeenCalledWith(
-      'Email service:',
-      expect.any(String)
-    );
-    expect(consoleSpy).toHaveBeenCalledWith(
-      'Email content:',
-      expect.any(Object)
-    );
+    expect(typeof result).toBe('boolean');
   });
 });

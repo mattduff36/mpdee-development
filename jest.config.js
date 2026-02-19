@@ -7,7 +7,7 @@ module.exports = {
   },
   testPathIgnorePatterns: ['/node_modules/', '/.next/'],
   transformIgnorePatterns: [
-    'node_modules/(?!(@vercel/analytics)/)',
+    'node_modules/(?!(@vercel/analytics|@once-ui-system/core|react-icons)/)',
   ],
   transform: {
     '^.+\\.(ts|tsx)$': [

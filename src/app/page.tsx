@@ -1,71 +1,196 @@
-import { Hero, Services, Portfolio, Contact } from '@/components';
-import ScrollToTop from '@/components/ScrollToTop';
-import { Metadata } from 'next';
+import {
+  Heading,
+  Text,
+  Button,
+  RevealFx,
+  Column,
+  Row,
+  Line,
+  Flex,
+  SmartLink,
+} from '@once-ui-system/core';
+import { home, company, routes } from '@/resources';
+import { Projects } from '@/components/work/Projects';
+import { ServiceHighlights } from '@/components/services/ServiceHighlights';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Home | MPDEE - Professional Web Design & Development',
-  description:
-    'Professional web design and development services. We create beautiful, functional websites that drive results for your business. Expert UI/UX design and full-stack development.',
-  keywords:
-    'web design, web development, professional website, UI/UX design, full-stack development, business websites',
-  openGraph: {
-    title: 'Home | MPDEE - Professional Web Design & Development',
-    description:
-      'Professional web design and development services. We create beautiful, functional websites that drive results for your business.',
-    type: 'website',
-    url: 'https://development.mpdee.co.uk',
-    siteName: 'MPDEE',
-    images: [
-      {
-        url: '/images/mpdee_logo_with_text.png',
-        width: 1200,
-        height: 630,
-        alt: 'MPDEE - Professional Web Design & Development',
-      },
-    ],
-    locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Home | MPDEE - Professional Web Design & Development',
-    description:
-      'Professional web design and development services. We create beautiful, functional websites that drive results for your business.',
-    images: ['/images/mpdee_logo_with_text.png'],
-    creator: '@mpdee_dev',
-    site: '@mpdee_dev',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'your-google-verification-code',
-  },
+  title: home.title,
+  description: home.description,
 };
 
 export default function Home() {
   return (
-    <>
-      <ScrollToTop />
+    <Column maxWidth="m" gap="xl" horizontal="center">
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: company.name,
+            url: `https://${company.subdomain}`,
+            logo: `https://${company.subdomain}${company.logo}`,
+            description: home.description,
+            areaServed: {
+              '@type': 'Country',
+              name: 'United Kingdom',
+            },
+          }),
+        }}
+      />
 
-      {/* Hero Section */}
-      <Hero />
+      <Column fillWidth paddingY="l" gap="m" horizontal="center">
+        <RevealFx translateY="4" fillWidth horizontal="center">
+          <Column horizontal="center" gap="8">
+            <Heading
+              variant="display-strong-xl"
+              align="center"
+              onBackground="neutral-strong"
+            >
+              MPDEE{' '}
+              <Text
+                as="span"
+                variant="display-strong-xl"
+                className="brand-gradient-text"
+              >
+                Development
+              </Text>
+            </Heading>
+            <Flex
+              className="brand-gradient-bg"
+              style={{
+                width: '4rem',
+                height: '3px',
+                borderRadius: '2px',
+              }}
+            />
+          </Column>
+        </RevealFx>
 
-      {/* Services Section */}
-      <Services />
+        <RevealFx translateY="8" delay={0.1} fillWidth horizontal="center">
+          <Column maxWidth="s" horizontal="center">
+            <Text
+              wrap="balance"
+              onBackground="neutral-weak"
+              variant="heading-default-l"
+              align="center"
+            >
+              {company.tagline}
+            </Text>
+          </Column>
+        </RevealFx>
 
-      {/* Portfolio Section */}
-      <Portfolio />
+        <RevealFx translateY="12" delay={0.2} fillWidth horizontal="center">
+          <Column maxWidth="s" horizontal="center">
+            <Text
+              wrap="balance"
+              onBackground="neutral-weak"
+              variant="body-default-l"
+              align="center"
+            >
+              {home.subline}
+            </Text>
+          </Column>
+        </RevealFx>
 
-      {/* Contact Section */}
-      <Contact />
-    </>
+        <RevealFx translateY="16" delay={0.3} fillWidth horizontal="center">
+          <Row gap="16" horizontal="center" paddingTop="24">
+            <Button href="/contact" variant="primary" size="l">
+              Get Started
+            </Button>
+            <Button href="/work" variant="secondary" size="l">
+              View Our Work
+            </Button>
+          </Row>
+        </RevealFx>
+      </Column>
+
+      <RevealFx translateY="16" delay={0.4} fillWidth>
+        <Line />
+      </RevealFx>
+
+      {routes['/work'] && (
+        <Column fillWidth gap="l">
+          <Column fillWidth gap="4">
+            <Flex fillWidth horizontal="between" vertical="end">
+              <Column gap="4">
+                <Heading as="h2" variant="display-strong-xs">
+                  Featured{' '}
+                  <Text
+                    as="span"
+                    variant="display-strong-xs"
+                    className="brand-gradient-text"
+                  >
+                    Projects
+                  </Text>
+                </Heading>
+                <Text variant="body-default-s" onBackground="neutral-weak">
+                  A selection of recent client work
+                </Text>
+              </Column>
+              <SmartLink href="/work" suffixIcon="arrowRight" iconSize="xs">
+                <Text variant="body-default-s">View all</Text>
+              </SmartLink>
+            </Flex>
+          </Column>
+          <Projects range={[1, 3]} />
+        </Column>
+      )}
+
+      <RevealFx translateY="8" fillWidth>
+        <Line />
+      </RevealFx>
+
+      {routes['/services'] && (
+        <Column fillWidth gap="l">
+          <Column fillWidth gap="4">
+            <Flex fillWidth horizontal="between" vertical="end">
+              <Column gap="4">
+                <Heading as="h2" variant="display-strong-xs">
+                  Our{' '}
+                  <Text
+                    as="span"
+                    variant="display-strong-xs"
+                    className="brand-gradient-text"
+                  >
+                    Services
+                  </Text>
+                </Heading>
+                <Text variant="body-default-s" onBackground="neutral-weak">
+                  Website packages for every business need
+                </Text>
+              </Column>
+              <SmartLink href="/services" suffixIcon="arrowRight" iconSize="xs">
+                <Text variant="body-default-s">View all</Text>
+              </SmartLink>
+            </Flex>
+          </Column>
+          <ServiceHighlights />
+        </Column>
+      )}
+
+      <RevealFx translateY="8" fillWidth>
+        <Line />
+      </RevealFx>
+
+      <Column fillWidth gap="m" horizontal="center" paddingY="l">
+        <Heading as="h2" variant="heading-strong-l" align="center">
+          Ready to start your project?
+        </Heading>
+        <Text
+          variant="body-default-m"
+          onBackground="neutral-weak"
+          align="center"
+          wrap="balance"
+        >
+          Let&apos;s discuss how we can help bring your vision to life.
+        </Text>
+        <Button href="/contact" variant="primary" size="l">
+          Get in Touch
+        </Button>
+      </Column>
+    </Column>
   );
 }
