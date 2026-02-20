@@ -69,62 +69,36 @@ export const sendContactFormEmail = async (
   }
 };
 
-// Alias export for backward compatibility
-export const sendEmail = sendContactFormEmail;
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 const generateEmailHTML = (
   formData: EmailFormData,
   siteUrl: string
 ): string => {
+  const name = escapeHtml(formData.name);
+  const email = escapeHtml(formData.email);
+  const phone = formData.phone ? escapeHtml(formData.phone) : '';
+  const projectDetails = formData.projectDetails
+    ? escapeHtml(formData.projectDetails)
+    : '';
   return `
     <h2>New Contact Form Submission</h2>
-    <p><strong>Name:</strong> ${formData.name}</p>
-    <p><strong>Email:</strong> ${formData.email}</p>
-    ${formData.phone ? `<p><strong>Phone:</strong> ${formData.phone}</p>` : ''}
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
     ${
-      formData.projectDetails
-        ? `<p><strong>Project Details:</strong></p><p>${formData.projectDetails}</p>`
+      projectDetails
+        ? `<p><strong>Project Details:</strong></p><p>${projectDetails}</p>`
         : ''
     }
     <hr>
-    <p><small>This email was sent from the contact form at <a href="${siteUrl}">${siteUrl}</a></small></p>
+    <p><small>This email was sent from the contact form at <a href="${escapeHtml(siteUrl)}">${escapeHtml(siteUrl)}</a></small></p>
   `;
 };
-
-// Future implementation functions (commented out for now)
-/*
-async function sendWithSendGrid(emailContent: any): Promise<boolean> {
-  const sgMail = require('@sendgrid/mail');
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  
-  try {
-    await sgMail.send(emailContent);
-    return true;
-  } catch (error) {
-    console.error('SendGrid error:', error);
-    return false;
-  }
-}
-
-async function sendWithSMTP(emailContent: any): Promise<boolean> {
-  const nodemailer = require('nodemailer');
-  
-  const transporter = nodemailer.createTransporter({
-    host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT,
-    secure: false,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-  
-  try {
-    await transporter.sendMail(emailContent);
-    return true;
-  } catch (error) {
-    console.error('SMTP error:', error);
-    return false;
-  }
-}
-*/

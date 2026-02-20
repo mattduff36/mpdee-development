@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Work() {
   return (
     <Column maxWidth="m" horizontal="center" gap="xl" fillWidth>
-      <Column gap="m">
+      <Column gap="m" paddingBottom="l" style={{ paddingTop: '80px' }}>
         <Heading variant="display-strong-s" as="h1">
           Our{' '}
           <Text

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { track } from '@vercel/analytics';
 import {
   Column,
@@ -50,7 +50,7 @@ export function ContactForm() {
     submitError: null,
   });
 
-  const validateForm = (): boolean => {
+  const validateForm = useCallback((): boolean => {
     const newErrors: FormErrors = {};
 
     if (!formData.name.trim()) newErrors.name = 'Name is required';
@@ -73,56 +73,65 @@ export function ContactForm() {
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  };
+  }, [formData]);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name as keyof FormErrors])
-      setErrors(prev => ({ ...prev, [name]: undefined }));
-  };
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setFormData(prev => ({ ...prev, [name]: value }));
+      setErrors(prev =>
+        prev[name as keyof FormErrors] ? { ...prev, [name]: undefined } : prev
+      );
+    },
+    []
+  );
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validateForm()) return;
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!validateForm()) return;
 
-    setFormState({ isSubmitting: true, isSubmitted: false, submitError: null });
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to send message');
-      }
-
-      track('contact_form_submit', {
-        source: 'contact_page',
-        status: 'success',
-      });
       setFormState({
-        isSubmitting: false,
-        isSubmitted: true,
+        isSubmitting: true,
+        isSubmitted: false,
         submitError: null,
       });
-      setFormData({ name: '', email: '', phone: '', projectDetails: '' });
-    } catch (error) {
-      setFormState({
-        isSubmitting: false,
-        isSubmitted: false,
-        submitError:
-          error instanceof Error
-            ? error.message
-            : 'Failed to send message. Please try again or contact us directly.',
-      });
-    }
-  };
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to send message');
+        }
+
+        track('contact_form_submit', {
+          source: 'contact_page',
+          status: 'success',
+        });
+        setFormState({
+          isSubmitting: false,
+          isSubmitted: true,
+          submitError: null,
+        });
+        setFormData({ name: '', email: '', phone: '', projectDetails: '' });
+      } catch (error) {
+        setFormState({
+          isSubmitting: false,
+          isSubmitted: false,
+          submitError:
+            error instanceof Error
+              ? error.message
+              : 'Failed to send message. Please try again or contact us directly.',
+        });
+      }
+    },
+    [validateForm, formData]
+  );
 
   if (formState.isSubmitted) {
     return (

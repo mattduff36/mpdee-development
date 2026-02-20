@@ -9,4 +9,19 @@
   top: 0;
   left: 0;
   right: 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: transparent;
+}
+
+.desktopNav {
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+.location {
+  @media (max-width: 767px) {
+    display: none !important;
+  }
 }

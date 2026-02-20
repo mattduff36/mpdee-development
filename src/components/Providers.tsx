@@ -2,6 +2,7 @@
 
 import {
   DataThemeProvider,
+  DialogProvider,
   IconProvider,
   LayoutProvider,
   ThemeProvider,
@@ -26,9 +27,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
         scaling={style.scaling}
       >
         <DataThemeProvider>
-          <ToastProvider>
-            <IconProvider icons={iconLibrary}>{children}</IconProvider>
-          </ToastProvider>
+          <DialogProvider>
+            <ToastProvider>
+              <IconProvider icons={iconLibrary}>{children}</IconProvider>
+            </ToastProvider>
+          </DialogProvider>
         </DataThemeProvider>
       </ThemeProvider>
     </LayoutProvider>

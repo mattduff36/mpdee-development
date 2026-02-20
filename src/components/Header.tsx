@@ -7,6 +7,7 @@ import { Flex, Line, Text, ToggleButton } from '@once-ui-system/core';
 import { routes, display, company } from '@/resources';
 import { work, services, contact } from '@/resources';
 import { ThemeToggle } from './ThemeToggle';
+import { MobileNav } from './MobileNav';
 import styles from './Header.module.scss';
 
 export const Header = () => {
@@ -24,6 +25,7 @@ export const Header = () => {
     >
       <Flex
         paddingLeft="12"
+        paddingX="12"
         fillWidth
         vertical="center"
         textVariant="label-default-s"
@@ -56,7 +58,12 @@ export const Header = () => {
           </Link>
         </Flex>
 
-        <Flex fillWidth horizontal="center">
+        <Flex
+          fillWidth
+          horizontal="center"
+          vertical="center"
+          className={styles.desktopNav}
+        >
           <Flex
             background="surface"
             border="neutral-medium"
@@ -121,8 +128,13 @@ export const Header = () => {
         </Flex>
 
         <Flex fillWidth horizontal="end" vertical="center">
+          <MobileNav />
           {display.location && (
-            <Flex paddingX="4" textVariant="label-default-s">
+            <Flex
+              paddingX="4"
+              textVariant="label-default-s"
+              className={styles.location}
+            >
               {company.location}
             </Flex>
           )}

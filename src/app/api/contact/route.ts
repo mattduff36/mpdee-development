@@ -1,11 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendContactFormEmail } from '@/utils/email';
-import { validateEmail, validateRequired } from '@/utils/validation';
+import { checkRateLimit } from '@/utils/rate-limit';
+import {
+  validateEmail,
+  validatePhone,
+  validateRequired,
+} from '@/utils/validation';
 
 // Configure timeout for this API route
 export const maxDuration = 30;
 
 export async function POST(request: NextRequest) {
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    request.headers.get('x-real-ip') ??
+    'unknown';
+
+  const { allowed, retryAfter } = checkRateLimit(ip);
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please try again later.' },
+      {
+        status: 429,
+        headers: retryAfter ? { 'Retry-After': String(retryAfter) } : undefined,
+      }
+    );
+  }
+
   try {
     // Add timeout for serverless functions
     const timeoutPromise = new Promise<NextResponse>(resolve => {
@@ -20,8 +41,26 @@ export async function POST(request: NextRequest) {
     });
 
     const processRequest = async () => {
-      const body = await request.json();
-      const { name, email, phone, projectDetails } = body;
+      let body: Record<string, unknown>;
+      try {
+        body = (await request.json()) as Record<string, unknown>;
+      } catch {
+        return NextResponse.json(
+          { error: 'Invalid JSON in request body' },
+          { status: 400 }
+        );
+      }
+      if (!body || typeof body !== 'object') {
+        return NextResponse.json(
+          { error: 'Request body must be a JSON object' },
+          { status: 400 }
+        );
+      }
+      const name = typeof body.name === 'string' ? body.name : '';
+      const email = typeof body.email === 'string' ? body.email : '';
+      const phone = typeof body.phone === 'string' ? body.phone : '';
+      const projectDetails =
+        typeof body.projectDetails === 'string' ? body.projectDetails : '';
 
       // Validate required fields
       if (!validateRequired(name)) {
@@ -46,7 +85,7 @@ export async function POST(request: NextRequest) {
       }
 
       // Validate optional fields
-      if (phone && phone.trim().length > 0 && phone.trim().length < 10) {
+      if (phone && phone.trim().length > 0 && !validatePhone(phone)) {
         return NextResponse.json(
           { error: 'Please enter a valid phone number' },
           { status: 400 }

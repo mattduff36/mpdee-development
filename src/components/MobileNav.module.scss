@@ -1,0 +1,26 @@
+/* Hide entire MobileNav on desktop - burger only shows on mobile */
+.wrapper {
+  display: none;
+
+  @media (max-width: 767px) {
+    display: flex;
+    align-items: center;
+    gap: var(--static-space-8, 8px);
+  }
+}
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+}
+
+.trigger {
+  display: flex;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Ensure mobile menu dialog fits content and doesn't stretch */
+.mobileMenuDialog {
+  flex: 0 1 auto !important;
+}

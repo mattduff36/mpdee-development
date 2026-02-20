@@ -42,7 +42,7 @@ describe('Content module', () => {
 
   it('exports all 6 service packages', () => {
     expect(servicePackages).toHaveLength(6);
-    expect(servicePackages[0].id).toBe('bronze-website');
+    expect(servicePackages[0].id).toBe('starter-website');
     expect(servicePackages[2].isPopular).toBe(true);
   });
 

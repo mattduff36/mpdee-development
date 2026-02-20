@@ -25,19 +25,19 @@ const social: SocialLink[] = [
   {
     name: 'GitHub',
     icon: 'github',
-    link: '#',
+    link: 'https://github.com/mpdee',
     essential: true,
   },
   {
     name: 'LinkedIn',
     icon: 'linkedin',
-    link: '#',
+    link: 'https://linkedin.com/company/mpdee',
     essential: true,
   },
   {
     name: 'X',
     icon: 'x',
-    link: '#',
+    link: 'https://x.com/mpdee',
     essential: false,
   },
   {
@@ -93,8 +93,8 @@ const contact: ContactPage = {
 
 const servicePackages: ServicePackage[] = [
   {
-    id: 'bronze-website',
-    title: 'Bronze Website Package',
+    id: 'starter-website',
+    title: 'Starter Package',
     description:
       'Perfect for businesses needing a simple online presence. A single-page site that acts as a holding page while your full website is under construction, or for displaying static business information.',
     price: 'From £100',
@@ -111,8 +111,8 @@ const servicePackages: ServicePackage[] = [
     technologies: ['HTML/CSS', 'Responsive Design', 'Domain Setup', 'Hosting'],
   },
   {
-    id: 'silver-website',
-    title: 'Silver Website Package',
+    id: 'basic-website',
+    title: 'Basic Package',
     description:
       'Comprehensive business solution with up to 5 pages including About Us, Contact with forms, Services/Products pages, and dynamic elements like Google integration.',
     price: 'From £350',
@@ -136,10 +136,10 @@ const servicePackages: ServicePackage[] = [
     ],
   },
   {
-    id: 'gold-website',
-    title: 'Gold Website Package',
+    id: 'pro-website',
+    title: 'Pro Package',
     description:
-      'Everything in Silver plus up to 8 pages, client management system with customer login portals, admin dashboard, reports and analytics, social media integration, and extended 6 months support.',
+      'Everything in Basic plus up to 8 pages, client management system with customer login portals, admin dashboard, reports and analytics, social media integration, and extended 6 months support.',
     price: 'From £600',
     isPopular: true,
     details: [
@@ -163,14 +163,14 @@ const servicePackages: ServicePackage[] = [
     ],
   },
   {
-    id: 'platinum-website',
-    title: 'Platinum Website Package',
+    id: 'ultimate-website',
+    title: 'Ultimate Package',
     description:
-      'Ultimate solution with unlimited pages, everything from Gold package, plus 12 months on-call assistance, continuous development and enhancement, performance monitoring, and business system integration.',
+      'Top-tier solution with unlimited pages, everything from Pro, plus 12 months on-call support, continuous development, and business system integration.',
     price: 'From £900',
     details: [
       'Unlimited pages and advanced features',
-      'Everything from Gold package included',
+      'Everything from Pro package included',
       '12 months free support',
       '12 months on-call assistance for any changes',
       'Continuous development and enhancement',

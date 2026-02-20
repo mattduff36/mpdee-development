@@ -1,6 +1,7 @@
 import { Column, Heading, Text, Button } from '@once-ui-system/core';
 import { services as servicesPage, servicePackages } from '@/resources';
 import { ServiceCard } from '@/components/services/ServiceCard';
+import { ScrollToHash } from '@/components/ScrollToHash';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -18,7 +19,8 @@ export default function Services() {
 
   return (
     <Column maxWidth="m" horizontal="center" gap="xl" fillWidth>
-      <Column gap="m">
+      <ScrollToHash />
+      <Column gap="m" paddingBottom="l" style={{ paddingTop: '80px' }}>
         <Heading variant="display-strong-s" as="h1">
           Services &{' '}
           <Text
@@ -42,7 +44,14 @@ export default function Services() {
 
       <Column fillWidth gap="24">
         {websitePackages.map(pkg => (
-          <ServiceCard key={pkg.id} service={pkg} />
+          <Column
+            key={pkg.id}
+            id={pkg.id}
+            fillWidth
+            style={{ scrollMarginTop: '108px' }}
+          >
+            <ServiceCard service={pkg} />
+          </Column>
         ))}
       </Column>
 
@@ -52,7 +61,14 @@ export default function Services() {
             Additional Services
           </Heading>
           {otherServices.map(pkg => (
-            <ServiceCard key={pkg.id} service={pkg} />
+            <Column
+              key={pkg.id}
+              id={pkg.id}
+              fillWidth
+              style={{ scrollMarginTop: '108px' }}
+            >
+              <ServiceCard service={pkg} />
+            </Column>
           ))}
         </Column>
       )}

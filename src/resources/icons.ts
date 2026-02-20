@@ -3,6 +3,7 @@ import { IconType } from 'react-icons';
 import {
   HiArrowUpRight,
   HiArrowRight,
+  HiBars3,
   HiEnvelope,
   HiCalendarDays,
   HiOutlineLink,
@@ -13,6 +14,7 @@ import {
   HiOutlineClock,
   HiOutlineMapPin,
   HiOutlineCheck,
+  HiXMark,
 } from 'react-icons/hi2';
 
 import {
@@ -25,6 +27,9 @@ import {
 import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
 
 export const iconLibrary: Record<string, IconType> = {
+  bars3: HiBars3,
+  xMark: HiXMark,
+  close: HiXMark,
   arrowUpRight: HiArrowUpRight,
   arrowRight: HiArrowRight,
   email: HiEnvelope,

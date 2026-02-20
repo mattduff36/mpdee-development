@@ -1,6 +1,23 @@
 /* Custom styles for MPDEE Development */
 
+/* Mobile-friendly layout padding */
+@media (max-width: 767px) {
+  .layout-content {
+    padding-left: var(--static-space-16) !important;
+    padding-right: var(--static-space-16) !important;
+  }
+
+  .hide-subline-mobile {
+    display: none !important;
+  }
+}
+
 .project-carousel-trimmed img {
+  transform: scale(1.06) !important;
+  object-fit: cover !important;
+}
+
+.project-carousel-compact img {
   transform: scale(1.06) !important;
   object-fit: cover !important;
 }

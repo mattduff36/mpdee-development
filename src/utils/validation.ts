@@ -11,6 +11,6 @@ export const validateRequired = (value: string): boolean => {
 
 export const validatePhone = (phone: string): boolean => {
   if (!phone) return true; // Phone is optional
-  const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+  const phoneRegex = /^\+?[1-9][\d]{0,15}$/;
   return phoneRegex.test(phone.replace(/\s/g, ''));
 };

@@ -1,5 +1,10 @@
 export { Header } from './Header';
+export { MobileNav } from './MobileNav';
 export { Footer } from './Footer';
 export { Providers } from './Providers';
 export { ThemeToggle } from './ThemeToggle';
+export { ContactForm } from './ContactForm';
 export { ProjectCard } from './work/ProjectCard';
+export { Projects } from './work/Projects';
+export { ServiceCard } from './services/ServiceCard';
+export { ServiceHighlights } from './services/ServiceHighlights';

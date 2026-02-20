@@ -20,6 +20,8 @@ export async function GET() {
 
     const allConfigured = Object.values(envStatus).every(Boolean);
 
+    const isProduction = process.env.NODE_ENV === 'production';
+
     return NextResponse.json({
       status: 'healthy',
       timestamp: new Date().toISOString(),
@@ -27,7 +29,7 @@ export async function GET() {
       deployment: process.env.VERCEL_ENV || 'local',
       email_config: {
         configured: allConfigured,
-        details: envStatus,
+        ...(isProduction ? {} : { details: envStatus }),
       },
       message: allConfigured
         ? 'Email service is properly configured'

@@ -41,7 +41,13 @@ export default function Home() {
         }}
       />
 
-      <Column fillWidth paddingY="l" gap="m" horizontal="center">
+      <Column
+        fillWidth
+        paddingBottom="l"
+        gap="m"
+        horizontal="center"
+        style={{ paddingTop: '80px' }}
+      >
         <RevealFx translateY="4" fillWidth horizontal="center">
           <Column horizontal="center" gap="8">
             <Heading
@@ -83,7 +89,11 @@ export default function Home() {
         </RevealFx>
 
         <RevealFx translateY="12" delay={0.2} fillWidth horizontal="center">
-          <Column maxWidth="s" horizontal="center">
+          <Column
+            maxWidth="s"
+            horizontal="center"
+            className="hide-subline-mobile"
+          >
             <Text
               wrap="balance"
               onBackground="neutral-weak"
@@ -114,7 +124,12 @@ export default function Home() {
       {routes['/services'] && (
         <Column fillWidth gap="l">
           <Column fillWidth gap="4">
-            <Flex fillWidth horizontal="between" vertical="end">
+            <Flex
+              fillWidth
+              horizontal="between"
+              vertical="end"
+              s={{ direction: 'column', horizontal: 'start' }}
+            >
               <Column gap="4">
                 <Heading as="h2" variant="display-strong-xs">
                   Our{' '}
@@ -146,7 +161,12 @@ export default function Home() {
       {routes['/work'] && (
         <Column fillWidth gap="l">
           <Column fillWidth gap="4">
-            <Flex fillWidth horizontal="between" vertical="end">
+            <Flex
+              fillWidth
+              horizontal="between"
+              vertical="end"
+              s={{ direction: 'column', horizontal: 'start' }}
+            >
               <Column gap="4">
                 <Heading as="h2" variant="display-strong-xs">
                   Featured{' '}
@@ -167,7 +187,15 @@ export default function Home() {
               </SmartLink>
             </Flex>
           </Column>
-          <Projects range={[1, 3]} />
+          <Projects
+            ids={[
+              'lbp-website',
+              'victoria-rose-salon',
+              'bouncy-castle-hire',
+              'voiceover-studio-finder',
+            ]}
+            variant="grid"
+          />
         </Column>
       )}
 

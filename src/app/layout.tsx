@@ -3,6 +3,7 @@ import '@once-ui-system/core/css/tokens.css';
 import '@/resources/custom.css';
 
 import classNames from 'classnames';
+import type { ComponentProps } from 'react';
 import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import Script from 'next/script';
@@ -165,10 +166,16 @@ export default function RootLayout({
             <Background
               position="fixed"
               mask={effects.mask}
-              gradient={effects.gradient as any}
-              dots={effects.dots as any}
-              grid={effects.grid as any}
-              lines={effects.lines as any}
+              gradient={
+                effects.gradient as ComponentProps<
+                  typeof Background
+                >['gradient']
+              }
+              dots={effects.dots as ComponentProps<typeof Background>['dots']}
+              grid={effects.grid as ComponentProps<typeof Background>['grid']}
+              lines={
+                effects.lines as ComponentProps<typeof Background>['lines']
+              }
             />
             <Flex fillWidth minHeight="16" />
             <Header />
@@ -186,6 +193,7 @@ export default function RootLayout({
                   paddingX="32"
                   maxWidth="l"
                   horizontal="center"
+                  className="layout-content"
                 >
                   {children}
                 </Column>

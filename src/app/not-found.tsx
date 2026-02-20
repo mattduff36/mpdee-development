@@ -6,8 +6,9 @@ export default function NotFound() {
       fillWidth
       horizontal="center"
       vertical="center"
-      paddingY="xl"
+      paddingBottom="xl"
       gap="24"
+      style={{ paddingTop: '80px' }}
     >
       <Heading variant="display-strong-l" align="center">
         404
