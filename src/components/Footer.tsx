@@ -10,9 +10,9 @@ export function Footer() {
               mpdee<span>.</span>
             </Link>
             <p>
-              Websites, web apps
+              Websites and web apps,
               <br />
-              and improvements.
+              designed and built by Matt.
             </p>
           </div>
           <div className="footer-links">

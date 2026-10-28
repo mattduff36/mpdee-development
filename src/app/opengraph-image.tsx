@@ -38,7 +38,7 @@ export default async function Image() {
             alt=""
             style={{ marginRight: 14 }}
           />
-          <b>mpdee</b>
+          <b>mpdee.</b>
           <span style={{ fontSize: 15, letterSpacing: 3, marginLeft: 24 }}>
             DEVELOPMENT
           </span>

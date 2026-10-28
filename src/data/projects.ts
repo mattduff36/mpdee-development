@@ -74,11 +74,10 @@ export const projects: StudioProject[] = [
       'Policy documents',
     ],
     services: ['Product design', 'Web development', 'Application access'],
-    image: '/images/work/digidocs-illustrative.svg',
-    imageAlt:
-      'Illustrative DigiDocs interface with sample forms, a timesheet, a vehicle check and policies',
+    image: '/images/work/digidocs-desktop-mobile.webp',
+    imageAlt: 'DigiDocs demo dashboard on desktop and mobile',
     imageCaption:
-      'Illustrative interface. This schematic is not a screenshot and does not show live data.',
+      'DigiDocs dashboard on desktop and mobile, shown using the demo account.',
     colour: '#d7e2dc',
   },
   {

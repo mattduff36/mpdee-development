@@ -1,3 +1,4 @@
+import { useId } from 'react';
 export function Arrow({
   diagonal = true,
   className = '',
@@ -25,29 +26,45 @@ export function Arrow({
   );
 }
 const BRAND_MARK_SRC = '/images/MPDEE-Development-logo-trans.png';
-export function BrandMark({ className = '' }: { className?: string }) {
+export function Asterisk({ className = '' }: { className?: string }) {
+  const maskId = `mpdee-mark-${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`;
   return (
     <svg
-      className={className ? 'brand-mark ' + className : 'brand-mark'}
+      className={className || undefined}
       width="72"
       height="72"
-      viewBox="0 0 72 72"
+      viewBox="0 0 80 80"
       fill="none"
       aria-hidden="true"
-      focusable="false"
     >
-      <image
-        href={BRAND_MARK_SRC}
-        xlinkHref={BRAND_MARK_SRC}
-        width="72"
-        height="72"
-        preserveAspectRatio="xMidYMid meet"
+      <mask
+        id={maskId}
+        maskUnits="userSpaceOnUse"
+        maskContentUnits="userSpaceOnUse"
+        style={{ maskType: 'alpha' }}
+        {...{ 'mask-type': 'alpha' }}
+      >
+        <image
+          href={BRAND_MARK_SRC}
+          xlinkHref={BRAND_MARK_SRC}
+          x="0"
+          y="0"
+          width="80"
+          height="80"
+          preserveAspectRatio="xMidYMid meet"
+        />
+      </mask>
+      <rect
+        width="80"
+        height="80"
+        fill="currentColor"
+        mask={`url(#${maskId})`}
       />
     </svg>
   );
 }
-export function Asterisk({ className = '' }: { className?: string }) {
-  return <BrandMark className={className} />;
+export function BrandMark({ className = '' }: { className?: string }) {
+  return <Asterisk className={className} />;
 }
 export function SectionLabel({
   number,

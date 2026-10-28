@@ -16,7 +16,7 @@ The redesign is on `redesign/2026-studio`. It is for preview and review. **Do no
 - Next.js 15 App Router, React 19 and TypeScript.
 - Custom responsive CSS and self-hosted Manrope typography.
 - Next.js image optimisation and static case-study generation.
-- Nodemailer for the existing Gmail SMTP contact integration.
+- Resend HTTPS API for contact delivery, called with server-side fetch.
 - Vercel hosting and Web Analytics.
 - Jest and Testing Library for component, validation and API tests.
 
@@ -24,7 +24,7 @@ The new active UI uses native semantic HTML. Legacy Once UI components remain in
 
 ## Local development
 
-Use Node.js 22 (matching Vercel) and npm. Nodemailer requires Node.js 20 or newer.
+Use Node.js 22 (matching Vercel) and npm.
 
 ```sh
 npm ci
@@ -33,14 +33,14 @@ npm run dev
 
 The development wrapper forwards normal Next.js arguments and translates the preview environment's `--host` flag to `--hostname`. It also works with ordinary `npm run dev` on Windows.
 
-For the contact integration, copy `env.example` to `.env.local` and set the existing variables through your normal secret-management process:
+For the contact integration, set these server-only variables in `.env.local` through your normal secret-management process:
 
-- `SMTP_USER`
-- `SMTP_PASS`
-- `CONTACT_EMAIL`
-- `NEXT_PUBLIC_SITE_URL`
+- `RESEND_API_KEY`
+- `EMAIL_FROM`
 
-Never commit `.env.local` or credentials. The UI can be developed without SMTP; real submissions will report an unavailable email service and show a direct email alternative. A successful screen is shown only after the API reports successful delivery.
+`NEXT_PUBLIC_SITE_URL` is optional. When it is unset, the message footer falls back to `https://development.mpdee.co.uk`.
+
+Never commit `.env.local` or credentials. The UI can be developed without Resend; real submissions will report an unavailable email service and show a direct email alternative. A successful screen is shown only after Resend returns a successful response with an email id.
 
 ## Checks
 
@@ -69,15 +69,15 @@ Contact tests mock the delivery service and do not send emails. Do not use a rea
 
 Case studies generate at `/work/[slug]`. Add a project to the data array to include it in the portfolio and sitemap. A project `url` is optional. Projects without one are presented as private applications and do not show a live-site link. Avoid inventing performance metrics, testimonials, public URLs or project capabilities. Public project images reflect publicly visible work and are not live product embeds.
 
-DigiDocs is a private operations application in the portfolio. It has no public URL. Its image, `public/images/work/digidocs-illustrative.svg`, is a labelled illustrative schematic rather than a screenshot.
+DigiDocs is a private operations application in the portfolio. It has no public URL. Its image, `public/images/work/digidocs-desktop-mobile.webp`, shows the DigiDocs Demo Ltd dashboard on desktop and on a 390px-wide mobile screen. It does not add a public address or claim that the application is commercially available.
 
 ## Contact behaviour
 
 `POST /api/contact` accepts `name`, `email`, optional `phone`, and optional `projectDetails`. Both client and server validate fields. Maximum lengths are 100, 254, 40 and 1,000 characters respectively. UK domestic and formatted international phone numbers are accepted.
 
-The form preserves drafts on failure, guards against duplicate submissions, announces errors and successful delivery, and provides a direct email fallback. SMTP configuration or delivery failures cannot produce a false success. The existing rate limiter is process-local best-effort protection, not a distributed abuse-prevention service.
+The form preserves drafts on failure, guards against duplicate submissions, announces errors and successful delivery, and provides a direct email fallback. Missing Resend configuration or a delivery failure cannot produce a false success. The server posts to `https://api.resend.com/emails` with a 20 second abort timeout. The recipient is `admin@mpdee.co.uk`. `reply_to` is the visitor email already validated by the contact route. The existing rate limiter is process-local best-effort protection, not a distributed abuse-prevention service.
 
-`GET /api/health` reports configuration presence. It does not establish that a real email has been delivered.
+`GET /api/health` reports whether `RESEND_API_KEY` and `EMAIL_FROM` are present. It does not reveal their values or establish that a real email has been delivered.
 
 ## Preview and release
 

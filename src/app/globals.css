@@ -99,10 +99,8 @@ summary:focus-visible {
 .contact-cta :focus-visible {
   outline-color: var(--ink);
 }
-.brand-mark {
-  display: inline-block;
-  overflow: visible;
-  flex-shrink: 0;
+.brand-stop {
+  color: var(--ink);
 }
 main {
   overflow: clip;
@@ -405,14 +403,7 @@ div[id] {
 }
 .tiny-cross {
   color: var(--ink);
-  display: inline-flex;
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-}
-.tiny-cross svg {
-  width: 16px;
-  height: 16px;
+  font-size: 18px;
 }
 .hero-art {
   position: relative;
@@ -450,18 +441,10 @@ div[id] {
 }
 .disc-cross {
   position: absolute;
-  top: 18px;
-  right: 42px;
-  width: 36px;
-  height: 36px;
-  display: grid;
-  place-items: center;
-  background: var(--ink);
-  border-radius: 50%;
-}
-.disc-cross svg {
-  width: 20px;
-  height: 20px;
+  top: 20px;
+  right: 50px;
+  font-size: 30px;
+  font-weight: 200;
 }
 .art-orbit {
   position: absolute;
@@ -575,6 +558,7 @@ div[id] {
   font-size: 9px;
   letter-spacing: 1px;
   line-height: 1.5;
+  text-transform: uppercase;
 }
 .craft-stamp strong {
   font-weight: 400;
@@ -722,6 +706,13 @@ div[id] {
 .project-screen img {
   object-fit: cover;
   object-position: top;
+}
+.project-screen:has(img[src*='digidocs-desktop-mobile']) {
+  aspect-ratio: 1800 / 1300;
+}
+.project-screen img[src*='digidocs-desktop-mobile'] {
+  object-fit: contain;
+  object-position: center;
 }
 .project-open {
   position: absolute;
@@ -1214,6 +1205,10 @@ div[id] {
 .case-image img {
   width: 100%;
   height: auto;
+}
+.case-image img[src*='digidocs-desktop-mobile'] {
+  aspect-ratio: 1800 / 1300;
+  object-fit: contain;
 }
 .case-image-caption {
   margin-top: 18px;
