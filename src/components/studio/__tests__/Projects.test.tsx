@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -86,7 +86,12 @@ describe('studio projects', () => {
 
     expect(digidocs.url).toBeUndefined();
     expect(screen.getByText('Private application')).toBeInTheDocument();
-    expect(screen.getByText(/Illustrative interface/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'DigiDocs dashboard on desktop and mobile, shown using the demo account.'
+      )
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/https?:\/\//i)).toBeNull();
     expect(
       screen.getByRole('link', { name: 'Explore DigiDocs' })
     ).toHaveAttribute('href', '/work/digidocs');
@@ -107,17 +112,31 @@ describe('studio projects', () => {
     ).toBe(true);
   });
 
-  it('includes DigiDocs in the sitemap and uses a labelled schematic', () => {
+  it('includes DigiDocs in the sitemap and uses the real dashboard image', () => {
     const urls = sitemap().map(entry => entry.url);
     expect(urls).toContain('https://development.mpdee.co.uk/work/digidocs');
+    expect(urls.some(url => /digidocs\.mpdee/i.test(url))).toBe(false);
 
-    const svg = readFileSync(
-      path.join(process.cwd(), 'public/images/work/digidocs-illustrative.svg'),
-      'utf8'
+    const imagePath = path.join(
+      process.cwd(),
+      'public/images/work/digidocs-desktop-mobile.webp'
     );
-    expect(svg).toMatch(/Illustrative interface/i);
-    expect(svg).toMatch(/Schematic, not a screenshot/i);
-    expect(svg).not.toMatch(/squires/i);
-    expect(svg).not.toMatch(/https?:\/\/(?!www\.w3\.org)/i);
+    const bytes = readFileSync(imagePath);
+    expect(bytes.subarray(0, 4).toString('ascii')).toBe('RIFF');
+    expect(bytes.subarray(8, 12).toString('ascii')).toBe('WEBP');
+    expect(
+      existsSync(
+        path.join(process.cwd(), 'public/images/work/digidocs-illustrative.svg')
+      )
+    ).toBe(false);
+
+    const digidocs = projects.find(project => project.slug === 'digidocs');
+    expect(digidocs?.image).toBe('/images/work/digidocs-desktop-mobile.webp');
+    expect(digidocs?.url).toBeUndefined();
+    expect(digidocs?.imageCaption).toBe(
+      'DigiDocs dashboard on desktop and mobile, shown using the demo account.'
+    );
+    expect(digidocs?.imageAlt).not.toMatch(/https?:\/\//i);
+    expect(digidocs?.imageCaption).not.toMatch(/https?:\/\//i);
   });
 });

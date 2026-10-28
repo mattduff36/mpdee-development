@@ -50,10 +50,18 @@ describe('project case study', () => {
     expect(screen.getAllByText('Private application').length).toBeGreaterThan(
       0
     );
-    expect(screen.getByText(/Illustrative interface/i)).toBeInTheDocument();
     expect(
-      screen.getByRole('img', { name: /Illustrative DigiDocs interface/i })
-    ).toHaveAttribute('src', '/images/work/digidocs-illustrative.svg');
+      screen.getByText(
+        'DigiDocs dashboard on desktop and mobile, shown using the demo account.'
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('img', {
+        name: 'DigiDocs demo dashboard on desktop and mobile',
+      })
+    ).toHaveAttribute('src', '/images/work/digidocs-desktop-mobile.webp');
+    expect(screen.queryByText(/digidocs\.mpdee/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/https?:\/\//i)).not.toBeInTheDocument();
     expect(screen.getByText('Digital forms')).toBeInTheDocument();
     expect(screen.getByText('Employee timesheets')).toBeInTheDocument();
     expect(screen.getByText('Vehicle inspections')).toBeInTheDocument();

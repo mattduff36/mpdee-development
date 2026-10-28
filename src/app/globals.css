@@ -563,11 +563,21 @@ div[id] {
   transform: rotate(-12deg);
   box-shadow: 0 7px 16px #20211f12;
 }
-.craft-stamp svg {
+.craft-stamp-mark {
+  display: block;
   width: 25px;
   height: 25px;
-  color: var(--accent);
   margin-bottom: 9px;
+  flex: none;
+  background-color: var(--accent);
+  -webkit-mask-image: url('/images/MPDEE-Development-logo-trans.png');
+  mask-image: url('/images/MPDEE-Development-logo-trans.png');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
 }
 .craft-stamp span {
   font-family: var(--font-mono);
@@ -722,6 +732,13 @@ div[id] {
 .project-screen img {
   object-fit: cover;
   object-position: top;
+}
+.project-screen:has(img[src*='digidocs-desktop-mobile']) {
+  aspect-ratio: 1800 / 1300;
+}
+.project-screen img[src*='digidocs-desktop-mobile'] {
+  object-fit: contain;
+  object-position: center;
 }
 .project-open {
   position: absolute;
@@ -1215,6 +1232,10 @@ div[id] {
   width: 100%;
   height: auto;
 }
+.case-image img[src*='digidocs-desktop-mobile'] {
+  aspect-ratio: 1800 / 1300;
+  object-fit: contain;
+}
 .case-image-caption {
   margin-top: 18px;
   font-size: 13px;
@@ -1640,7 +1661,7 @@ div[id] {
     height: 90px;
     top: 300px;
   }
-  .craft-stamp svg {
+  .craft-stamp-mark {
     width: 20px;
     height: 20px;
   }

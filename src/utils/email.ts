@@ -1,5 +1,3 @@
-import nodemailer from 'nodemailer';
-
 interface EmailFormData {
   name: string;
   email: string;
@@ -7,74 +5,89 @@ interface EmailFormData {
   projectDetails?: string;
 }
 
+const RESEND_EMAILS_URL = 'https://api.resend.com/emails';
+const CONTACT_RECIPIENT = 'admin@mpdee.co.uk';
+const DELIVERY_TIMEOUT_MS = 20000;
+
 export const sendContactFormEmail = async (
   formData: EmailFormData
 ): Promise<boolean> => {
-  let transporter: ReturnType<typeof nodemailer.createTransport> | undefined;
+  const abort = new AbortController();
   let deliveryTimeout: ReturnType<typeof setTimeout> | undefined;
 
   try {
-    // Check if Gmail SMTP is configured
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const contactEmail = process.env.CONTACT_EMAIL;
+    const apiKey = process.env.RESEND_API_KEY?.trim();
+    const emailFrom = process.env.EMAIL_FROM?.trim();
 
-    if (!smtpUser || !smtpPass || !contactEmail) {
+    if (!apiKey || !emailFrom) {
       console.error(
-        'Gmail SMTP configuration missing. Please check your environment variables.'
+        'Resend configuration missing. Please check your environment variables.'
       );
       return false;
     }
 
-    // Create transporter for Gmail SMTP
-    transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
-      },
-      connectionTimeout: 8000,
-      greetingTimeout: 8000,
-      socketTimeout: 15000,
-    });
-
     const siteUrl =
       process.env.NEXT_PUBLIC_SITE_URL || 'https://development.mpdee.co.uk';
 
-    // Prepare email content
-    const mailOptions = {
-      from: `"MPDEE Contact Form" <${smtpUser}>`,
-      to: contactEmail,
-      subject: `New Contact Form Submission from ${formData.name}`,
-      html: generateEmailHTML(formData, siteUrl),
-      replyTo: formData.email, // Allow replying directly to the person who submitted
-    };
+    deliveryTimeout = setTimeout(() => abort.abort(), DELIVERY_TIMEOUT_MS);
 
-    // Send email with Gmail SMTP
-    // Return within the route's 30-second budget even if the transport stalls.
-    // SMTP stage timeouts bound the underlying connection independently.
-    await Promise.race([
-      transporter.sendMail(mailOptions),
-      new Promise<never>((_, reject) => {
-        deliveryTimeout = setTimeout(
-          () => reject(new Error('Email delivery timed out')),
-          20000
-        );
+    const response = await fetch(RESEND_EMAILS_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: emailFrom,
+        to: [CONTACT_RECIPIENT],
+        reply_to: formData.email,
+        subject: `New Contact Form Submission from ${formData.name}`,
+        html: generateEmailHTML(formData, siteUrl),
       }),
-    ]);
+      signal: abort.signal,
+    });
 
-    console.log('Email sent successfully via Gmail SMTP');
+    if (!response.ok) {
+      console.error('Failed to send email');
+      return false;
+    }
+
+    const id = await readEmailId(response);
+    if (!id) {
+      console.error('Failed to send email');
+      return false;
+    }
+
+    console.log('Email sent successfully');
     return true;
   } catch (error) {
-    console.error('Failed to send email:', error);
+    if (isAbortError(error)) {
+      console.error('Email delivery timed out');
+    } else {
+      console.error('Failed to send email');
+    }
     return false;
   } finally {
     if (deliveryTimeout) clearTimeout(deliveryTimeout);
-    transporter?.close();
   }
 };
+
+async function readEmailId(response: Response): Promise<string | null> {
+  try {
+    const data: unknown = await response.json();
+    if (!data || typeof data !== 'object' || !('id' in data)) return null;
+    const id = (data as { id?: unknown }).id;
+    if (typeof id !== 'string') return null;
+    const trimmed = id.trim();
+    return trimmed.length > 0 ? trimmed : null;
+  } catch {
+    return null;
+  }
+}
+
+function isAbortError(error: unknown): boolean {
+  return error instanceof Error && error.name === 'AbortError';
+}
 
 function escapeHtml(text: string): string {
   return text

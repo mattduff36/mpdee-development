@@ -5,17 +5,13 @@ export const maxDuration = 30;
 
 export async function GET() {
   try {
-    // Check if required environment variables are present
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const contactEmail = process.env.CONTACT_EMAIL;
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    // Presence only. Values stay server-side and are never returned.
+    const resendApiKey = process.env.RESEND_API_KEY?.trim();
+    const emailFrom = process.env.EMAIL_FROM?.trim();
 
     const envStatus = {
-      smtp_user: !!smtpUser,
-      smtp_pass: !!smtpPass,
-      contact_email: !!contactEmail,
-      site_url: !!siteUrl,
+      resend_api_key: !!resendApiKey,
+      email_from: !!emailFrom,
     };
 
     const allConfigured = Object.values(envStatus).every(Boolean);

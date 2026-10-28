@@ -117,11 +117,11 @@ export default function Home() {
             />
           </div>
           <div className="craft-stamp">
-            <BrandMark />
+            <span className="craft-stamp-mark" aria-hidden="true" />
             <span>
-              MPDEE /
+              Pro package /
               <br />
-              DEVELOPMENT
+              from £600
             </span>
           </div>
           <span className="art-coordinate" aria-hidden="true">
