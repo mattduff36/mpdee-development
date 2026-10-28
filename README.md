@@ -1,116 +1,86 @@
-# MPDEE - Professional Web Design & Development
+# MPDEE Development
 
-A modern, responsive website built with Next.js, TypeScript, and Tailwind CSS.
+The website for MPDEE Development: independent web design and application development by Matt, based in Edwinstowe, Nottinghamshire.
 
-## Features
+Live domain: https://development.mpdee.co.uk
+Repository: https://github.com/mattduff36/mpdee-development
 
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **Modern UI**: Clean, professional design with smooth animations
-- **Contact Form**: Functional contact form with Gmail SMTP integration
-- **Portfolio Showcase**: Dynamic project gallery with modal views
-- **Service Listings**: Detailed service offerings with interactive cards
-- **Performance Optimized**: Fast loading with Next.js optimizations
+## October 2026 redesign
 
-## Tech Stack
+A complete visual and content refresh on the existing off-white and charcoal layout: bold typography, real project imagery, a filterable portfolio and individual case studies. Interface accents use a light orange (`#F2A43A`, hover `#DB8D1E`, tint `#FFF3E3`), with a darker orange (`#8A4E0C`) for small text and focus on the paper background. The original orange-and-yellow triangle logo is unchanged. The original home, work, services and contact URLs are retained. Existing website package names and starting prices are preserved.
 
-- **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Email**: Nodemailer with Gmail SMTP
-- **Analytics**: Vercel Analytics
-- **Deployment**: Vercel
+The redesign is on `redesign/2026-studio`. It is for preview and review. **Do not merge to `main` or deploy to production until Matt explicitly confirms.**
 
-## Live Demo
+## Stack
 
-🌐 **[Visit the live website](https://www.mpdee.co.uk)**
+- Next.js 15 App Router, React 19 and TypeScript.
+- Custom responsive CSS and self-hosted Manrope typography.
+- Next.js image optimisation and static case-study generation.
+- Nodemailer for the existing Gmail SMTP contact integration.
+- Vercel hosting and Web Analytics.
+- Jest and Testing Library for component, validation and API tests.
 
-## Getting Started
+The new active UI uses native semantic HTML. Legacy Once UI components remain in the repository but are not used by the redesigned routes. The previous unconditional Google Analytics scripts have been removed; the existing Vercel Web Analytics integration remains.
 
-### Prerequisites
+## Local development
 
-- Node.js 18+ 
-- npm or yarn
-- Gmail account for contact form
+Use Node.js 22 (matching Vercel) and npm. Nodemailer requires Node.js 20 or newer.
 
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/mattduff36/mpdee.git
-cd mpdee
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Set up environment variables:
-```bash
-cp env.example .env.local
-```
-
-4. Configure your Gmail SMTP settings in `.env.local`:
-```env
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-gmail-app-password
-CONTACT_EMAIL=your-email@gmail.com
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-```
-
-5. Run the development server:
-```bash
+```sh
+npm ci
 npm run dev
 ```
 
-## Deployment
+The development wrapper forwards normal Next.js arguments and translates the preview environment's `--host` flag to `--hostname`. It also works with ordinary `npm run dev` on Windows.
 
-### Vercel Deployment
+For the contact integration, copy `env.example` to `.env.local` and set the existing variables through your normal secret-management process:
 
-1. Connect your GitHub repository to Vercel
-2. Set up environment variables in Vercel dashboard:
-   - `SMTP_USER`: Your Gmail address
-   - `SMTP_PASS`: Your Gmail App Password
-   - `CONTACT_EMAIL`: Where to receive contact form emails
-   - `NEXT_PUBLIC_SITE_URL`: Your production domain
+- `SMTP_USER`
+- `SMTP_PASS`
+- `CONTACT_EMAIL`
+- `NEXT_PUBLIC_SITE_URL`
 
-3. Deploy automatically on push to main branch
+Never commit `.env.local` or credentials. The UI can be developed without SMTP; real submissions will report an unavailable email service and show a direct email alternative. A successful screen is shown only after the API reports successful delivery.
 
-### Gmail App Password Setup
+## Checks
 
-1. Enable 2-Factor Authentication on your Gmail account
-2. Go to Google Account Settings → Security → App passwords
-3. Generate an app password for "Mail"
-4. Use this 16-character password in your environment variables
+```sh
+npx tsc --noEmit
+npm test -- --runInBand
+npm run build
+npm audit --omit=dev
+```
 
-## Contact Form
+Stop the development server before a production build because Next.js shares the `.next` output directory between these modes. Build verification is separate from deployment: `npm run build` does not publish the site.
 
-The contact form uses Gmail SMTP to send emails. Features include:
+Contact tests mock the delivery service and do not send emails. Do not use a real contact submission as an automated smoke test.
 
-- Client-side and server-side validation
-- Rate limiting and timeout protection
-- HTML email formatting
-- Reply-to functionality
-- Error handling for production
+## Editing content
 
-## API Endpoints
+| File | Purpose |
+| --- | --- |
+| `src/data/projects.ts` | Portfolio summaries, case-study copy, URLs and images |
+| `src/data/services.ts` | Service descriptions, website starting prices and FAQs |
+| `src/app/page.tsx` | Homepage introduction, studio story and process |
+| `src/app/globals.css` | Shared visual design and responsive layouts |
+| `src/components/ContactForm.module.css` | Enquiry form styling |
+| `public/images/work/` | Refreshed project screenshots |
+| `public/fonts/` | Manrope font and its SIL Open Font License |
 
-- `/api/contact` - Handle contact form submissions
-- `/api/health` - Health check and environment validation
+Case studies generate at `/work/[slug]`. Add a project to the data array to include it in the portfolio and sitemap. A project `url` is optional. Projects without one are presented as private applications and do not show a live-site link. Avoid inventing performance metrics, testimonials, public URLs or project capabilities. Public project images reflect publicly visible work and are not live product embeds.
 
-## Contributing
+DigiDocs is a private operations application in the portfolio. It has no public URL. Its image, `public/images/work/digidocs-illustrative.svg`, is a labelled illustrative schematic rather than a screenshot.
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
+## Contact behaviour
 
-## License
+`POST /api/contact` accepts `name`, `email`, optional `phone`, and optional `projectDetails`. Both client and server validate fields. Maximum lengths are 100, 254, 40 and 1,000 characters respectively. UK domestic and formatted international phone numbers are accepted.
 
-This project is licensed under the MIT License.
+The form preserves drafts on failure, guards against duplicate submissions, announces errors and successful delivery, and provides a direct email fallback. SMTP configuration or delivery failures cannot produce a false success. The existing rate limiter is process-local best-effort protection, not a distributed abuse-prevention service.
 
----
+`GET /api/health` reports configuration presence. It does not establish that a real email has been delivered.
 
-**Last Updated**: July 2025 - Contact form with Gmail SMTP integration implemented
+## Preview and release
+
+Vercel project: `mpdee-development` in the existing MPDEE team. Use a non-production branch and an explicit preview target for review. Keep the current deployment protection settings. The production branch remains `main`.
+
+Before any approved release, confirm the exact reviewed commit and check contact email configuration in the intended environment. No production deployment or merge is authorised by the redesign task alone.

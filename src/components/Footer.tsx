@@ -1,49 +1,62 @@
-import { Row, IconButton, SmartLink, Text, Flex } from '@once-ui-system/core';
-import { company, social } from '@/resources';
-import styles from './Footer.module.scss';
-
-export const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
+import Link from 'next/link';
+import { Arrow } from './studio/Marks';
+export function Footer() {
   return (
-    <Row
-      as="footer"
-      fillWidth
-      padding="8"
-      horizontal="center"
-      className={styles.footer}
-    >
-      <Flex
-        maxWidth="l"
-        fillWidth
-        paddingY="12"
-        paddingX="16"
-        horizontal="between"
-        vertical="center"
-        gap="16"
-        s={{ direction: 'column' }}
-      >
-        <Text variant="body-default-s" onBackground="neutral-weak">
-          &copy; {currentYear} /{' '}
-          <SmartLink href={`https://${company.domain}`}>
-            {company.name}
-          </SmartLink>
-        </Text>
-        <Row gap="8">
-          {social
-            .filter(item => item.essential && item.link)
-            .map(item => (
-              <IconButton
-                key={item.name}
-                href={item.link}
-                icon={item.icon}
-                variant="ghost"
-                size="s"
-                tooltip={item.name}
-              />
-            ))}
-        </Row>
-      </Flex>
-    </Row>
+    <footer className="site-footer">
+      <div className="container">
+        <div className="footer-main">
+          <div>
+            <Link href="/" className="footer-brand">
+              mpdee<span>.</span>
+            </Link>
+            <p>
+              Websites, web apps
+              <br />
+              and improvements.
+            </p>
+          </div>
+          <div className="footer-links">
+            <span className="eyebrow">Explore</span>
+            <Link href="/work">The work</Link>
+            <Link href="/services">What I do</Link>
+            <Link href="/#studio">The studio</Link>
+            <Link href="/contact">Start a project</Link>
+          </div>
+          <div className="footer-links">
+            <span className="eyebrow">Contact</span>
+            <a href="mailto:sendme@mpdee.info">
+              sendme@mpdee.info <Arrow />
+            </a>
+            <span className="footer-location">
+              Edwinstowe, Nottinghamshire
+              <br />
+              Independent design and development.
+            </span>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>© {new Date().getFullYear()} MPDEE Development</span>
+          <div>
+            <span>Part of the MPDEE family</span>
+            <a
+              href="https://creative.mpdee.co.uk/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Creative <Arrow />
+            </a>
+            <a
+              href="https://support.mpdee.co.uk/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Support <Arrow />
+            </a>
+          </div>
+          <Link href="/privacy">Privacy</Link>
+          <a href="#main-content">Back to top ↑</a>
+        </div>
+      </div>
+    </footer>
   );
-};
+}

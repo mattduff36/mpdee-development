@@ -1,17 +1,18 @@
-import { MetadataRoute } from 'next';
-import { baseURL, routes } from '@/resources';
-
+import type { MetadataRoute } from 'next';
+import { projects } from '@/data/projects';
 export default function sitemap(): MetadataRoute.Sitemap {
-  const url = baseURL.startsWith('http') ? baseURL : `https://${baseURL}`;
-
-  const routeEntries: MetadataRoute.Sitemap = Object.entries(routes)
-    .filter(([, enabled]) => enabled)
-    .map(([path]) => ({
-      url: `${url}${path}`,
-      lastModified: new Date(),
-      changeFrequency: path === '/' ? 'weekly' : 'monthly',
-      priority: path === '/' ? 1 : 0.8,
-    }));
-
-  return routeEntries;
+  const paths = [
+    '/',
+    '/work',
+    '/services',
+    '/contact',
+    '/privacy',
+    ...projects.map(project => '/work/' + project.slug),
+  ];
+  return paths.map(path => ({
+    url: 'https://development.mpdee.co.uk' + path,
+    lastModified: new Date('2026-10-28'),
+    changeFrequency: path === '/' ? 'monthly' : 'yearly',
+    priority: path === '/' ? 1 : path.startsWith('/work') ? 0.8 : 0.6,
+  }));
 }

@@ -1,21 +1,21 @@
 /**
  * @jest-environment node
  */
-/** Integration tests for contact API route. Email util is mocked - no actual emails sent. */
 import { NextRequest } from 'next/server';
 import { POST } from '../contact/route';
 
+// All email delivery is mocked. These tests never contact SMTP.
 const mockSendContactFormEmail = jest.fn();
+const mockCheckRateLimit = jest.fn();
 jest.mock('@/utils/email', () => ({
   sendContactFormEmail: (...args: unknown[]) =>
     mockSendContactFormEmail(...args),
 }));
-
 jest.mock('@/utils/rate-limit', () => ({
-  checkRateLimit: () => ({ allowed: true }),
+  checkRateLimit: (...args: unknown[]) => mockCheckRateLimit(...args),
 }));
 
-function createRequest(body: object): NextRequest {
+function createRequest(body: unknown): NextRequest {
   return new NextRequest('http://localhost/api/contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -23,32 +23,43 @@ function createRequest(body: object): NextRequest {
   });
 }
 
+const payload = {
+  name: 'Test User',
+  email: 'test@example.com',
+  phone: '07123 456789',
+  projectDetails: 'A new business website',
+};
+
 describe('POST /api/contact', () => {
   beforeEach(() => {
-    mockSendContactFormEmail.mockReset();
-    mockSendContactFormEmail.mockResolvedValue(true);
+    jest.spyOn(console, 'error').mockImplementation();
+    mockSendContactFormEmail.mockReset().mockResolvedValue(true);
+    mockCheckRateLimit.mockReset().mockReturnValue({ allowed: true });
   });
 
-  it('returns 400 for missing name', async () => {
-    const res = await POST(createRequest({ email: 'a@b.com' }));
-    expect(res.status).toBe(400);
-    const data = await res.json();
-    expect(data.error).toContain('Name');
-  });
+  afterEach(() => jest.restoreAllMocks());
 
-  it('returns 400 for missing email', async () => {
-    const res = await POST(createRequest({ name: 'Test' }));
-    expect(res.status).toBe(400);
-    const data = await res.json();
-    expect(data.error).toContain('Email');
-  });
-
-  it('returns 400 for invalid email', async () => {
-    const res = await POST(createRequest({ name: 'Test', email: 'invalid' }));
-    expect(res.status).toBe(400);
-    const data = await res.json();
-    expect(data.error).toMatch(/valid email/i);
-  });
+  it.each([
+    [{ email: 'a@b.com' }, /Name/],
+    [{ name: 'Test' }, /Email/],
+    [{ ...payload, email: 'invalid' }, /valid email/i],
+    [{ ...payload, name: 'a'.repeat(101) }, /100 characters/],
+    [{ ...payload, email: `${'a'.repeat(250)}@example.com` }, /valid email/],
+    [{ ...payload, phone: '123' }, /valid phone/],
+    [{ ...payload, phone: { number: '07123456789' } }, /valid phone/],
+    [{ ...payload, projectDetails: 'a'.repeat(1001) }, /1000 characters/],
+    [{ ...payload, projectDetails: ['unexpected'] }, /must be text/],
+    [null, /JSON object/],
+    [[], /JSON object/],
+  ])(
+    'rejects invalid payload without attempting delivery',
+    async (body, expectedError) => {
+      const res = await POST(createRequest(body));
+      expect(res.status).toBe(400);
+      expect((await res.json()).error).toMatch(expectedError);
+      expect(mockSendContactFormEmail).not.toHaveBeenCalled();
+    }
+  );
 
   it('returns 400 for invalid JSON', async () => {
     const req = new NextRequest('http://localhost/api/contact', {
@@ -56,25 +67,60 @@ describe('POST /api/contact', () => {
       headers: { 'Content-Type': 'application/json' },
       body: 'invalid json',
     });
-    const res = await POST(req);
-    expect(res.status).toBe(400);
+    expect((await POST(req)).status).toBe(400);
+    expect(mockSendContactFormEmail).not.toHaveBeenCalled();
   });
 
-  it('returns 200 and sends email for valid payload', async () => {
+  it('accepts UK domestic numbers and trims valid input before delivery', async () => {
     const res = await POST(
       createRequest({
-        name: 'Test User',
-        email: 'test@example.com',
-        projectDetails: 'Hello',
+        ...payload,
+        name: `  ${payload.name}  `,
+        email: `  ${payload.email}  `,
       })
     );
     expect(res.status).toBe(200);
-    expect(mockSendContactFormEmail).toHaveBeenCalledWith(
-      expect.objectContaining({
-        name: 'Test User',
+    expect(await res.json()).toEqual({ message: 'Message sent successfully!' });
+    expect(mockSendContactFormEmail).toHaveBeenCalledTimes(1);
+    expect(mockSendContactFormEmail).toHaveBeenCalledWith(payload);
+  });
+
+  it('accepts details at the maximum and omitted optional fields', async () => {
+    const res = await POST(
+      createRequest({
+        name: 'Test',
         email: 'test@example.com',
-        projectDetails: 'Hello',
+        projectDetails: 'a'.repeat(1000),
       })
     );
+    expect(res.status).toBe(200);
+    expect(mockSendContactFormEmail).toHaveBeenCalledWith({
+      name: 'Test',
+      email: 'test@example.com',
+      phone: '',
+      projectDetails: 'a'.repeat(1000),
+    });
+  });
+
+  it('returns an honest failure and direct contact fallback if SMTP cannot send', async () => {
+    mockSendContactFormEmail.mockResolvedValue(false);
+    const res = await POST(createRequest(payload));
+    expect(res.status).toBe(503);
+    expect((await res.json()).error).toContain('sendme@mpdee.info');
+  });
+
+  it('handles unexpected delivery errors without reporting success', async () => {
+    mockSendContactFormEmail.mockRejectedValue(new Error('Transport failure'));
+    const res = await POST(createRequest(payload));
+    expect(res.status).toBe(503);
+    expect((await res.json()).error).toContain('could not be sent');
+  });
+
+  it('preserves rate limiting and retry-after before processing the message', async () => {
+    mockCheckRateLimit.mockReturnValue({ allowed: false, retryAfter: 37 });
+    const res = await POST(createRequest(payload));
+    expect(res.status).toBe(429);
+    expect(res.headers.get('Retry-After')).toBe('37');
+    expect(mockSendContactFormEmail).not.toHaveBeenCalled();
   });
 });

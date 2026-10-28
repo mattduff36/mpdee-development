@@ -1,36 +1,22 @@
-import { Column, Heading, Text, Button } from '@once-ui-system/core';
-
+import Link from 'next/link';
+import { Asterisk, Arrow } from '@/components/studio/Marks';
 export default function NotFound() {
   return (
-    <Column
-      fillWidth
-      horizontal="center"
-      vertical="center"
-      paddingBottom="xl"
-      gap="24"
-      style={{ paddingTop: '80px' }}
-    >
-      <Heading variant="display-strong-l" align="center">
-        404
-      </Heading>
-      <Text
-        variant="heading-default-l"
-        onBackground="neutral-weak"
-        align="center"
-      >
-        Page not found
-      </Text>
-      <Text
-        variant="body-default-m"
-        onBackground="neutral-weak"
-        align="center"
-        wrap="balance"
-      >
-        The page you&apos;re looking for doesn&apos;t exist or has been moved.
-      </Text>
-      <Button href="/" variant="secondary" size="l">
-        Back to Home
-      </Button>
-    </Column>
+    <section className="container page-intro not-found">
+      <span className="eyebrow">404 / Page not found</span>
+      <h1>
+        This page
+        <br />
+        was not <span className="serif-word">found.</span>
+        <Asterisk />
+      </h1>
+      <p>
+        The link may have changed, or the page may no longer exist. The homepage
+        links to the work, services and contact details.
+      </p>
+      <Link href="/" className="button button-dark">
+        Back to the homepage <Arrow />
+      </Link>
+    </section>
   );
 }

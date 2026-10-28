@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { sendContactFormEmail } from '@/utils/email';
 import { checkRateLimit } from '@/utils/rate-limit';
 import {
+  CONTACT_FIELD_LIMITS,
   validateEmail,
   validatePhone,
   validateRequired,
 } from '@/utils/validation';
 
-// Configure timeout for this API route
 export const maxDuration = 30;
 
 export async function POST(request: NextRequest) {
@@ -27,123 +27,108 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  let body: unknown;
   try {
-    // Add timeout for serverless functions
-    const timeoutPromise = new Promise<NextResponse>(resolve => {
-      setTimeout(() => {
-        resolve(
-          NextResponse.json(
-            { error: 'Request timeout. Please try again.' },
-            { status: 408 }
-          )
-        );
-      }, 25000); // 25 seconds for Vercel
+    body = await request.json();
+  } catch {
+    return NextResponse.json(
+      { error: 'Invalid JSON in request body' },
+      { status: 400 }
+    );
+  }
+
+  if (!body || typeof body !== 'object' || Array.isArray(body)) {
+    return NextResponse.json(
+      { error: 'Request body must be a JSON object' },
+      { status: 400 }
+    );
+  }
+
+  const fields = body as Record<string, unknown>;
+  const name = typeof fields.name === 'string' ? fields.name.trim() : '';
+  const email = typeof fields.email === 'string' ? fields.email.trim() : '';
+  const phone = typeof fields.phone === 'string' ? fields.phone.trim() : '';
+  const projectDetails =
+    typeof fields.projectDetails === 'string'
+      ? fields.projectDetails.trim()
+      : '';
+
+  if (!validateRequired(name)) {
+    return NextResponse.json({ error: 'Name is required' }, { status: 400 });
+  }
+  if (name.length > CONTACT_FIELD_LIMITS.name) {
+    return NextResponse.json(
+      { error: 'Name must be 100 characters or fewer' },
+      { status: 400 }
+    );
+  }
+  if (!validateRequired(email)) {
+    return NextResponse.json({ error: 'Email is required' }, { status: 400 });
+  }
+  if (!validateEmail(email)) {
+    return NextResponse.json(
+      { error: 'Please enter a valid email address' },
+      { status: 400 }
+    );
+  }
+  if (fields.phone != null && typeof fields.phone !== 'string') {
+    return NextResponse.json(
+      { error: 'Please enter a valid phone number' },
+      { status: 400 }
+    );
+  }
+  if (!validatePhone(phone)) {
+    return NextResponse.json(
+      { error: 'Please enter a valid phone number' },
+      { status: 400 }
+    );
+  }
+  if (
+    fields.projectDetails != null &&
+    typeof fields.projectDetails !== 'string'
+  ) {
+    return NextResponse.json(
+      { error: 'Project details must be text' },
+      { status: 400 }
+    );
+  }
+  if (projectDetails.length > CONTACT_FIELD_LIMITS.projectDetails) {
+    return NextResponse.json(
+      { error: 'Project details must be 1000 characters or fewer' },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const success = await sendContactFormEmail({
+      name,
+      email,
+      phone,
+      projectDetails,
     });
 
-    const processRequest = async () => {
-      let body: Record<string, unknown>;
-      try {
-        body = (await request.json()) as Record<string, unknown>;
-      } catch {
-        return NextResponse.json(
-          { error: 'Invalid JSON in request body' },
-          { status: 400 }
-        );
-      }
-      if (!body || typeof body !== 'object') {
-        return NextResponse.json(
-          { error: 'Request body must be a JSON object' },
-          { status: 400 }
-        );
-      }
-      const name = typeof body.name === 'string' ? body.name : '';
-      const email = typeof body.email === 'string' ? body.email : '';
-      const phone = typeof body.phone === 'string' ? body.phone : '';
-      const projectDetails =
-        typeof body.projectDetails === 'string' ? body.projectDetails : '';
-
-      // Validate required fields
-      if (!validateRequired(name)) {
-        return NextResponse.json(
-          { error: 'Name is required' },
-          { status: 400 }
-        );
-      }
-
-      if (!validateRequired(email)) {
-        return NextResponse.json(
-          { error: 'Email is required' },
-          { status: 400 }
-        );
-      }
-
-      if (!validateEmail(email)) {
-        return NextResponse.json(
-          { error: 'Please enter a valid email address' },
-          { status: 400 }
-        );
-      }
-
-      // Validate optional fields
-      if (phone && phone.trim().length > 0 && !validatePhone(phone)) {
-        return NextResponse.json(
-          { error: 'Please enter a valid phone number' },
-          { status: 400 }
-        );
-      }
-
-      if (projectDetails && projectDetails.trim().length > 1000) {
-        return NextResponse.json(
-          { error: 'Project details must be less than 1000 characters' },
-          { status: 400 }
-        );
-      }
-
-      // Send email
-      const success = await sendContactFormEmail({
-        name: name.trim(),
-        email: email.trim(),
-        phone: phone?.trim(),
-        projectDetails: projectDetails?.trim(),
-      });
-
-      if (!success) {
-        return NextResponse.json(
-          { error: 'Failed to send email. Please try again.' },
-          { status: 500 }
-        );
-      }
-
+    if (!success) {
       return NextResponse.json(
-        { message: 'Message sent successfully!' },
-        { status: 200 }
+        {
+          error:
+            'Your message could not be sent. Please try again or email sendme@mpdee.info.',
+        },
+        { status: 503 }
       );
-    };
-
-    // Race between request processing and timeout
-    return await Promise.race([processRequest(), timeoutPromise]);
-  } catch (error) {
-    console.error('Contact form error:', error);
-
-    // More specific error handling
-    if (error instanceof Error) {
-      // Check for authentication errors
-      if (
-        error.message.includes('authentication') ||
-        error.message.includes('password')
-      ) {
-        return NextResponse.json(
-          {
-            error: 'Email service configuration error. Please contact support.',
-          },
-          { status: 500 }
-        );
-      }
     }
 
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+      { message: 'Message sent successfully!' },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error('Contact form delivery failed:', error);
+    return NextResponse.json(
+      {
+        error:
+          'Your message could not be sent. Please try again or email sendme@mpdee.info.',
+      },
+      { status: 503 }
     );
   }
 }

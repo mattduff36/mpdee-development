@@ -1,228 +1,350 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 import { track } from '@vercel/analytics';
-import {
-  Column,
-  Row,
-  Button,
-  Input,
-  Textarea,
-  Text,
-  Card,
-  Heading,
-  RevealFx,
-} from '@once-ui-system/core';
-import { validateEmail } from '@/utils/validation';
+import { validateEmail, validatePhone } from '@/utils/validation';
+import styles from './ContactForm.module.css';
 
-interface FormData {
+type FormData = {
   name: string;
   email: string;
   phone: string;
   projectDetails: string;
-}
+};
 
-interface FormErrors {
-  name?: string;
-  email?: string;
-  phone?: string;
-  projectDetails?: string;
-}
+type FieldName = keyof FormData;
+type FormErrors = Partial<Record<FieldName, string>>;
 
-interface FormState {
-  isSubmitting: boolean;
-  isSubmitted: boolean;
-  submitError: string | null;
-}
+const emptyForm: FormData = {
+  name: '',
+  email: '',
+  phone: '',
+  projectDetails: '',
+};
+const unconfirmedMessage =
+  'We couldn’t confirm delivery. Your message is still here — please try again or email Matt directly.';
 
-export function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    projectDetails: '',
-  });
-
+export function ContactForm({ initialInterest }: { initialInterest?: string }) {
+  const [formData, setFormData] = useState<FormData>(() => ({
+    ...emptyForm,
+    projectDetails: initialInterest
+      ? `I’m interested in ${initialInterest.slice(0, 120)}.\n\n`
+      : '',
+  }));
   const [errors, setErrors] = useState<FormErrors>({});
-  const [formState, setFormState] = useState<FormState>({
-    isSubmitting: false,
-    isSubmitted: false,
-    submitError: null,
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const requestPending = useRef(false);
+  const controllerRef = useRef<AbortController | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const successRef = useRef<HTMLDivElement>(null);
 
-  const validateForm = useCallback((): boolean => {
-    const newErrors: FormErrors = {};
+  useEffect(() => () => controllerRef.current?.abort(), []);
+  useEffect(() => {
+    if (isSubmitted) successRef.current?.focus();
+  }, [isSubmitted]);
 
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    else if (formData.name.trim().length < 2)
-      newErrors.name = 'Name must be at least 2 characters';
+  function handleChange(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const { name, value } = event.target;
+    setFormData(previous => ({ ...previous, [name]: value }));
+    setErrors(previous => ({ ...previous, [name]: undefined }));
+  }
 
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!validateEmail(formData.email))
-      newErrors.email = 'Please enter a valid email address';
+  function validate(): boolean {
+    const nextErrors: FormErrors = {};
+    if (!formData.name.trim()) nextErrors.name = 'Please enter your name.';
+    if (!formData.email.trim())
+      nextErrors.email = 'Please enter your email address.';
+    else if (!validateEmail(formData.email.trim()))
+      nextErrors.email = 'Please enter a valid email address.';
+    if (formData.phone.trim() && !validatePhone(formData.phone.trim()))
+      nextErrors.phone =
+        'Please enter a valid phone number, including the country code if needed.';
+    if (formData.projectDetails.trim().length > 1000)
+      nextErrors.projectDetails =
+        'Please keep your message to 1,000 characters or fewer.';
+    setErrors(nextErrors);
 
-    if (formData.phone.trim() && formData.phone.trim().length < 10)
-      newErrors.phone = 'Please enter a valid phone number';
+    const firstInvalid = Object.keys(nextErrors)[0];
+    if (firstInvalid) {
+      const input = formRef.current?.elements.namedItem(firstInvalid);
+      if (input instanceof HTMLElement) input.focus();
+      return false;
+    }
+    return true;
+  }
 
-    if (
-      formData.projectDetails.trim() &&
-      formData.projectDetails.trim().length > 1000
-    )
-      newErrors.projectDetails =
-        'Project details must be less than 1000 characters';
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (requestPending.current || !validate()) return;
+    requestPending.current = true;
+    setIsSubmitting(true);
+    setSubmitError(null);
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  }, [formData]);
+    const controller = new AbortController();
+    controllerRef.current = controller;
+    let timedOut = false;
+    const timeout = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, 30000);
 
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name, value } = e.target;
-      setFormData(prev => ({ ...prev, [name]: value }));
-      setErrors(prev =>
-        prev[name as keyof FormErrors] ? { ...prev, [name]: undefined } : prev
-      );
-    },
-    []
-  );
-
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault();
-      if (!validateForm()) return;
-
-      setFormState({
-        isSubmitting: true,
-        isSubmitted: false,
-        submitError: null,
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          projectDetails: formData.projectDetails.trim(),
+        }),
+        signal: controller.signal,
       });
+      const data: unknown = await response.json().catch(() => null);
+      const result =
+        data && typeof data === 'object'
+          ? (data as Record<string, unknown>)
+          : null;
+      if (!response.ok) {
+        throw new Error(
+          typeof result?.error === 'string' ? result.error : unconfirmedMessage
+        );
+      }
+      if (result?.message !== 'Message sent successfully!') {
+        throw new Error(unconfirmedMessage);
+      }
 
+      setIsSubmitted(true);
+      setFormData(emptyForm);
+      // Analytics must never turn a successfully sent enquiry into an error.
       try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Failed to send message');
-        }
-
         track('contact_form_submit', {
           source: 'contact_page',
           status: 'success',
         });
-        setFormState({
-          isSubmitting: false,
-          isSubmitted: true,
-          submitError: null,
-        });
-        setFormData({ name: '', email: '', phone: '', projectDetails: '' });
-      } catch (error) {
-        setFormState({
-          isSubmitting: false,
-          isSubmitted: false,
-          submitError:
-            error instanceof Error
-              ? error.message
-              : 'Failed to send message. Please try again or contact us directly.',
-        });
+      } catch {
+        /* optional */
       }
-    },
-    [validateForm, formData]
-  );
+    } catch (error) {
+      if (controller.signal.aborted && !timedOut) return;
+      setSubmitError(
+        timedOut
+          ? 'This is taking longer than expected. We couldn’t confirm whether your message was sent. Please email Matt before resending to avoid a duplicate.'
+          : error instanceof Error && error.name !== 'TypeError'
+            ? error.message
+            : unconfirmedMessage
+      );
+    } finally {
+      clearTimeout(timeout);
+      requestPending.current = false;
+      controllerRef.current = null;
+      if (!controller.signal.aborted || timedOut) setIsSubmitting(false);
+    }
+  }
 
-  if (formState.isSubmitted) {
+  if (isSubmitted) {
     return (
-      <RevealFx translateY="4" fillWidth>
-        <Card fillWidth padding="32" radius="l" border="brand-alpha-medium">
-          <Column gap="16" horizontal="center" fillWidth>
-            <Heading as="h3" variant="heading-strong-l" align="center">
-              Message Sent!
-            </Heading>
-            <Text
-              variant="body-default-m"
-              onBackground="neutral-weak"
-              align="center"
-            >
-              Thank you for getting in touch. We&apos;ll respond within 24
-              hours.
-            </Text>
-            <Button
-              variant="secondary"
-              onClick={() =>
-                setFormState(prev => ({ ...prev, isSubmitted: false }))
-              }
-            >
-              Send Another Message
-            </Button>
-          </Column>
-        </Card>
-      </RevealFx>
+      <div
+        className={styles.success}
+        ref={successRef}
+        tabIndex={-1}
+        role="status"
+      >
+        <span className={styles.successIcon} aria-hidden="true">
+          ✓
+        </span>
+        <p className={styles.eyebrow}>A GOOD FIRST STEP</p>
+        <h2>
+          Message sent.
+          <br />
+          Let’s make something good.
+        </h2>
+        <p>
+          Thanks for getting in touch. Matt will reply to the email address you
+          provided.
+        </p>
+        <button
+          className={styles.secondaryButton}
+          type="button"
+          onClick={() => {
+            setIsSubmitted(false);
+            setSubmitError(null);
+          }}
+        >
+          Send another message <span aria-hidden="true">↗</span>
+        </button>
+      </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Column gap="20" fillWidth>
-        <Input
-          id="contact-name"
-          name="name"
-          label="Name"
-          value={formData.name}
-          onChange={handleInputChange}
-          error={!!errors.name}
-          errorMessage={errors.name}
-          required
-        />
-        <Input
-          id="contact-email"
-          name="email"
-          label="Email"
-          value={formData.email}
-          onChange={handleInputChange}
-          error={!!errors.email}
-          errorMessage={errors.email}
-          required
-        />
-        <Input
+    <form
+      className={styles.form}
+      ref={formRef}
+      onSubmit={handleSubmit}
+      noValidate
+      aria-busy={isSubmitting}
+    >
+      <div className={styles.row}>
+        <div className={styles.field}>
+          <label htmlFor="contact-name">
+            Your name <span aria-hidden="true">*</span>
+          </label>
+          <input
+            id="contact-name"
+            name="name"
+            autoComplete="name"
+            placeholder="Alex Taylor"
+            maxLength={100}
+            value={formData.name}
+            onChange={handleChange}
+            required
+            disabled={isSubmitting}
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? 'contact-name-error' : undefined}
+          />
+          {errors.name && (
+            <p
+              className={styles.fieldError}
+              id="contact-name-error"
+              role="alert"
+            >
+              {errors.name}
+            </p>
+          )}
+        </div>
+        <div className={styles.field}>
+          <label htmlFor="contact-email">
+            Email address <span aria-hidden="true">*</span>
+          </label>
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            placeholder="alex@yourbusiness.co.uk"
+            maxLength={254}
+            value={formData.email}
+            onChange={handleChange}
+            required
+            disabled={isSubmitting}
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? 'contact-email-error' : undefined}
+          />
+          {errors.email && (
+            <p
+              className={styles.fieldError}
+              id="contact-email-error"
+              role="alert"
+            >
+              {errors.email}
+            </p>
+          )}
+        </div>
+      </div>
+      <div className={styles.field}>
+        <label htmlFor="contact-phone">
+          Phone number <span className={styles.optional}>(optional)</span>
+        </label>
+        <input
           id="contact-phone"
           name="phone"
-          label="Phone (optional)"
+          type="tel"
+          autoComplete="tel"
+          placeholder="If you’d prefer a call"
+          maxLength={40}
           value={formData.phone}
-          onChange={handleInputChange}
-          error={!!errors.phone}
-          errorMessage={errors.phone}
+          onChange={handleChange}
+          disabled={isSubmitting}
+          aria-invalid={Boolean(errors.phone)}
+          aria-describedby={errors.phone ? 'contact-phone-error' : undefined}
         />
-        <Textarea
+        {errors.phone && (
+          <p
+            className={styles.fieldError}
+            id="contact-phone-error"
+            role="alert"
+          >
+            {errors.phone}
+          </p>
+        )}
+      </div>
+      <div className={styles.field}>
+        <label htmlFor="contact-details">
+          Tell me about your project{' '}
+          <span className={styles.optional}>(optional)</span>
+        </label>
+        <textarea
           id="contact-details"
           name="projectDetails"
-          label="Tell us about your project"
+          rows={5}
+          maxLength={1000}
+          placeholder="What are you working on? What would you like your website or app to do? A rough idea is plenty."
           value={formData.projectDetails}
-          onChange={handleInputChange}
-          error={!!errors.projectDetails}
-          errorMessage={errors.projectDetails}
-          lines={5}
+          onChange={handleChange}
+          disabled={isSubmitting}
+          aria-invalid={Boolean(errors.projectDetails)}
+          aria-describedby={`contact-details-hint${errors.projectDetails ? ' contact-details-error' : ''}`}
         />
-
-        {formState.submitError && (
-          <Text variant="body-default-s" onBackground="danger-strong">
-            {formState.submitError}
-          </Text>
-        )}
-
-        <Row gap="12">
-          <Button
-            type="submit"
-            variant="primary"
-            size="l"
-            loading={formState.isSubmitting}
+        <div className={styles.fieldMeta} id="contact-details-hint">
+          <span>No finished brief needed.</span>
+          <span>
+            {formData.projectDetails.length.toLocaleString('en-GB')} / 1,000
+          </span>
+        </div>
+        {errors.projectDetails && (
+          <p
+            className={styles.fieldError}
+            id="contact-details-error"
+            role="alert"
           >
-            {formState.isSubmitting ? 'Sending...' : 'Send Message'}
-          </Button>
-        </Row>
-      </Column>
+            {errors.projectDetails}
+          </p>
+        )}
+      </div>
+      {submitError && (
+        <div className={styles.submitError} role="alert">
+          <p>{submitError}</p>
+          <a href="mailto:sendme@mpdee.info">
+            Email sendme@mpdee.info <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      )}
+      <div className={styles.submitRow}>
+        <button
+          className={styles.submitButton}
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Sending your message…' : 'Send message'}
+          {isSubmitting ? (
+            <span className={styles.spinner} aria-hidden="true" />
+          ) : (
+            <svg
+              aria-hidden="true"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M5 19 19 5M5 5h14v14"
+                stroke="currentColor"
+                strokeWidth="1.7"
+              />
+            </svg>
+          )}
+        </button>
+        <p className={styles.privacy}>
+          Your details are used to reply to your enquiry.
+        </p>
+      </div>
+      <p className={styles.requiredNote}>* Required fields</p>
     </form>
   );
 }

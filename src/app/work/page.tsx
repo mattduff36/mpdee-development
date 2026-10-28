@@ -1,38 +1,36 @@
-import { Column, Heading, Text } from '@once-ui-system/core';
-import { work } from '@/resources';
-import { Projects } from '@/components/work/Projects';
 import type { Metadata } from 'next';
-
+import { projects } from '@/data/projects';
+import { ProjectExplorer } from '@/components/studio/ProjectExplorer';
+import { ContactCta } from '@/components/studio/ContactCta';
+import { Asterisk } from '@/components/studio/Marks';
 export const metadata: Metadata = {
-  title: work.title,
-  description: work.description,
+  title: 'The work',
+  description:
+    'Explore websites, marketplaces and web applications built by MPDEE Development, including iTrader and Voiceover Studio Finder.',
+  alternates: { canonical: '/work' },
 };
-
-export default function Work() {
+export default function WorkPage() {
   return (
-    <Column maxWidth="m" horizontal="center" gap="xl" fillWidth>
-      <Column gap="m" paddingBottom="l" style={{ paddingTop: '80px' }}>
-        <Heading variant="display-strong-s" as="h1">
-          Our{' '}
-          <Text
-            as="span"
-            variant="display-strong-s"
-            className="brand-gradient-text"
-          >
-            Work
-          </Text>
-        </Heading>
-        <Text
-          variant="body-default-l"
-          onBackground="neutral-weak"
-          wrap="balance"
-        >
-          Explore our portfolio of client projects. Each one represents a unique
-          business challenge solved through thoughtful design and modern
-          technology.
-        </Text>
-      </Column>
-      <Projects />
-    </Column>
+    <>
+      <div className="container">
+        <header className="page-intro">
+          <div className="eyebrow">The work / A selection of projects</div>
+          <h1>
+            Selected
+            <br />
+            <span className="serif-word">work.</span>
+            <Asterisk />
+          </h1>
+          <p>
+            A selection of websites and web applications. Open a project to read
+            what it does and how it was put together.
+          </p>
+        </header>
+        <section className="work-collection" aria-label="Project collection">
+          <ProjectExplorer projects={projects} />
+        </section>
+      </div>
+      <ContactCta />
+    </>
   );
 }
