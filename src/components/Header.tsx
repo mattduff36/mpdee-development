@@ -41,7 +41,10 @@ export function Header() {
             priority
           />
           <span className="brand-name">
-            mpdee<span className="brand-sub">DEVELOPMENT</span>
+            <span>
+              mpdee<span className="brand-stop">.</span>
+            </span>
+            <span className="brand-sub">DEVELOPMENT</span>
           </span>
         </Link>
         <button

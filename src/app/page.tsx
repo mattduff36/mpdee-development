@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Arrow, BrandMark, SectionLabel } from '@/components/studio/Marks';
+import { Arrow, Asterisk, SectionLabel } from '@/components/studio/Marks';
 import { ContactCta } from '@/components/studio/ContactCta';
 import { ProjectCard } from '@/components/studio/ProjectCard';
 import { projects } from '@/data/projects';
@@ -65,9 +65,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="hero-note">
-            <span className="tiny-cross">
-              <BrandMark />
-            </span>
+            <span className="tiny-cross">+</span>
             Designed and built by Matt in Nottinghamshire.
           </div>
         </div>
@@ -80,9 +78,7 @@ export default function Home() {
           <div className="art-orbit orbit-two" />
           <div className="hero-disc">
             <div className="disc-ring" />
-            <span className="disc-cross">
-              <BrandMark />
-            </span>
+            <span className="disc-cross">+</span>
           </div>
           <div className="hero-window window-back">
             <div className="browser-bar">
@@ -117,11 +113,13 @@ export default function Home() {
             />
           </div>
           <div className="craft-stamp">
-            <span className="craft-stamp-mark" aria-hidden="true" />
+            <Asterisk />
             <span>
-              Pro package /
+              BASIC
               <br />
-              from £600
+              PACKAGE
+              <br />
+              FROM £350
             </span>
           </div>
           <span className="art-coordinate" aria-hidden="true">
@@ -228,7 +226,7 @@ export default function Home() {
           </div>
           <div className="studio-signoff">
             <span>Matt @ MPDEE</span>
-            <BrandMark />
+            <Asterisk />
           </div>
           <div className="studio-art-foot">
             <span>BASED IN NOTTINGHAMSHIRE</span>
