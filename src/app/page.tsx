@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Arrow, Asterisk, SectionLabel } from '@/components/studio/Marks';
+import { Arrow, BrandMark, SectionLabel } from '@/components/studio/Marks';
 import { ContactCta } from '@/components/studio/ContactCta';
 import { ProjectCard } from '@/components/studio/ProjectCard';
 import { projects } from '@/data/projects';
@@ -53,21 +53,22 @@ export default function Home() {
             </span>
           </h1>
           <p className="hero-description">
-            Distinctive websites. Useful web apps.
-            <br />
-            Thoughtfully designed and carefully built around you.
+            I design and build websites and web applications for businesses that
+            need something clear, useful and well made.
           </p>
           <div className="hero-actions">
             <Link className="button button-dark" href="/contact">
               Start a project <Arrow />
             </Link>
             <Link className="text-link" href="#selected-work">
-              Explore the work <Arrow diagonal={false} />
+              See the work <Arrow diagonal={false} />
             </Link>
           </div>
           <div className="hero-note">
-            <span className="tiny-cross">+</span> Small studio. Big on the
-            details.
+            <span className="tiny-cross">
+              <BrandMark />
+            </span>
+            Designed and built by Matt in Nottinghamshire.
           </div>
         </div>
         <div
@@ -79,7 +80,9 @@ export default function Home() {
           <div className="art-orbit orbit-two" />
           <div className="hero-disc">
             <div className="disc-ring" />
-            <span className="disc-cross">+</span>
+            <span className="disc-cross">
+              <BrandMark />
+            </span>
           </div>
           <div className="hero-window window-back">
             <div className="browser-bar">
@@ -114,23 +117,23 @@ export default function Home() {
             />
           </div>
           <div className="craft-stamp">
-            <Asterisk />
+            <BrandMark />
             <span>
-              BUILT WITH
+              MPDEE /
               <br />
-              <strong>PURPOSE.</strong>
+              DEVELOPMENT
             </span>
           </div>
           <span className="art-coordinate" aria-hidden="true">
-            DESIGN × DEVELOPMENT
+            NOTTINGHAMSHIRE
           </span>
         </div>
       </section>
       <div className="client-strip container">
         <span className="eyebrow">
-          Good company
+          A selection
           <br />
-          to be in.
+          of projects
         </span>
         <div className="client-names">
           <span className="client-itrader">
@@ -157,12 +160,12 @@ export default function Home() {
         <SectionLabel number="01">Selected work</SectionLabel>
         <div className="section-heading">
           <h2 id="work-heading">
-            Different businesses.
+            Recent websites
             <br />
-            <span className="muted">Same attention to detail.</span>
+            <span className="muted">and web applications.</span>
           </h2>
           <Link className="text-link" href="/work">
-            All the work <Arrow />
+            View all projects <Arrow />
           </Link>
         </div>
         <div className="project-grid">
@@ -179,13 +182,13 @@ export default function Home() {
           <SectionLabel number="02">What I can help with</SectionLabel>
           <div className="section-heading">
             <h2 id="services-heading">
-              Your ambition.
+              Website design, web apps
               <br />
-              <span className="muted-light">My kind of challenge.</span>
+              <span className="muted-light">and improvements.</span>
             </h2>
             <p>
-              From your first online home to the platform
-              <br className="desktop-only" /> behind your next big idea.
+              The work covers a new website, a custom web application, or
+              changes to a site you already have.
             </p>
           </div>
           <div className="capability-list">
@@ -219,27 +222,27 @@ export default function Home() {
         aria-labelledby="studio-heading"
       >
         <div className="studio-art" aria-hidden="true">
-          <span className="eyebrow">A small studio with a big toolkit.</span>
+          <span className="eyebrow">Design and development</span>
           <div className="studio-monogram">
             m<span>.</span>
           </div>
           <div className="studio-signoff">
             <span>Matt @ MPDEE</span>
-            <Asterisk />
+            <BrandMark />
           </div>
           <div className="studio-art-foot">
             <span>BASED IN NOTTINGHAMSHIRE</span>
-            <span>THINKING EVERYWHERE ↗</span>
+            <span>EDWINSTOWE</span>
           </div>
         </div>
         <div className="studio-copy">
-          <SectionLabel number="03">The person behind the pixels</SectionLabel>
+          <SectionLabel number="03">About</SectionLabel>
           <h2 id="studio-heading">
             Hello, I’m Matt.
             <br />
-            Your idea is in
+            I’m based in
             <br />
-            <span className="serif-word">good hands.</span>
+            <span className="serif-word">Edwinstowe.</span>
           </h2>
           <p>
             I’m the developer behind MPDEE. I bring design, code and a practical
@@ -252,7 +255,7 @@ export default function Home() {
             little things as much as you do.
           </p>
           <Link href="/contact" className="text-link">
-            Let’s get to know your project <Arrow />
+            Tell me about your project <Arrow />
           </Link>
         </div>
       </section>
@@ -260,42 +263,41 @@ export default function Home() {
         className="process-section container"
         aria-labelledby="process-heading"
       >
-        <SectionLabel number="04">A clear way forward</SectionLabel>
+        <SectionLabel number="04">How a project runs</SectionLabel>
         <div className="section-heading">
           <h2 id="process-heading">
-            Good work starts
+            From a conversation
             <br />
-            with a conversation.
+            to a live site.
           </h2>
           <p>
-            No technical brief required.
-            <br />
-            Just an idea of where you want to go.
+            You do not need a finished brief. We start from what you want the
+            website or application to do.
           </p>
         </div>
         <ol className="process-grid">
           <li>
-            <span>01 / FIND THE FOCUS</span>
-            <h3>Understand.</h3>
+            <span>01 / Agree the scope</span>
+            <h3>Understand the work.</h3>
             <p>
               We talk about your business, your people and the problem you want
               to solve. Then agree a clear direction and scope.
             </p>
           </li>
           <li>
-            <span>02 / MAKE IT REAL</span>
-            <h3>Design & build.</h3>
+            <span>02 / Design and build</span>
+            <h3>Design and build.</h3>
             <p>
-              Ideas become something you can see and try. We refine the details
-              together, with useful feedback along the way.
+              You see the work as it takes shape, and we adjust the details from
+              your feedback.
             </p>
           </li>
           <li>
-            <span>03 / PUT IT TO WORK</span>
-            <h3>Launch & grow.</h3>
+            <span>03 / Launch</span>
+            <h3>Launch.</h3>
             <p>
-              We check the experience, bring it to life, and plan the support or
-              improvements you need for what comes next.
+              We check the site, put it live, and agree any support that is
+              actually needed afterwards.
             </p>
           </li>
         </ol>

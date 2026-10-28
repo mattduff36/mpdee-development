@@ -11,9 +11,9 @@ export default function Privacy() {
       <header className="page-intro">
         <span className="eyebrow">Your information</span>
         <h1>
-          A little clarity
+          How your data
           <br />
-          on <span className="serif-word">privacy.</span>
+          is <span className="serif-word">handled.</span>
         </h1>
         <p>
           How information is handled when you visit this site or get in touch

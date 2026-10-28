@@ -3,7 +3,7 @@ import { ContactForm } from '@/components/ContactForm';
 import { Arrow, Asterisk, SectionLabel } from '@/components/studio/Marks';
 
 export const metadata: Metadata = {
-  title: 'Let’s talk',
+  title: 'Project enquiry',
   description:
     'Tell Matt about your next website, web app or improvement. Speak directly with MPDEE Development in Edwinstowe, Nottinghamshire.',
   alternates: { canonical: '/contact' },
@@ -38,24 +38,24 @@ export default async function Contact({
   return (
     <div className="container">
       <section className="page-intro">
-        <SectionLabel number="04">LET’S TALK</SectionLabel>
+        <SectionLabel number="04">CONTACT</SectionLabel>
         <h1>
-          Good things start
+          Tell me about
           <br />
-          with a <em>hello.</em>
+          your <em>project.</em>
         </h1>
         <p>
-          A new idea, a website that’s ready for a change, or a problem you’d
-          like to solve. Tell me what’s on your mind.
+          A new website, a web application, or a change to a site you already
+          have. A short note is enough to start the conversation.
         </p>
       </section>
       <section className="contact-layout" aria-label="Get in touch with Matt">
         <div className="contact-copy">
           <Asterisk className="contact-asterisk" />
           <h2>
-            Small studio.
+            Working directly
             <br />
-            Direct conversation.
+            with Matt.
           </h2>
           <p>
             You’ll speak with Matt — the person who’ll design and build your
@@ -73,7 +73,7 @@ export default async function Contact({
             <p>
               Edwinstowe, Nottinghamshire.
               <br />
-              Working with businesses near and far.
+              Clients may be local or further afield.
             </p>
           </div>
           <div className="contact-next">
@@ -108,9 +108,12 @@ export default async function Contact({
           </div>
         </div>
         <div className="contact-panel">
-          <span className="eyebrow">YOUR NEXT CHAPTER</span>
-          <h2>What are we making?</h2>
-          <p>A few details are all it takes to get the conversation started.</p>
+          <span className="eyebrow">PROJECT ENQUIRY</span>
+          <h2>Your enquiry</h2>
+          <p>
+            Add your name, email and a short note about the website, application
+            or change.
+          </p>
           <ContactForm initialInterest={initialInterest} />
         </div>
       </section>

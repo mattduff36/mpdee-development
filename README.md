@@ -7,7 +7,7 @@ Repository: https://github.com/mattduff36/mpdee-development
 
 ## October 2026 redesign
 
-A complete visual and content refresh built around the existing yellow Development identity: warm off-white, bold typography, real project imagery, a filterable portfolio and individual case studies. The original home, work, services and contact URLs are retained. Existing website package names and starting prices are preserved.
+A complete visual and content refresh on the existing off-white and charcoal layout: bold typography, real project imagery, a filterable portfolio and individual case studies. Interface accents use a light orange (`#F2A43A`, hover `#DB8D1E`, tint `#FFF3E3`), with a darker orange (`#8A4E0C`) for small text and focus on the paper background. The original orange-and-yellow triangle logo is unchanged. The original home, work, services and contact URLs are retained. Existing website package names and starting prices are preserved.
 
 The redesign is on `redesign/2026-studio`. It is for preview and review. **Do not merge to `main` or deploy to production until Matt explicitly confirms.**
 
@@ -67,7 +67,9 @@ Contact tests mock the delivery service and do not send emails. Do not use a rea
 | `public/images/work/` | Refreshed project screenshots |
 | `public/fonts/` | Manrope font and its SIL Open Font License |
 
-Case studies generate at `/work/[slug]`. Add a project to the data array to include it in the portfolio and sitemap. Avoid inventing performance metrics, testimonials or project capabilities. The current screenshots and project descriptions reflect publicly visible work; they are not live product embeds.
+Case studies generate at `/work/[slug]`. Add a project to the data array to include it in the portfolio and sitemap. A project `url` is optional. Projects without one are presented as private applications and do not show a live-site link. Avoid inventing performance metrics, testimonials, public URLs or project capabilities. Public project images reflect publicly visible work and are not live product embeds.
+
+DigiDocs is a private operations application in the portfolio. It has no public URL. Its image, `public/images/work/digidocs-illustrative.svg`, is a labelled illustrative schematic rather than a screenshot.
 
 ## Contact behaviour
 

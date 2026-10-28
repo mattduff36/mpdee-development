@@ -24,14 +24,14 @@ export default function Services() {
         <section className="page-intro">
           <SectionLabel number="02">WHAT I DO</SectionLabel>
           <h1>
-            Made for your
+            Websites and
             <br />
-            next <em>chapter.</em>
+            web <em>apps.</em>
           </h1>
           <p>
-            A first website. A more useful platform. A better version of what
-            you already have. Good design and thoughtful development, built
-            around you.
+            I design and build websites, web applications, and practical
+            improvements to sites you already have. Structure, content and
+            design follow what your visitors need to do.
           </p>
         </section>
         <div className="services-list">
@@ -67,7 +67,7 @@ export default function Services() {
                   href={`/contact?service=${serviceQueries[capability.id]}`}
                   className="text-link"
                 >
-                  Let’s talk about it <Arrow />
+                  Discuss this service <Arrow />
                 </Link>
               </div>
               <div
@@ -80,17 +80,17 @@ export default function Services() {
                       <span />
                       <span />
                       <span />
-                      <i>your next chapter</i>
+                      <i>sample website</i>
                     </div>
                     <div className="service-browser-content">
-                      <span>YOUR BUSINESS. YOUR WAY.</span>
+                      <span>PAGES, CONTENT, CONTACT</span>
                       <strong>
-                        A little
+                        A clear
                         <br />
-                        more <em>you.</em>
+                        <em>site.</em>
                       </strong>
                       <div className="service-browser-footer">
-                        <b>LET’S GET STARTED ↗</b>
+                        <b>GET IN TOUCH ↗</b>
                         <Asterisk />
                       </div>
                     </div>
@@ -99,18 +99,16 @@ export default function Services() {
                   <div className="service-platform">
                     <div className="platform-core">
                       <Asterisk />
-                      <span>YOUR IDEA</span>
+                      <span>A WEB APP</span>
                     </div>
                     <span className="platform-node node-one">People</span>
                     <span className="platform-node node-two">Bookings</span>
                     <span className="platform-node node-three">Payments</span>
-                    <span className="platform-node node-four">
-                      Possibilities
-                    </span>
+                    <span className="platform-node node-four">Accounts</span>
                   </div>
                 ) : (
                   <div className="service-improvements">
-                    <span>SMALL CHANGES. REAL DIFFERENCE.</span>
+                    <span>PRACTICAL IMPROVEMENTS</span>
                     <div className="improvement-lines">
                       <i />
                       <i />
@@ -118,9 +116,9 @@ export default function Services() {
                       <i />
                     </div>
                     <strong>
-                      Better,
+                      Care and
                       <br />
-                      by design.
+                      updates.
                     </strong>
                     <Arrow />
                   </div>
@@ -132,16 +130,16 @@ export default function Services() {
         <section className="section" aria-labelledby="packages-title">
           <div className="section-heading">
             <div>
-              <SectionLabel number="03">A PLACE TO START</SectionLabel>
+              <SectionLabel number="03">WEBSITE PACKAGES</SectionLabel>
               <h2 id="packages-title">
-                Clear starting points.
+                Website packages
                 <br />
-                Room for your ideas.
+                and starting prices.
               </h2>
             </div>
             <p>
-              Every business is different. These website packages give you a
-              starting point for the conversation.
+              Starter, Basic, Pro and Ultimate are the published starting points
+              for a website. Each card shows the from-price.
             </p>
           </div>
           <div className="package-grid">
@@ -167,16 +165,16 @@ export default function Services() {
         <section className="faq-section section" aria-labelledby="faq-title">
           <div className="section-heading">
             <div>
-              <SectionLabel number="04">A FEW GOOD QUESTIONS</SectionLabel>
+              <SectionLabel number="04">QUESTIONS</SectionLabel>
               <h2 id="faq-title">
-                Before we
+                Common
                 <br />
-                say hello.
+                questions.
               </h2>
             </div>
             <p>
-              Something else on your mind?{' '}
-              <Link href="/contact">Just ask.</Link>
+              If your question is not listed,{' '}
+              <Link href="/contact">use the contact form.</Link>
             </p>
           </div>
           <div className="faq-list">

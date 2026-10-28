@@ -10,9 +10,9 @@ export function Footer() {
               mpdee<span>.</span>
             </Link>
             <p>
-              Good people. Thoughtful design.
+              Websites, web apps
               <br />
-              Things that work beautifully.
+              and improvements.
             </p>
           </div>
           <div className="footer-links">
@@ -23,14 +23,14 @@ export function Footer() {
             <Link href="/contact">Start a project</Link>
           </div>
           <div className="footer-links">
-            <span className="eyebrow">Say hello</span>
+            <span className="eyebrow">Contact</span>
             <a href="mailto:sendme@mpdee.info">
               sendme@mpdee.info <Arrow />
             </a>
             <span className="footer-location">
               Edwinstowe, Nottinghamshire
               <br />
-              Working with businesses everywhere.
+              Independent design and development.
             </span>
           </div>
         </div>

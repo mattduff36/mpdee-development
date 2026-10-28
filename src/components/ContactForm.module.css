@@ -107,7 +107,7 @@
   min-height: 58px;
 }
 .submitButton:hover:not(:disabled) {
-  background: #f6c94b;
+  background: var(--accent-hover);
   color: #20211f;
 }
 .submitButton:focus-visible,
@@ -157,7 +157,7 @@
   place-items: center;
   width: 64px;
   height: 64px;
-  background: #f6c94b;
+  background: var(--accent);
   border-radius: 50%;
   font-size: 28px;
   margin-bottom: 30px;

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 930" role="img" aria-labelledby="digidocs-title">
+  <title id="digidocs-title">Illustrative interface</title>
+  <rect width="1400" height="930" fill="#e7f0ec"/>
+  <rect x="64" y="40" width="1272" height="850" rx="16" fill="#f7f6f2" stroke="#d5ddd8"/>
+  <rect x="88" y="64" width="332" height="40" rx="6" fill="#1c1c1a"/>
+  <text x="108" y="90" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" letter-spacing="1.4">ILLUSTRATIVE INTERFACE</text>
+  <text x="440" y="90" fill="#5e675f" font-family="Segoe UI, sans-serif" font-size="16">Schematic, not a screenshot. No live data.</text>
+  <rect x="88" y="124" width="1224" height="56" rx="8" fill="#ffffff" stroke="#e1e6e2"/>
+  <g font-family="Segoe UI, sans-serif" font-size="15" font-weight="600">
+    <rect x="104" y="136" width="92" height="32" rx="16" fill="#1c1c1a"/>
+    <text x="126" y="157" fill="#ffffff">Forms</text>
+    <text x="230" y="157" fill="#3d453e">Timesheets</text>
+    <text x="360" y="157" fill="#3d453e">Vehicle check</text>
+    <text x="520" y="157" fill="#3d453e">Reports</text>
+    <text x="630" y="157" fill="#3d453e">Policies</text>
+  </g>
+  <text x="1080" y="157" fill="#6a736b" font-family="Segoe UI, sans-serif" font-size="14">Private application</text>
+  <rect x="88" y="204" width="390" height="640" rx="12" fill="#ffffff" stroke="#e1e6e2"/>
+  <text x="112" y="244" fill="#1c1c1a" font-family="Segoe UI, sans-serif" font-size="22" font-weight="700">Sample forms</text>
+  <g font-family="Segoe UI, sans-serif" font-size="15">
+    <text x="112" y="300" fill="#1c1c1a">Daily site record</text>
+    <text x="360" y="300" fill="#6a736b">Example</text>
+    <line x1="112" y1="322" x2="446" y2="322" stroke="#eceee9"/>
+    <text x="112" y="364" fill="#1c1c1a">Induction checklist</text>
+    <text x="360" y="364" fill="#6a736b">Sample</text>
+    <line x1="112" y1="386" x2="446" y2="386" stroke="#eceee9"/>
+    <text x="112" y="428" fill="#1c1c1a">Handover note</text>
+    <text x="360" y="428" fill="#6a736b">Draft</text>
+    <line x1="112" y1="450" x2="446" y2="450" stroke="#eceee9"/>
+    <text x="112" y="492" fill="#1c1c1a">Equipment request</text>
+    <text x="360" y="492" fill="#6a736b">Example</text>
+  </g>
+  <rect x="498" y="204" width="400" height="308" rx="12" fill="#ffffff" stroke="#e1e6e2"/>
+  <text x="522" y="244" fill="#1c1c1a" font-family="Segoe UI, sans-serif" font-size="22" font-weight="700">Sample week</text>
+  <text x="522" y="274" fill="#6a736b" font-family="Segoe UI, sans-serif" font-size="14">Timesheet example</text>
+  <g font-family="Segoe UI, sans-serif" font-size="15">
+    <text x="522" y="328" fill="#1c1c1a">Monday</text>
+    <text x="800" y="328" fill="#3d453e">7.5</text>
+    <text x="522" y="368" fill="#1c1c1a">Tuesday</text>
+    <text x="800" y="368" fill="#3d453e">7.5</text>
+    <text x="522" y="408" fill="#1c1c1a">Wednesday</text>
+    <text x="800" y="408" fill="#3d453e">8.0</text>
+    <text x="522" y="448" fill="#1c1c1a">Thursday</text>
+    <text x="800" y="448" fill="#3d453e">7.5</text>
+    <text x="522" y="488" fill="#1c1c1a">Friday</text>
+    <text x="800" y="488" fill="#3d453e">6.0</text>
+  </g>
+  <rect x="918" y="204" width="394" height="308" rx="12" fill="#ffffff" stroke="#e1e6e2"/>
+  <text x="942" y="244" fill="#1c1c1a" font-family="Segoe UI, sans-serif" font-size="22" font-weight="700">Vehicle example</text>
+  <text x="942" y="274" fill="#6a736b" font-family="Segoe UI, sans-serif" font-size="14">Vehicle check</text>
+  <g font-family="Segoe UI, sans-serif" font-size="15">
+    <text x="942" y="328" fill="#1c1c1a">Tyres</text>
+    <text x="1188" y="328" fill="#3d453e">Recorded</text>
+    <text x="942" y="368" fill="#1c1c1a">Lights</text>
+    <text x="1188" y="368" fill="#3d453e">Recorded</text>
+    <text x="942" y="408" fill="#1c1c1a">Fluids</text>
+    <text x="1188" y="408" fill="#3d453e">Review</text>
+    <text x="942" y="448" fill="#1c1c1a">Body</text>
+    <text x="1188" y="448" fill="#3d453e">Recorded</text>
+  </g>
+  <rect x="498" y="532" width="814" height="312" rx="12" fill="#ffffff" stroke="#e1e6e2"/>
+  <text x="522" y="576" fill="#1c1c1a" font-family="Segoe UI, sans-serif" font-size="22" font-weight="700">Policies and reports</text>
+  <g font-family="Segoe UI, sans-serif" font-size="15">
+    <text x="522" y="630" fill="#1c1c1a">Sample policy</text>
+    <text x="1100" y="630" fill="#6a736b">Example document</text>
+    <line x1="522" y1="652" x2="1268" y2="652" stroke="#eceee9"/>
+    <text x="522" y="694" fill="#1c1c1a">Working hours overview</text>
+    <text x="1100" y="694" fill="#6a736b">Example document</text>
+    <line x1="522" y1="716" x2="1268" y2="716" stroke="#eceee9"/>
+    <text x="522" y="758" fill="#1c1c1a">Weekly summary report</text>
+    <text x="1100" y="758" fill="#6a736b">Sample report</text>
+    <line x1="522" y1="780" x2="1268" y2="780" stroke="#eceee9"/>
+    <text x="522" y="812" fill="#6a736b">Generic sample records only. Not a live product view.</text>
+  </g>
+</svg>

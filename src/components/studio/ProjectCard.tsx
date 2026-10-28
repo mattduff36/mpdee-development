@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import type { StudioProject } from '@/data/projects';
+import { projectBrowserLabel, type StudioProject } from '@/data/projects';
 import { Arrow } from './Marks';
 export function ProjectCard({
   project,
@@ -32,7 +32,7 @@ export function ProjectCard({
               <span />
               <span />
               <span />
-              <small>{new URL(project.url).hostname.replace('www.', '')}</small>
+              <small>{projectBrowserLabel(project.url, true)}</small>
             </div>
             <div className="project-screen">
               <Image
@@ -41,6 +41,7 @@ export function ProjectCard({
                 fill
                 sizes="(max-width: 700px) 90vw, 45vw"
                 priority={priority}
+                unoptimized={project.image.endsWith('.svg')}
               />
             </div>
           </div>
@@ -48,6 +49,9 @@ export function ProjectCard({
             <Arrow />
           </span>
         </div>
+        {project.imageCaption ? (
+          <p className="project-image-caption">{project.imageCaption}</p>
+        ) : null}
         <div className="project-meta">
           <div>
             <span className="eyebrow">

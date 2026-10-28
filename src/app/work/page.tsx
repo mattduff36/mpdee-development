@@ -16,14 +16,14 @@ export default function WorkPage() {
         <header className="page-intro">
           <div className="eyebrow">The work / A selection of projects</div>
           <h1>
-            Ideas made
+            Selected
             <br />
-            <span className="serif-word">real.</span>
+            <span className="serif-word">work.</span>
             <Asterisk />
           </h1>
           <p>
-            Different industries, different challenges. Here’s what happens when
-            thoughtful design meets practical development.
+            A selection of websites and web applications. Open a project to read
+            what it does and how it was put together.
           </p>
         </header>
         <section className="work-collection" aria-label="Project collection">

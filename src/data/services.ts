@@ -13,13 +13,13 @@ export const capabilities: Capability[] = [
   {
     id: 'websites',
     number: '01',
-    title: 'A website that feels like you.',
+    title: 'Website design and development.',
     shortTitle: 'Website design',
     description:
       'Thoughtful design and clear content that help the right people find you, understand you and get in touch.',
     tags: ['Design', 'Development', 'SEO foundations'],
     detail:
-      'From a first online home to a complete redesign, your website should reflect the care you put into your business. We’ll shape the structure, content and design around what your visitors need to do.',
+      'From a first website to a full redesign, I shape the structure, content and design around what visitors need to do.',
     includes: [
       'A clear structure and straightforward navigation',
       'Responsive design for phones, tablets and desktops',
@@ -30,7 +30,7 @@ export const capabilities: Capability[] = [
   {
     id: 'platforms',
     number: '02',
-    title: 'More than a website. A useful tool.',
+    title: 'Web apps and platforms.',
     shortTitle: 'Web apps & platforms',
     description:
       'Booking systems, directories, marketplaces and custom tools that turn a complicated job into a simpler one.',
@@ -47,10 +47,10 @@ export const capabilities: Capability[] = [
   {
     id: 'improvements',
     number: '03',
-    title: 'Keep the good. Improve the rest.',
+    title: 'Care and improvements.',
     shortTitle: 'Care & improvements',
     description:
-      'A fresh pair of eyes, a faster experience or the next useful feature. Practical help for what you already have.',
+      'A review of what you already have, a focused fix, or the next useful feature.',
     tags: ['Refinements', 'Performance', 'Ongoing care'],
     detail:
       'A complete rebuild isn’t always the right next step. We can look at the site you have, identify what’s getting in the way, and agree a focused set of improvements that make a worthwhile difference.',

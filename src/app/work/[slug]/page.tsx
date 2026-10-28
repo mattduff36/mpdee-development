@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { projects } from '@/data/projects';
+import { projectBrowserLabel, projects } from '@/data/projects';
 import { Arrow, SectionLabel } from '@/components/studio/Marks';
 import { ContactCta } from '@/components/studio/ContactCta';
 export const dynamicParams = false;
@@ -55,15 +55,21 @@ export default async function ProjectPage({
                 <span key={service}>{service}</span>
               ))}
             </div>
-            <a
-              className="text-link"
-              href={project.url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Visit the live site <Arrow />
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
+            {project.url ? (
+              <a
+                className="text-link"
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Visit the live site <Arrow />
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            ) : (
+              <span className="private-application-label">
+                Private application
+              </span>
+            )}
           </div>
         </header>
         <div className="case-image" style={{ backgroundColor: project.colour }}>
@@ -72,7 +78,7 @@ export default async function ProjectPage({
               <span />
               <span />
               <span />
-              <small>{new URL(project.url).hostname}</small>
+              <small>{projectBrowserLabel(project.url)}</small>
             </div>
             <Image
               src={project.image}
@@ -81,8 +87,12 @@ export default async function ProjectPage({
               height={930}
               sizes="(max-width: 700px) 90vw, 80vw"
               priority
+              unoptimized={project.image.endsWith('.svg')}
             />
           </div>
+          {project.imageCaption ? (
+            <p className="case-image-caption">{project.imageCaption}</p>
+          ) : null}
         </div>
         <div className="case-overview">
           <div>

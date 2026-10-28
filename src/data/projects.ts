@@ -12,9 +12,16 @@ export type StudioProject = {
   services: string[];
   image: string;
   imageAlt: string;
-  url: string;
+  imageCaption?: string;
+  url?: string;
   colour: string;
 };
+
+export function projectBrowserLabel(url?: string, stripWww = false) {
+  if (!url) return 'Private application';
+  const host = new URL(url).hostname;
+  return stripWww ? host.replace('www.', '') : host;
+}
 
 export const projects: StudioProject[] = [
   {
@@ -24,7 +31,7 @@ export const projects: StudioProject[] = [
     sector: 'Automotive',
     summary:
       'A vehicle marketplace connecting buyers, private sellers and dealers across the Isle of Man.',
-    headline: 'An island marketplace. A complete product.',
+    headline: 'Vehicle marketplace for the Isle of Man.',
     description:
       'iTrader brings vehicle discovery, private selling and dealer stock together in one place. A focused search experience sits alongside the tools sellers need to create listings and manage their presence.',
     challenge:
@@ -45,13 +52,43 @@ export const projects: StudioProject[] = [
     colour: '#dce9ed',
   },
   {
+    slug: 'digidocs',
+    title: 'DigiDocs',
+    category: 'Platforms',
+    sector: 'Operations',
+    summary:
+      'A private application for digital forms, employee timesheets, vehicle inspections, reporting and policy documents.',
+    headline: 'Operational records in a private application.',
+    description:
+      'DigiDocs brings digital forms, employee timesheets, vehicle inspections, reporting and policy documents together, with access organised by role and module. This case study presents the reusable approach developed for a private operational application; no public demo is linked here.',
+    challenge:
+      'Forms, timesheets, vehicle checks, reports and policy documents are easy to leave in separate places. People still need a clear route to the records their role is meant to use.',
+    approach:
+      'Give each kind of record its own area: forms, timesheets, vehicle checks, reports and policies. Limit what someone can open according to their role and the modules assigned to them.',
+    features: [
+      'Digital forms',
+      'Employee timesheets',
+      'Vehicle inspections',
+      'Role- and module-based access',
+      'Reporting',
+      'Policy documents',
+    ],
+    services: ['Product design', 'Web development', 'Application access'],
+    image: '/images/work/digidocs-illustrative.svg',
+    imageAlt:
+      'Illustrative DigiDocs interface with sample forms, a timesheet, a vehicle check and policies',
+    imageCaption:
+      'Illustrative interface. This schematic is not a screenshot and does not show live data.',
+    colour: '#d7e2dc',
+  },
+  {
     slug: 'voiceover-studio-finder',
     title: 'Voiceover Studio Finder',
     category: 'Platforms',
     sector: 'Audio & creative',
     summary:
       'A worldwide directory helping voice artists and producers find the right recording space.',
-    headline: 'The right studio. Within reach.',
+    headline: 'A worldwide directory of recording studios.',
     description:
       'Built with VoiceoverGuy, Voiceover Studio Finder connects recording studios with the people who need them. Location search, detailed profiles and direct contact make the directory useful on both sides of the microphone.',
     challenge:
@@ -78,7 +115,7 @@ export const projects: StudioProject[] = [
     sector: 'Photography',
     summary:
       'A photography portfolio that gives the images room to speak, with a dedicated route for clients.',
-    headline: 'Let the photography do the talking.',
+    headline: 'A photography portfolio with a client login.',
     description:
       'A portfolio for East Midlands photographer Lee Barrowcliff, bringing wedding, portrait, landscape and other collections together with a dedicated client login.',
     challenge:
@@ -104,7 +141,7 @@ export const projects: StudioProject[] = [
     sector: 'Hair & beauty',
     summary:
       'A welcoming salon website that connects services, the team and online appointment booking.',
-    headline: 'A warm welcome before the first appointment.',
+    headline: 'Salon services, the team and online booking.',
     description:
       'A website for Victoria Rose in Mansfield Woodhouse, introducing the salon, its hair and beauty services and the people behind them. Clear booking routes connect discovery with the next appointment.',
     challenge:
@@ -130,7 +167,7 @@ export const projects: StudioProject[] = [
     sector: 'Events & entertainment',
     summary:
       'A colourful hire website with castle browsing, local service information and an online booking journey.',
-    headline: 'From party plans to booking.',
+    headline: 'Castle browsing with an online booking journey.',
     description:
       'A website and booking experience for a family-run bouncy castle hire business in Edwinstowe. It brings the fun of the product together with the practical details people need when planning an event.',
     challenge:
@@ -156,7 +193,7 @@ export const projects: StudioProject[] = [
     sector: 'Art & independent retail',
     summary:
       'An artist portfolio and shop for original nature-inspired paintings and commission enquiries.',
-    headline: 'A little more room for creativity.',
+    headline: 'A gallery and shop for original paintings.',
     description:
       'An online home for Kay and her paintings, combining a gallery, the story behind the work and a shop for available pieces. A contact route makes it easy to ask about a painting or discuss a commission.',
     challenge:
@@ -182,7 +219,7 @@ export const projects: StudioProject[] = [
     sector: 'Transport & logistics',
     summary:
       'A clear business website presenting transport services, fleet capabilities and quote enquiries.',
-    headline: 'A clear route to the right transport.',
+    headline: 'Transport services and quote requests.',
     description:
       'A business website for L.W. Barker Transport Services in Newark, presenting its transport services and vehicle fleet. Service details and direct quote routes help visitors explain what they need moved.',
     challenge:

@@ -24,23 +24,30 @@ export function Arrow({
     </svg>
   );
 }
-export function Asterisk({ className = '' }: { className?: string }) {
+const BRAND_MARK_SRC = '/images/MPDEE-Development-logo-trans.png';
+export function BrandMark({ className = '' }: { className?: string }) {
   return (
     <svg
-      className={className}
+      className={className ? 'brand-mark ' + className : 'brand-mark'}
       width="72"
       height="72"
-      viewBox="0 0 80 80"
+      viewBox="0 0 72 72"
       fill="none"
       aria-hidden="true"
+      focusable="false"
     >
-      <path
-        d="M40 4v72M4 40h72M14.5 14.5l51 51m0-51-51 51"
-        stroke="currentColor"
-        strokeWidth="12"
+      <image
+        href={BRAND_MARK_SRC}
+        xlinkHref={BRAND_MARK_SRC}
+        width="72"
+        height="72"
+        preserveAspectRatio="xMidYMid meet"
       />
     </svg>
   );
+}
+export function Asterisk({ className = '' }: { className?: string }) {
+  return <BrandMark className={className} />;
 }
 export function SectionLabel({
   number,
