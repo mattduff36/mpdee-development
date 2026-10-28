@@ -28,10 +28,11 @@ export const Card = mockComponent('Card');
 export const Grid = mockComponent('Grid');
 export const Line = mockComponent('Line');
 export const Button = (
-  props: Record<string, unknown> & { children?: React.ReactNode; type?: string }
-) => (
-  <button type={(props.type as string) || 'button'}>{props.children}</button>
-);
+  props: Record<string, unknown> & {
+    children?: React.ReactNode;
+    type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  }
+) => <button type={props.type || 'button'}>{props.children}</button>;
 export const Input = (
   props: Record<string, unknown> & {
     id?: string;

@@ -20,7 +20,9 @@ describe('Footer', () => {
     expect(
       screen.getByText(new RegExp(currentYear.toString()))
     ).toBeInTheDocument();
-    expect(screen.getByText(/MPDEE/i)).toBeInTheDocument();
+    expect(
+      screen.getByText('© ' + currentYear + ' MPDEE Development')
+    ).toBeInTheDocument();
   });
 
   it('renders social links', () => {

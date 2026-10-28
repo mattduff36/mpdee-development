@@ -1,14 +1,7 @@
-import { MetadataRoute } from 'next';
-import { baseURL } from '@/resources';
-
+import type { MetadataRoute } from 'next';
 export default function robots(): MetadataRoute.Robots {
-  const url = baseURL.startsWith('http') ? baseURL : `https://${baseURL}`;
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/private/', '/admin/', '/api/'],
-    },
-    sitemap: `${url}/sitemap.xml`,
+    rules: { userAgent: '*', allow: '/', disallow: ['/api/'] },
+    sitemap: 'https://development.mpdee.co.uk/sitemap.xml',
   };
 }
